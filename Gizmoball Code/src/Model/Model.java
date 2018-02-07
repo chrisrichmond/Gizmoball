@@ -1,21 +1,25 @@
 package Model;
 
 import java.util.ArrayList;
-import java.util.Observable;
+import java.util.List;
 
+import observerpattern.Observer;
 import physics.Circle;
 import physics.SquareClass;
 import physics.TriangleClass;
 
-public class Model extends Observable {
+public class Model implements ModelAPI {
+	private List<Observer> observers;
+	private boolean changed;
 	private Ball ball;
 	private ArrayList<SquareClass> squares;
 	private ArrayList<Circle> circles;
 	private ArrayList<TriangleClass> triangles;
-	
  
 	
 	public Model(){
+		observers = new ArrayList<Observer>();
+		changed = false;
 		squares = new ArrayList<SquareClass>();
 		circles = new ArrayList<Circle>();
 		triangles = new ArrayList<TriangleClass>();
@@ -79,6 +83,32 @@ public class Model extends Observable {
     public void addTriangle(TriangleClass triangle) {
 		triangles.add(triangle);
 	}
-	
-	
+
+
+	@Override
+	public void attach(Observer o) {
+		observers.add(o);
+	}
+
+	@Override
+	public void detach(Observer o) {
+		observers.remove(o);
+	}
+
+	@Override
+	public void setChanged() {
+		changed = true;
+	}
+
+	@Override
+	public void notifyObservers() {
+		if(changed){
+			for (Observer currentObserver: observers){
+				currentObserver.update(this);
+			}
+			changed = false;
+		}
+	}
+
+
 }
