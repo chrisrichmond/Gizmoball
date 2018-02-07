@@ -15,10 +15,11 @@ public class MainWindow implements Observer{
     public MainWindow(ModelAPI model){
         this.model = model;
         model.attach(this);
+        boardPanel = new BoardPanel(model);
     }
 
     @Override
-    public void update(Observable o) {
+    public void update() {
 
     }
 

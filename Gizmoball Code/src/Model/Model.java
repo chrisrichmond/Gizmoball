@@ -3,6 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import Model.gizmos.Gizmo;
 import observerpattern.Observer;
 import physics.Circle;
 import physics.SquareClass;
@@ -12,9 +13,10 @@ public class Model implements ModelAPI {
 	private List<Observer> observers;
 	private boolean changed;
 	private Ball ball;
-	private ArrayList<SquareClass> squares;
-	private ArrayList<Circle> circles;
-	private ArrayList<TriangleClass> triangles;
+	private List<Gizmo> gizmos;
+	private List<SquareClass> squares;
+	private List<Circle> circles;
+	private List<TriangleClass> triangles;
  
 	
 	public Model(){
@@ -24,7 +26,7 @@ public class Model implements ModelAPI {
 		circles = new ArrayList<Circle>();
 		triangles = new ArrayList<TriangleClass>();
 		
-		ball = new Ball(25, 25, 100, 100);
+		ball = new BallImpl(25, 25, 100, 100);
 		
 	 
  }
@@ -48,26 +50,27 @@ public class Model implements ModelAPI {
 		
 	}
 	
-	private Ball movelBallForTime(Ball ball, double time) {
+	private Ball movelBallForTime(BallImpl ball, double time) {
 		ball.setXpos(ball.getXpos()*time);
 		ball.setYpos(ball.getYpos()*time);
 		return ball;
 		
 	}
 
+	@Override
 	public Ball getBall() {
 		return ball;
 	}
 
-	public ArrayList<SquareClass> getSquares() {
+	public List<SquareClass> getSquares() {
 		return squares;
 	}
 
-	public ArrayList<Circle> getCircles() {
+	public List<Circle> getCircles() {
 		return circles;
 	}
 
-	public ArrayList<TriangleClass> getTriangles() {
+	public List<TriangleClass> getTriangles() {
 		return triangles;
 	}
 	
@@ -104,11 +107,15 @@ public class Model implements ModelAPI {
 	public void notifyObservers() {
 		if(changed){
 			for (Observer currentObserver: observers){
-				currentObserver.update(this);
+				currentObserver.update();
 			}
 			changed = false;
 		}
 	}
 
+	@Override
+	public List<Gizmo> getGizmos(){
+		return gizmos;
+	}
 
 }
