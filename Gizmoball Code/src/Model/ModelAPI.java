@@ -19,4 +19,9 @@ public interface ModelAPI extends Observable{
      */
     public Ball getBall();
 
+    /**
+     * Gets a boolean value to indicate that either the game is in build mode or it is not
+     * @return true if the game is in build mode or false if the game is in run mode
+     */
+    public boolean isBuildMode();
 }

@@ -12,6 +12,7 @@ import physics.TriangleClass;
 public class Model implements ModelAPI {
 	private List<Observer> observers;
 	private boolean changed;
+	private boolean isBuildMode;
 	private Ball ball;
 	private List<Gizmo> gizmos;
 	private List<SquareClass> squares;
@@ -60,6 +61,11 @@ public class Model implements ModelAPI {
 	@Override
 	public Ball getBall() {
 		return ball;
+	}
+
+	@Override
+	public boolean isBuildMode() {
+		return isBuildMode;
 	}
 
 	public List<SquareClass> getSquares() {

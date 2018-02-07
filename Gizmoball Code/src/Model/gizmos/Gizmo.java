@@ -11,4 +11,16 @@ public interface Gizmo {
      */
     void setPos(int xPos, int yPos);
 
+    /**
+     * Gets the x grid position of the Gizmo object
+     * @return x integer grid pos
+     */
+    int getXPos();
+
+    /**
+     * Gets the y grid position of the Gizmo object
+     * @return y integer grid pos
+     */
+    int getYPos();
+
 }
