@@ -14,4 +14,14 @@ public class TriangularBumper implements Gizmo{
         this.xPos = xPos;
         this.yPos = yPos;
     }
+
+    @Override
+    public int getXPos() {
+        return xPos;
+    }
+
+    @Override
+    public int getYPos() {
+        return yPos;
+    }
 }

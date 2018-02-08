@@ -93,7 +93,6 @@ public class Model implements ModelAPI {
 		triangles.add(triangle);
 	}
 
-
 	@Override
 	public void attach(Observer o) {
 		observers.add(o);

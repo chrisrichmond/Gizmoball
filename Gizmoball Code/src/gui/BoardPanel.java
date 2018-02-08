@@ -72,7 +72,7 @@ public class BoardPanel extends JPanel implements Observer{
         isBuildMode = model.isBuildMode();
         gizmos = model.getGizmos();
         ball = model.getBall();
-        this.repaint();
+        //this.repaint(); // going to try calling this from the frame instead of lower down
     }
 
     /**
