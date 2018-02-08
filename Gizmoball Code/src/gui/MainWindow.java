@@ -16,13 +16,19 @@ public class MainWindow implements Observer{
     private ModelAPI model; // reference to the backend gizmoball model
     private boolean isBuildMode; // true if user is currently in build mode, false if currently in run mode
     private JFrame mainFrame;
-    private JPanel boardPanel, menuPanel;
+    private JPanel boardPanel;
+    private Menu menu;
 
     public MainWindow(ModelAPI model){
         this.model = model;
         isBuildMode = false;
         model.attach(this);
         boardPanel = new BoardPanel(model);
+        menu = new Menu(model);
+        
+        mainFrame.add(menu.getBuildMenuPanel());
+        mainFrame.add(menu.getRunMenuPanel());
+        
     }
 
     @Override
