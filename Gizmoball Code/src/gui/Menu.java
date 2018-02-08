@@ -34,7 +34,7 @@ public class Menu implements Observer{
      * Observer Pattern should ensure this is called every time the system updates 
      * to check for a potential change from build mode to run mode or vice versa
      **/
-    private void checkVisibility(){
+    private void refreshVisibility(){
         if(isBuildMode){
             menu.getBuildMenuPanel().setVisible(true);
             menu.getRunMenuPanel().setVisible(false);
@@ -56,6 +56,6 @@ public class Menu implements Observer{
     @Override
     public void update() {
         isBuildMode = model.isBuildMode();
-        checkVisibility();
+        refreshVisibility();
     }
 }
