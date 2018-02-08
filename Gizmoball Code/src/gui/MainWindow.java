@@ -21,19 +21,34 @@ public class MainWindow implements Observer{
 
     public MainWindow(ModelAPI model){
         this.model = model;
-        isBuildMode = false;
         model.attach(this);
+        isBuildMode = model.isBuildMode();
+        mainFrame = new JFrame("Gizmoball");
         boardPanel = new BoardPanel(model);
         menu = new Menu(model);
         
+        mainFrame.setTitle
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.add(menu.getBuildMenuPanel());
         mainFrame.add(menu.getRunMenuPanel());
         
+    }
+    
+    /**
+     * Checks the current game mode and refreshes the frame title accordingly
+     **/
+    private void refreshFrameTitle(){
+        if(isBuildMode){
+            mainFrame.setTitle("Gizmoball [Build Mode]");
+        }else{
+            mainFrame.setTitle("Gizmoball [Run Mode]")
+        }
     }
 
     @Override
     public void update() {
         isBuildMode = model.isBuildMode();
+        refreshFrameTitle();
     }
 
 }
