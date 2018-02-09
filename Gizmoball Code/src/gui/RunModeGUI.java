@@ -45,8 +45,6 @@ public class RunModeGUI implements GameGUI {
         buttonPanel.add(buildModeButton);
         buttonPanel.add(quitButton);
 
-        // may need to set size here
-
         return buttonPanel;
     }
 
@@ -65,8 +63,6 @@ public class RunModeGUI implements GameGUI {
     @Override
     public JPanel createMessageField() {
         messagePanel = new JPanel();
-
-        // may need to set size here
 
         return messagePanel;
     }

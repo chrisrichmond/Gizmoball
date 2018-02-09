@@ -3,7 +3,7 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 
-public class BuildModeBoard extends JPanel implements Board{
+public class BuildModeBoard extends JPanel {
 
     @Override
     public void paintComponent(Graphics graphics){

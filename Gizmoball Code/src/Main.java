@@ -1,7 +1,7 @@
 import Model.ModelAPI;
 import Model.Model;
 import gui.View;
-//import gui_old.MainWindow;
+
 
 public class Main {
 
@@ -19,9 +19,8 @@ public class Main {
          */
 
         ModelAPI model = new Model();
-        //MainWindow view = new MainWindow(model);
-
         View view = new View(model);
+        view.runMode();
 
     }
 
