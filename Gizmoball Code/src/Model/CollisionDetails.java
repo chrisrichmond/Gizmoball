@@ -5,9 +5,9 @@ import physics.Vect;
 public class CollisionDetails {
 	private Vect velocity;
 	private double tuc;
-	public CollisionDetails(Vect velocity,double tuc){
-		this.velocity=velocity;
-		this.tuc=tuc;
+	public CollisionDetails(Vect velocity, double tuc){
+		this.velocity = velocity;
+		this.tuc = tuc;
 	}
 	public Vect getVelocity() {
 		return velocity;

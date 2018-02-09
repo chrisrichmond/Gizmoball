@@ -14,10 +14,10 @@ public class BallImpl implements Ball{
 	private boolean stopped;
 
 	public BallImpl(double x, double y, double xv, double yv){
-		this.velocity= new Vect(xv,yv);
-		this.xpos=x;
-		this.ypos=y;
-		this.colour=Color.pink;
+		this.velocity = new Vect(xv,yv);
+		this.xpos = x;
+		this.ypos = y;
+		this.colour = Color.pink;
 		
 	}
 
