@@ -13,19 +13,20 @@ public class View implements Observer{
 
     // Main Frame Declaration
     private JFrame mainFrame;
-    private GridBagConstraints gridBagConstraints;
 
     // Board Declarations
-    private Dimension boardDim;
     private JPanel buildBoard, runBoard, currentBoard;
 
     // GUI Declarations
     private GameGUI buildGUI, runGUI; // currentGUI required? // probably not
 
     // Component Declarations
-    private Dimension buttonPanelDim;
     private JPanel buildButtonPanel, runButtonPanel, currentButtonPanel;
     private JMenuBar buildMenuBar, runMenuBar, currentMenuBar;
+
+    // Dimension and Constraints Declarations
+    private Dimension boardDim, buttonPanelDim;
+    private GridBagConstraints gridBagConstraints;
 
     public View(ModelAPI model){
         // Model Backend Definition
@@ -33,10 +34,8 @@ public class View implements Observer{
 
         // Main Frame Definition
         mainFrame = new JFrame("Gizmoball");
-        gridBagConstraints = new GridBagConstraints();
 
         // Board Definitions
-        boardDim = new Dimension(800, 800);
         buildBoard = new BuildModeBoard();
         runBoard = new RunModeBoard();
 
@@ -45,14 +44,17 @@ public class View implements Observer{
         runGUI = new RunModeGUI();
 
         // Component Definitions
-        buttonPanelDim = new Dimension(200,800);
         buildButtonPanel = buildGUI.createButtons();
         runButtonPanel = runGUI.createButtons();
         buildMenuBar = buildGUI.createMenuBar();
         runMenuBar = runGUI.createMenuBar();
 
+        // Dimension and Constraints Definitions
+        boardDim = new Dimension(800, 800);
+        buttonPanelDim = new Dimension(200,800);
+        gridBagConstraints = new GridBagConstraints();
 
-        mainFrame.getContentPane().setLayout(new GridLayout());
+        mainFrame.getContentPane().setLayout(new GridBagLayout());
 //        buildButtonPanel.setPreferredSize(buttonPanelDim);
 //        runButtonPanel.setPreferredSize(buttonPanelDim);
 //        buildBoard.setPreferredSize(boardDim);
@@ -118,19 +120,22 @@ public class View implements Observer{
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 0;
         gridBagConstraints.weighty = 0;
-        mainFrame.getContentPane().add(currentMenuBar);
+        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
+        mainFrame.getContentPane().add(currentMenuBar, gridBagConstraints);
 
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 1;
         gridBagConstraints.gridheight = 2;
-        mainFrame.getContentPane().add(currentButtonPanel);
+        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+        mainFrame.getContentPane().add(currentButtonPanel, gridBagConstraints);
 
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 5;
-        mainFrame.getContentPane().add(currentBoard);
+        gridBagConstraints.anchor = GridBagConstraints.CENTER;
+        mainFrame.getContentPane().add(currentBoard, gridBagConstraints);
         mainFrame.repaint();
     }
 

@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class BuildModeGUI implements GameGUI {
 
@@ -29,6 +30,8 @@ public class BuildModeGUI implements GameGUI {
 
         buttonPanel.add(runModeButton);
         buttonPanel.add(quitButton);
+
+        buttonPanel.setSize(new Dimension(200,800));
 
         return buttonPanel;
     }
