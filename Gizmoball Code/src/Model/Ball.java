@@ -4,9 +4,9 @@ public interface Ball {
 
     //methods used for basic ball code implementation
 
-    public float getBallRadius();
+    public double getBallRadius();
 
-    public float getYCoords();
+    public double getYCoords();
 
-    public float getXCoords();
+    public double getXCoords();
 }
