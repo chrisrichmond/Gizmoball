@@ -35,6 +35,11 @@ public class Absorber implements Gizmo{
         return yPos;
     }
 
+    @Override
+    public void trigger() {
+
+    }
+
 
     public void storeGizmoBall(Ball gizmoBall){
         //absorb the ball into the absorber ready to be fired

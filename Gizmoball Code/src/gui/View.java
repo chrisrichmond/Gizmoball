@@ -61,7 +61,7 @@ public class View implements Observer{
 //        runBoard.setPreferredSize(boardDim);
 
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //mainFrame.
+        mainFrame.setPreferredSize(new Dimension(600,600));
         mainFrame.pack();
         mainFrame.setVisible(true);
     }

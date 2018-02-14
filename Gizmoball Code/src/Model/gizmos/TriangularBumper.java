@@ -24,4 +24,9 @@ public class TriangularBumper implements Gizmo{
     public int getYPos() {
         return yPos;
     }
+
+    @Override
+    public void trigger() {
+        
+    }
 }

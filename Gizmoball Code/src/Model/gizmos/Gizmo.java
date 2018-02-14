@@ -23,4 +23,9 @@ public interface Gizmo {
      */
     int getYPos();
 
+    /**
+     * Called to trigger this Gizmo
+     */
+    void trigger();
+
 }
