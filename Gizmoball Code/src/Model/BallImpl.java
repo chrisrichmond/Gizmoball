@@ -69,4 +69,18 @@ public class BallImpl implements Ball{
 		this.stopped = stopped;
 	}
 
+	@Override
+	public float getBallRadius() {
+		return 0;
+	}
+
+	@Override
+	public float getYCoords() {
+		return 0;
+	}
+
+	@Override
+	public float getXCoords() {
+		return 0;
+	}
 }
