@@ -12,8 +12,26 @@ public class SquareBumper implements Gizmo{
     private ArrayList<LineSegment> lines ;
     private ArrayList<Circle> circles = new ArrayList<>();
 
+    public ArrayList<Circle> getCircles() {
+        return circles;
+    }
+
+    public void setCircles(ArrayList<Circle> circles) {
+        this.circles = circles;
+    }
+
+    public ArrayList<LineSegment> getLines() {
+
+        return lines;
+    }
+
+    public void setLines(ArrayList<LineSegment> lines) {
+        this.lines = lines;
+    }
+
     public SquareBumper(){
 lines = new ArrayList<>();
+
 circles=new ArrayList<>();
     }
 
