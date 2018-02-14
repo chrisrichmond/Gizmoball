@@ -26,4 +26,6 @@ public interface ModelAPI extends Observable{
     public boolean isBuildMode();
 
     public Walls getWalls();
+
+    public void moveBall();
 }

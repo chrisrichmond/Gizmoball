@@ -2,6 +2,7 @@ package Model.gizmos;
 
 import Model.Ball;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Absorber implements Gizmo{
@@ -10,6 +11,7 @@ public class Absorber implements Gizmo{
     private int width = 1;
     private int xPos = 0;
     private int yPos;
+    private Color absorberColour;
 
     public Absorber(int xPos, int yPos){
 
@@ -35,9 +37,13 @@ public class Absorber implements Gizmo{
         return yPos;
     }
 
+
+    //trigger method that will be called from the model gizmo class will
+    //call the methods to absorb the ball and fire it back up into gameplay
     @Override
     public void trigger() {
-
+        removeFirstBall();
+        fireBall();
     }
 
 
@@ -59,23 +65,20 @@ public class Absorber implements Gizmo{
         return ballAbsorber.remove(0);
     }
 
-
     //accessor method to return the width
     public int getWidth(){
         return width;
     }
 
-
-
-
     public void fireBall(){
-
         System.out.println("Shooting ball into game!!");
-
         //code to be added to fire ball using Ball object
         //need to add code to the ball class to start the ball moving!
-
     }
 
+    //return the colour of the given absorber
+    public Color getAbsorberColour(){
+        return absorberColour;
+    }
 
 }

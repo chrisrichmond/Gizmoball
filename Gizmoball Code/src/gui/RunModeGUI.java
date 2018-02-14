@@ -1,9 +1,16 @@
 package gui;
 
+import Model.ModelAPI;
+import gui.Listeners.RunListener;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class RunModeGUI implements GameGUI {
+
+    private ModelAPI model;
+    private View view;
 
     // JPanel containing run mode buttons
     private JPanel buttonPanel;
@@ -14,6 +21,9 @@ public class RunModeGUI implements GameGUI {
     private JButton reloadButton;
     private JButton buildModeButton;
     private JButton quitButton;
+    private Font font;
+    private Dimension maxButtonSize;
+    private ActionListener listener;
 
     // JMenuBar for run mode options
     private JMenuBar menuBar;
@@ -23,20 +33,52 @@ public class RunModeGUI implements GameGUI {
     // JPanel for displaying information at the bottom of the screen
     private JPanel messagePanel;
 
-    public RunModeGUI(){
-
+    public RunModeGUI(ModelAPI model, View view){
+        this.model = model;
+        font = new Font("Arial", Font.BOLD, 12);
+        maxButtonSize = new Dimension(150,50);
+        listener = new RunListener(model, view);
     }
 
     @Override
     public JPanel createButtons() {
         buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(7,1));
+
         startButton = new JButton("Start");
+        startButton.setFont(font);
+        startButton.setMaximumSize(maxButtonSize);
+        startButton.addActionListener(listener);
+
         stopButton = new JButton("Stop");
+        stopButton.setFont(font);
+        stopButton.setMaximumSize(maxButtonSize);
+        stopButton.addActionListener(listener);
+
         tickButton = new JButton("Tick");
+        tickButton.setFont(font);
+        tickButton.setMaximumSize(maxButtonSize);
+        tickButton.addActionListener(listener);
+
         loadButton = new JButton("Load Model");
+        loadButton.setFont(font);
+        loadButton.setMaximumSize(maxButtonSize);
+        loadButton.addActionListener(listener);
+
         reloadButton = new JButton("Reload Model");
+        reloadButton.setFont(font);
+        reloadButton.setMaximumSize(maxButtonSize);
+        reloadButton.addActionListener(listener);
+
         buildModeButton = new JButton("Build Mode");
+        buildModeButton.setFont(font);
+        buildModeButton.setMaximumSize(maxButtonSize);
+        buildModeButton.addActionListener(listener);
+
         quitButton = new JButton("Quit");
+        quitButton.setFont(font);
+        quitButton.setMaximumSize(maxButtonSize);
+        quitButton.addActionListener(listener);
 
         buttonPanel.add(startButton);
         buttonPanel.add(stopButton);
