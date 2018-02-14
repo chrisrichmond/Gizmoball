@@ -14,6 +14,8 @@ public class RunModeGUI implements GameGUI {
     private JButton reloadButton;
     private JButton buildModeButton;
     private JButton quitButton;
+    private Font font;
+    private Dimension maxButtonSize;
 
     // JMenuBar for run mode options
     private JMenuBar menuBar;
@@ -24,19 +26,42 @@ public class RunModeGUI implements GameGUI {
     private JPanel messagePanel;
 
     public RunModeGUI(){
-
+        font = new Font("Arial", Font.BOLD, 12);
+        maxButtonSize = new Dimension(150,50);
     }
 
     @Override
     public JPanel createButtons() {
         buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(7,1));
+
         startButton = new JButton("Start");
+        startButton.setFont(font);
+        startButton.setMaximumSize(maxButtonSize);
+
         stopButton = new JButton("Stop");
+        stopButton.setFont(font);
+        stopButton.setMaximumSize(maxButtonSize);
+
         tickButton = new JButton("Tick");
+        tickButton.setFont(font);
+        tickButton.setMaximumSize(maxButtonSize);
+
         loadButton = new JButton("Load Model");
+        loadButton.setFont(font);
+        loadButton.setMaximumSize(maxButtonSize);
+
         reloadButton = new JButton("Reload Model");
+        reloadButton.setFont(font);
+        reloadButton.setMaximumSize(maxButtonSize);
+
         buildModeButton = new JButton("Build Mode");
+        buildModeButton.setFont(font);
+        buildModeButton.setMaximumSize(maxButtonSize);
+
         quitButton = new JButton("Quit");
+        quitButton.setFont(font);
+        quitButton.setMaximumSize(maxButtonSize);
 
         buttonPanel.add(startButton);
         buttonPanel.add(stopButton);
@@ -45,6 +70,7 @@ public class RunModeGUI implements GameGUI {
         buttonPanel.add(reloadButton);
         buttonPanel.add(buildModeButton);
         buttonPanel.add(quitButton);
+        buttonPanel.setVisible(true);
 
         buttonPanel.setSize(new Dimension(200,800));
 

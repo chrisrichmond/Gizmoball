@@ -11,8 +11,9 @@ public class View implements Observer{
     // Model Backend Declaration
     private ModelAPI model;
 
-    // Main Frame Declaration
+    // Main Frame and Content Pane Declaration
     private JFrame mainFrame;
+    private Container cp;
 
     // Board Declarations
     private JPanel buildBoard, runBoard, currentBoard;
@@ -32,8 +33,9 @@ public class View implements Observer{
         // Model Backend Definition
         this.model = model;
 
-        // Main Frame Definition
+        // Main Frame and Content Pane Definition
         mainFrame = new JFrame("Gizmoball");
+        cp = mainFrame.getContentPane();
 
         // Board Definitions
         buildBoard = new BuildModeBoard();
@@ -50,19 +52,20 @@ public class View implements Observer{
         runMenuBar = runGUI.createMenuBar();
 
         // Dimension and Constraints Definitions
-        boardDim = new Dimension(800, 800);
-        buttonPanelDim = new Dimension(200,800);
+        boardDim = new Dimension(400, 400);
+        buttonPanelDim = new Dimension(100,400);
         gridBagConstraints = new GridBagConstraints();
 
-        mainFrame.getContentPane().setLayout(new GridBagLayout());
-//        buildButtonPanel.setPreferredSize(buttonPanelDim);
-//        runButtonPanel.setPreferredSize(buttonPanelDim);
-//        buildBoard.setPreferredSize(boardDim);
-//        runBoard.setPreferredSize(boardDim);
+        cp.setLayout(new BorderLayout());
+        buildButtonPanel.setPreferredSize(buttonPanelDim);
+        runButtonPanel.setPreferredSize(buttonPanelDim);
+        buildBoard.setPreferredSize(boardDim);
+        runBoard.setPreferredSize(boardDim);
 
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        mainFrame.setPreferredSize(new Dimension(600,600));
+        mainFrame.setPreferredSize(new Dimension(500,500));
         mainFrame.pack();
+        mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
 
     }
@@ -106,9 +109,9 @@ public class View implements Observer{
      */
     private void clearFrame(){
         try{
-            mainFrame.getContentPane().remove(currentButtonPanel);
-            mainFrame.getContentPane().remove(currentMenuBar);
-            mainFrame.getContentPane().remove(currentBoard);
+            cp.remove(currentButtonPanel);
+            cp.remove(currentMenuBar);
+            cp.remove(currentBoard);
         }catch(NullPointerException npx){
             System.out.println(npx.getStackTrace() + " NullPointerException: trying to remove JComponent that wasn't there");
         }catch(ClassCastException ccx){
@@ -117,31 +120,34 @@ public class View implements Observer{
     }
 
     private void addCurrentCompsToFrame(){
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 0;
-        gridBagConstraints.weighty = 0;
-        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
-        mainFrame.getContentPane().add(currentMenuBar, gridBagConstraints);
+//        gridBagConstraints.gridx = 0;
+//        gridBagConstraints.gridy = 0;
+//        gridBagConstraints.weightx = 0;
+//        gridBagConstraints.weighty = 0;
+//        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
+//        mainFrame.getContentPane().add(currentMenuBar, gridBagConstraints);
+        cp.add(currentMenuBar, BorderLayout.PAGE_START);
 
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 1;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-        mainFrame.getContentPane().add(currentButtonPanel, gridBagConstraints);
+//        gridBagConstraints.gridx = 0;
+//        gridBagConstraints.gridy = 1;
+//        gridBagConstraints.gridwidth = 1;
+//        gridBagConstraints.gridheight = 2;
+//        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+//        mainFrame.getContentPane().add(currentButtonPanel, gridBagConstraints);
+        cp.add(currentButtonPanel, BorderLayout.LINE_START);
 
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.anchor = GridBagConstraints.CENTER;
-        mainFrame.getContentPane().add(currentBoard, gridBagConstraints);
+//        gridBagConstraints.gridx = 1;
+//        gridBagConstraints.gridy = 1;
+//        gridBagConstraints.gridwidth = 5;
+//        gridBagConstraints.gridheight = 5;
+//        gridBagConstraints.anchor = GridBagConstraints.CENTER;
+//        mainFrame.getContentPane().add(currentBoard, gridBagConstraints);
+        cp.add(currentBoard, BorderLayout.CENTER);
         mainFrame.repaint();
     }
 
     @Override
     public void update() {
-        mainFrame.repaint();
+        //mainFrame.repaint();
     }
 }

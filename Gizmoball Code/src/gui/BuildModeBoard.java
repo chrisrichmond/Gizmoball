@@ -6,7 +6,7 @@ import java.awt.*;
 public class BuildModeBoard extends JPanel {
 
     public BuildModeBoard(){
-        setSize(new Dimension(800, 800));
+
     }
 
     @Override
