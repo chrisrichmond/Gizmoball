@@ -11,23 +11,29 @@ import java.awt.event.*;
 public class windowsKeyListner {
     public static void main(String[] args) {
         JFrame mainFrame = new JFrame();
+
         mainFrame.addKeyListener(new KeyListener() {
+            boolean status = true;
+
             @Override
             public void keyTyped(KeyEvent e) {
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println(e + " pressed");
+                if(status){
+                    System.out.println("|");
+                    status = false;
+                }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println(e + " was let go");
+                System.out.println("______");
+                status = true;
             }
         });
         mainFrame.setSize(400, 400);
         mainFrame.setVisible(true);
-
         }
 }
