@@ -35,9 +35,13 @@ public class Absorber implements Gizmo{
         return yPos;
     }
 
+
+    //trigger method that will be called from the model gizmo class will
+    //call the methods to absorb the ball and fire it back up into gameplay
     @Override
     public void trigger() {
-
+        removeFirstBall();
+        fireBall();
     }
 
 
@@ -69,12 +73,9 @@ public class Absorber implements Gizmo{
 
 
     public void fireBall(){
-
         System.out.println("Shooting ball into game!!");
-
         //code to be added to fire ball using Ball object
         //need to add code to the ball class to start the ball moving!
-
     }
 
 
