@@ -37,7 +37,7 @@ public class View implements Observer{
 
         // Board Definitions
         buildBoard = new BuildModeBoard();
-        runBoard = new RunModeBoard();
+        runBoard = new RunModeBoard(model);
 
         // GUI Definitions
         buildGUI = new BuildModeGUI();
@@ -64,6 +64,7 @@ public class View implements Observer{
         mainFrame.setPreferredSize(new Dimension(600,600));
         mainFrame.pack();
         mainFrame.setVisible(true);
+
     }
 
     /**
@@ -141,6 +142,6 @@ public class View implements Observer{
 
     @Override
     public void update() {
-
+        mainFrame.repaint();
     }
 }

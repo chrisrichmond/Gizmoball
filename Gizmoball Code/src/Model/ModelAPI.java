@@ -24,4 +24,6 @@ public interface ModelAPI extends Observable{
      * @return true if the game is in build mode or false if the game is in run mode
      */
     public boolean isBuildMode();
+
+    public Walls getWalls();
 }

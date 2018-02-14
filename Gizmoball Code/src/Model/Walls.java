@@ -12,7 +12,7 @@ public class Walls {
 	private int xpos2;
 	private List<LineSegment> lineSegs;
 	
-	public Walls(int x1,int x2,int y1,int y2){
+	public Walls(int x1,int y1,int x2,int y2){
 		this.xpos1 = x1;
 		this.ypos1 = y1;
 		this.xpos2 = x2;

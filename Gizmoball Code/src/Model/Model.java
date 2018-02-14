@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-import Model.gizmos.Gizmo;
+import Model.gizmos.*;
 import observerpattern.Observer;
 import physics.Circle;
 import physics.SquareClass;
@@ -15,20 +15,23 @@ public class Model implements ModelAPI {
 	private boolean isBuildMode;
 	private Ball ball;
 	private List<Gizmo> gizmos;
-	private List<SquareClass> squares;
-	private List<Circle> circles;
-	private List<TriangleClass> triangles;
- 
+	private List<SquareBumperGizmo> squares;
+	private List<CircularBumperGizmo> circles;
+	private List<TriangularBumperGizmo> triangles;
+	private Walls walls;
+ 	private List<VerticalLine> lines;
 	
 	public Model(){
 		observers = new ArrayList<Observer>();
 		changed = false;
-		squares = new ArrayList<SquareClass>();
-		circles = new ArrayList<Circle>();
-		triangles = new ArrayList<TriangleClass>();
-		
+		squares = new ArrayList<SquareBumperGizmo>();
+		circles = new ArrayList<CircularBumperGizmo>();
+		triangles = new ArrayList<TriangularBumperGizmo>();
+		lines = new ArrayList<VerticalLine>();
+
 		ball = new BallImpl(25, 25, 100, 100);
-		
+		walls = new Walls(0,0,500,500);
+
 	 
  }
 	
@@ -51,7 +54,7 @@ public class Model implements ModelAPI {
 		
 	}
 	
-	private Ball movelBallForTime(BallImpl ball, double time) {
+	private Ball moveBallForTime(BallImpl ball, double time) {
 		ball.setXpos(ball.getXpos()*time);
 		ball.setYpos(ball.getYpos()*time);
 		return ball;
@@ -68,28 +71,33 @@ public class Model implements ModelAPI {
 		return isBuildMode;
 	}
 
-	public List<SquareClass> getSquares() {
+	@Override
+	public Walls getWalls() {
+		return null;
+	}
+
+	public List<SquareBumperGizmo> getSquares() {
 		return squares;
 	}
 
-	public List<Circle> getCircles() {
+	public List<CircularBumperGizmo> getCircles() {
 		return circles;
 	}
 
-	public List<TriangleClass> getTriangles() {
+	public List<TriangularBumperGizmo> getTriangles() {
 		return triangles;
 	}
 	
-	public void addCircle(Circle circle) {
+	public void addCircle(CircularBumperGizmo circle) {
 		circles.add(circle);
 	}
 	
-	public void addSquare(SquareClass square) {
+	public void addSquare(SquareBumperGizmo square) {
 		squares.add(square);
 	}
 	
 	
-    public void addTriangle(TriangleClass triangle) {
+    public void addTriangle(TriangularBumperGizmo triangle) {
 		triangles.add(triangle);
 	}
 
