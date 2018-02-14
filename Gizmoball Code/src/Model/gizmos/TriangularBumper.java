@@ -5,8 +5,9 @@ public class TriangularBumper implements Gizmo{
     private int xPos;
     private int yPos;
 
-    public TriangularBumper(){
-
+    public TriangularBumper(int xpos,int ypos){
+        this.xPos=xpos;
+        this.yPos=ypos;
     }
 
     @Override
