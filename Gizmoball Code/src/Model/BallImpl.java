@@ -1,6 +1,8 @@
 package Model;
 
 import java.awt.Color;
+
+import physics.Circle;
 import physics.Vect;
 
 public class BallImpl implements Ball{
@@ -83,6 +85,11 @@ public class BallImpl implements Ball{
 	//return x position of ball in the game
 	public double getXCoords(){
 		return xpos;
+	}
+
+	public Circle getCircle() {
+		return new Circle(xpos, ypos, radius);
+
 	}
 
 
