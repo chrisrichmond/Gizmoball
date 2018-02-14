@@ -105,7 +105,7 @@ public class Model implements ModelAPI {
             // check for other Circular Bumper collisions
         System.out.println("Checking Circular Bumper colliosions");
         for(int i=0;i<circles.size();i++) {
-            double minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(i), ball,velocity);
+            //double minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(i), ball,velocity);
             newVelocity = Geometry.reflectCircle(circles.get(i).getCircle(),ball.getVelocity(),velocity);
                 if (minTimeuntilCollision < shortestTime) {
                     shortestTime = minTimeuntilCollision;
