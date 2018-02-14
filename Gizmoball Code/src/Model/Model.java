@@ -5,10 +5,7 @@ import java.util.List;
 
 import Model.gizmos.*;
 import observerpattern.Observer;
-import physics.Circle;
-import physics.SquareClass;
-import physics.TriangleClass;
-import physics.Vect;
+import physics.*;
 
 public class Model implements ModelAPI {
 	private List<Observer> observers;
@@ -39,8 +36,27 @@ public class Model implements ModelAPI {
 	private CollisionDetails timeUntilCollision() {
         Circle circle = ball.getCircle();
         Vect velocity= ball.getVelocity();
+        Vect newVelocity;
+        double tickTime=0;
+        double shortestTime =50000;
 
-		//////////////////////
+		// check for collision on gizmo walls
+        List<LineSegment> wls= walls.getLineSegments();
+        System.out.println("Checking wall colliosions");
+        for(int i=0;i<wls.size();i++){
+            double minTimeuntilCollision= Geometry.timeUntilWallCollision(wls.get(i),circle,velocity);
+            if(minTimeuntilCollision<shortestTime){
+                shortestTime=minTimeuntilCollision;
+                newVelocity=Geometry.reflectWall(wls.get(i),velocity);
+            }else{
+                //no colliosion
+            }
+
+        }
+
+        // check for other collisions
+
+
 		//////////////
 		//////////
 		/////
