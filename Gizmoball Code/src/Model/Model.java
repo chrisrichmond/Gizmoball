@@ -51,7 +51,7 @@ public class Model implements ModelAPI {
 		return new CollisionDetails(null,0.0);
 	}
 	
-	private void moveBall() {
+	public void moveBall() {
 		////////////////////
 		/////////////////////
 		////////////////////

@@ -9,6 +9,8 @@ public class BuildModeGUI implements GameGUI {
     private JPanel buttonPanel;
     private JButton runModeButton;
     private JButton quitButton;
+    private Font font;
+    private Dimension maxButtonSize;
 
     // JMenuBar for build mode options
     private JMenuBar menuBar;
@@ -19,14 +21,22 @@ public class BuildModeGUI implements GameGUI {
     private JPanel messagePanel;
 
     public BuildModeGUI(){
-
+        font = new Font("Arial", Font.BOLD, 12);
+        maxButtonSize = new Dimension(150,50);
     }
 
     @Override
     public JPanel createButtons() {
         buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2,1));
+
         runModeButton = new JButton("Run Mode");
+        runModeButton.setFont(font);
+        runModeButton.setMaximumSize(maxButtonSize);
+
         quitButton = new JButton("Quit");
+        quitButton.setFont(font);
+        quitButton.setMaximumSize(maxButtonSize);
 
         buttonPanel.add(runModeButton);
         buttonPanel.add(quitButton);
