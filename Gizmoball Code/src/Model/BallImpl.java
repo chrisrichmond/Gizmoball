@@ -1,15 +1,15 @@
 package Model;
 
 import java.awt.Color;
-
 import physics.Vect;
 
 public class BallImpl implements Ball{
 	private Vect velocity;
-	private double radius;
 	private double xpos;
+	private double radius;
 	private double ypos;
 	private Color colour;
+
 
 	private boolean stopped;
 
@@ -18,7 +18,7 @@ public class BallImpl implements Ball{
 		this.xpos = x;
 		this.ypos = y;
 		this.colour = Color.pink;
-		
+		radius = 0.3;
 	}
 
 	public Vect getVelocity() {
@@ -69,18 +69,21 @@ public class BallImpl implements Ball{
 		this.stopped = stopped;
 	}
 
-	@Override
-	public float getBallRadius() {
-		return 0;
+
+	//access method for value of radius
+	public double getBallRadius(){
+		return radius;
 	}
 
-	@Override
-	public float getYCoords() {
-		return 0;
+	//return y position of ball in the game
+	public double getYCoords(){
+		return ypos;
 	}
 
-	@Override
-	public float getXCoords() {
-		return 0;
+	//return x position of ball in the game
+	public double getXCoords(){
+		return xpos;
 	}
+
+
 }

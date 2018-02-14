@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Absorber implements Gizmo{
 
     private ArrayList<Ball> ballAbsorber;
-    public int width = 1;
+    private int width = 1;
     private int xPos = 0;
     private int yPos;
 
@@ -17,7 +17,6 @@ public class Absorber implements Gizmo{
         this.xPos = xPos;
         this.yPos = yPos;
     }
-
 
     @Override
     public void setPos(int xPos, int yPos) {
