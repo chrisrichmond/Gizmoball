@@ -1,5 +1,8 @@
 package Model;
 
+import physics.Circle;
+import physics.Vect;
+
 public interface Ball {
 
     //methods used for basic ball code implementation
@@ -9,4 +12,8 @@ public interface Ball {
     public double getYCoords();
 
     public double getXCoords();
+
+    Circle getCircle();
+
+    Vect getVelocity();
 }

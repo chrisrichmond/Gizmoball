@@ -8,6 +8,7 @@ import observerpattern.Observer;
 import physics.Circle;
 import physics.SquareClass;
 import physics.TriangleClass;
+import physics.Vect;
 
 public class Model implements ModelAPI {
 	private List<Observer> observers;
@@ -36,6 +37,9 @@ public class Model implements ModelAPI {
  }
 	
 	private CollisionDetails timeUntilCollision() {
+        Circle circle = ball.getCircle();
+        Vect velocity= ball.getVelocity();
+
 		//////////////////////
 		//////////////
 		//////////
