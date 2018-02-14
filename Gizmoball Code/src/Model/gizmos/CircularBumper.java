@@ -1,5 +1,7 @@
 package Model.gizmos;
 
+import physics.Circle;
+
 public class CircularBumper implements Gizmo {
 
     private int xPos;
@@ -32,6 +34,10 @@ public class CircularBumper implements Gizmo {
 
     @Override
     public void trigger() {
+
+    }
+    public Circle getCircle() {
+        return new Circle(xPos, yPos, radius);
 
     }
 }

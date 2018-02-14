@@ -10,7 +10,7 @@ public class SquareBumper implements Gizmo{
     private int xPos;
     private int yPos;
     private ArrayList<LineSegment> lines ;
-    private ArrayList<Circle> circles = new ArrayList<>();
+    private ArrayList<Circle> circles ;
 
     public ArrayList<Circle> getCircles() {
         return circles;
@@ -30,9 +30,9 @@ public class SquareBumper implements Gizmo{
     }
 
     public SquareBumper(){
-lines = new ArrayList<>();
+lines = new ArrayList<LineSegment>();
 
-circles=new ArrayList<>();
+circles=new ArrayList<Circle>();
     }
 
     @Override
