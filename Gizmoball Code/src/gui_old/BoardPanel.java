@@ -45,19 +45,7 @@ public class BoardPanel extends JPanel implements Observer{
 
         // Draw gizmos
         for(Gizmo currentGizmo: gizmos){
-            if(currentGizmo instanceof AbsorberGizmo){
-                // Draw Absorber
 
-            }else if(currentGizmo instanceof CircularBumperGizmo){
-                // Draw CircularBumper
-                graphics.drawOval(convertXToCoords(currentGizmo.getXPos()),convertYToCoords(currentGizmo.getYPos()),widthGap,heightGap);
-            }else if(currentGizmo instanceof SquareBumperGizmo){
-                // Draw SquareBumper
-                graphics.drawRect(convertXToCoords(currentGizmo.getXPos()),convertYToCoords(currentGizmo.getYPos()),widthGap,heightGap);
-            }else if(currentGizmo instanceof TriangularBumperGizmo){
-                // Draw TriangularBumper
-
-            }
         }
 
         // Draw ball (build mode only?? can the ball be inserted using build mode?)

@@ -30,4 +30,12 @@ public interface ModelAPI extends Observable{
     public void moveBall();
 
     public void setBallSpeed(int x, int y);
+
+    public void addGizmo(Gizmo gizmo);
+
+//    public void addCircle(CircularBumperGizmo circle);
+//
+//    public void addSquare(SquareBumperGizmo square);
+//
+//    public void addTriangle(TriangularBumperGizmo triangle);
 }

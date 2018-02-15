@@ -11,9 +11,10 @@ public class SquareClass{
     private ArrayList<LineSegment> lines = new ArrayList<>();
     private ArrayList<Circle> circles = new ArrayList<>();
 
-    public SquareClass(int X, int Y) {
+    public SquareClass(int X, int Y, int width) {
         this.X = X;
         this.Y = Y;
+        this.width = width;
 
         LineSegment leftSide = new LineSegment((double)X, (double)Y, (double)X, (double)(Y + width));
         lines.add(leftSide);

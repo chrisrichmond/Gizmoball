@@ -2,36 +2,43 @@ package Model.gizmos;
 
 import physics.Circle;
 import physics.LineSegment;
+import physics.SquareClass;
 
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 public class SquareBumper implements Gizmo{
 
     private int xPos;
     private int yPos;
-    private ArrayList<LineSegment> lines ;
-    private ArrayList<Circle> circles ;
+    private SquareClass square;
+
+    public SquareBumper(int xPos, int yPos){
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.square = new SquareClass(xPos, yPos, 50);
+    }
 
     public ArrayList<Circle> getCircles() {
-        return circles;
+        return square.getCircles();
     }
 
-    public void setCircles(ArrayList<Circle> circles) {
-        this.circles = circles;
-    }
+//    public void setCircles(ArrayList<Circle> circles) {
+//        this.circles = circles;
+//    }
 
     public ArrayList<LineSegment> getLines() {
 
-        return lines;
+        return square.getLines();
     }
 
-    public void setLines(ArrayList<LineSegment> lines) {
-        this.lines = lines;
-    }
+//    public void setLines(ArrayList<LineSegment> lines) {
+//        this.lines = lines;
+//    }
 
-    public SquareBumper(){
-        lines = new ArrayList<LineSegment>();
-        circles=new ArrayList<Circle>();
+    public Rectangle2D.Double getDrawableSquare(){
+        return square.makeSquare();
     }
 
     @Override
@@ -53,5 +60,10 @@ public class SquareBumper implements Gizmo{
     @Override
     public void trigger() {
 
+    }
+
+    @Override
+    public String getType() {
+        return null;
     }
 }

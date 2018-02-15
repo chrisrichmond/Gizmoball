@@ -1,6 +1,10 @@
 package Model.gizmos;
 
 import Model.Model;
+import physics.Circle;
+import physics.LineSegment;
+
+import java.util.List;
 
 public interface Gizmo {
 
@@ -28,4 +32,9 @@ public interface Gizmo {
      */
     void trigger();
 
+    String getType();
+
+    List<LineSegment> getLines();
+
+    List<Circle> getCircles();
 }

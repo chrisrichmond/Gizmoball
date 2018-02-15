@@ -15,7 +15,7 @@ public class RunModeBoard extends JPanel {
 
     public RunModeBoard(ModelAPI model){
         this.model = model;
-        this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setBorder(BorderFactory.createLineBorder(Color.blue));
     }
 
     @Override
@@ -39,26 +39,31 @@ public class RunModeBoard extends JPanel {
         }
 
         // Draw Gizmos
-//        for (Gizmo currentGizmo: gizmos) {
-//            if(currentGizmo instanceof AbsorberGizmo){
-//                // Draw Absorber
-//
-//            }else if(currentGizmo instanceof CircularBumperGizmo){
-//                // Draw CircularBumper
-//
-//
-//                //graphics.drawOval(convertXToCoords(currentGizmo.getXPos()),convertYToCoords(currentGizmo.getYPos()),widthGap,heightGap);
-//            }else if(currentGizmo instanceof SquareBumperGizmo){
-//                // Draw SquareBumper
-//
-//
-//                //graphics.drawRect(convertXToCoords(currentGizmo.getXPos()),convertYToCoords(currentGizmo.getYPos()),widthGap,heightGap);
-//            }else if(currentGizmo instanceof TriangularBumperGizmo){
-//                // Draw TriangularBumper
-//
-//            }
-//
-//        }
+
+        System.out.println("size of gizmos: "+gizmos.size());
+        for (Gizmo currentGizmo: gizmos) {
+            if(currentGizmo.getType().equals("absorber")){
+                // Draw Absorber
+                int x = (int) (currentGizmo.getXPos());
+                int y = (int) (currentGizmo.getYPos());
+                //graphics2D.fillRoundRect();
+
+            }else if(currentGizmo.getType().equals("circle")){
+                // Draw CircularBumper
+
+
+                //graphics.drawOval(convertXToCoords(currentGizmo.getXPos()),convertYToCoords(currentGizmo.getYPos()),widthGap,heightGap);
+            }else if(currentGizmo.getType().equals("square")){
+                // Draw SquareBumper
+
+
+                //graphics.drawRect(convertXToCoords(currentGizmo.getXPos()),convertYToCoords(currentGizmo.getYPos()),widthGap,heightGap);
+            }else if(currentGizmo.getType().equals("triangle")){
+                // Draw TriangularBumper
+
+            }
+
+        }
 
     }
 

@@ -1,9 +1,12 @@
 package Model.gizmos;
 
 import Model.Ball;
+import physics.Circle;
+import physics.LineSegment;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Absorber implements Gizmo{
 
@@ -44,6 +47,21 @@ public class Absorber implements Gizmo{
     public void trigger() {
         removeFirstBall();
         fireBall();
+    }
+
+    @Override
+    public String getType() {
+        return null;
+    }
+
+    @Override
+    public List<LineSegment> getLines() {
+        return null;
+    }
+
+    @Override
+    public List<Circle> getCircles() {
+        return null;
     }
 
 

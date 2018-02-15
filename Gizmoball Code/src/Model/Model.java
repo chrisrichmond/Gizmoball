@@ -14,18 +14,20 @@ public class Model implements ModelAPI {
 	private boolean isBuildMode;
 	private Ball ball;
 	private List<Gizmo> gizmos;
-	private List<SquareBumperGizmo> squares;
-	private List<CircularBumperGizmo> circles;
-	private List<TriangularBumperGizmo> triangles;
+	private List<Gizmo> squares;
+	private List<Gizmo> circles;
+	private List<Gizmo> triangles;
 	private Walls walls;
  	private List<VerticalLine> lines;
 	
 	public Model(){
 		observers = new ArrayList<Observer>();
 		changed = false;
-		squares = new ArrayList<SquareBumperGizmo>();
-		circles = new ArrayList<CircularBumperGizmo>();
-		triangles = new ArrayList<TriangularBumperGizmo>();
+		gizmos = new ArrayList<Gizmo>();
+		squares = new ArrayList<Gizmo>();
+		circles = new ArrayList<Gizmo>();
+		triangles = new ArrayList<Gizmo>();
+
 		lines = new ArrayList<VerticalLine>();
 
 		ball = new BallImpl(25.0D, 25.0D, 100.0D, 100.0D);
@@ -172,33 +174,45 @@ System.out.println("Shortest Time is: "+shortestTime);
 		return null;
 	}
 
-	public List<SquareBumperGizmo> getSquares() {
+	public List<Gizmo> getSquares() {
 		return squares;
 	}
 
-	public List<CircularBumperGizmo> getCircles() {
+	public List<Gizmo> getCircles() {
 		return circles;
 	}
 
-	public List<TriangularBumperGizmo> getTriangles() {
+	public List<Gizmo> getTriangles() {
 		return triangles;
 	}
 	
-	public void addCircle(CircularBumperGizmo circle) {
+	public void addCircle(Gizmo circle) {
 		circles.add(circle);
 	}
 	
-	public void addSquare(SquareBumperGizmo square) {
+	public void addSquare(Gizmo square) {
 		squares.add(square);
 	}
 
-    public void addTriangle(TriangularBumperGizmo triangle) {
+    public void addTriangle(Gizmo triangle) {
 		triangles.add(triangle);
 	}
 
 	@Override
 	public void setBallSpeed(int x, int y){
 		ball.setVelocity(new Vect((double)x,(double)y));
+	}
+
+	@Override
+	public void addGizmo(Gizmo gizmo) {
+		gizmos.add(gizmo);
+		if(gizmo.getType().equals("circle")){
+			circles.add(gizmo);
+		}else if(gizmo.getType().equals("square")){
+			squares.add(gizmo);
+		}else  if(gizmo.getType().equals("triangle")){
+			triangles.add(gizmo);
+		}
 	}
 
 	@Override
