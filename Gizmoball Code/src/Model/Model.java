@@ -34,6 +34,7 @@ public class Model implements ModelAPI {
  }
 	
 	private CollisionDetails timeUntilCollision() {
+		//git testing
         Circle circle = ball.getCircle();
         Vect velocity= ball.getVelocity();
         Vect newVelocity;
