@@ -10,7 +10,7 @@ public class CircularBumper implements Gizmo {
     private int xPos;
     private int yPos;
     private int radius;
-
+    String type="circle";
 
     public CircularBumper(int radius,int xpos,int ypos){
         this.xPos=xpos;
@@ -42,7 +42,7 @@ public class CircularBumper implements Gizmo {
 
     @Override
     public String getType() {
-        return null;
+        return type;
     }
 
     @Override

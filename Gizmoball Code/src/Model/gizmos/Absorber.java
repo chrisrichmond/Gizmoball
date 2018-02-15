@@ -15,6 +15,7 @@ public class Absorber implements Gizmo{
     private int xPos = 0;
     private int yPos;
     private Color absorberColour;
+    String type="absorber";
 
     public Absorber(int xPos, int yPos){
 
@@ -51,7 +52,7 @@ public class Absorber implements Gizmo{
 
     @Override
     public String getType() {
-        return null;
+        return type;
     }
 
     @Override

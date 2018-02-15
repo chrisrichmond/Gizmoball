@@ -13,6 +13,7 @@ public class SquareBumper implements Gizmo{
     private int xPos;
     private int yPos;
     private SquareClass square;
+    String type="square";
 
     public SquareBumper(int xPos, int yPos){
         this.xPos = xPos;
@@ -64,6 +65,6 @@ public class SquareBumper implements Gizmo{
 
     @Override
     public String getType() {
-        return null;
+        return type;
     }
 }

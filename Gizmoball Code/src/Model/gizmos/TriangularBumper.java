@@ -5,6 +5,7 @@ import physics.LineSegment;
 
 import javax.sound.sampled.Line;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TriangularBumper implements Gizmo{
 
@@ -12,12 +13,14 @@ public class TriangularBumper implements Gizmo{
     private int yPos;
     private ArrayList<LineSegment> lines ;
     private ArrayList<Circle> circles ;
+    String type="triangle";
 
     public TriangularBumper(int xpos,int ypos){
         this.xPos=xpos;
         this.yPos=ypos;
         this.lines=new ArrayList<LineSegment>();
         this.circles=new ArrayList< Circle>();
+
     }
 
     @Override
@@ -39,5 +42,20 @@ public class TriangularBumper implements Gizmo{
     @Override
     public void trigger() {
         
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public List<LineSegment> getLines() {
+        return lines;
+    }
+
+    @Override
+    public List<Circle> getCircles() {
+        return circles;
     }
 }
