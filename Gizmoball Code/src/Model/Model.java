@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.gizmos.*;
+import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import observerpattern.Observer;
 import physics.*;
 
@@ -34,11 +35,13 @@ public class Model implements ModelAPI {
  }
 	
 	private CollisionDetails timeUntilCollision() {
+		System.out.println("x="+ball.getXpos()+" y="+ball.getYpos());
 		//git testing
         Circle circle = ball.getCircle();
         Vect velocity= ball.getVelocity();
+        System.out.println("vELOCITY="+velocity);
         Vect newVelocity;
-        double tickTime=0.0D;
+        double tickTime=0.05D;
         double shortestTime =50000.0D;
 		double minTimeuntilCollision;
 
@@ -50,6 +53,7 @@ public class Model implements ModelAPI {
             if(minTimeuntilCollision < shortestTime){
                 shortestTime = minTimeuntilCollision;
                 newVelocity = Geometry.reflectWall(wls.get(i),velocity);
+                System.out.println("wall Collision");
             }else{
                 //no colliosion
             }
@@ -66,6 +70,7 @@ public class Model implements ModelAPI {
                 minTimeuntilCollision = Geometry.timeUntilWallCollision(squareLines.get(x), circle, velocity);
                 if (minTimeuntilCollision < shortestTime) {
                     shortestTime = minTimeuntilCollision;
+					System.out.println("square Collision");
                     newVelocity = Geometry.reflectWall(squareLines.get(x), velocity);
                 }
             }
@@ -74,6 +79,7 @@ public class Model implements ModelAPI {
                 minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(x), circle, velocity);
                 if (minTimeuntilCollision < shortestTime) {
                     shortestTime = minTimeuntilCollision;
+					System.out.println("Square Collision");
                     newVelocity = Geometry.reflectCircle(circle.getCenter(),circle.getCenter(),velocity);
                 }
             }
@@ -91,6 +97,7 @@ public class Model implements ModelAPI {
                 minTimeuntilCollision = Geometry.timeUntilWallCollision(triangleLines.get(x), circle, velocity);
                 if (minTimeuntilCollision < shortestTime) {
                     shortestTime = minTimeuntilCollision;
+					System.out.println("Triangle Collision");
                     newVelocity = Geometry.reflectWall(triangleLines.get(x), velocity);
                 }
             }
@@ -99,7 +106,9 @@ public class Model implements ModelAPI {
                 minTimeuntilCollision = Geometry.timeUntilCircleCollision(triangleCircles.get(i), circle, velocity);
                 if (minTimeuntilCollision < shortestTime) {
                     shortestTime = minTimeuntilCollision;
+					System.out.println("Triangle Collision");
                     newVelocity = Geometry.reflectCircle(circle.getCenter(),ball.getVelocity(),velocity);
+
                 }
             }
         }
@@ -117,7 +126,10 @@ public class Model implements ModelAPI {
 			*/
         }
 
-		return new CollisionDetails(null,0.0);
+        setChanged();
+        notifyObservers();
+
+		return new CollisionDetails(velocity, shortestTime);
 	}
 	
 	public void moveBall() {
