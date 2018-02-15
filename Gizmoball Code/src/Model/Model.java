@@ -5,10 +5,7 @@ import java.util.List;
 
 import Model.gizmos.*;
 import observerpattern.Observer;
-import physics.Circle;
-import physics.SquareClass;
-import physics.TriangleClass;
-import physics.Vect;
+import physics.*;
 
 public class Model implements ModelAPI {
 	private List<Observer> observers;
@@ -39,19 +36,88 @@ public class Model implements ModelAPI {
 	private CollisionDetails timeUntilCollision() {
         Circle circle = ball.getCircle();
         Vect velocity= ball.getVelocity();
+        Vect newVelocity;
+        double tickTime=0;
+        double shortestTime =50000;
 
-		//////////////////////
-		//////////////
-		//////////
-		/////
-		/////
-		//////////////////////
-		/////////////
-		/////////////////
+		// check for collision on gizmo walls
+        List<LineSegment> wls= walls.getLineSegments();
+        System.out.println("Checking wall colliosions");
+        for(int i=0;i<wls.size();i++){
+            double minTimeuntilCollision= Geometry.timeUntilWallCollision(wls.get(i),circle,velocity);
+            if(minTimeuntilCollision<shortestTime){
+                shortestTime=minTimeuntilCollision;
+                newVelocity=Geometry.reflectWall(wls.get(i),velocity);
+            }else{
+                //no colliosion
+            }
+
+        }
+
+        // check for square bumper (line seqments and circles) collisions
+        System.out.println("Checking square colliosions");
+        for(int i=0;i<squares.size();i++) {
+            List<LineSegment> squareLines = squares.get(i).getLines();
+            List<Circle> circles = squares.get(i).getCircles();
+
+            for (int x = 0; i < squareLines.size(); i++) {
+                double minTimeuntilCollision = Geometry.timeUntilWallCollision(squareLines.get(x), circle, velocity);
+                if (minTimeuntilCollision < shortestTime) {
+                    shortestTime = minTimeuntilCollision;
+                    newVelocity = Geometry.reflectWall(squareLines.get(x), velocity);
+                }
+            }
+
+            for (int x = 0; i < circles.size(); i++) {
+                double minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(x), circle, velocity);
+                if (minTimeuntilCollision < shortestTime) {
+                    shortestTime = minTimeuntilCollision;
+                    newVelocity = Geometry.reflectCircle(circle.getCenter(),circle.getCenter(),velocity);
+                }
+            }
+        }
+
+
+
+        // check for other Triange collisions
+        System.out.println("Checking triangle colliosions");
+        for(int i=0;i<triangles.size();i++) {
+            List<LineSegment> triangleLines = triangles.get(i).getLines();
+            List<Circle> triangleCircles = triangles.get(i).getCircles();
+
+            for (int x = 0; i < triangleLines.size(); i++) {
+                double minTimeuntilCollision = Geometry.timeUntilWallCollision(triangleLines.get(x), circle, velocity);
+                if (minTimeuntilCollision < shortestTime) {
+                    shortestTime = minTimeuntilCollision;
+                    newVelocity = Geometry.reflectWall(triangleLines.get(x), velocity);
+                }
+            }
+
+            for (int x = 0; i < triangleCircles.size(); i++) {
+                double minTimeuntilCollision = Geometry.timeUntilCircleCollision(triangleCircles.get(i), circle, velocity);
+                if (minTimeuntilCollision < shortestTime) {
+                    shortestTime = minTimeuntilCollision;
+                    newVelocity = Geometry.reflectCircle(circle.getCenter(),ball.getVelocity(),velocity);
+                }
+            }
+        }
+
+            // check for other Circular Bumper collisions
+        System.out.println("Checking Circular Bumper colliosions");
+        for(int i=0;i<circles.size();i++) {
+            //double minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(i), ball,velocity);
+            newVelocity = Geometry.reflectCircle(circles.get(i).getCircle(),ball.getVelocity(),velocity);
+                if (minTimeuntilCollision < shortestTime) {
+                    shortestTime = minTimeuntilCollision;
+             ////new velo
+                }
+
+        }
+
 		return new CollisionDetails(null,0.0);
 	}
 	
-	private void moveBall() {
+	public void moveBall() {
 		////////////////////
 		/////////////////////
 		////////////////////

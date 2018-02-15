@@ -1,10 +1,12 @@
 package gui;
 
 import Model.ModelAPI;
+import gui.Listeners.RunListener;
 import observerpattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class View implements Observer{
 
@@ -25,9 +27,10 @@ public class View implements Observer{
     private JPanel buildButtonPanel, runButtonPanel, currentButtonPanel;
     private JMenuBar buildMenuBar, runMenuBar, currentMenuBar;
 
-    // Dimension and Constraints Declarations
+    // Dimension Declarations
     private Dimension boardDim, buttonPanelDim;
-    private GridBagConstraints gridBagConstraints;
+
+    // Controller/Listener Declarations
 
     public View(ModelAPI model){
         // Model Backend Definition
@@ -43,7 +46,7 @@ public class View implements Observer{
 
         // GUI Definitions
         buildGUI = new BuildModeGUI();
-        runGUI = new RunModeGUI();
+        runGUI = new RunModeGUI(model, this);
 
         // Component Definitions
         buildButtonPanel = buildGUI.createButtons();
@@ -51,10 +54,11 @@ public class View implements Observer{
         buildMenuBar = buildGUI.createMenuBar();
         runMenuBar = runGUI.createMenuBar();
 
-        // Dimension and Constraints Definitions
+        // Dimension Definitions
         boardDim = new Dimension(400, 400);
         buttonPanelDim = new Dimension(100,400);
-        gridBagConstraints = new GridBagConstraints();
+
+        // Controller/Listener Definitions
 
         cp.setLayout(new BorderLayout());
         buildButtonPanel.setPreferredSize(buttonPanelDim);
