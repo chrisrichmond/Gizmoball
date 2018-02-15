@@ -36,6 +36,8 @@ public class View implements Observer{
         // Model Backend Definition
         this.model = model;
 
+        model.attach(this); // observer attachment
+
         // Main Frame and Content Pane Definition
         mainFrame = new JFrame("Gizmoball");
         cp = mainFrame.getContentPane();
@@ -152,6 +154,6 @@ public class View implements Observer{
 
     @Override
     public void update() {
-        //mainFrame.repaint();
+        mainFrame.repaint();
     }
 }

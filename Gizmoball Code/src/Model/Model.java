@@ -45,6 +45,7 @@ public class Model implements ModelAPI {
         double tickTime=0.05D;
         double shortestTime =50000.0D;
 		double minTimeuntilCollision;
+		boolean hasCollided = false;
 
 		// check for collision on gizmo walls
         List<LineSegment> wls= walls.getLineSegments();
@@ -57,6 +58,8 @@ public class Model implements ModelAPI {
                 shortestTime = minTimeuntilCollision;
                 newVelocity = Geometry.reflectWall(wls.get(i),velocity);
                 System.out.println("wall Collision");
+                setChanged();
+                notifyObservers();
             }else{
                 //no colliosion
             }
