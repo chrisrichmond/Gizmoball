@@ -11,9 +11,7 @@ public class BallImpl implements Ball{
 	private double radius;
 	private double ypos;
 	private Color colour;
-
-
-	private boolean stopped;
+	private boolean ballStopped;
 
 	public BallImpl(double x, double y, double xv, double yv){
 		this.velocity = new Vect(xv,yv);
@@ -64,11 +62,11 @@ public class BallImpl implements Ball{
 	}
 
 	public boolean isStopped() {
-		return stopped;
+		return ballStopped;
 	}
 
 	public void setStopped(boolean stopped) {
-		this.stopped = stopped;
+		this.ballStopped = stopped;
 	}
 
 
@@ -89,8 +87,10 @@ public class BallImpl implements Ball{
 
 	public Circle getCircle() {
 		return new Circle(xpos, ypos, radius);
-
 	}
+
+
+
 
 
 }
