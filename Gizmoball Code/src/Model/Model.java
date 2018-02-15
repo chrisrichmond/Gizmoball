@@ -39,8 +39,7 @@ public class Model implements ModelAPI {
 		//git testing
         Circle circle = ball.getCircle();
         Vect velocity= ball.getVelocity();
-        System.out.println("vELOCITY="+velocity);
-        Vect newVelocity;
+        Vect newVelocity=velocity;
         double tickTime=0.05D;
         double shortestTime =50000.0D;
 		double minTimeuntilCollision;
@@ -49,8 +48,10 @@ public class Model implements ModelAPI {
         List<LineSegment> wls= walls.getLineSegments();
         System.out.println("Checking wall colliosions");
         for(int i=0;i<wls.size();i++){
+
 			minTimeuntilCollision = Geometry.timeUntilWallCollision(wls.get(i),circle,velocity);
-            if(minTimeuntilCollision < shortestTime){
+			System.out.println("min"+minTimeuntilCollision);
+            if(minTimeuntilCollision < tickTime){
                 shortestTime = minTimeuntilCollision;
                 newVelocity = Geometry.reflectWall(wls.get(i),velocity);
                 System.out.println("wall Collision");
@@ -61,14 +62,14 @@ public class Model implements ModelAPI {
         }
 
         // check for square bumper (line seqments and circles) collisions
-        System.out.println("Checking square colliosions");
+       // System.out.println("Checking square colliosions");
         for(int i=0;i<squares.size();i++) {
             List<LineSegment> squareLines = squares.get(i).getLines();
             List<Circle> circles = squares.get(i).getCircles();
 
             for (int x = 0; i < squareLines.size(); i++) {
                 minTimeuntilCollision = Geometry.timeUntilWallCollision(squareLines.get(x), circle, velocity);
-                if (minTimeuntilCollision < shortestTime) {
+                if (minTimeuntilCollision < tickTime) {
                     shortestTime = minTimeuntilCollision;
 					System.out.println("square Collision");
                     newVelocity = Geometry.reflectWall(squareLines.get(x), velocity);
@@ -77,7 +78,7 @@ public class Model implements ModelAPI {
 
             for (int x = 0; i < circles.size(); i++) {
                 minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(x), circle, velocity);
-                if (minTimeuntilCollision < shortestTime) {
+                if (minTimeuntilCollision < tickTime) {
                     shortestTime = minTimeuntilCollision;
 					System.out.println("Square Collision");
                     newVelocity = Geometry.reflectCircle(circle.getCenter(),circle.getCenter(),velocity);
@@ -88,14 +89,14 @@ public class Model implements ModelAPI {
 
 
         // check for other Triange collisions
-        System.out.println("Checking triangle colliosions");
+       // System.out.println("Checking triangle colliosions");
         for(int i=0;i<triangles.size();i++) {
             List<LineSegment> triangleLines = triangles.get(i).getLines();
             List<Circle> triangleCircles = triangles.get(i).getCircles();
 
             for (int x = 0; i < triangleLines.size(); i++) {
                 minTimeuntilCollision = Geometry.timeUntilWallCollision(triangleLines.get(x), circle, velocity);
-                if (minTimeuntilCollision < shortestTime) {
+                if (minTimeuntilCollision < tickTime) {
                     shortestTime = minTimeuntilCollision;
 					System.out.println("Triangle Collision");
                     newVelocity = Geometry.reflectWall(triangleLines.get(x), velocity);
@@ -104,7 +105,7 @@ public class Model implements ModelAPI {
 
             for (int x = 0; i < triangleCircles.size(); i++) {
                 minTimeuntilCollision = Geometry.timeUntilCircleCollision(triangleCircles.get(i), circle, velocity);
-                if (minTimeuntilCollision < shortestTime) {
+                if (minTimeuntilCollision < tickTime) {
                     shortestTime = minTimeuntilCollision;
 					System.out.println("Triangle Collision");
                     newVelocity = Geometry.reflectCircle(circle.getCenter(),ball.getVelocity(),velocity);
@@ -116,20 +117,19 @@ public class Model implements ModelAPI {
             // check for other Circular Bumper collisions
         System.out.println("Checking Circular Bumper colliosions");
         for(int i=0;i<circles.size();i++) {
-            //double minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(i), ball,velocity);
+             minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(i), ball,velocity);
             newVelocity = Geometry.reflectCircle(circles.get(i).getCircle(),ball.getVelocity(),velocity);
-            /*
+
             if (minTimeuntilCollision < shortestTime) {
                     shortestTime = minTimeuntilCollision;
-             ////new velo
+
                 }
-			*/
         }
 
         setChanged();
         notifyObservers();
-
-		return new CollisionDetails(velocity, shortestTime);
+System.out.println("Shortest Time is: "+shortestTime);
+		return new CollisionDetails(newVelocity, shortestTime);
 	}
 	
 	public void moveBall() {
@@ -151,8 +151,8 @@ public class Model implements ModelAPI {
 	}
 	
 	private Ball moveBallForTime(Ball ball, double time) {
-		ball.setXpos(ball.getXpos()*time);
-		ball.setYpos(ball.getYpos()*time);
+		ball.setXpos(ball.getXpos() + (ball.getVelocity().x() * time));
+		ball.setYpos(ball.getXpos() + (ball.getVelocity().y() * time));
 		return ball;
 		
 	}
