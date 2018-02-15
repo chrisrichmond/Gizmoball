@@ -136,12 +136,15 @@ System.out.println("Shortest Time is: "+shortestTime);
 	
 	public void moveBall() {
 		double moveTime = 0.05D;
+
 		if(ball != null && !ball.isStopped()){
 			CollisionDetails cd = timeUntilCollision();
 			double tuc = cd.getTuc();
 			if(tuc > moveTime){
+				System.out.println("Moving ball for time no collision");
 				ball = moveBallForTime(ball, moveTime);
 			}else{
+				System.out.println("Moving ball for mintime for collision");
 				ball = moveBallForTime(ball, tuc);
 				ball.setVelocity(cd.getVelocity());
 			}
