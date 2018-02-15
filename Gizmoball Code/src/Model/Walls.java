@@ -31,6 +31,14 @@ public class Walls {
   public List<LineSegment> getLineSegments(){
 	  return lineSegs;
   }
+
+  public int getWidth(){
+  	return xpos2;
+  }
+
+  public int getHeight(){
+  	return ypos2;
+  }
 	
 	
 	

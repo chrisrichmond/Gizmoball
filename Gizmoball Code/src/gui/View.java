@@ -28,7 +28,7 @@ public class View implements Observer{
     private JMenuBar buildMenuBar, runMenuBar, currentMenuBar;
 
     // Dimension Declarations
-    private Dimension boardDim, buttonPanelDim;
+    private Dimension boardDim, buttonPanelDim, idealFrameDim;
 
     // Controller/Listener Declarations
 
@@ -57,8 +57,8 @@ public class View implements Observer{
         runMenuBar = runGUI.createMenuBar();
 
         // Dimension Definitions
-        boardDim = new Dimension(400, 400);
-        buttonPanelDim = new Dimension(100,400);
+        boardDim = new Dimension(model.getWalls().getWidth(), model.getWalls().getHeight());
+        buttonPanelDim = new Dimension(100,model.getWalls().getHeight());
 
         // Controller/Listener Definitions
 
@@ -67,9 +67,10 @@ public class View implements Observer{
         runButtonPanel.setPreferredSize(buttonPanelDim);
         buildBoard.setPreferredSize(boardDim);
         runBoard.setPreferredSize(boardDim);
+        idealFrameDim = new Dimension(buttonPanelDim.width + boardDim.width, buttonPanelDim.height);
 
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        mainFrame.setPreferredSize(new Dimension(500,500));
+        mainFrame.setPreferredSize(idealFrameDim);
         mainFrame.pack();
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
@@ -126,28 +127,8 @@ public class View implements Observer{
     }
 
     private void addCurrentCompsToFrame(){
-//        gridBagConstraints.gridx = 0;
-//        gridBagConstraints.gridy = 0;
-//        gridBagConstraints.weightx = 0;
-//        gridBagConstraints.weighty = 0;
-//        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
-//        mainFrame.getContentPane().add(currentMenuBar, gridBagConstraints);
         cp.add(currentMenuBar, BorderLayout.PAGE_START);
-
-//        gridBagConstraints.gridx = 0;
-//        gridBagConstraints.gridy = 1;
-//        gridBagConstraints.gridwidth = 1;
-//        gridBagConstraints.gridheight = 2;
-//        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-//        mainFrame.getContentPane().add(currentButtonPanel, gridBagConstraints);
         cp.add(currentButtonPanel, BorderLayout.LINE_START);
-
-//        gridBagConstraints.gridx = 1;
-//        gridBagConstraints.gridy = 1;
-//        gridBagConstraints.gridwidth = 5;
-//        gridBagConstraints.gridheight = 5;
-//        gridBagConstraints.anchor = GridBagConstraints.CENTER;
-//        mainFrame.getContentPane().add(currentBoard, gridBagConstraints);
         cp.add(currentBoard, BorderLayout.CENTER);
         mainFrame.repaint();
     }

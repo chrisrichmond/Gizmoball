@@ -177,7 +177,7 @@ System.out.println("Shortest Time is: "+shortestTime);
 
 	@Override
 	public Walls getWalls() {
-		return null;
+		return walls;
 	}
 
 	public List<Gizmo> getSquares() {
