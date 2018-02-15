@@ -18,7 +18,7 @@ public class BallImpl implements Ball{
 		this.xpos = x;
 		this.ypos = y;
 		this.colour = Color.pink;
-		radius = 0.3;
+		radius = 10;
 	}
 
 	public Vect getVelocity() {
@@ -73,16 +73,6 @@ public class BallImpl implements Ball{
 	//access method for value of radius
 	public double getBallRadius(){
 		return radius;
-	}
-
-	//return y position of ball in the game
-	public double getYCoords(){
-		return ypos;
-	}
-
-	//return x position of ball in the game
-	public double getXCoords(){
-		return xpos;
 	}
 
 	public Circle getCircle() {

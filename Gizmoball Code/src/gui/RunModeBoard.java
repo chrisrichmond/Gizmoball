@@ -20,17 +20,22 @@ public class RunModeBoard extends JPanel {
 
     @Override
     public void paintComponent(Graphics graphics){
+        super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D)graphics;
         List<Gizmo> gizmos = model.getGizmos();
         Ball ball = model.getBall();
+        System.out.println("in paintComponent method of RunModeBoard");
 
         // Draw Ball
         if(ball != null){
+            System.out.println("ball isn't null");
             graphics2D.setColor(Color.BLACK);
-            int x = (int) (ball.getXCoords() - ball.getBallRadius());
-            int y = (int) (ball.getXCoords() - ball.getBallRadius());
+            int x = (int) (ball.getXpos() - ball.getBallRadius());
+            int y = (int) (ball.getYpos() - ball.getBallRadius());
 
             graphics2D.fillOval(x,y,(int)(ball.getBallRadius()*2),(int)(ball.getBallRadius()*2));
+
+            System.out.println("ball drawn at x="+x+" y="+y+" diameter="+ball.getBallRadius()*2);
         }
 
         // Draw Gizmos

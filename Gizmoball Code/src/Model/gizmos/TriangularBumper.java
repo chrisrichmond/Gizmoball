@@ -16,7 +16,7 @@ public class TriangularBumper implements Gizmo{
     public TriangularBumper(int xpos,int ypos){
         this.xPos=xpos;
         this.yPos=ypos;
-        this.lines=new ArrayList< LineSegment>();
+        this.lines=new ArrayList<LineSegment>();
         this.circles=new ArrayList< Circle>();
     }
 

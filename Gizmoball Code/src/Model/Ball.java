@@ -7,13 +7,21 @@ public interface Ball {
 
     //methods used for basic ball code implementation
 
-    public double getBallRadius();
+    double getBallRadius();
 
-    public double getYCoords();
+    double getXpos();
 
-    public double getXCoords();
+    void setXpos(double xpos);
+
+    double getYpos();
+
+    void setYpos(double ypos);
 
     Circle getCircle();
 
     Vect getVelocity();
+
+    void setVelocity(Vect velocity);
+
+    boolean isStopped();
 }

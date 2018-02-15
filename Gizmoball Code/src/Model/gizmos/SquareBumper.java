@@ -30,9 +30,8 @@ public class SquareBumper implements Gizmo{
     }
 
     public SquareBumper(){
-lines = new ArrayList<LineSegment>();
-
-circles=new ArrayList<Circle>();
+        lines = new ArrayList<LineSegment>();
+        circles=new ArrayList<Circle>();
     }
 
     @Override

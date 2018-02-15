@@ -28,4 +28,6 @@ public interface ModelAPI extends Observable{
     public Walls getWalls();
 
     public void moveBall();
+
+    public void setBallSpeed(int x, int y);
 }
