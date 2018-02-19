@@ -13,16 +13,28 @@ public class SquareBumper implements Gizmo{
     private int xPos;
     private int yPos;
     private SquareClass square;
-    String type="square";
+    private String type="square";
+    private Color colour;
 
     public SquareBumper(int xPos, int yPos){
         this.xPos = xPos;
         this.yPos = yPos;
         this.square = new SquareClass(xPos, yPos, 50);
+        this.colour = Color.red;
     }
 
     public ArrayList<Circle> getCircles() {
         return square.getCircles();
+    }
+
+    @Override
+    public int getWidth() {
+        return 1;
+    }
+
+    @Override
+    public int getHeight() {
+        return 1;
     }
 
 //    public void setCircles(ArrayList<Circle> circles) {
@@ -60,7 +72,12 @@ public class SquareBumper implements Gizmo{
 
     @Override
     public void trigger() {
+        colour = Color.green;
+    }
 
+    @Override
+    public Color getColour() {
+        return colour;
     }
 
     @Override

@@ -13,6 +13,9 @@ public class View implements Observer{
     // Model Backend Declaration
     private ModelAPI model;
 
+    // Pixels Per Line
+    private int ppl;
+
     // Main Frame and Content Pane Declaration
     private JFrame mainFrame;
     private Container cp;
@@ -38,13 +41,15 @@ public class View implements Observer{
 
         model.attach(this); // observer attachment
 
+        this.ppl = 25;
+
         // Main Frame and Content Pane Definition
         mainFrame = new JFrame("Gizmoball");
         cp = mainFrame.getContentPane();
 
         // Board Definitions
         buildBoard = new BuildModeBoard();
-        runBoard = new RunModeBoard(model);
+        runBoard = new RunModeBoard(model, ppl);
 
         // GUI Definitions
         buildGUI = new BuildModeGUI();
@@ -57,8 +62,8 @@ public class View implements Observer{
         runMenuBar = runGUI.createMenuBar();
 
         // Dimension Definitions
-        boardDim = new Dimension(model.getWalls().getWidth(), model.getWalls().getHeight());
-        buttonPanelDim = new Dimension(100,model.getWalls().getHeight());
+        boardDim = new Dimension(ppl*(model.getWalls().getWidth()), ppl*(model.getWalls().getHeight()));
+        buttonPanelDim = new Dimension(100,ppl*(model.getWalls().getHeight()));
 
         // Controller/Listener Definitions
 

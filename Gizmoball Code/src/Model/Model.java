@@ -30,8 +30,8 @@ public class Model implements ModelAPI {
 
 		lines = new ArrayList<VerticalLine>();
 
-		ball = new BallImpl(25.0D, 25.0D, 100.0D, 100.0D);
-		walls = new Walls(0,0,500,500);
+		ball = new BallImpl(10.0F, 10.0F, 10.0D, 10.0D);
+		walls = new Walls(0,0,19,19);
 
 	 
  }
@@ -159,8 +159,8 @@ System.out.println("Shortest Time is: "+shortestTime);
 	}
 	
 	private Ball moveBallForTime(Ball ball, double time) {
-		ball.setXpos(ball.getXpos() + (ball.getVelocity().x() * time));
-		ball.setYpos(ball.getXpos() + (ball.getVelocity().y() * time));
+		ball.setXpos(ball.getXpos() + (float)(ball.getVelocity().x() * time));
+		ball.setYpos(ball.getXpos() + (float)(ball.getVelocity().y() * time));
 		return ball;
 		
 	}
