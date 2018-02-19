@@ -7,18 +7,18 @@ import physics.Vect;
 
 public class BallImpl implements Ball{
 	private Vect velocity;
-	private double xpos;
+	private float xpos;
 	private double radius;
-	private double ypos;
+	private float ypos;
 	private Color colour;
 	private boolean ballStopped;
 
-	public BallImpl(double x, double y, double xv, double yv){
+	public BallImpl(float x, float y, double xv, double yv){
 		this.velocity = new Vect(xv,yv);
 		this.xpos = x;
 		this.ypos = y;
 		this.colour = Color.pink;
-		radius = 10;
+		radius = 0.5D;
 	}
 
 	public Vect getVelocity() {
@@ -37,19 +37,19 @@ public class BallImpl implements Ball{
 		this.radius = radius;
 	}
 
-	public double getXpos() {
+	public float getXpos() {
 		return xpos;
 	}
 
-	public void setXpos(double xpos) {
+	public void setXpos(float xpos) {
 		this.xpos = xpos;
 	}
 
-	public double getYpos() {
+	public float getYpos() {
 		return ypos;
 	}
 
-	public void setYpos(double ypos) {
+	public void setYpos(float ypos) {
 		this.ypos = ypos;
 	}
 

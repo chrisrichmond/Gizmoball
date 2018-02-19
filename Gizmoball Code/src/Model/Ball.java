@@ -9,13 +9,13 @@ public interface Ball {
 
     double getBallRadius();
 
-    double getXpos();
+    float getXpos();
 
-    void setXpos(double xpos);
+    void setXpos(float xpos);
 
-    double getYpos();
+    float getYpos();
 
-    void setYpos(double ypos);
+    void setYpos(float ypos);
 
     Circle getCircle();
 

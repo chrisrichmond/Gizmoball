@@ -11,11 +11,11 @@ import java.util.List;
 public class Absorber implements Gizmo{
 
     private ArrayList<Ball> ballAbsorber;
-    private int width = 1;
+    private int width = 20;
     private int xPos = 0;
     private int yPos;
-    private Color absorberColour;
-    String type="absorber";
+    private String type="absorber";
+    private Color colour;
 
     public Absorber(int xPos, int yPos){
 
@@ -48,6 +48,11 @@ public class Absorber implements Gizmo{
     public void trigger() {
         removeFirstBall();
         fireBall();
+    }
+
+    @Override
+    public Color getColour() {
+        return colour;
     }
 
     @Override
@@ -84,20 +89,24 @@ public class Absorber implements Gizmo{
         return ballAbsorber.remove(0);
     }
 
+    public void setWidth(int width){
+        this.width = width;
+    }
+
     //accessor method to return the width
     public int getWidth(){
         return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return 1;
     }
 
     public void fireBall(){
         System.out.println("Shooting ball into game!!");
         //code to be added to fire ball using Ball object
         //need to add code to the ball class to start the ball moving!
-    }
-
-    //return the colour of the given absorber
-    public Color getAbsorberColour(){
-        return absorberColour;
     }
 
 }

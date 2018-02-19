@@ -21,7 +21,7 @@ public class Main {
         ModelAPI model = new Model();
         View view = new View(model);
         view.runMode();
-        model.setBallSpeed(150,150);
+        model.setBallSpeed(15,15);
     }
 
 }

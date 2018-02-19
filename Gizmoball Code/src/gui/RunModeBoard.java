@@ -11,11 +11,13 @@ import java.util.List;
 public class RunModeBoard extends JPanel {
 
     private ModelAPI model;
+    private int ppl; // pixels per line
 
 
-    public RunModeBoard(ModelAPI model){
+    public RunModeBoard(ModelAPI model, int ppl){
         this.model = model;
         this.setBorder(BorderFactory.createLineBorder(Color.blue));
+        this.ppl = ppl;
     }
 
     @Override
@@ -30,10 +32,11 @@ public class RunModeBoard extends JPanel {
         if(ball != null){
             System.out.println("ball isn't null");
             graphics2D.setColor(Color.BLACK);
-            int x = (int) (ball.getXpos() - ball.getBallRadius());
-            int y = (int) (ball.getYpos() - ball.getBallRadius());
+            float x = (float)(ppl*((float)ball.getXpos() - (float)ball.getBallRadius()));
+            float y = (float)(ppl*((float)ball.getYpos() - (float)ball.getBallRadius()));
+            float diameter = (float)ppl*((float)ball.getBallRadius()*2);
 
-            graphics2D.fillOval(x,y,(int)(ball.getBallRadius()*2),(int)(ball.getBallRadius()*2));
+            graphics2D.fillOval((int)x,(int)y,(int)diameter,(int)diameter);
 
             System.out.println("ball drawn at x="+x+" y="+y+" diameter="+ball.getBallRadius()*2);
         }
@@ -42,17 +45,20 @@ public class RunModeBoard extends JPanel {
 
         System.out.println("size of gizmos: "+gizmos.size());
         for (Gizmo currentGizmo: gizmos) {
+
+            int x = ppl*(currentGizmo.getXPos());
+            int y = ppl*(currentGizmo.getYPos());
+            int width = ppl*(currentGizmo.getWidth());
+            int height = ppl*(currentGizmo.getHeight());
+
             if(currentGizmo.getType().equals("absorber")){
                 // Draw Absorber
-                int x = (int) (currentGizmo.getXPos());
-                int y = (int) (currentGizmo.getYPos());
-                //graphics2D.fillRoundRect();
-
+                graphics2D.fillRoundRect(x, y, width, height, 15, 15);
             }else if(currentGizmo.getType().equals("circle")){
                 // Draw CircularBumper
 
 
-                //graphics.drawOval(convertXToCoords(currentGizmo.getXPos()),convertYToCoords(currentGizmo.getYPos()),widthGap,heightGap);
+                graphics.drawOval(x, y, width, height);
             }else if(currentGizmo.getType().equals("square")){
                 // Draw SquareBumper
 
