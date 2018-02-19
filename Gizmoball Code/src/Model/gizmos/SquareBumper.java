@@ -19,7 +19,7 @@ public class SquareBumper implements Gizmo{
     public SquareBumper(int xPos, int yPos){
         this.xPos = xPos;
         this.yPos = yPos;
-        this.square = new SquareClass(xPos, yPos, 50);
+        this.square = new SquareClass(xPos, yPos, 1);
         this.colour = Color.red;
     }
 

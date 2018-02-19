@@ -3,6 +3,7 @@ package gui;
 import Model.Ball;
 import Model.ModelAPI;
 import Model.gizmos.*;
+import physics.LineSegment;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,7 +32,7 @@ public class RunModeBoard extends JPanel {
         // Draw Ball
         if(ball != null){
             System.out.println("ball isn't null");
-            graphics2D.setColor(Color.BLACK);
+            graphics2D.setColor(ball.getColour());
             float x = (float)(ppl*((float)ball.getXpos() - (float)ball.getBallRadius()));
             float y = (float)(ppl*((float)ball.getYpos() - (float)ball.getBallRadius()));
             float diameter = (float)ppl*((float)ball.getBallRadius()*2);
@@ -50,6 +51,7 @@ public class RunModeBoard extends JPanel {
             int y = ppl*(currentGizmo.getYPos());
             int width = ppl*(currentGizmo.getWidth());
             int height = ppl*(currentGizmo.getHeight());
+            graphics2D.setColor(currentGizmo.getColour());
 
             if(currentGizmo.getType().equals("absorber")){
                 // Draw Absorber
@@ -61,7 +63,12 @@ public class RunModeBoard extends JPanel {
                 graphics.drawOval(x, y, width, height);
             }else if(currentGizmo.getType().equals("square")){
                 // Draw SquareBumper
+                graphics2D.fillRect(x,y,width,height);
 
+                // Debugging Collision Boundaries
+                for (LineSegment currentLine: currentGizmo.getLines()){
+                    graphics2D.drawLine((int)(ppl*currentLine.p1().x()),(int)(ppl*currentLine.p1().y()),(int)(ppl*currentLine.p2().x()),(int)(ppl*currentLine.p2().y()));
+                }
 
                 //graphics.drawRect(convertXToCoords(currentGizmo.getXPos()),convertYToCoords(currentGizmo.getYPos()),widthGap,heightGap);
             }else if(currentGizmo.getType().equals("triangle")){

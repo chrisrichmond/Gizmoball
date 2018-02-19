@@ -30,7 +30,7 @@ public class Model implements ModelAPI {
 
 		lines = new ArrayList<VerticalLine>();
 
-		ball = new BallImpl(10.0F, 10.0F, 10.0D, 10.0D);
+		ball = new BallImpl(10.0F, 10.0F, 50.0D, 5.0D);
 		walls = new Walls(0,0,19,19);
 
 	 
@@ -77,7 +77,15 @@ public class Model implements ModelAPI {
                 if (minTimeuntilCollision < tickTime) {
                     shortestTime = minTimeuntilCollision;
 					System.out.println("square Collision");
-                    newVelocity = Geometry.reflectWall(squareLines.get(x), velocity);
+
+					// trigger the gizmo
+					for(Gizmo currentSquare: squares){
+						if(currentSquare.getLines().contains(squareLines.get(x))){
+							currentSquare.trigger();
+						}
+					}
+
+					newVelocity = Geometry.reflectWall(squareLines.get(x), velocity);
                 }
             }
 
@@ -85,8 +93,16 @@ public class Model implements ModelAPI {
                 minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(x), circle, velocity);
                 if (minTimeuntilCollision < tickTime) {
                     shortestTime = minTimeuntilCollision;
-					System.out.println("Square Collision");
+					System.out.println("Circle Collision");
                     newVelocity = Geometry.reflectCircle(circle.getCenter(),circle.getCenter(),velocity);
+
+					// trigger the gizmo
+
+//					for(Gizmo currentCircle: circles){
+//						if(currentCircle.getLines().contains(circles.get(x))){
+//							currentCircle.trigger();
+//						}
+//					}
                 }
             }
         }
@@ -105,6 +121,13 @@ public class Model implements ModelAPI {
                     shortestTime = minTimeuntilCollision;
 					System.out.println("Triangle Collision");
                     newVelocity = Geometry.reflectWall(triangleLines.get(x), velocity);
+
+					// trigger the gizmo
+					for(Gizmo currentTriangle: triangles){
+						if(currentTriangle.getLines().contains(triangleLines.get(x))){
+							currentTriangle.trigger();
+						}
+					}
                 }
             }
 

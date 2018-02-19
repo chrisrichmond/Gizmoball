@@ -1,5 +1,7 @@
 import Model.ModelAPI;
 import Model.Model;
+import Model.gizmos.Gizmo;
+import Model.gizmos.SquareBumper;
 import gui.View;
 
 
@@ -22,6 +24,9 @@ public class Main {
         View view = new View(model);
         view.runMode();
         model.setBallSpeed(15,15);
+
+        Gizmo square1 = new SquareBumper(5,5);
+        model.addGizmo(square1);
     }
 
 }

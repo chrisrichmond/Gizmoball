@@ -4,20 +4,21 @@ import physics.Circle;
 import physics.LineSegment;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CircularBumper implements Gizmo {
 
     private int xPos;
     private int yPos;
-    private int radius;
+    private float radius;
     private String type="circle";
     private Color colour;
 
     public CircularBumper(int radius,int xpos,int ypos){
         this.xPos=xpos;
         this.yPos=ypos;
-        this.radius=radius;
+        this.radius=0.5F;
         this.colour = Color.green;
     }
 
@@ -59,7 +60,9 @@ public class CircularBumper implements Gizmo {
 
     @Override
     public List<Circle> getCircles() {
-        return null;
+        List<Circle> c = new ArrayList<Circle>();
+        c.add(getCircle());
+        return c;
     }
 
     @Override
