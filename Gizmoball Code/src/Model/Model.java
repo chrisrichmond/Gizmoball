@@ -30,14 +30,15 @@ public class Model implements ModelAPI {
 
 		lines = new ArrayList<VerticalLine>();
 
-		ball = new BallImpl(10.0F, 10.0F, 50.0D, 5.0D);
+		ball = new BallImpl(10.0F, 10.0F, 1.0D, 5000.0D);
 		walls = new Walls(0,0,19,19);
 
 	 
  }
 	
 	private CollisionDetails timeUntilCollision() {
-		System.out.println("x="+ball.getXpos()+" y="+ball.getYpos());
+		System.out.println("MODEL: ball is at x="+ball.getXpos()+" y="+ball.getYpos()+" diameter="+ball.getBallRadius()*2);
+
 		//git testing
         Circle circle = ball.getCircle();
         Vect velocity= ball.getVelocity();
@@ -47,17 +48,16 @@ public class Model implements ModelAPI {
 		double minTimeuntilCollision;
 		boolean hasCollided = false;
 
+		System.out.println("MODEL: ball velocity is "+ball.getVelocity());
 		// check for collision on gizmo walls
         List<LineSegment> wls= walls.getLineSegments();
-        System.out.println("Checking wall colliosions");
         for(int i=0;i<wls.size();i++){
 
 			minTimeuntilCollision = Geometry.timeUntilWallCollision(wls.get(i),circle,velocity);
-			System.out.println("min"+minTimeuntilCollision);
             if(minTimeuntilCollision < tickTime){
                 shortestTime = minTimeuntilCollision;
                 newVelocity = Geometry.reflectWall(wls.get(i),velocity);
-                System.out.println("wall Collision");
+                System.out.println("Wall Collision");
                 setChanged();
                 notifyObservers();
             }else{
@@ -76,7 +76,7 @@ public class Model implements ModelAPI {
                 minTimeuntilCollision = Geometry.timeUntilWallCollision(squareLines.get(x), circle, velocity);
                 if (minTimeuntilCollision < tickTime) {
                     shortestTime = minTimeuntilCollision;
-					System.out.println("square Collision");
+					System.out.println("Square Collision");
 
 					// trigger the gizmo
 					for(Gizmo currentSquare: squares){
@@ -156,7 +156,7 @@ public class Model implements ModelAPI {
 
         setChanged();
         notifyObservers();
-System.out.println("Shortest Time is: "+shortestTime);
+		System.out.println("Shortest Time is: "+shortestTime);
 		return new CollisionDetails(newVelocity, shortestTime);
 	}
 	
@@ -167,10 +167,8 @@ System.out.println("Shortest Time is: "+shortestTime);
 			CollisionDetails cd = timeUntilCollision();
 			double tuc = cd.getTuc();
 			if(tuc > moveTime){
-				System.out.println("Moving ball for time no collision");
 				ball = moveBallForTime(ball, moveTime);
 			}else{
-				System.out.println("Moving ball for mintime for collision");
 				ball = moveBallForTime(ball, tuc);
 				ball.setVelocity(cd.getVelocity());
 			}

@@ -27,11 +27,9 @@ public class RunModeBoard extends JPanel {
         Graphics2D graphics2D = (Graphics2D)graphics;
         List<Gizmo> gizmos = model.getGizmos();
         Ball ball = model.getBall();
-        System.out.println("in paintComponent method of RunModeBoard");
 
         // Draw Ball
         if(ball != null){
-            System.out.println("ball isn't null");
             graphics2D.setColor(ball.getColour());
             float x = (float)(ppl*((float)ball.getXpos() - (float)ball.getBallRadius()));
             float y = (float)(ppl*((float)ball.getYpos() - (float)ball.getBallRadius()));
@@ -39,12 +37,11 @@ public class RunModeBoard extends JPanel {
 
             graphics2D.fillOval((int)x,(int)y,(int)diameter,(int)diameter);
 
-            System.out.println("ball drawn at x="+x+" y="+y+" diameter="+ball.getBallRadius()*2);
+            System.out.println("VIEW: ball drawn at x="+x+" y="+y+" diameter="+ball.getBallRadius()*2);
         }
 
         // Draw Gizmos
 
-        System.out.println("size of gizmos: "+gizmos.size());
         for (Gizmo currentGizmo: gizmos) {
 
             int x = ppl*(currentGizmo.getXPos());
