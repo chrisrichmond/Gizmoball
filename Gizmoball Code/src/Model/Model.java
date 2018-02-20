@@ -22,6 +22,7 @@ public class Model implements ModelAPI {
 	private List<Gizmo> absorbers;
 	private Walls walls;
  	private List<VerticalLine> lines;
+ 	private GizmoFileHandler fileHandler;
 	
 	public Model(){
 		this.observers = new ArrayList<Observer>();
@@ -32,12 +33,17 @@ public class Model implements ModelAPI {
 		this.triangles = new ArrayList<Gizmo>();
 		this.absorbers = new ArrayList<Gizmo>();
 		this.lines = new ArrayList<VerticalLine>();
+		this.fileHandler = new GizmoFileHandler(this);
 
 		this.ball = new BallImpl(12.0F, 10.0F, 1.0D, 5000.0D);
 		this.walls = new Walls(0,0,19,19);
 
 	 
- }
+ 	}
+
+ 	public void loadFile(String filename){
+	    fileHandler.loadFromFile(filename);
+    }
 
    private void applyFriction(double delta_t){
 	   Double xVnew,xVold,yVold,yVnew;
@@ -48,7 +54,7 @@ public class Model implements ModelAPI {
 	   xVnew = xVold * (1 - mu * delta_t - mu2 * xVold * delta_t);
 	   yVnew = yVold * (1 - mu * delta_t - mu2 * yVold * delta_t);
 	   ball.setVelocity(new Vect(xVnew,yVnew));
- }
+ 	}
 	private void applyGravity(double delta_t){
    		if(ball.isStopped()) {
 			ball.setVelocity(new Vect(0,0));

@@ -5,17 +5,21 @@ import gui.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Timer;
+import java.io.File;
+import javax.swing.*;
 
 public class RunListener implements ActionListener{
 
     private Timer timer;
     private ModelAPI model;
     private View view;
+    private JFileChooser fileChooser;
 
     public RunListener(ModelAPI model, View view){
         this.timer = new Timer(50, this);
         this.model = model;
+        this.view = view;
+        this.fileChooser = new JFileChooser();
     }
 
     @Override
@@ -33,8 +37,18 @@ public class RunListener implements ActionListener{
                 case("Tick"):
                     model.moveBall();
                     break;
-                case("Load"):
+                case("Load Model"):
                     // implement loading functionality here
+                    int returnVal = fileChooser.showOpenDialog(view.getMainFrame());
+
+                    if(returnVal == JFileChooser.APPROVE_OPTION){
+                        // open chosen file
+                        File file = fileChooser.getSelectedFile();
+                        model.loadFile(file.getAbsolutePath());
+                    }else{
+                        // close window
+                    }
+
                     break;
                 case("Reload"):
                     // implement reloading functionality here

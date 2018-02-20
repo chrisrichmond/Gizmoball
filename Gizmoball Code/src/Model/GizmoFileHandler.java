@@ -26,7 +26,7 @@ public class GizmoFileHandler {
 
     }
 
-    public void readFromFile(String filename){
+    public void loadFromFile(String filename){
         String currentLine = null;
         String opcode = null;
         List<String> operands = null;
