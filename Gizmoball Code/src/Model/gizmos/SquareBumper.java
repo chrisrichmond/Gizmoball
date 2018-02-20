@@ -16,8 +16,10 @@ public class SquareBumper implements Gizmo{
     private SquareClass square;
     private String type="square";
     private Color colour;
+    private String ID;
 
-    public SquareBumper(int xPos, int yPos){
+    public SquareBumper(String ID, int xPos, int yPos){
+        this.ID = ID;
         this.xPos = xPos;
         this.yPos = yPos;
         this.square = new SquareClass(xPos, yPos, 1);
@@ -46,6 +48,11 @@ public class SquareBumper implements Gizmo{
     @Override
     public void fireBall() {
 
+    }
+
+    @Override
+    public String getID() {
+        return ID;
     }
 
 //    public void setCircles(ArrayList<Circle> circles) {
@@ -99,5 +106,10 @@ public class SquareBumper implements Gizmo{
     @Override
     public Circle getCircle() {
         return null;
+    }
+
+    @Override
+    public Shape getShape() {
+        return square.makeSquare();
     }
 }

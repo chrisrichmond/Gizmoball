@@ -21,10 +21,12 @@ public class Absorber implements Gizmo{
     private int yPos;
     private String type="absorber";
     private Color colour;
+    private String ID;
 
-    public Absorber(int xPos, int yPos){
+    public Absorber(String ID, int xPos, int yPos){
 
         //instantiate variables
+        this.ID = ID;
         ballAbsorber= new LinkedList<>();
         this.square = new SquareClass(xPos, yPos, width);
         this.xPos = xPos;
@@ -89,7 +91,11 @@ public class Absorber implements Gizmo{
         gizmoBall.setYpos(getYPos());
         gizmoBall.setStopped(true);
         ballAbsorber.add(gizmoBall);
+<<<<<<< HEAD
 fireBall();
+=======
+        fireBall();
+>>>>>>> b435679634c278402e8feaeb4ac5de6d2b191fb8
        //set balls position to be at the bottom right corner of absorber
 
     }
@@ -125,9 +131,22 @@ fireBall();
         Ball gizmoBall = removeFirstBall();
         gizmoBall.setVelocity(new Vect(0D,-0.015D));
         gizmoBall.setStopped(false);
+<<<<<<< HEAD
 
 
+=======
+        gizmoBall.setVelocity(new Vect(0.0D,-10.0D));
 
+    }
+
+    @Override
+    public String getID() {
+        return ID;
+    }
+>>>>>>> b435679634c278402e8feaeb4ac5de6d2b191fb8
+
+    public Shape getShape(){
+        return square.makeSquare();
     }
 
 }

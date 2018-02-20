@@ -10,62 +10,58 @@ import java.awt.event.ActionListener;
 
 public class View implements Observer{
 
-    // Model Backend Declaration
+    // Model Backend
     private ModelAPI model;
 
     // Pixels Per Line
     private int ppl;
 
-    // Main Frame and Content Pane Declaration
+    // Main Frame and Content Pane
     private JFrame mainFrame;
     private Container cp;
 
-    // Board Declarations
+    // Boards
     private JPanel buildBoard, runBoard, currentBoard;
 
-    // GUI Declarations
+    // GUIs
     private GameGUI buildGUI, runGUI; // currentGUI required? // probably not
 
-    // Component Declarations
+    // Components
     private JPanel buildButtonPanel, runButtonPanel, currentButtonPanel;
     private JMenuBar buildMenuBar, runMenuBar, currentMenuBar;
 
-    // Dimension Declarations
+    // Dimensions
     private Dimension boardDim, buttonPanelDim, idealFrameDim;
 
-    // Controller/Listener Declarations
-
     public View(ModelAPI model){
-        // Model Backend Definition
+        // Model Backend
         this.model = model;
-
         model.attach(this); // observer attachment
 
+        // Pixels Per Line
         this.ppl = 25;
 
-        // Main Frame and Content Pane Definition
+        // Main Frame and Content Pane
         mainFrame = new JFrame("Gizmoball");
         cp = mainFrame.getContentPane();
 
-        // Board Definitions
+        // Boards
         buildBoard = new BuildModeBoard();
         runBoard = new RunModeBoard(model, ppl);
 
-        // GUI Definitions
+        // GUIs
         buildGUI = new BuildModeGUI();
         runGUI = new RunModeGUI(model, this);
 
-        // Component Definitions
+        // Components
         buildButtonPanel = buildGUI.createButtons();
         runButtonPanel = runGUI.createButtons();
         buildMenuBar = buildGUI.createMenuBar();
         runMenuBar = runGUI.createMenuBar();
 
-        // Dimension Definitions
+        // Dimensions
         boardDim = new Dimension(ppl*(model.getWalls().getWidth()), ppl*(model.getWalls().getHeight()));
         buttonPanelDim = new Dimension(100,ppl*(model.getWalls().getHeight()));
-
-        // Controller/Listener Definitions
 
         cp.setLayout(new BorderLayout());
         buildButtonPanel.setPreferredSize(buttonPanelDim);
@@ -136,6 +132,10 @@ public class View implements Observer{
         cp.add(currentButtonPanel, BorderLayout.LINE_START);
         cp.add(currentBoard, BorderLayout.CENTER);
         mainFrame.repaint();
+    }
+
+    public JFrame getMainFrame() {
+        return mainFrame;
     }
 
     @Override

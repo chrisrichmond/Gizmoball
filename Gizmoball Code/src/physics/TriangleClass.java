@@ -9,7 +9,7 @@ public class TriangleClass  {
 
     private int X = 0;
     private int Y = 0;
-    private int size = 100;
+    private int size = 1;
     private ArrayList<LineSegment> lines = new ArrayList<>();
     private ArrayList<Circle> circles = new ArrayList<>();
 

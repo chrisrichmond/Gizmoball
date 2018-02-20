@@ -51,4 +51,8 @@ public interface Gizmo {
     int getHeight();
 
     void fireBall();
+
+    String getID();
+
+    Shape getShape();
 }

@@ -33,6 +33,8 @@ public interface ModelAPI extends Observable{
 
     public void addGizmo(Gizmo gizmo);
 
+    public void loadFile(String filename);
+
 //    public void addCircle(CircularBumperGizmo circle);
 //
 //    public void addSquare(SquareBumperGizmo square);

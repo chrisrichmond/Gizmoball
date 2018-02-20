@@ -15,8 +15,10 @@ public class CircularBumper implements Gizmo {
     private float radius;
     private String type="circle";
     private Color colour;
+    private String ID;
 
-    public CircularBumper(int radius,int xpos,int ypos){
+    public CircularBumper(String ID,int xpos,int ypos){
+        this.ID = ID;
         this.xPos=xpos;
         this.yPos=ypos;
         this.radius=0.5F;
@@ -87,8 +89,17 @@ public class CircularBumper implements Gizmo {
     }
 
     @Override
+    public String getID() {
+        return ID;
+    }
+
+    @Override
     public Circle getCircle() {
         return new Circle(xPos, yPos, radius);
 
+    }
+
+    public Shape getShape(){
+        return getCircle().toEllipse2D();
     }
 }
