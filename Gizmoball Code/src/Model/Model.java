@@ -34,7 +34,7 @@ public class Model implements ModelAPI {
 		this.lines = new ArrayList<VerticalLine>();
 
 		this.ball = new BallImpl(12.0F, 10.0F, 1.0D, 5000.0D);
-		this.walls = new Walls(0,0,19,19);
+		this.walls = new Walls(0,0,20,20);
 
 	 
  }
@@ -139,13 +139,12 @@ public class Model implements ModelAPI {
 			for (int x = 0; x < squareLines.size(); x++) {
 				minTimeuntilCollision = Geometry.timeUntilWallCollision(squareLines.get(x), circle, velocity);
 				if (minTimeuntilCollision <= tickTime) {
-					shortestTime = minTimeuntilCollision;
+					shortestTime = 0;
 					System.out.println("Absorber Collision");
 					// trigger the gizmo
 					absorbers.get(i).storeGizmoBall(ball);
+					System.out.println(ball.getVelocity());
 
-
-					newVelocity = Geometry.reflectWall(squareLines.get(x), velocity);
 				}
 			}
 
@@ -153,7 +152,7 @@ public class Model implements ModelAPI {
 				minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(x), circle, velocity);
 				if (minTimeuntilCollision <= tickTime) {
 					shortestTime = minTimeuntilCollision;
-					System.out.println("Circle Collision");
+					System.out.println("Circle Collision 111");
 					newVelocity = Geometry.reflectCircle(circles.get(x).getCenter(),circle.getCenter(),velocity);
 
 					// trigger the gizmo
@@ -223,7 +222,7 @@ public class Model implements ModelAPI {
 		System.out.println("Shortest Time is: "+shortestTime);
 		return new CollisionDetails(newVelocity, shortestTime);
 	}
-	
+
 	public void moveBall() {
 		double moveTime = 0.05D;
 
@@ -232,7 +231,7 @@ public class Model implements ModelAPI {
 			double tuc = cd.getTuc();
 			if(tuc > moveTime){
 				ball = moveBallForTime(ball, moveTime);
-			}else{
+			}else if( !ball.isStopped()){
 				ball = moveBallForTime(ball, tuc);
 				ball.setVelocity(cd.getVelocity());
 			}
@@ -246,7 +245,7 @@ public class Model implements ModelAPI {
 	private Ball moveBallForTime(Ball ball, double time) {
 		ball.setXpos(ball.getXpos() + (float)(ball.getVelocity().x() * time));
 		ball.setYpos(ball.getYpos() + (float)(ball.getVelocity().y() * time));
-		applyFriction(time);
+		//applyFriction(time);
 		applyGravity(time);
 		return ball;
 		

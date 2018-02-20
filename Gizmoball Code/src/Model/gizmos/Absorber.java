@@ -16,7 +16,7 @@ public class Absorber implements Gizmo{
 
     private Queue<Ball> ballAbsorber;
     private SquareClass square;
-    private int width = 20;
+    private int width = 10;
     private int xPos;
     private int yPos;
     private String type="absorber";
@@ -89,6 +89,7 @@ public class Absorber implements Gizmo{
         gizmoBall.setYpos(getYPos());
         gizmoBall.setStopped(true);
         ballAbsorber.add(gizmoBall);
+fireBall();
        //set balls position to be at the bottom right corner of absorber
 
     }
@@ -122,8 +123,10 @@ public class Absorber implements Gizmo{
         //code to be added to fire ball using Ball object
         //need to add code to the ball class to start the ball moving!
         Ball gizmoBall = removeFirstBall();
+        gizmoBall.setVelocity(new Vect(0D,-0.015D));
         gizmoBall.setStopped(false);
-        gizmoBall.setVelocity(new Vect(10.0D,10.0D));
+
+
 
     }
 
