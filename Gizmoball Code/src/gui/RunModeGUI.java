@@ -60,12 +60,12 @@ public class RunModeGUI implements GameGUI {
         tickButton.setMaximumSize(maxButtonSize);
         tickButton.addActionListener(listener);
 
-        loadButton = new JButton("Load Model");
+        loadButton = new JButton("Load");
         loadButton.setFont(font);
         loadButton.setMaximumSize(maxButtonSize);
         loadButton.addActionListener(listener);
 
-        reloadButton = new JButton("Reload Model");
+        reloadButton = new JButton("Reload");
         reloadButton.setFont(font);
         reloadButton.setMaximumSize(maxButtonSize);
         reloadButton.addActionListener(listener);
