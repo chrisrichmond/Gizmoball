@@ -1,11 +1,13 @@
 package Model.gizmos;
 
-import Model.Model;
+
 import physics.Circle;
 import physics.LineSegment;
 
 import java.awt.*;
 import java.util.List;
+
+import static Model.Model.*;
 
 public interface Gizmo {
 
@@ -36,12 +38,17 @@ public interface Gizmo {
     Color getColour();
 
     String getType();
+    Circle getCircle();
 
     List<LineSegment> getLines();
 
     List<Circle> getCircles();
 
+    void storeGizmoBall(Model.Ball gizmoBall);
+
     int getWidth();
 
     int getHeight();
+
+    void fireBall();
 }

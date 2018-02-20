@@ -1,5 +1,6 @@
 package Model.gizmos;
 
+import Model.Ball;
 import physics.Circle;
 import physics.LineSegment;
 import physics.SquareClass;
@@ -28,6 +29,11 @@ public class SquareBumper implements Gizmo{
     }
 
     @Override
+    public void storeGizmoBall(Ball gizmoBall) {
+
+    }
+
+    @Override
     public int getWidth() {
         return 1;
     }
@@ -37,12 +43,16 @@ public class SquareBumper implements Gizmo{
         return 1;
     }
 
+    @Override
+    public void fireBall() {
+
+    }
+
 //    public void setCircles(ArrayList<Circle> circles) {
 //        this.circles = circles;
 //    }
 
     public ArrayList<LineSegment> getLines() {
-
         return square.getLines();
     }
 
@@ -72,6 +82,7 @@ public class SquareBumper implements Gizmo{
 
     @Override
     public void trigger() {
+        System.out.println("Shooting ball into game!!");
         colour = Color.green;
     }
 
@@ -83,5 +94,10 @@ public class SquareBumper implements Gizmo{
     @Override
     public String getType() {
         return type;
+    }
+
+    @Override
+    public Circle getCircle() {
+        return null;
     }
 }

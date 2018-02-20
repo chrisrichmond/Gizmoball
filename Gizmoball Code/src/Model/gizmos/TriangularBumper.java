@@ -1,7 +1,9 @@
 package Model.gizmos;
 
+import Model.Ball;
 import physics.Circle;
 import physics.LineSegment;
+import physics.TriangleClass;
 
 import javax.sound.sampled.Line;
 import java.awt.*;
@@ -12,17 +14,15 @@ public class TriangularBumper implements Gizmo{
 
     private int xPos;
     private int yPos;
-    private ArrayList<LineSegment> lines ;
-    private ArrayList<Circle> circles ;
     private String type="triangle";
+    private TriangleClass triangle;
     private Color colour;
 
     public TriangularBumper(int xpos,int ypos){
         this.xPos=xpos;
         this.yPos=ypos;
-        this.lines=new ArrayList<LineSegment>();
-        this.circles=new ArrayList< Circle>();
-        this.colour = Color.blue;
+        this.triangle = new TriangleClass(xPos, yPos);
+        this.colour = Color.red;
 
     }
 
@@ -58,13 +58,23 @@ public class TriangularBumper implements Gizmo{
     }
 
     @Override
+    public Circle getCircle() {
+        return null;
+    }
+
+    @Override
     public List<LineSegment> getLines() {
-        return lines;
+        return triangle.getLines();
     }
 
     @Override
     public List<Circle> getCircles() {
-        return circles;
+        return triangle.getCircles();
+    }
+
+    @Override
+    public void storeGizmoBall(Ball gizmoBall) {
+
     }
 
     @Override
@@ -75,5 +85,10 @@ public class TriangularBumper implements Gizmo{
     @Override
     public int getHeight() {
         return 1;
+    }
+
+    @Override
+    public void fireBall() {
+
     }
 }

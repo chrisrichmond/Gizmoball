@@ -1,5 +1,6 @@
 package Model.gizmos;
 
+import Model.Ball;
 import physics.Circle;
 import physics.LineSegment;
 
@@ -66,6 +67,11 @@ public class CircularBumper implements Gizmo {
     }
 
     @Override
+    public void storeGizmoBall(Ball gizmoBall) {
+
+    }
+
+    @Override
     public int getWidth() {
         return 1;
     }
@@ -75,6 +81,12 @@ public class CircularBumper implements Gizmo {
         return 1;
     }
 
+    @Override
+    public void fireBall() {
+
+    }
+
+    @Override
     public Circle getCircle() {
         return new Circle(xPos, yPos, radius);
 
