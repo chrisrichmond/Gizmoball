@@ -90,12 +90,11 @@ public class Absorber implements Gizmo{
         gizmoBall.setYpos(getYPos()-1);
         gizmoBall.setStopped(true);
         ballAbsorber.add(gizmoBall);
-<<<<<<< HEAD
 
 
-=======
+
         fireBall();
->>>>>>> 9a155467ba83d016f316877d3364ee9deee313cb
+
        //set balls position to be at the bottom right corner of absorber
 
     }
@@ -129,13 +128,13 @@ public class Absorber implements Gizmo{
         //code to be added to fire ball using Ball object
         //need to add code to the ball class to start the ball moving!
         Ball gizmoBall = removeFirstBall();
-<<<<<<< HEAD
+
         if(gizmoBall!=null) {
-=======
+
         gizmoBall.setVelocity(new Vect(0D,-0.015D));
         gizmoBall.setStopped(false);
         gizmoBall.setVelocity(new Vect(0.0D,-10.0D));
->>>>>>> 9a155467ba83d016f316877d3364ee9deee313cb
+
 
             return new Vect(0.0, 15);
         }
@@ -146,10 +145,7 @@ public class Absorber implements Gizmo{
     public String getID() {
         return ID;
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 9a155467ba83d016f316877d3364ee9deee313cb
 
     public Shape getShape(){
         return square.makeSquare();

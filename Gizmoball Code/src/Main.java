@@ -25,10 +25,6 @@ public class Main {
         model.setBallSpeed(5,5);
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9a155467ba83d016f316877d3364ee9deee313cb
         Gizmo square1 = new Absorber("A",0,19);
         model.addGizmo(square1);
         Gizmo square2 = new SquareBumper("S01",10,9);
