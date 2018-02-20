@@ -32,7 +32,6 @@ public class Model implements ModelAPI {
 		this.circles = new ArrayList<Gizmo>();
 		this.triangles = new ArrayList<Gizmo>();
 		this.absorbers = new ArrayList<Gizmo>();
-		this.lines = new ArrayList<VerticalLine>();
 		this.fileHandler = new GizmoFileHandler(this);
 
 		this.ball = new BallImpl(12.0F, 10.0F, 1.0D, 5000.0D);
@@ -42,7 +41,20 @@ public class Model implements ModelAPI {
  	}
 
  	public void loadFile(String filename){
+	    clear();
 	    fileHandler.loadFromFile(filename);
+	    setChanged();
+	    notifyObservers();
+    }
+
+    public void clear(){
+ 	    gizmos.clear();
+ 	    squares.clear();
+ 	    triangles.clear();
+ 	    circles.clear();
+ 	    absorbers.clear();
+ 	    setChanged();
+ 	    notifyObservers();
     }
 
    private void applyFriction(double delta_t){

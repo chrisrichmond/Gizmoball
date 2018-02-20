@@ -14,12 +14,14 @@ public class RunListener implements ActionListener{
     private ModelAPI model;
     private View view;
     private JFileChooser fileChooser;
+    private File latestFile;
 
     public RunListener(ModelAPI model, View view){
         this.timer = new Timer(50, this);
         this.model = model;
         this.view = view;
         this.fileChooser = new JFileChooser();
+        this.latestFile = null;
     }
 
     @Override
@@ -38,20 +40,21 @@ public class RunListener implements ActionListener{
                     model.moveBall();
                     break;
                 case("Load Model"):
-                    // implement loading functionality here
                     int returnVal = fileChooser.showOpenDialog(view.getMainFrame());
 
                     if(returnVal == JFileChooser.APPROVE_OPTION){
                         // open chosen file
-                        File file = fileChooser.getSelectedFile();
-                        model.loadFile(file.getAbsolutePath());
+                        latestFile = fileChooser.getSelectedFile();
+                        model.loadFile(latestFile.getAbsolutePath());
                     }else{
                         // close window
                     }
 
                     break;
                 case("Reload"):
-                    // implement reloading functionality here
+                    if(latestFile != null){
+                        model.loadFile(latestFile.getAbsolutePath());
+                    }
                     break;
                 case("Build Mode"):
                     view.buildMode();

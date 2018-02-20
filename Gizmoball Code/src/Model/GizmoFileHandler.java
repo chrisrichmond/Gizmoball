@@ -116,7 +116,7 @@ public class GizmoFileHandler {
     }
 
     private List<String> getOperands(String line){
-        List<String> operands = new ArrayList<String>();
+        List<String> operands = getTokens(line);
 
         try{
             operands.remove(0);
