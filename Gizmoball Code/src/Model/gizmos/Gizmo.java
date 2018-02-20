@@ -3,11 +3,10 @@ package Model.gizmos;
 
 import physics.Circle;
 import physics.LineSegment;
+import physics.Vect;
 
 import java.awt.*;
 import java.util.List;
-
-import static Model.Model.*;
 
 public interface Gizmo {
 
@@ -50,7 +49,7 @@ public interface Gizmo {
 
     int getHeight();
 
-    void fireBall();
+    Vect fireBall();
 
     String getID();
 

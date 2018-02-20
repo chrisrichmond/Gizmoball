@@ -7,7 +7,6 @@ import physics.SquareClass;
 import physics.Vect;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -16,7 +15,7 @@ public class Absorber implements Gizmo{
 
     private Queue<Ball> ballAbsorber;
     private SquareClass square;
-    private int width = 10;
+    private int width = 19;
     private int xPos;
     private int yPos;
     private String type="absorber";
@@ -33,11 +32,10 @@ public class Absorber implements Gizmo{
         this.yPos = yPos;
     }
 
+
     @Override
     public void setPos(int xPos, int yPos) {
 
-        this.xPos = xPos;
-        this.yPos = yPos;
     }
 
     @Override
@@ -55,8 +53,9 @@ public class Absorber implements Gizmo{
     //call the methods to absorb the ball and fire it back up into gameplay
     @Override
     public void trigger() {
-        removeFirstBall();
-        fireBall();
+        if(!ballAbsorber.isEmpty()){
+            fireBall();
+        }
     }
 
     @Override
@@ -87,15 +86,12 @@ public class Absorber implements Gizmo{
     @Override
     public void storeGizmoBall(Ball gizmoBall){
         //absorb the ball into the absorber ready to be fired
-        gizmoBall.setXpos(width);
-        gizmoBall.setYpos(getYPos());
+        gizmoBall.setXpos(width-1);
+        gizmoBall.setYpos(getYPos()-1);
         gizmoBall.setStopped(true);
         ballAbsorber.add(gizmoBall);
-<<<<<<< HEAD
-fireBall();
-=======
-        fireBall();
->>>>>>> b435679634c278402e8feaeb4ac5de6d2b191fb8
+
+
        //set balls position to be at the bottom right corner of absorber
 
     }
@@ -124,26 +120,23 @@ fireBall();
         return 1;
     }
     @Override
-    public void fireBall(){
+    public Vect fireBall(){
         System.out.println("Shooting ball into game!!");
         //code to be added to fire ball using Ball object
         //need to add code to the ball class to start the ball moving!
         Ball gizmoBall = removeFirstBall();
-        gizmoBall.setVelocity(new Vect(0D,-0.015D));
-        gizmoBall.setStopped(false);
-<<<<<<< HEAD
+        if(gizmoBall!=null) {
 
-
-=======
-        gizmoBall.setVelocity(new Vect(0.0D,-10.0D));
-
+            return new Vect(0.0, 15);
+        }
+        return null;
     }
 
     @Override
     public String getID() {
         return ID;
     }
->>>>>>> b435679634c278402e8feaeb4ac5de6d2b191fb8
+
 
     public Shape getShape(){
         return square.makeSquare();

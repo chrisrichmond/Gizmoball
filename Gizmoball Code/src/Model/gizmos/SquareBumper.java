@@ -4,6 +4,7 @@ import Model.Ball;
 import physics.Circle;
 import physics.LineSegment;
 import physics.SquareClass;
+import physics.Vect;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -46,8 +47,9 @@ public class SquareBumper implements Gizmo{
     }
 
     @Override
-    public void fireBall() {
+    public Vect fireBall() {
 
+        return null;
     }
 
     @Override

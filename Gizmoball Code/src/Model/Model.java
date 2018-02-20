@@ -121,11 +121,7 @@ public class Model implements ModelAPI {
                     shortestTime = minTimeuntilCollision;
 					System.out.println("Square Collision");
 					// trigger the gizmo
-					for(Gizmo currentSquare: squares){
-						if(currentSquare.getLines().contains(squareLines.get(x))){
-							currentSquare.trigger();
-						}
-					}
+					squares.get(i).trigger();
 
 					newVelocity = Geometry.reflectWall(squareLines.get(x), velocity);
                 }
@@ -137,14 +133,8 @@ public class Model implements ModelAPI {
                     shortestTime = minTimeuntilCollision;
 					System.out.println("Circle Collision");
                     newVelocity = Geometry.reflectCircle(circles.get(x).getCenter(),circle.getCenter(),velocity);
-
-					// trigger the gizmo
-
-//					for(Gizmo currentCircle: circles){
-//						if(currentCircle.getLines().contains(circles.get(x))){
-//							currentCircle.trigger();
-//						}
-//					}
+					//Trigger
+					squares.get(i).trigger();
                 }
             }
         }
@@ -157,11 +147,12 @@ public class Model implements ModelAPI {
 			for (int x = 0; x < squareLines.size(); x++) {
 				minTimeuntilCollision = Geometry.timeUntilWallCollision(squareLines.get(x), circle, velocity);
 				if (minTimeuntilCollision <= tickTime) {
-					shortestTime = 0;
+
 					System.out.println("Absorber Collision");
 					// trigger the gizmo
 					absorbers.get(i).storeGizmoBall(ball);
-					System.out.println(ball.getVelocity());
+
+
 
 				}
 			}
@@ -174,12 +165,8 @@ public class Model implements ModelAPI {
 					newVelocity = Geometry.reflectCircle(circles.get(x).getCenter(),circle.getCenter(),velocity);
 
 					// trigger the gizmo
-
-//					for(Gizmo currentCircle: circles){
-//						if(currentCircle.getLines().contains(circles.get(x))){
-//							currentCircle.trigger();
-//						}
-//					}
+					absorbers.get(i).storeGizmoBall(ball);
+					ball.setStopped(true);
 				}
 			}
 		}
@@ -253,8 +240,16 @@ public class Model implements ModelAPI {
 				ball = moveBallForTime(ball, tuc);
 				ball.setVelocity(cd.getVelocity());
 			}
-		}
 
+		}
+		if(ball.isStopped()){
+			for(int x=0;x<absorbers.size();x++){
+				System.out.println("ffffffffffffff");
+				absorbers.get(x).fireBall();
+				ball.setStopped(false);
+				ball.setVelocity(new Vect(0,-15));
+			}
+		}
 		setChanged();
 		notifyObservers();
 		
@@ -264,9 +259,14 @@ public class Model implements ModelAPI {
 		ball.setXpos(ball.getXpos() + (float)(ball.getVelocity().x() * time));
 		ball.setYpos(ball.getYpos() + (float)(ball.getVelocity().y() * time));
 		//applyFriction(time);
-		applyGravity(time);
+		//applyGravity(time);
 		return ball;
 		
+	}
+
+	private void keyPressed(String key) {
+		Gizmo x=keyConnections.get(key);
+		x.fireBall();
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package Model.gizmos;
 import Model.Ball;
 import physics.Circle;
 import physics.LineSegment;
+import physics.Vect;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -84,8 +85,9 @@ public class CircularBumper implements Gizmo {
     }
 
     @Override
-    public void fireBall() {
+    public Vect fireBall() {
 
+        return null;
     }
 
     @Override

@@ -4,10 +4,9 @@ import Model.Ball;
 import physics.Circle;
 import physics.LineSegment;
 import physics.TriangleClass;
+import physics.Vect;
 
-import javax.sound.sampled.Line;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TriangularBumper implements Gizmo{
@@ -90,8 +89,9 @@ public class TriangularBumper implements Gizmo{
     }
 
     @Override
-    public void fireBall() {
+    public Vect fireBall() {
 
+        return null;
     }
 
     @Override

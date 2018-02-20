@@ -24,15 +24,12 @@ public class Main {
         view.runMode();
         model.setBallSpeed(5,5);
 
-<<<<<<< HEAD
-        Gizmo square1 = new Absorber(2,17);
-        model.addGizmo(square1);
-        Gizmo square2 = new SquareBumper(13,11);
-=======
+
+
         Gizmo square1 = new Absorber("A",0,19);
         model.addGizmo(square1);
         Gizmo square2 = new SquareBumper("S01",10,9);
->>>>>>> b435679634c278402e8feaeb4ac5de6d2b191fb8
+
         model.addGizmo(square2);
 
 
