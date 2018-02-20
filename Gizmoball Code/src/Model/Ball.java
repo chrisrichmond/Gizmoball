@@ -32,4 +32,6 @@ public interface Ball {
     Color getColour();
 
     void setColour(Color colour);
+
+    String getID();
 }
