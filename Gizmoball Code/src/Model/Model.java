@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.gizmos.*;
-import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import observerpattern.Observer;
 import physics.*;
 
