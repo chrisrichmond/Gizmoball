@@ -17,8 +17,10 @@ public class TriangularBumper implements Gizmo{
     private String type="triangle";
     private TriangleClass triangle;
     private Color colour;
+    private String ID;
 
-    public TriangularBumper(int xpos,int ypos){
+    public TriangularBumper(String ID, int xpos,int ypos){
+        this.ID = ID;
         this.xPos=xpos;
         this.yPos=ypos;
         this.triangle = new TriangleClass(xPos, yPos);
@@ -90,5 +92,10 @@ public class TriangularBumper implements Gizmo{
     @Override
     public void fireBall() {
 
+    }
+
+    @Override
+    public String getID() {
+        return ID;
     }
 }

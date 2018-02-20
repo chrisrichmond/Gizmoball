@@ -24,9 +24,9 @@ public class Main {
         view.runMode();
         model.setBallSpeed(5,5);
 
-        Gizmo square1 = new Absorber(0,19);
+        Gizmo square1 = new Absorber("A",0,19);
         model.addGizmo(square1);
-        Gizmo square2 = new SquareBumper(10,9);
+        Gizmo square2 = new SquareBumper("S01",10,9);
         model.addGizmo(square2);
 
     }

@@ -21,10 +21,12 @@ public class Absorber implements Gizmo{
     private int yPos;
     private String type="absorber";
     private Color colour;
+    private String ID;
 
-    public Absorber(int xPos, int yPos){
+    public Absorber(String ID, int xPos, int yPos){
 
         //instantiate variables
+        this.ID = ID;
         ballAbsorber= new LinkedList<>();
         this.square = new SquareClass(xPos, yPos, width);
         this.xPos = xPos;
@@ -89,6 +91,7 @@ public class Absorber implements Gizmo{
         gizmoBall.setYpos(getYPos());
         gizmoBall.setStopped(true);
         ballAbsorber.add(gizmoBall);
+        fireBall();
        //set balls position to be at the bottom right corner of absorber
 
     }
@@ -123,8 +126,13 @@ public class Absorber implements Gizmo{
         //need to add code to the ball class to start the ball moving!
         Ball gizmoBall = removeFirstBall();
         gizmoBall.setStopped(false);
-        gizmoBall.setVelocity(new Vect(10.0D,10.0D));
+        gizmoBall.setVelocity(new Vect(0.0D,-10.0D));
 
+    }
+
+    @Override
+    public String getID() {
+        return ID;
     }
 
 }
