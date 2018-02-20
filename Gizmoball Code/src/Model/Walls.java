@@ -33,11 +33,11 @@ public class Walls {
   }
 
   public int getWidth(){
-  	return xpos2+1;
+  	return xpos2;
   }
 
   public int getHeight(){
-  	return ypos2+1;
+  	return ypos2;
   }
 	
 	

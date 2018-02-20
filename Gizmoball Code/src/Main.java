@@ -3,6 +3,13 @@ import Model.Model;
 import Model.gizmos.*;
 import gui.View;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import static java.lang.System.getProperty;
+
 
 public class Main {
 
@@ -19,9 +26,30 @@ public class Main {
          *
          */
 
+//        String homePath = System.getProperty("user.home");
+//
+//        String gizmoPath = homePath + "\\Gizmoball";
+//        String gizmoConfigPath = gizmoPath + "\\config";
+//        String defaultGamePath = gizmoPath + "\\default.gizmo";
+//        File gizmoPathDir = new File(gizmoPath);
+//        File gizmoConfigFile = new File(gizmoConfigPath);
+//        File defaultGameFile = new File(defaultGamePath);
+//
+//        if(!gizmoPathDir.exists()){
+//            gizmoPathDir.mkdir();
+//            try {
+//                gizmoConfigFile.createNewFile();
+//            }catch(IOException iox){
+//                System.out.println("IOException trying to create config file '"+gizmoConfigPath+"'");
+//            }
+//        }
+
         ModelAPI model = new Model();
         View view = new View(model);
         view.runMode();
+
+//        model.loadFile(defaultGameFile.getAbsolutePath());
+
         model.setBallSpeed(5,5);
 
 
