@@ -107,4 +107,9 @@ public class SquareBumper implements Gizmo{
     public Circle getCircle() {
         return null;
     }
+
+    @Override
+    public Shape getShape() {
+        return square.makeSquare();
+    }
 }

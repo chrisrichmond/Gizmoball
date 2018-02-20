@@ -98,4 +98,8 @@ public class TriangularBumper implements Gizmo{
     public String getID() {
         return ID;
     }
+
+    public Shape getShape(){
+        return triangle.makeTriangle();
+    }
 }

@@ -4,6 +4,7 @@ import Model.Ball;
 import Model.ModelAPI;
 import Model.gizmos.*;
 import physics.LineSegment;
+import physics.TriangleClass;
 
 import javax.swing.*;
 import java.awt.*;
@@ -67,10 +68,10 @@ public class RunModeBoard extends JPanel {
                     graphics2D.drawLine((int)(ppl*currentLine.p1().x()),(int)(ppl*currentLine.p1().y()),(int)(ppl*currentLine.p2().x()),(int)(ppl*currentLine.p2().y()));
                 }
 
-                //graphics.drawRect(convertXToCoords(currentGizmo.getXPos()),convertYToCoords(currentGizmo.getYPos()),widthGap,heightGap);
             }else if(currentGizmo.getType().equals("triangle")){
                 // Draw TriangularBumper
-                //graphics2D.fill(currentGizmo)
+                Polygon scaledTriangle = new Polygon(new int[] {x, (x + ppl), x}, new int[] {y, y + ppl, y + ppl}, 3);
+                graphics2D.fillPolygon(scaledTriangle);
             }
 
         }

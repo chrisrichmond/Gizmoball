@@ -135,4 +135,8 @@ public class Absorber implements Gizmo{
         return ID;
     }
 
+    public Shape getShape(){
+        return square.makeSquare();
+    }
+
 }

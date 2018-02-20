@@ -98,4 +98,8 @@ public class CircularBumper implements Gizmo {
         return new Circle(xPos, yPos, radius);
 
     }
+
+    public Shape getShape(){
+        return getCircle().toEllipse2D();
+    }
 }

@@ -53,4 +53,6 @@ public interface Gizmo {
     void fireBall();
 
     String getID();
+
+    Shape getShape();
 }

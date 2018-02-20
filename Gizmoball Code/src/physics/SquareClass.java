@@ -7,7 +7,7 @@ public class SquareClass{
 
     private int X = 0;
     private int Y = 0;
-    private int width = 50;
+    private int width = 1;
     private ArrayList<LineSegment> lines = new ArrayList<>();
     private ArrayList<Circle> circles = new ArrayList<>();
 
