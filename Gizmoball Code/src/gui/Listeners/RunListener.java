@@ -39,7 +39,7 @@ public class RunListener implements ActionListener{
                 case("Tick"):
                     model.moveBall();
                     break;
-                case("Load"):
+                case("Load Model"):
                     int returnVal = fileChooser.showOpenDialog(view.getMainFrame());
 
                     if(returnVal == JFileChooser.APPROVE_OPTION){

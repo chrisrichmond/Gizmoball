@@ -75,12 +75,6 @@ public class GizmoFileHandler {
         }else if(opcode.equals("ball")) {
             // object is a ball
 
-            float x = Float.parseFloat(operands.get(1));
-            float y = Float.parseFloat(operands.get(2));
-            double xv = Double.parseDouble(operands.get(3));
-            double yv = Double.parseDouble(operands.get(4));
-            Ball ball = new BallImpl(operands.get(0),x,y,xv,yv);
-            model.addBall(ball);
             //model.addBall(...)??
         }else{
             // object is a gizmo
