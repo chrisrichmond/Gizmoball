@@ -55,7 +55,7 @@ public class RunModeBoard extends JPanel {
                 graphics2D.fillRoundRect(x, y, width, height, 15, 15);
             }else if(currentGizmo.getType().equals("circle")){
                 // Draw CircularBumper
-
+                graphics2D.fillOval(x,y,width,height);
 
                 graphics.drawOval(x, y, width, height);
             }else if(currentGizmo.getType().equals("square")){
@@ -70,7 +70,7 @@ public class RunModeBoard extends JPanel {
                 //graphics.drawRect(convertXToCoords(currentGizmo.getXPos()),convertYToCoords(currentGizmo.getYPos()),widthGap,heightGap);
             }else if(currentGizmo.getType().equals("triangle")){
                 // Draw TriangularBumper
-
+                //graphics2D.fill(currentGizmo)
             }
 
         }

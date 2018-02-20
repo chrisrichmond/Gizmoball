@@ -27,6 +27,8 @@ public interface Ball {
 
     boolean isStopped();
 
+    void setStopped(boolean stopped);
+
     Color getColour();
 
     void setColour(Color colour);

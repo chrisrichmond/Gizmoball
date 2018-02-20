@@ -50,12 +50,16 @@ public class Model implements ModelAPI {
 	   ball.setVelocity(new Vect(xVnew,yVnew));
  }
 	private void applyGravity(double delta_t){
-		Double yVold,yVnew;
-		yVold=ball.getVelocity().y();
-		double gravity;
-		gravity=5D;
-		yVnew = yVold + gravity * delta_t;
-		ball.setVelocity(new Vect(ball.getVelocity().x(),yVnew));
+   		if(ball.isStopped()) {
+			ball.setVelocity(new Vect(0,0));
+		}else{
+			Double yVold, yVnew;
+			yVold = ball.getVelocity().y();
+			double gravity;
+			gravity = 5D;
+			yVnew = yVold + gravity * delta_t;
+			ball.setVelocity(new Vect(ball.getVelocity().x(), yVnew));
+		}
 	}
 	
 	private CollisionDetails timeUntilCollision() {
