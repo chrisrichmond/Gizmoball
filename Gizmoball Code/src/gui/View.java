@@ -60,10 +60,6 @@ public class View implements Observer{
         runMenuBar = runGUI.createMenuBar();
 
         // Dimensions
-        System.out.println("Walls width "+model.getWalls().getWidth());
-        System.out.println("Walls height "+model.getWalls().getHeight());
-        System.out.println("Walls width with ppl "+ppl*model.getWalls().getWidth());
-        System.out.println("Walls height with ppl "+ppl*model.getWalls().getHeight());
         boardDim = new Dimension(ppl*(model.getWalls().getWidth()), ppl*(model.getWalls().getHeight()));
         buttonPanelDim = new Dimension(100,ppl*(model.getWalls().getHeight()));
 

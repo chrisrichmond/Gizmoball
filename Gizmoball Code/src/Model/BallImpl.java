@@ -12,15 +12,13 @@ public class BallImpl implements Ball{
 	private float ypos;
 	private Color colour;
 	private boolean ballStopped;
-	private String ID;
 
-	public BallImpl(String ID, float x, float y, double xv, double yv){
+	public BallImpl(float x, float y, double xv, double yv){
 		this.velocity = new Vect(xv,yv);
 		this.xpos = x;
 		this.ypos = y;
 		this.colour = Color.pink;
 		radius = 0.25D;
-		this.ID = ID;
 	}
 
 	public Vect getVelocity() {
@@ -61,11 +59,6 @@ public class BallImpl implements Ball{
 
 	public void setColour(Color colour) {
 		this.colour = colour;
-	}
-
-	@Override
-	public String getID() {
-		return ID;
 	}
 
 	public boolean isStopped() {
