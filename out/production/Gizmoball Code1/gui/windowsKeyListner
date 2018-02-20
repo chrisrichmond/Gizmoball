@@ -1,0 +1,39 @@
+import java.awt.*;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.event.*;
+
+//Get key presses and releases on windows
+
+public class windowsKeyListner {
+    public static void main(String[] args) {
+        JFrame mainFrame = new JFrame();
+
+        mainFrame.addKeyListener(new KeyListener() {
+            boolean status = true;
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(status){
+                    System.out.println("|");
+                    status = false;
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                System.out.println("______");
+                status = true;
+            }
+        });
+        mainFrame.setSize(400, 400);
+        mainFrame.setVisible(true);
+        }
+}
