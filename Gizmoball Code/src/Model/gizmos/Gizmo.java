@@ -1,6 +1,7 @@
 package Model.gizmos;
 
 
+import Model.Ball;
 import physics.Circle;
 import physics.LineSegment;
 import physics.Vect;
@@ -43,7 +44,7 @@ public interface Gizmo {
 
     List<Circle> getCircles();
 
-    void storeGizmoBall(Model.Ball gizmoBall);
+    void storeGizmoBall(Ball gizmoBall);
 
     int getWidth();
 

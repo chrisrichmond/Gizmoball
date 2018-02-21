@@ -17,7 +17,7 @@ public class BallImpl implements Ball{
 		this.velocity = new Vect(xv,yv);
 		this.xpos = x;
 		this.ypos = y;
-		this.colour = Color.pink;
+		this.colour = Color.black;
 		radius = 0.25D;
 	}
 

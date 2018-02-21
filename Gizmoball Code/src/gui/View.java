@@ -60,21 +60,22 @@ public class View implements Observer{
         runMenuBar = runGUI.createMenuBar();
 
         // Dimensions
-        boardDim = new Dimension(ppl*(model.getWalls().getWidth()), ppl*(model.getWalls().getHeight()));
-        buttonPanelDim = new Dimension(100,ppl*(model.getWalls().getHeight()));
+        boardDim = new Dimension(ppl*20, ppl*20);
+        buttonPanelDim = new Dimension(ppl*5,ppl*20);
 
         cp.setLayout(new BorderLayout());
         buildButtonPanel.setPreferredSize(buttonPanelDim);
         runButtonPanel.setPreferredSize(buttonPanelDim);
         buildBoard.setPreferredSize(boardDim);
         runBoard.setPreferredSize(boardDim);
-        idealFrameDim = new Dimension(buttonPanelDim.width + boardDim.width, buttonPanelDim.height);
+        idealFrameDim = new Dimension(buttonPanelDim.width + boardDim.width - (int)(ppl/2)-2, boardDim.height + (ppl*2)+2);
 
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setPreferredSize(idealFrameDim);
         mainFrame.pack();
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
+        mainFrame.setResizable(false);
 
     }
 

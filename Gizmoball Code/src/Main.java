@@ -50,14 +50,13 @@ public class Main {
 
 //        model.loadFile(defaultGameFile.getAbsolutePath());
 
-        model.setBallSpeed(5,5);
+        model.setBallSpeed(0,0);
 
 
-        Gizmo square1 = new Absorber("A",0,19);
-        model.addGizmo(square1);
-        Gizmo square2 = new SquareBumper("S01",10,9);
-
-        model.addGizmo(square2);
+        //Gizmo absorber1 = new Absorber("A",0,19);
+        //Gizmo absorber2 = new Absorber("A",0,0);
+        //model.addGizmo(absorber1);
+        //model.addGizmo(absorber2);
 
 
     }

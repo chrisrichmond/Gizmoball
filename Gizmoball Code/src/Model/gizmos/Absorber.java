@@ -30,6 +30,7 @@ public class Absorber implements Gizmo{
         this.square = new SquareClass(xPos, yPos, width);
         this.xPos = xPos;
         this.yPos = yPos;
+        this.colour = Color.pink;
     }
 
 
@@ -86,8 +87,8 @@ public class Absorber implements Gizmo{
     @Override
     public void storeGizmoBall(Ball gizmoBall){
         //absorb the ball into the absorber ready to be fired
-        gizmoBall.setXpos(width-1);
-        gizmoBall.setYpos(getYPos()-1);
+        gizmoBall.setXpos(width-0.5F);
+        gizmoBall.setYpos(getYPos());
         gizmoBall.setStopped(true);
         ballAbsorber.add(gizmoBall);
 

@@ -23,6 +23,7 @@ public class Model implements ModelAPI {
 	private Walls walls;
  	private List<VerticalLine> lines;
  	private GizmoFileHandler fileHandler;
+ 	private double tickTime;
 	
 	public Model(){
 		this.observers = new ArrayList<Observer>();
@@ -33,8 +34,9 @@ public class Model implements ModelAPI {
 		this.triangles = new ArrayList<Gizmo>();
 		this.absorbers = new ArrayList<Gizmo>();
 		this.fileHandler = new GizmoFileHandler(this);
+		this.tickTime = 0.05D;
 
-		this.ball = new BallImpl(12.0F, 10.0F, 1.0D, 5000.0D);
+		this.ball = new BallImpl(18.5F, 10.0F, 0.0D, 0.0D);
 		this.walls = new Walls(0,0,20,20);
 
 	 
@@ -61,10 +63,10 @@ public class Model implements ModelAPI {
 	   Double xVnew,xVold,yVold,yVnew;
 	   xVold=ball.getVelocity().x();
 	   yVold=ball.getVelocity().y();
-	   double mu=0.005D;
-	   double mu2=0.005D;
-	   xVnew = xVold * (1 - mu * delta_t - mu2 * xVold * delta_t);
-	   yVnew = yVold * (1 - mu * delta_t - mu2 * yVold * delta_t);
+	   double mu=tickTime/2; // default value should be 0.025 per second
+	   double mu2=0.025D; // default value should be 0.025 per line
+	   xVnew = xVold * (1 - mu * delta_t - mu2 * Math.abs(xVold) * delta_t);
+	   yVnew = yVold * (1 - mu * delta_t - mu2 * Math.abs(yVold) * delta_t);
 	   ball.setVelocity(new Vect(xVnew,yVnew));
  	}
 	private void applyGravity(double delta_t){
@@ -87,7 +89,6 @@ public class Model implements ModelAPI {
         Circle circle = ball.getCircle();
         Vect velocity= ball.getVelocity();
         Vect newVelocity=velocity;
-        double tickTime=0.05D;
         double shortestTime =5000D;
 		double minTimeuntilCollision;
 		boolean hasCollided = false;
@@ -258,8 +259,8 @@ public class Model implements ModelAPI {
 	private Ball moveBallForTime(Ball ball, double time) {
 		ball.setXpos(ball.getXpos() + (float)(ball.getVelocity().x() * time));
 		ball.setYpos(ball.getYpos() + (float)(ball.getVelocity().y() * time));
-		//applyFriction(time);
-		//applyGravity(time);
+		applyFriction(time);
+		applyGravity(time);
 		return ball;
 		
 	}
