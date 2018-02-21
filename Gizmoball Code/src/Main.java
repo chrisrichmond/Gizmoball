@@ -4,9 +4,11 @@ import Model.gizmos.*;
 import gui.View;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Properties;
 
 import static java.lang.System.getProperty;
 
@@ -26,29 +28,68 @@ public class Main {
          *
          */
 
+
 //        String homePath = System.getProperty("user.home");
 //
-//        String gizmoPath = homePath + "\\Gizmoball";
-//        String gizmoConfigPath = gizmoPath + "\\config";
-//        String defaultGamePath = gizmoPath + "\\default.gizmo";
+//        String gizmoPath = homePath + "/GizmoFiles";
+//        String gizmoConfigPath = gizmoPath + "/config";
+//        String defaultGamePath = gizmoPath + "/default.gizmo";
 //        File gizmoPathDir = new File(gizmoPath);
 //        File gizmoConfigFile = new File(gizmoConfigPath);
 //        File defaultGameFile = new File(defaultGamePath);
+//        FileInputStream in;
 //
 //        if(!gizmoPathDir.exists()){
 //            gizmoPathDir.mkdir();
+//            System.out.println("Main Gizmoball directory not found, created at '"+gizmoPath+"'");
+//        }
+//        if(!gizmoConfigFile.exists()){
 //            try {
 //                gizmoConfigFile.createNewFile();
+//                System.out.println("Gizmoball config file not found, created at '"+gizmoConfigPath+"'");
 //            }catch(IOException iox){
 //                System.out.println("IOException trying to create config file '"+gizmoConfigPath+"'");
 //            }
 //        }
+//        if(!defaultGameFile.exists()){
+//            try {
+//                gizmoConfigFile.createNewFile();
+//                System.out.println("Gizmoball config file not found, created at '"+gizmoConfigPath+"'");
+//            }catch(IOException iox){
+//                System.out.println("IOException trying to create config file '"+gizmoConfigPath+"'");
+//            }
+//        }
+
+
+//        // create and load default properties
+//        Properties defaultProps = new Properties();
+//        try {
+//            in = new FileInputStream(gizmoConfigPath);
+//            defaultProps.load(in);
+//            in.close();
+//        }catch(IOException iox){
+//            System.out.println("IOException trying to load default config file properties from '"+gizmoConfigPath+"'");
+//        }
+//
+//        // create application properties with default
+//        Properties applicationProps = new Properties(defaultProps);
+//
+//        // load properties from last invocation
+//        try{
+//            in = new FileInputStream("appProperties");
+//            applicationProps.load(in);
+//            in.close();
+//        }catch(IOException iox){
+//            System.out.println("IOException trying to load application properties
+//        }
+
 
         ModelAPI model = new Model();
         View view = new View(model);
         view.runMode();
 
 //        model.loadFile(defaultGameFile.getAbsolutePath());
+        System.out.println("Loaded default game file '"+defaultGamePath+"'");
 
         model.setBallSpeed(0,0);
 
