@@ -38,6 +38,7 @@ public interface Gizmo {
     Color getColour();
 
     String getType();
+
     Circle getCircle();
 
     List<LineSegment> getLines();
@@ -55,4 +56,10 @@ public interface Gizmo {
     String getID();
 
     Shape getShape();
+
+    int getDirection();
+
+    boolean rotate();
+
+
 }

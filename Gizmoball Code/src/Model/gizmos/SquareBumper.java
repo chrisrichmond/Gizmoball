@@ -114,4 +114,14 @@ public class SquareBumper implements Gizmo{
     public Shape getShape() {
         return square.makeSquare();
     }
+
+    @Override
+    public int getDirection() {
+        return 0;
+    }
+
+    @Override
+    public boolean rotate() {
+        return false;
+    }
 }

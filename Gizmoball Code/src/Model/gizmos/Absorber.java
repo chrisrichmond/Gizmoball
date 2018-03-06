@@ -156,4 +156,14 @@ public class Absorber implements Gizmo{
         return rectangle.makeRectangle();
     }
 
+    @Override
+    public int getDirection() {
+        return 0;
+    }
+
+    @Override
+    public boolean rotate() {
+        return false;
+    }
+
 }

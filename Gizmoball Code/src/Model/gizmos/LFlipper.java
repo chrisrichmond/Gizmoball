@@ -96,4 +96,14 @@ public class LFlipper implements Gizmo{
     public Shape getShape() {
         return null;
     }
+
+    @Override
+    public int getDirection() {
+        return 0;
+    }
+
+    @Override
+    public boolean rotate() {
+        return false;
+    }
 }

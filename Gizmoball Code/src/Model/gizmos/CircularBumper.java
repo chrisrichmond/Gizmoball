@@ -104,4 +104,14 @@ public class CircularBumper implements Gizmo {
     public Shape getShape(){
         return getCircle().toEllipse2D();
     }
+
+    @Override
+    public int getDirection() {
+        return 0;
+    }
+
+    @Override
+    public boolean rotate() {
+        return false;
+    }
 }

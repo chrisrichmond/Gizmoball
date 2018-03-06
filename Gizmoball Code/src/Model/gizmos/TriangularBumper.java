@@ -102,4 +102,14 @@ public class TriangularBumper implements Gizmo{
     public Shape getShape(){
         return triangle.makeTriangle();
     }
+
+    @Override
+    public int getDirection() {
+        return 0;
+    }
+
+    @Override
+    public boolean rotate() {
+        return false;
+    }
 }
