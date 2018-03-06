@@ -1,9 +1,12 @@
 package gui;
 
 import Model.ModelAPI;
+import gui.Listeners.BuildListener;
+import gui.Listeners.RunListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class BuildModeGUI implements GameGUI {
 
@@ -16,6 +19,7 @@ public class BuildModeGUI implements GameGUI {
     private JButton quitButton;
     private Font font;
     private Dimension maxButtonSize;
+    private ActionListener listener;
 
     // JMenuBar for build mode options
     private JMenuBar menuBar;
@@ -30,6 +34,7 @@ public class BuildModeGUI implements GameGUI {
         this.view = view;
         font = new Font("Arial", Font.BOLD, 12);
         maxButtonSize = new Dimension(150,50);
+        listener = new BuildListener(model, view);
     }
 
     @Override
@@ -40,10 +45,12 @@ public class BuildModeGUI implements GameGUI {
         runModeButton = new JButton("Run Mode");
         runModeButton.setFont(font);
         runModeButton.setMaximumSize(maxButtonSize);
+        runModeButton.addActionListener(listener);
 
         quitButton = new JButton("Quit");
         quitButton.setFont(font);
         quitButton.setMaximumSize(maxButtonSize);
+        runModeButton.addActionListener(listener);
 
         buttonPanel.add(runModeButton);
         buttonPanel.add(quitButton);

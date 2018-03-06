@@ -19,12 +19,12 @@ public class BuildModeBoard extends JPanel {
 
     @Override
     public void paintComponent(Graphics graphics){
-//        for(int verticalLines = 0; verticalLines < 20; verticalLines += ppl){
-//            graphics.drawLine(verticalLines, 0, verticalLines, 20*ppl);
-//        }
-//        for(int horizontalLines = 0; horizontalLines < 20(); horizontalLines += ppl){
-//            graphics.drawLine(0, horizontalLines, 20*ppl, horizontalLines);
-//        }
+        for(int verticalLines = 0; verticalLines < 20; verticalLines += ppl){
+            graphics.drawLine(verticalLines*ppl, 0, verticalLines*ppl, 20*ppl);
+        }
+        for(int horizontalLines = 0; horizontalLines < 20; horizontalLines += ppl){
+            graphics.drawLine(0, horizontalLines*ppl, 20*ppl, horizontalLines*ppl);
+        }
     }
 
 }

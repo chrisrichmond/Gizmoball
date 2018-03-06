@@ -75,7 +75,7 @@ public class View implements Observer{
         mainFrame.pack();
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
-        mainFrame.setResizable(false);
+        mainFrame.setResizable(true);
 
     }
 
