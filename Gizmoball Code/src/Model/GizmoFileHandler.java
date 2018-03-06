@@ -87,7 +87,9 @@ public class GizmoFileHandler {
             } else if (opcode.equals("triangle")) {
                 model.addGizmo(new TriangularBumper(operands.get(0), x, y));
             } else if (opcode.equals("absorber")) {
-                model.addGizmo(new Absorber(operands.get(0), x, y));
+                int x2 = Integer.parseInt(operands.get(3));
+                int y2 = Integer.parseInt(operands.get(4));
+                model.addGizmo(new Absorber(operands.get(0), x, y, x2, y2));
             }
         }
     }

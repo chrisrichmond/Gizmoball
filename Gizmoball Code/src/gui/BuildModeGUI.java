@@ -1,9 +1,14 @@
 package gui;
 
+import Model.ModelAPI;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class BuildModeGUI implements GameGUI {
+
+    private ModelAPI model;
+    private View view;
 
     // JPanel containing build mode buttons
     private JPanel buttonPanel;
@@ -20,7 +25,9 @@ public class BuildModeGUI implements GameGUI {
     // JPanel for displaying information at the bottom of the screen
     private JPanel messagePanel;
 
-    public BuildModeGUI(){
+    public BuildModeGUI(ModelAPI model, View view){
+        this.model = model;
+        this.view = view;
         font = new Font("Arial", Font.BOLD, 12);
         maxButtonSize = new Dimension(150,50);
     }

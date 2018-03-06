@@ -46,11 +46,11 @@ public class View implements Observer{
         cp = mainFrame.getContentPane();
 
         // Boards
-        buildBoard = new BuildModeBoard();
+        buildBoard = new BuildModeBoard(model, ppl);
         runBoard = new RunModeBoard(model, ppl);
 
         // GUIs
-        buildGUI = new BuildModeGUI();
+        buildGUI = new BuildModeGUI(model, this);
         runGUI = new RunModeGUI(model, this);
 
         // Components

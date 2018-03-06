@@ -1,10 +1,7 @@
 package Model.gizmos;
 
 import Model.Ball;
-import physics.Circle;
-import physics.LineSegment;
-import physics.SquareClass;
-import physics.Vect;
+import physics.*;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -14,22 +11,29 @@ import java.util.Queue;
 public class Absorber implements Gizmo{
 
     private Queue<Ball> ballAbsorber;
-    private SquareClass square;
-    private int width = 19;
-    private int xPos;
-    private int yPos;
-    private String type="absorber";
+    private RectangleClass rectangle;
+    private int xPos1; // left side of where the absorber starts
+    private int yPos1; // top side of where the absorber starts
+    private int xPos2; // right side of where the absorber ends
+    private int yPos2; // bottom side of where the absorber ends
+    private int width;
+    private int height;
+    private String type = "absorber";
     private Color colour;
     private String ID;
 
-    public Absorber(String ID, int xPos, int yPos){
+    public Absorber(String ID, int xPos1, int yPos1, int xPos2, int yPos2){
 
         //instantiate variables
         this.ID = ID;
         ballAbsorber= new LinkedList<>();
-        this.square = new SquareClass(xPos, yPos, width);
-        this.xPos = xPos;
-        this.yPos = yPos;
+        this.xPos1 = xPos1;
+        this.yPos1 = yPos1;
+        this.xPos2 = xPos2;
+        this.yPos2 = yPos2;
+        this.width = xPos2 - xPos1;
+        this.height = yPos2 - yPos1;
+        this.rectangle = new RectangleClass(xPos1, yPos2, width, height);
         this.colour = Color.pink;
     }
 
@@ -41,12 +45,12 @@ public class Absorber implements Gizmo{
 
     @Override
     public int getXPos() {
-        return xPos;
+        return xPos1;
     }
 
     @Override
     public int getYPos() {
-        return yPos;
+        return yPos1;
     }
 
 
@@ -76,12 +80,12 @@ public class Absorber implements Gizmo{
 
     @Override
     public List<LineSegment> getLines() {
-       return square.getLines();
+       return rectangle.getLines();
     }
 
     @Override
     public List<Circle> getCircles() {
-        return square.getCircles();
+        return rectangle.getCircles();
     }
 
     @Override
@@ -121,7 +125,7 @@ public class Absorber implements Gizmo{
 
     @Override
     public int getHeight() {
-        return 1;
+        return height;
     }
     @Override
     public Vect fireBall(){
@@ -149,7 +153,7 @@ public class Absorber implements Gizmo{
 
 
     public Shape getShape(){
-        return square.makeSquare();
+        return rectangle.makeRectangle();
     }
 
 }
