@@ -68,14 +68,15 @@ public class View implements Observer{
         runButtonPanel.setPreferredSize(buttonPanelDim);
         buildBoard.setPreferredSize(boardDim);
         runBoard.setPreferredSize(boardDim);
-        idealFrameDim = new Dimension(buttonPanelDim.width + boardDim.width - (int)(ppl/2)-2, boardDim.height + (ppl*2)+2);
+        //idealFrameDim = new Dimension(buttonPanelDim.width + boardDim.width - (int)(ppl/2)-2, boardDim.height + (ppl*2)+2);
+        idealFrameDim = new Dimension(500+132, 500+53);
 
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setPreferredSize(idealFrameDim);
         mainFrame.pack();
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
-        mainFrame.setResizable(true);
+        mainFrame.setResizable(false);
 
     }
 
@@ -133,6 +134,7 @@ public class View implements Observer{
         cp.add(currentButtonPanel, BorderLayout.LINE_START);
         cp.add(currentBoard, BorderLayout.CENTER);
         mainFrame.repaint();
+        mainFrame.pack();
     }
 
     public JFrame getMainFrame() {
