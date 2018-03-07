@@ -176,7 +176,7 @@ public class BuildModeGUI implements GameGUI {
     @Override
     public JPanel createMessageField() {
         messagePanel = new JPanel();
-
+        messagePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
         return messagePanel;
     }
 }

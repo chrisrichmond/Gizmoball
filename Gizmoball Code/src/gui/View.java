@@ -30,10 +30,13 @@ public class View implements Observer{
 
     // Components
     private JPanel buildButtonPanel, runButtonPanel, currentButtonPanel;
+    private JPanel buildMessagePanel, runMessagePanel, currentMessagePanel;
     private JMenuBar buildMenuBar, runMenuBar, currentMenuBar;
 
     // Dimensions
-    private Dimension boardDim, buttonPanelDim, idealFrameDim;
+    private Dimension boardDim, buttonPanelDim, messagePanelDim, idealFrameDim;
+
+    private final Insets insets = new Insets(0, 0, 0, 0);
 
     boolean status;
 
@@ -60,6 +63,8 @@ public class View implements Observer{
         // Components
         buildButtonPanel = buildGUI.createButtons();
         runButtonPanel = runGUI.createButtons();
+        buildMessagePanel = buildGUI.createMessageField();
+        runMessagePanel = runGUI.createMessageField();
         buildMenuBar = buildGUI.createMenuBar();
         runMenuBar = runGUI.createMenuBar();
 
@@ -70,19 +75,28 @@ public class View implements Observer{
         buttonPanelDim = new Dimension(ppl*5,ppl*20);
         System.out.println("buttonPanelDim width set to "+buttonPanelDim.width);
         System.out.println("buttonPanelDim height set to "+buttonPanelDim.height);
+        messagePanelDim = new Dimension(ppl*25, ppl*2);
+        System.out.println("messagePanelDim width set to "+messagePanelDim.width);
+        System.out.println("messagePanelDim height set to "+messagePanelDim.height);
+
+        // Set layout and preferred component dimensions
 
         cp.setLayout(new BorderLayout());
+        //cp.setLayout(new GridBagLayout());
+
         buildButtonPanel.setPreferredSize(buttonPanelDim);
         runButtonPanel.setPreferredSize(buttonPanelDim);
+        buildMessagePanel.setPreferredSize(messagePanelDim);
+        runMessagePanel.setPreferredSize(messagePanelDim);
         buildBoard.setPreferredSize(boardDim);
         runBoard.setPreferredSize(boardDim);
-        idealFrameDim = new Dimension(19+ buttonPanelDim.width + boardDim.width - (int)(ppl/2), boardDim.height + (ppl*2)+3);
+        idealFrameDim = new Dimension(messagePanelDim.width+2, boardDim.height + messagePanelDim.height + (ppl*1)-2);
         System.out.println("idealFrameDim width set to "+idealFrameDim.width);
         System.out.println("idealFrameDim height set to "+idealFrameDim.height);
         //idealFrameDim = new Dimension(500+132, 500+53);
 
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        mainFrame.setPreferredSize(idealFrameDim);
+        cp.setPreferredSize(idealFrameDim);
         mainFrame.pack();
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
@@ -104,6 +118,7 @@ public class View implements Observer{
         currentButtonPanel = buildButtonPanel;
         currentMenuBar = buildMenuBar;
         currentBoard = buildBoard;
+        currentMessagePanel = buildMessagePanel;
         addBuildKeyListener();
         addCurrentCompsToFrame();
     }
@@ -133,6 +148,7 @@ public class View implements Observer{
         currentButtonPanel = runButtonPanel;
         currentMenuBar = runMenuBar;
         currentBoard = runBoard;
+        currentMessagePanel = runMessagePanel;
         addCurrentCompsToFrame();
     }
 
@@ -144,6 +160,7 @@ public class View implements Observer{
             cp.remove(currentButtonPanel);
             cp.remove(currentMenuBar);
             cp.remove(currentBoard);
+            cp.remove(currentMessagePanel);
         }catch(NullPointerException npx){
             System.out.println(npx.getStackTrace() + " NullPointerException: trying to remove JComponent that wasn't there");
         }catch(ClassCastException ccx){
@@ -155,7 +172,8 @@ public class View implements Observer{
         cp.add(currentMenuBar, BorderLayout.PAGE_START);
         cp.add(currentButtonPanel, BorderLayout.LINE_START);
         cp.add(currentBoard, BorderLayout.CENTER);
-        mainFrame.setPreferredSize(idealFrameDim);
+        cp.add(currentMessagePanel, BorderLayout.PAGE_END);
+        cp.setPreferredSize(idealFrameDim);
         System.out.println("mainFrame width set to "+mainFrame.getWidth());
         System.out.println("mainFrame height set to "+mainFrame.getHeight());
         mainFrame.repaint();

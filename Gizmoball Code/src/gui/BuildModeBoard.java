@@ -26,10 +26,10 @@ public class BuildModeBoard extends JPanel {
 
     private void paintGridLines(Graphics2D graphics2D){
         graphics2D.setColor(Color.BLACK);
-        for(int verticalLines = 0; verticalLines < 20; verticalLines++){
+        for(int verticalLines = 0; verticalLines < 21; verticalLines++){
             graphics2D.drawLine(verticalLines*ppl, 0, verticalLines*ppl, 20*ppl);
         }
-        for(int horizontalLines = 0; horizontalLines < 20; horizontalLines++){
+        for(int horizontalLines = 0; horizontalLines < 21; horizontalLines++){
             graphics2D.drawLine(0, horizontalLines*ppl, 20*ppl, horizontalLines*ppl);
         }
     }

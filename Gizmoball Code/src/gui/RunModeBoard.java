@@ -29,6 +29,8 @@ public class RunModeBoard extends JPanel {
         List<Gizmo> gizmos = model.getGizmos();
         Ball ball = model.getBall();
 
+        paintBounds(graphics2D);
+
         // Draw Ball
         if(ball != null){
             graphics2D.setColor(ball.getColour());
@@ -79,6 +81,13 @@ public class RunModeBoard extends JPanel {
         }
 
     }
+
+    private void paintBounds(Graphics2D graphics2D) {
+        graphics2D.setColor(Color.BLACK);
+        graphics2D.drawLine(20 * ppl, 0, 20 * ppl, 20 * ppl);
+        graphics2D.drawLine(0, 20 * ppl, 20 * ppl, 20 * ppl);
+    }
+
 
     /**
      * Converts an x position from the model grid 20x20 to its screen display equivalent coordinate value
