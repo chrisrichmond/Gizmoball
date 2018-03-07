@@ -16,6 +16,19 @@ import static java.lang.System.getProperty;
 
 public class Main {
 
+    static String homePath = System.getProperty("user.home");
+
+    static String gizmoPath = homePath + "/GizmoFiles";
+    static String gizmoConfigPath = gizmoPath + "/config";
+    static String defaultGamePath = gizmoPath + "/default.gizmo";
+
+    static File gizmoPathDir = new File(gizmoPath);
+    static File gizmoConfigFile = new File(gizmoConfigPath);
+    static File defaultGameFile = new File(defaultGamePath);
+
+    static FileInputStream in;
+    static FileWriter fw;
+
     public static void main(String[] args){
         /**
          * Initialisation of MVC
@@ -29,43 +42,53 @@ public class Main {
          *
          */
 
+        setup();
 
-        String homePath = System.getProperty("user.home");
+        ModelAPI model = new Model();
+        View view = new View(model);
+        view.buildMode();
 
-        String gizmoPath = homePath + "/GizmoFiles";
-        String gizmoConfigPath = gizmoPath + "/config";
-        String defaultGamePath = gizmoPath + "/default.gizmo";
-        File gizmoPathDir = new File(gizmoPath);
-        File gizmoConfigFile = new File(gizmoConfigPath);
-        File defaultGameFile = new File(defaultGamePath);
-        FileInputStream in;
-        FileWriter fw;
+        model.loadFile(defaultGameFile.getAbsolutePath());
 
+        System.out.println("Loaded default game file '"+defaultGamePath+"'");
+
+        model.setBallSpeed(0,0);
+
+
+        //Gizmo absorber1 = new Absorber("A",0,19);
+        //Gizmo absorber2 = new Absorber("A",0,0);
+        //model.addGizmo(absorber1);
+        //model.addGizmo(absorber2);
+
+
+    }
+
+    public static void setup() {
         // Check if main game files directory exists and if not then create it
-        if(!gizmoPathDir.exists()){
+        if (!gizmoPathDir.exists()) {
             gizmoPathDir.mkdir();
-            System.out.println("Main Gizmoball directory not found, created at '"+gizmoPath+"'");
+            System.out.println("Main Gizmoball directory not found, created at '" + gizmoPath + "'");
         }
         // Check if game config file inside main game files directory exists and if not create it
-        if(!gizmoConfigFile.exists()){
+        if (!gizmoConfigFile.exists()) {
             try {
                 gizmoConfigFile.createNewFile();
-                System.out.println("Gizmoball config file not found, created at '"+gizmoConfigPath+"'");
+                System.out.println("Gizmoball config file not found, created at '" + gizmoConfigPath + "'");
 
                 // write code here for writing default config stuff to file
 //                fw = new FileWriter(gizmoConfigFile);
 //                fw.write();
 //                fw.close();
 
-            }catch(IOException iox){
-                System.out.println("IOException trying to create config file '"+gizmoConfigPath+"'");
+            } catch (IOException iox) {
+                System.out.println("IOException trying to create config file '" + gizmoConfigPath + "'");
             }
         }
         // Check if default game file exists inside main game files directory and if not create it
-        if(!defaultGameFile.exists()){
+        if (!defaultGameFile.exists()) {
             try {
                 defaultGameFile.createNewFile();
-                System.out.println("Gizmoball config file not found, created at '"+gizmoConfigPath+"'");
+                System.out.println("Gizmoball config file not found, created at '" + gizmoConfigPath + "'");
 
                 // write code here for writing default game file stuff to file
                 fw = new FileWriter(defaultGameFile);
@@ -91,27 +114,10 @@ public class Main {
                 fw.write("Circle C19 19 19\n");
                 fw.close();
 
-            }catch(IOException iox){
-                System.out.println("IOException trying to create config file '"+gizmoConfigPath+"'");
+            } catch (IOException iox) {
+                System.out.println("IOException trying to create config file '" + gizmoConfigPath + "'");
             }
         }
-
-        ModelAPI model = new Model();
-        View view = new View(model);
-        view.buildMode();
-
-        model.loadFile(defaultGameFile.getAbsolutePath());
-        System.out.println("Loaded default game file '"+defaultGamePath+"'");
-
-        model.setBallSpeed(0,0);
-
-
-        //Gizmo absorber1 = new Absorber("A",0,19);
-        //Gizmo absorber2 = new Absorber("A",0,0);
-        //model.addGizmo(absorber1);
-        //model.addGizmo(absorber2);
-
-
     }
 
 }

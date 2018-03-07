@@ -25,7 +25,54 @@ public class BuildListener implements ActionListener {
     @Override
     public final void actionPerformed(final ActionEvent e) {
         switch(e.getActionCommand()) {
-            case ("Run Mode"):
+            case("Add Gizmo"):
+
+                break;
+            case("Add Ball"):
+
+                break;
+            case("Add Left Flipper"):
+
+                break;
+            case("Add Right Flipper"):
+
+                break;
+            case("Rotate"):
+
+                break;
+            case("Delete"):
+
+                break;
+            case("Move"):
+
+                break;
+            case("Clear Board"):
+
+                break;
+            case("Connect"):
+
+                break;
+            case("Disconnect"):
+
+                break;
+            case("Key Connect"):
+
+                break;
+            case("Key Disconnect"):
+
+                break;
+            case("Load Model"):
+                int returnVal = fileChooser.showOpenDialog(view.getMainFrame());
+
+                if(returnVal == JFileChooser.APPROVE_OPTION){
+                    // open chosen file
+                    latestFile = fileChooser.getSelectedFile();
+                    model.loadFile(latestFile.getAbsolutePath());
+                }else{
+                    // close window
+                }
+                break;
+            case("Run Mode"):
                 view.runMode();
                 break;
             case("Quit"):

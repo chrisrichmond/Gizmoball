@@ -72,12 +72,12 @@ public class BuildModeGUI implements GameGUI {
         addAbsorberButton.setMaximumSize(maxButtonSize);
         addAbsorberButton.addActionListener(listener);
 
-        addLeftFlipperButton = new JButton("Add left flipper");
+        addLeftFlipperButton = new JButton("Add Left Flipper");
         addLeftFlipperButton.setFont(font);
         addLeftFlipperButton.setMaximumSize(maxButtonSize);
         addLeftFlipperButton.addActionListener(listener);
 
-        addRightFlipperButton = new JButton("Add right flipper");
+        addRightFlipperButton = new JButton("Add Right Flipper");
         addRightFlipperButton.setFont(font);
         addRightFlipperButton.setMaximumSize(maxButtonSize);
         addRightFlipperButton.addActionListener(listener);
@@ -97,7 +97,7 @@ public class BuildModeGUI implements GameGUI {
         moveButton.setMaximumSize(maxButtonSize);
         moveButton.addActionListener(listener);
 
-        clearBoardButton = new JButton("Clear board");
+        clearBoardButton = new JButton("Clear Board");
         clearBoardButton.setFont(font);
         clearBoardButton.setMaximumSize(maxButtonSize);
         clearBoardButton.addActionListener(listener);

@@ -39,6 +39,7 @@ public class View implements Observer{
     private final Insets insets = new Insets(0, 0, 0, 0);
 
     boolean status;
+    private boolean isBuildMode;
 
     public View(ModelAPI model){
         // Model Backend
@@ -121,6 +122,7 @@ public class View implements Observer{
         currentMessagePanel = buildMessagePanel;
         addBuildKeyListener();
         addCurrentCompsToFrame();
+        isBuildMode = true;
     }
 
     public void addBuildKeyListener(){
@@ -150,6 +152,7 @@ public class View implements Observer{
         currentBoard = runBoard;
         currentMessagePanel = runMessagePanel;
         addCurrentCompsToFrame();
+        isBuildMode = false;
     }
 
     /**
@@ -183,6 +186,10 @@ public class View implements Observer{
 
     public JFrame getMainFrame() {
         return mainFrame;
+    }
+
+    public boolean isBuildMode(){
+        return isBuildMode;
     }
 
     @Override
