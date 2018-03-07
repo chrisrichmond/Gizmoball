@@ -98,7 +98,7 @@ public class Main {
 
         ModelAPI model = new Model();
         View view = new View(model);
-        view.runMode();
+        view.buildMode();
 
         model.loadFile(defaultGameFile.getAbsolutePath());
         System.out.println("Loaded default game file '"+defaultGamePath+"'");
