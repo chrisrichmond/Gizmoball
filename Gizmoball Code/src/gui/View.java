@@ -133,6 +133,7 @@ public class View implements Observer{
         cp.add(currentButtonPanel, BorderLayout.LINE_START);
         cp.add(currentBoard, BorderLayout.CENTER);
         mainFrame.repaint();
+        mainFrame.pack();
     }
 
     public JFrame getMainFrame() {
