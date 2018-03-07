@@ -7,6 +7,8 @@ import observerpattern.Observer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class View implements Observer{
 
@@ -32,6 +34,8 @@ public class View implements Observer{
 
     // Dimensions
     private Dimension boardDim, buttonPanelDim, idealFrameDim;
+
+    boolean status;
 
     public View(ModelAPI model){
         // Model Backend
@@ -94,8 +98,20 @@ public class View implements Observer{
         currentButtonPanel = buildButtonPanel;
         currentMenuBar = buildMenuBar;
         currentBoard = buildBoard;
+        addBuildKeyListener();
         addCurrentCompsToFrame();
     }
+
+    public void addBuildKeyListener(){
+
+        this.mainFrame.addKeyListener(
+                new MagicKeyListener(
+                        new RunKeyListener(mainFrame)
+                )
+        );
+    }
+
+
 
     /**
      * Switches the View into Run Mode
