@@ -47,8 +47,8 @@ public class BuildModeGUI implements GameGUI {
     public BuildModeGUI(ModelAPI model, View view){
         this.model = model;
         this.view = view;
-        font = new Font("Arial", Font.BOLD, 10);
-        maxButtonSize = new Dimension(600,50);
+        font = new Font("Arial", Font.BOLD, 12);
+        maxButtonSize = new Dimension(150,50);
         listener = new BuildListener(model, view);
     }
 

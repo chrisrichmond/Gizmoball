@@ -35,6 +35,8 @@ public interface ModelAPI extends Observable{
 
     public void loadFile(String filename);
 
+    public void replaceBall(Ball ball);
+
 //    public void addCircle(CircularBumperGizmo circle);
 //
 //    public void addSquare(SquareBumperGizmo square);
