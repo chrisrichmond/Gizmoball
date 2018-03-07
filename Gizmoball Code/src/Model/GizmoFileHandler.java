@@ -47,19 +47,6 @@ public class GizmoFileHandler {
             System.out.print("Error trying to read file '"+filename+"': ");
             iox.printStackTrace();
         }
-
-        // for each line in file
-            // read line
-            // get opcode
-            // get operands
-            // if opcode involves creating new gizmo
-                // add new gizmo to model
-            // else
-                // do stuff for connecting etc (??)
-            // end if
-        // end loop
-
-
     }
 
     private void loadObjectIntoModel(String opcode, List<String> operands){
@@ -74,8 +61,8 @@ public class GizmoFileHandler {
             // object is blank, add nothing
         }else if(opcode.equals("ball")) {
             // object is a ball
-
-            //model.addBall(...)??
+            Ball newBall = new BallImpl(operands.get(0), Float.parseFloat(operands.get(1)), Float.parseFloat(operands.get(2)), Float.parseFloat(operands.get(3)), Float.parseFloat(operands.get(4)));
+            model.replaceBall(newBall);
         }else{
             // object is a gizmo
             int x = Integer.parseInt(operands.get(1));

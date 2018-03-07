@@ -36,11 +36,15 @@ public class Model implements ModelAPI {
 		this.fileHandler = new GizmoFileHandler(this);
 		this.tickTime = 0.05D;
 
-		this.ball = new BallImpl(18.5F, 10.0F, 0.0D, 0.0D);
+		this.ball = new BallImpl("B",18.5F, 10.0F, 0.0D, 0.0D);
 		this.walls = new Walls(0,0,20,20);
 
 	 
  	}
+
+ 	public void replaceBall(Ball ball){
+		this.ball = ball;
+	}
 
  	public void loadFile(String filename){
 	    clear();

@@ -52,6 +52,7 @@ public class RunListener implements ActionListener{
 
                     break;
                 case("Reload"):
+                    System.out.println("reload pressed");
                     if(latestFile != null){
                         model.loadFile(latestFile.getAbsolutePath());
                     }

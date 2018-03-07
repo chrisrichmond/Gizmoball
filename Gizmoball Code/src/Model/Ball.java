@@ -9,6 +9,10 @@ public interface Ball {
 
     //methods used for basic ball code implementation
 
+    String getID();
+
+    void setID(String ID);
+
     double getBallRadius();
 
     float getXpos();

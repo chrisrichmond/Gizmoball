@@ -12,8 +12,10 @@ public class BallImpl implements Ball{
 	private float ypos;
 	private Color colour;
 	private boolean ballStopped;
+	private String ID;
 
-	public BallImpl(float x, float y, double xv, double yv){
+	public BallImpl(String ID, float x, float y, double xv, double yv){
+		this.ID = ID;
 		this.velocity = new Vect(xv,yv);
 		this.xpos = x;
 		this.ypos = y;
@@ -69,6 +71,16 @@ public class BallImpl implements Ball{
 		this.ballStopped = stopped;
 	}
 
+
+	@Override
+	public String getID() {
+		return ID;
+	}
+
+	@Override
+	public void setID(String ID) {
+		this.ID = ID;
+	}
 
 	//access method for value of radius
 	public double getBallRadius(){

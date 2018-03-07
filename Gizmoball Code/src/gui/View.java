@@ -65,15 +65,21 @@ public class View implements Observer{
 
         // Dimensions
         boardDim = new Dimension(ppl*20, ppl*20);
+        System.out.println("boardDim width set to "+boardDim.width);
+        System.out.println("boardDim height set to "+boardDim.height);
         buttonPanelDim = new Dimension(ppl*5,ppl*20);
+        System.out.println("buttonPanelDim width set to "+buttonPanelDim.width);
+        System.out.println("buttonPanelDim height set to "+buttonPanelDim.height);
 
         cp.setLayout(new BorderLayout());
         buildButtonPanel.setPreferredSize(buttonPanelDim);
         runButtonPanel.setPreferredSize(buttonPanelDim);
         buildBoard.setPreferredSize(boardDim);
         runBoard.setPreferredSize(boardDim);
-        //idealFrameDim = new Dimension(buttonPanelDim.width + boardDim.width - (int)(ppl/2)-2, boardDim.height + (ppl*2)+2);
-        idealFrameDim = new Dimension(500+132, 500+53);
+        idealFrameDim = new Dimension(19+ buttonPanelDim.width + boardDim.width - (int)(ppl/2), boardDim.height + (ppl*2)+3);
+        System.out.println("idealFrameDim width set to "+idealFrameDim.width);
+        System.out.println("idealFrameDim height set to "+idealFrameDim.height);
+        //idealFrameDim = new Dimension(500+132, 500+53);
 
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setPreferredSize(idealFrameDim);
@@ -149,8 +155,12 @@ public class View implements Observer{
         cp.add(currentMenuBar, BorderLayout.PAGE_START);
         cp.add(currentButtonPanel, BorderLayout.LINE_START);
         cp.add(currentBoard, BorderLayout.CENTER);
+        mainFrame.setPreferredSize(idealFrameDim);
+        System.out.println("mainFrame width set to "+mainFrame.getWidth());
+        System.out.println("mainFrame height set to "+mainFrame.getHeight());
         mainFrame.repaint();
         mainFrame.pack();
+        mainFrame.setLocationRelativeTo(null);
     }
 
     public JFrame getMainFrame() {
