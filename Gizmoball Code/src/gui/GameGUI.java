@@ -6,5 +6,5 @@ public interface GameGUI {
 
     JPanel createButtons();
     JMenuBar createMenuBar();
-    JPanel createMessageField();
+    JPanel createMessageField(String message);
 }

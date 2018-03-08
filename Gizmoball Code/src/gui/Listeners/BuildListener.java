@@ -25,16 +25,11 @@ public class BuildListener implements ActionListener {
     @Override
     public final void actionPerformed(final ActionEvent e) {
         switch(e.getActionCommand()) {
+            // For Build Mode button menu
             case("Add Gizmo"):
-
+                view.addGizmoBuildMode();
                 break;
             case("Add Ball"):
-
-                break;
-            case("Add Left Flipper"):
-
-                break;
-            case("Add Right Flipper"):
 
                 break;
             case("Rotate"):
@@ -78,6 +73,30 @@ public class BuildListener implements ActionListener {
             case("Quit"):
                 System.out.println("Quitting...");
                 System.exit(0);
+                break;
+
+            // Build Mode "Add Gizmo" button menu
+            case("Add Square"):
+
+                break;
+            case("Add Circle"):
+
+                break;
+            case("Add Triangle"):
+
+                break;
+            case("Add Absorber"):
+
+                break;
+            case("Add Left Flipper"):
+
+                break;
+            case("Add Right Flipper"):
+
+                break;
+            case("Back"):
+                view.buildMode();
+                break;
         }
     }
 }

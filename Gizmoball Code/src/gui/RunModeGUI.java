@@ -106,9 +106,14 @@ public class RunModeGUI implements GameGUI {
     }
 
     @Override
-    public JPanel createMessageField() {
+    public JPanel createMessageField(String message) {
         messagePanel = new JPanel();
+        JLabel messageLabel = new JLabel(message);
+
+        messageLabel.setFont(font);
+        messagePanel.add(messageLabel);
         messagePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
+
         return messagePanel;
     }
 }

@@ -13,14 +13,15 @@ public class BuildModeGUI implements GameGUI {
     private ModelAPI model;
     private View view;
 
-    // JPanel containing build mode buttons
+    // JPanel containing build mode buttons or add gizmo buttons
     private JPanel buttonPanel;
+
+    private final int buttonRows = 20;
+
+    // Build mode buttons
     private JButton runModeButton;
     private JButton addBallButton;
-    private JButton addAbsorberButton;
     private JButton addGizmoButton;
-    private JButton addLeftFlipperButton;
-    private JButton addRightFlipperButton;
     private JButton rotateButton;
     private JButton deleteButton;
     private JButton moveButton;
@@ -32,6 +33,16 @@ public class BuildModeGUI implements GameGUI {
     private JButton loadModelButton;
     private JButton reloadModelButton;
     private JButton quitButton;
+
+    // Add gizmo buttons
+    private JButton addSquareButton;
+    private JButton addCircleButton;
+    private JButton addTriangleButton;
+    private JButton addAbsorberButton;
+    private JButton addLeftFlipperButton;
+    private JButton addRightFlipperButton;
+    private JButton backButton;
+
     private Font font;
     private Dimension maxButtonSize;
     private ActionListener listener;
@@ -55,7 +66,7 @@ public class BuildModeGUI implements GameGUI {
     @Override
     public JPanel createButtons() {
         buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(20,1));
+        buttonPanel.setLayout(new GridLayout(buttonRows,1));
 
         addGizmoButton = new JButton("Add Gizmo");
         addGizmoButton.setFont(font);
@@ -66,21 +77,6 @@ public class BuildModeGUI implements GameGUI {
         addBallButton.setFont(font);
         addBallButton.setMaximumSize(maxButtonSize);
         addBallButton.addActionListener(listener);
-
-        addAbsorberButton = new JButton("Add Absorber");
-        addAbsorberButton.setFont(font);
-        addAbsorberButton.setMaximumSize(maxButtonSize);
-        addAbsorberButton.addActionListener(listener);
-
-        addLeftFlipperButton = new JButton("Add Left Flipper");
-        addLeftFlipperButton.setFont(font);
-        addLeftFlipperButton.setMaximumSize(maxButtonSize);
-        addLeftFlipperButton.addActionListener(listener);
-
-        addRightFlipperButton = new JButton("Add Right Flipper");
-        addRightFlipperButton.setFont(font);
-        addRightFlipperButton.setMaximumSize(maxButtonSize);
-        addRightFlipperButton.addActionListener(listener);
 
         rotateButton = new JButton("Rotate");
         rotateButton.setFont(font);
@@ -140,10 +136,6 @@ public class BuildModeGUI implements GameGUI {
 
         buttonPanel.add(addGizmoButton);
         buttonPanel.add(addBallButton);
-
-
-        buttonPanel.add(addLeftFlipperButton);
-        buttonPanel.add(addRightFlipperButton);
         buttonPanel.add(rotateButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(moveButton);
@@ -155,6 +147,58 @@ public class BuildModeGUI implements GameGUI {
         buttonPanel.add(loadModelButton);
         buttonPanel.add(runModeButton);
         buttonPanel.add(quitButton);
+
+        buttonPanel.setSize(new Dimension(200,800));
+
+        return buttonPanel;
+    }
+
+    public JPanel createGizmoButtons() {
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(buttonRows,1));
+
+        addSquareButton = new JButton("Add Square");
+        addSquareButton.setFont(font);
+        addSquareButton.setMaximumSize(maxButtonSize);
+        addSquareButton.addActionListener(listener);
+
+        addCircleButton = new JButton("Add Circle");
+        addCircleButton.setFont(font);
+        addCircleButton.setMaximumSize(maxButtonSize);
+        addCircleButton.addActionListener(listener);
+
+        addTriangleButton = new JButton("Add Triangle");
+        addTriangleButton.setFont(font);
+        addTriangleButton.setMaximumSize(maxButtonSize);
+        addTriangleButton.addActionListener(listener);
+
+        addAbsorberButton = new JButton("Add Absorber");
+        addAbsorberButton.setFont(font);
+        addAbsorberButton.setMaximumSize(maxButtonSize);
+        addAbsorberButton.addActionListener(listener);
+
+        addLeftFlipperButton = new JButton("Add Left Flipper");
+        addLeftFlipperButton.setFont(font);
+        addLeftFlipperButton.setMaximumSize(maxButtonSize);
+        addLeftFlipperButton.addActionListener(listener);
+
+        addRightFlipperButton = new JButton("Add Right Flipper");
+        addRightFlipperButton.setFont(font);
+        addRightFlipperButton.setMaximumSize(maxButtonSize);
+        addRightFlipperButton.addActionListener(listener);
+
+        backButton = new JButton("Back");
+        backButton.setFont(font);
+        backButton.setMaximumSize(maxButtonSize);
+        backButton.addActionListener(listener);
+
+        buttonPanel.add(addSquareButton);
+        buttonPanel.add(addCircleButton);
+        buttonPanel.add(addTriangleButton);
+        buttonPanel.add(addAbsorberButton);
+        buttonPanel.add(addLeftFlipperButton);
+        buttonPanel.add(addRightFlipperButton);
+        buttonPanel.add(backButton);
 
         buttonPanel.setSize(new Dimension(200,800));
 
@@ -173,10 +217,14 @@ public class BuildModeGUI implements GameGUI {
         return menuBar;
     }
 
-    @Override
-    public JPanel createMessageField() {
+    public JPanel createMessageField(String message) {
         messagePanel = new JPanel();
+        JLabel messageLabel = new JLabel(message);
+
+        messageLabel.setFont(font);
+        messagePanel.add(messageLabel);
         messagePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
+
         return messagePanel;
     }
 }

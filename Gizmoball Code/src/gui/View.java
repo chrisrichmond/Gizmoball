@@ -29,7 +29,7 @@ public class View implements Observer{
     private GameGUI buildGUI, runGUI; // currentGUI required? // probably not
 
     // Components
-    private JPanel buildButtonPanel, runButtonPanel, currentButtonPanel;
+    private JPanel buildButtonPanel, addGizmoButtonPanel, runButtonPanel, currentButtonPanel;
     private JPanel buildMessagePanel, runMessagePanel, currentMessagePanel;
     private JMenuBar buildMenuBar, runMenuBar, currentMenuBar;
 
@@ -63,9 +63,10 @@ public class View implements Observer{
 
         // Components
         buildButtonPanel = buildGUI.createButtons();
+        addGizmoButtonPanel = ((BuildModeGUI)buildGUI).createGizmoButtons();
         runButtonPanel = runGUI.createButtons();
-        buildMessagePanel = buildGUI.createMessageField();
-        runMessagePanel = runGUI.createMessageField();
+        buildMessagePanel = buildGUI.createMessageField("- Build Mode -");
+        runMessagePanel = runGUI.createMessageField("- Run Mode -");
         buildMenuBar = buildGUI.createMenuBar();
         runMenuBar = runGUI.createMenuBar();
 
@@ -86,6 +87,7 @@ public class View implements Observer{
         //cp.setLayout(new GridBagLayout());
 
         buildButtonPanel.setPreferredSize(buttonPanelDim);
+        addGizmoButtonPanel.setPreferredSize(buttonPanelDim);
         runButtonPanel.setPreferredSize(buttonPanelDim);
         buildMessagePanel.setPreferredSize(messagePanelDim);
         runMessagePanel.setPreferredSize(messagePanelDim);
@@ -115,6 +117,7 @@ public class View implements Observer{
         // Remove previous mode's components
         clearFrame();
 
+        buildMessagePanel = buildGUI.createMessageField("- Build Mode -");
         // Add new mode's components
         currentButtonPanel = buildButtonPanel;
         currentMenuBar = buildMenuBar;
@@ -125,16 +128,26 @@ public class View implements Observer{
         isBuildMode = true;
     }
 
-    public void addBuildKeyListener(){
+    /**
+     * Switches the View FROM Build Mode INTO Build Mode but with an alternate button panel exclusively for adding Gizmos
+     * This method should be called from the Controller upon an "Add Gizmo" button click
+     */
+    public void addGizmoBuildMode(){
+        mainFrame.setTitle("Gizmoball [Build Mode]");
 
-        this.mainFrame.addKeyListener(
-                new MagicKeyListener(
-                        new RunKeyListener(mainFrame)
-                )
-        );
+        // Remove previous mode's components
+        clearFrame();
+
+        buildMessagePanel = buildGUI.createMessageField("Add a Gizmo to the board");
+        // Add new mode's components
+        currentButtonPanel = addGizmoButtonPanel;
+        currentMenuBar = buildMenuBar;
+        currentBoard = buildBoard;
+        currentMessagePanel = buildMessagePanel;
+        addBuildKeyListener();
+        addCurrentCompsToFrame();
+        isBuildMode = true;
     }
-
-
 
     /**
      * Switches the View into Run Mode
@@ -153,6 +166,15 @@ public class View implements Observer{
         currentMessagePanel = runMessagePanel;
         addCurrentCompsToFrame();
         isBuildMode = false;
+    }
+
+    public void addBuildKeyListener(){
+
+        this.mainFrame.addKeyListener(
+                new MagicKeyListener(
+                        new RunKeyListener(mainFrame)
+                )
+        );
     }
 
     /**
