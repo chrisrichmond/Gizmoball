@@ -3,9 +3,11 @@ package gui;
 import Model.Ball;
 import Model.ModelAPI;
 import Model.gizmos.Gizmo;
+import gui.Listeners.BuildListener;
 import physics.LineSegment;
 
 import javax.swing.*;
+import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.util.List;
 
@@ -13,7 +15,6 @@ public class BuildModeBoard extends JPanel {
 
     private ModelAPI model;
     private int ppl; // pixels per line
-
 
     public BuildModeBoard(ModelAPI model, int ppl){
         this.model = model;

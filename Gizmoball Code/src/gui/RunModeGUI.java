@@ -1,9 +1,11 @@
 package gui;
 
 import Model.ModelAPI;
+import gui.Listeners.GBallListener;
 import gui.Listeners.RunListener;
 
 import javax.swing.*;
+import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -23,7 +25,7 @@ public class RunModeGUI implements GameGUI {
     private JButton quitButton;
     private Font font;
     private Dimension maxButtonSize;
-    private ActionListener listener;
+    private GBallListener listener;
 
     // JMenuBar for run mode options
     private JMenuBar menuBar;
@@ -41,7 +43,7 @@ public class RunModeGUI implements GameGUI {
     }
 
     @Override
-    public JPanel createButtons() {
+    public JPanel createButtons(GBallListener listener) {
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(7,1));
 
@@ -94,7 +96,7 @@ public class RunModeGUI implements GameGUI {
     }
 
     @Override
-    public JMenuBar createMenuBar() {
+    public JMenuBar createMenuBar(GBallListener listener) {
         menuBar = new JMenuBar();
         fileMenu = new JMenu("File");
         testMenuItem = new JMenuItem("Test Item");

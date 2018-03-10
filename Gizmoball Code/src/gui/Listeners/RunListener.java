@@ -3,16 +3,18 @@ package gui.Listeners;
 import Model.ModelAPI;
 import gui.View;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.File;
 import javax.swing.*;
+import javax.swing.event.MouseInputListener;
 
-public class RunListener implements ActionListener{
+public class RunListener implements GBallListener{
 
     private Timer timer;
     private ModelAPI model;
     private View view;
+    private MouseInputListener mouseListener;
+    private KeyListener keyboardListener;
     private JFileChooser fileChooser;
     private File latestFile;
 
@@ -20,6 +22,8 @@ public class RunListener implements ActionListener{
         this.timer = new Timer(50, this);
         this.model = model;
         this.view = view;
+
+        this.keyboardListener = new DoNothingKeyListener(model);
         this.fileChooser = new JFileChooser();
         this.latestFile = null;
     }
@@ -66,5 +70,65 @@ public class RunListener implements ActionListener{
                     break;
             }
         }
+    }
+
+    @Override
+    public void setMouseListener(MouseInputListener mouseListener) {
+        this.mouseListener = mouseListener;
+    }
+
+    @Override
+    public void setKeyboardListener(KeyListener keyboardListener) {
+        this.keyboardListener = keyboardListener;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
     }
 }

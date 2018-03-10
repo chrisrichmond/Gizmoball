@@ -1,6 +1,8 @@
 package gui;
 
 import Model.ModelAPI;
+import gui.Listeners.BuildListener;
+import gui.Listeners.GBallListener;
 import gui.Listeners.RunListener;
 import observerpattern.Observer;
 
@@ -25,8 +27,9 @@ public class View implements Observer{
     // Boards
     private JPanel buildBoard, runBoard, currentBoard;
 
-    // GUIs
+    // GUIs & Listeners
     private GameGUI buildGUI, runGUI; // currentGUI required? // probably not
+    private GBallListener buildListener, runListener;
 
     // Components
     private JPanel buildButtonPanel, addGizmoButtonPanel, runButtonPanel, currentButtonPanel;
@@ -57,18 +60,23 @@ public class View implements Observer{
         buildBoard = new BuildModeBoard(model, ppl);
         runBoard = new RunModeBoard(model, ppl);
 
-        // GUIs
+        // GUIs & Listeners
         buildGUI = new BuildModeGUI(model, this);
         runGUI = new RunModeGUI(model, this);
+        buildListener = new BuildListener(model, this);
+        runListener = new RunListener(model, this);
+
+        buildBoard.addMouseListener(buildListener);
+        runBoard.addMouseListener(runListener);
 
         // Components
-        buildButtonPanel = buildGUI.createButtons();
-        addGizmoButtonPanel = ((BuildModeGUI)buildGUI).createGizmoButtons();
-        runButtonPanel = runGUI.createButtons();
+        buildButtonPanel = buildGUI.createButtons(buildListener);
+        addGizmoButtonPanel = ((BuildModeGUI)buildGUI).createGizmoButtons(buildListener);
+        runButtonPanel = runGUI.createButtons(runListener);
         buildMessagePanel = buildGUI.createMessageField("- Build Mode -");
         runMessagePanel = runGUI.createMessageField("- Run Mode -");
-        buildMenuBar = buildGUI.createMenuBar();
-        runMenuBar = runGUI.createMenuBar();
+        buildMenuBar = buildGUI.createMenuBar(buildListener);
+        runMenuBar = runGUI.createMenuBar(runListener);
 
         // Dimensions
         boardDim = new Dimension(ppl*20, ppl*20);
@@ -117,7 +125,7 @@ public class View implements Observer{
         // Remove previous mode's components
         clearFrame();
 
-        buildMessagePanel = buildGUI.createMessageField("- Build Mode -");
+        setBuildModeMessage("- Build Mode -");
         // Add new mode's components
         currentButtonPanel = buildButtonPanel;
         currentMenuBar = buildMenuBar;
@@ -138,7 +146,7 @@ public class View implements Observer{
         // Remove previous mode's components
         clearFrame();
 
-        buildMessagePanel = buildGUI.createMessageField("Add a Gizmo to the board");
+        setBuildModeMessage("Add a Gizmo to the board");
         // Add new mode's components
         currentButtonPanel = addGizmoButtonPanel;
         currentMenuBar = buildMenuBar;
@@ -159,6 +167,7 @@ public class View implements Observer{
         // Remove previous mode's components
         clearFrame();
 
+        setRunModeMessage("- Run Mode -");
         // Add new mode's components
         currentButtonPanel = runButtonPanel;
         currentMenuBar = runMenuBar;
@@ -208,6 +217,19 @@ public class View implements Observer{
 
     public JFrame getMainFrame() {
         return mainFrame;
+    }
+
+    public void setBuildModeMessage(String message){
+        buildMessagePanel = buildGUI.createMessageField(message);
+        currentMessagePanel = buildMessagePanel;
+    }
+
+    public void setRunModeMessage(String message){
+        runMessagePanel = runGUI.createMessageField(message);
+    }
+
+    public int getPpl(){
+        return ppl;
     }
 
     public boolean isBuildMode(){

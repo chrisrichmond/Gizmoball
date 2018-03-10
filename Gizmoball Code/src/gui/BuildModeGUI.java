@@ -1,10 +1,13 @@
 package gui;
 
 import Model.ModelAPI;
+import gui.Listeners.AddSquareListener;
 import gui.Listeners.BuildListener;
+import gui.Listeners.GBallListener;
 import gui.Listeners.RunListener;
 
 import javax.swing.*;
+import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -45,7 +48,7 @@ public class BuildModeGUI implements GameGUI {
 
     private Font font;
     private Dimension maxButtonSize;
-    private ActionListener listener;
+    private GBallListener listener;
 
     // JMenuBar for build mode options
     private JMenuBar menuBar;
@@ -60,11 +63,10 @@ public class BuildModeGUI implements GameGUI {
         this.view = view;
         font = new Font("Arial", Font.BOLD, 12);
         maxButtonSize = new Dimension(150,50);
-        listener = new BuildListener(model, view);
     }
 
     @Override
-    public JPanel createButtons() {
+    public JPanel createButtons(GBallListener listener) {
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(buttonRows,1));
 
@@ -153,7 +155,7 @@ public class BuildModeGUI implements GameGUI {
         return buttonPanel;
     }
 
-    public JPanel createGizmoButtons() {
+    public JPanel createGizmoButtons(GBallListener listener) {
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(buttonRows,1));
 
@@ -206,7 +208,7 @@ public class BuildModeGUI implements GameGUI {
     }
 
     @Override
-    public JMenuBar createMenuBar() {
+    public JMenuBar createMenuBar(GBallListener listener) {
         menuBar = new JMenuBar();
         fileMenu = new JMenu("File");
         testMenuItem = new JMenuItem("Test Item");
