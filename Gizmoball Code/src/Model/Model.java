@@ -319,17 +319,38 @@ public class Model implements ModelAPI {
 	}
 
 	@Override
-	public void addGizmo(Gizmo gizmo) {
-		gizmos.add(gizmo);
-		if(gizmo.getType().equals("circle")){
-			circles.add(gizmo);
-		}else if(gizmo.getType().equals("square")){
-			squares.add(gizmo);
-		}else  if(gizmo.getType().equals("triangle")){
-			triangles.add(gizmo);
-		}else  if(gizmo.getType().equals("absorber")){
-			absorbers.add(gizmo);
+	public boolean addGizmo(Gizmo gizmo) {
+		boolean success = true;
+
+		for(Gizmo currentGizmo: gizmos) {
+			if ((currentGizmo.getXPos() == gizmo.getXPos()) && (currentGizmo.getYPos() == gizmo.getYPos())) {
+				// gizmo occupies same cell as currentGizmo and is therefore ineligible for placement in model
+				System.out.println("gizmo occupies same cell as currentGizmo and is therefore ineligible for placement in model");
+				success = false;
+			} else if ((currentGizmo instanceof Absorber)
+					&& (((Absorber) currentGizmo).getYPos() == ((Absorber) gizmo).getYPos())
+					&& ((((Absorber) gizmo).getXPos() >= ((Absorber) currentGizmo).getXPos()) && ((((Absorber) gizmo).getXPos2() <= ((Absorber) currentGizmo).getXPos2())))) {
+				// gizmo occupies a cell within the bounds of an absorber object are is therefore ineligible for placement in model
+				System.out.println("gizmo occupies a cell within the bounds of an absorber object are is therefore ineligible for placement in model");
+				success = false;
+			}
 		}
+
+		if(success){
+			// gizmo is in an eligible location
+			gizmos.add(gizmo);
+			if (gizmo.getType().equals("circle")) {
+				circles.add(gizmo);
+			} else if (gizmo.getType().equals("square")) {
+				squares.add(gizmo);
+			} else if (gizmo.getType().equals("triangle")) {
+				triangles.add(gizmo);
+			} else if (gizmo.getType().equals("absorber")) {
+				absorbers.add(gizmo);
+			}
+		}
+
+		return success;
 	}
 
 	@Override

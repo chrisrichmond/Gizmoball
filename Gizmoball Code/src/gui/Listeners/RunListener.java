@@ -84,51 +84,51 @@ public class RunListener implements GBallListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        keyboardListener.keyTyped(e);
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        keyboardListener.keyPressed(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        keyboardListener.keyReleased(e);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        mouseListener.mouseClicked(e);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        mouseListener.mousePressed(e);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        mouseListener.mouseReleased(e);
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        mouseListener.mouseEntered(e);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        mouseListener.mouseExited(e);
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-
+        mouseListener.mouseDragged(e);
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        mouseListener.mouseMoved(e);
     }
 }

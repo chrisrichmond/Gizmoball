@@ -48,9 +48,17 @@ public class Absorber implements Gizmo{
         return xPos1;
     }
 
+    public int getXPos2(){
+        return xPos2;
+    }
+
     @Override
     public int getYPos() {
         return yPos1;
+    }
+
+    public int getYPos2(){
+        return yPos2;
     }
 
 

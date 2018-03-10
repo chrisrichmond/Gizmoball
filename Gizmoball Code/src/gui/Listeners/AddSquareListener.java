@@ -1,6 +1,7 @@
 package gui.Listeners;
 
 import Model.ModelAPI;
+import Model.gizmos.SquareBumper;
 import gui.View;
 
 import javax.swing.event.MouseInputListener;
@@ -25,10 +26,10 @@ public class AddSquareListener implements MouseInputListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        xPos1 = (int)(e.getX()/view.getPpl());
-        yPos1 = (int)(e.getY()/view.getPpl());
-        view.setBuildModeMessage("Dropping square at X="+xPos1+", Y="+yPos1);
-        System.out.println("Dropping square at X="+xPos1+", Y="+yPos1);
+//        xPos1 = (int)(e.getX()/view.getPpl());
+//        yPos1 = (int)(e.getY()/view.getPpl());
+//        view.setBuildModeMessage("Dropping square at X="+xPos1+", Y="+yPos1);
+//        System.out.println("Dropping square at X="+xPos1+", Y="+yPos1);
     }
 
     @Override
@@ -37,6 +38,8 @@ public class AddSquareListener implements MouseInputListener {
         yPos1 = (int)(e.getY()/view.getPpl());
         view.setBuildModeMessage("Dropping square at X="+xPos1+", Y="+yPos1);
         System.out.println("Dropping square at X="+xPos1+", Y="+yPos1);
+        model.addGizmo(new SquareBumper("S", xPos1, yPos1)); // NEED TO SORT OUT UNIQUE ID ASSIGNMENT
+        view.update();
     }
 
     @Override

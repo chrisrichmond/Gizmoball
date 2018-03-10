@@ -33,7 +33,12 @@ public interface ModelAPI extends Observable{
 
     public void setBallSpeed(int x, int y);
 
-    public void addGizmo(Gizmo gizmo);
+    /**
+     *
+     * @param gizmo
+     * @return false if cell location is already occupied
+     */
+    public boolean addGizmo(Gizmo gizmo);
 
     public void loadFile(String filename);
 
