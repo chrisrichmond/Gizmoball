@@ -25,6 +25,14 @@ public interface ModelAPI extends Observable{
      */
     public boolean isBuildMode();
 
+    /**
+     *
+     * @param xPos
+     * @param yPos
+     * @return null if no gizmo is found at specified coordinates, otherwise return gizmo at these coords
+     */
+    public Gizmo getGizmoByCoords(int xPos, int yPos);
+
     public void clear();
 
     public Walls getWalls();
@@ -42,13 +50,11 @@ public interface ModelAPI extends Observable{
      */
     public boolean addGizmo(Gizmo gizmo);
 
+    public boolean removeGizmo(Gizmo gizmo);
+
     public void loadFile(String filename);
 
     public void replaceBall(Ball ball);
 
-//    public void addCircle(CircularBumperGizmo circle);
-//
-//    public void addSquare(SquareBumperGizmo square);
-//
-//    public void addTriangle(TriangularBumperGizmo triangle);
+
 }

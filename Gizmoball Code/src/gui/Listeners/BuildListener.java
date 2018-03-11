@@ -34,6 +34,8 @@ public class BuildListener implements GBallListener {
             // For Build Mode button menu
             case("Add Gizmo"):
                 view.addGizmoBuildMode();
+                view.updateMessagePanel("Select a gizmo type to add to the board");
+                setMouseListener(doNothingMouse);
                 break;
             case("Add Ball"):
 
@@ -42,7 +44,9 @@ public class BuildListener implements GBallListener {
 
                 break;
             case("Delete"):
-
+                final MouseInputListener deleteListener = new DeleteListener(model, view);
+                view.updateMessagePanel("Click on the board to delete a gizmo");
+                setMouseListener(deleteListener);
                 break;
             case("Move"):
 

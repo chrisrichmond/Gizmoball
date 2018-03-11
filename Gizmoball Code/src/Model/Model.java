@@ -20,6 +20,8 @@ public class Model implements ModelAPI {
 	private List<Gizmo> circles;
 	private List<Gizmo> triangles;
 	private List<Gizmo> absorbers;
+	private List<Gizmo> leftFlippers;
+	private List<Gizmo> rightFlippers;
 	private Walls walls;
  	private List<VerticalLine> lines;
  	private GizmoFileHandler fileHandler;
@@ -33,6 +35,8 @@ public class Model implements ModelAPI {
 		this.circles = new ArrayList<Gizmo>();
 		this.triangles = new ArrayList<Gizmo>();
 		this.absorbers = new ArrayList<Gizmo>();
+		this.leftFlippers = new ArrayList<Gizmo>();
+		this.rightFlippers = new ArrayList<Gizmo>();
 		this.fileHandler = new GizmoFileHandler(this);
 		this.tickTime = 0.05D;
 
@@ -59,6 +63,8 @@ public class Model implements ModelAPI {
  	    triangles.clear();
  	    circles.clear();
  	    absorbers.clear();
+ 	    leftFlippers.clear();
+ 	    rightFlippers.clear();
  	    setChanged();
  	    notifyObservers();
     }
@@ -300,17 +306,31 @@ public class Model implements ModelAPI {
 	public List<Gizmo> getTriangles() {
 		return triangles;
 	}
-	
-	public void addCircle(Gizmo circle) {
-		circles.add(circle);
-	}
-	
-	public void addSquare(Gizmo square) {
-		squares.add(square);
+
+	public List<Gizmo> getAbsorbers(){
+		return absorbers;
 	}
 
-    public void addTriangle(Gizmo triangle) {
-		triangles.add(triangle);
+	public List<Gizmo> getLeftFlippers(){
+		return leftFlippers;
+	}
+
+	public List<Gizmo> getRightFlippers(){
+		return rightFlippers;
+	}
+	
+
+
+	@Override
+	public boolean removeGizmo(Gizmo gizmo) {
+		boolean success = false;
+
+		if(gizmos.contains(gizmo)){
+			gizmos.remove(gizmo);
+			success = true;
+		}
+
+		return success;
 	}
 
 	@Override
@@ -337,6 +357,27 @@ public class Model implements ModelAPI {
 		}
 
 		return success;
+	}
+
+	@Override
+	public Gizmo getGizmoByCoords(int xPos, int yPos) {
+		for(Gizmo currentGizmo: gizmos) {
+			if((currentGizmo.getXPos() == xPos)&&(currentGizmo.getYPos() == yPos)) {
+				// currentGizmo is at these coordinates
+				return currentGizmo;
+			}else if(currentGizmo instanceof Absorber){
+				int absorberXPos1 = ((Absorber)currentGizmo).getXPos();
+				int absorberYPos1 = ((Absorber)currentGizmo).getYPos();
+				int absorberXPos2 = ((Absorber)currentGizmo).getXPos2();
+				int absorberYPos2 = ((Absorber)currentGizmo).getYPos2();
+				if((yPos == absorberYPos1)&&(xPos >= absorberXPos1)&&(xPos <= absorberXPos2)) {
+					// currentGizmo is an absorber and passes through at least these coordinates
+					return currentGizmo;
+				}
+			}
+		}
+		// no gizmo here
+		return null;
 	}
 
 	public boolean isCellEmpty(int xPos, int yPos){

@@ -13,8 +13,8 @@ public class RunListener implements GBallListener{
     private Timer timer;
     private ModelAPI model;
     private View view;
-    private MouseInputListener mouseListener;
-    private KeyListener keyboardListener;
+    private MouseInputListener mouseListener, doNothingMouse;
+    private KeyListener keyboardListener, doNothingKeyboard;
     private JFileChooser fileChooser;
     private File latestFile;
 
@@ -22,8 +22,10 @@ public class RunListener implements GBallListener{
         this.timer = new Timer(50, this);
         this.model = model;
         this.view = view;
-
-        this.keyboardListener = new DoNothingKeyListener(model);
+        this.doNothingMouse = new DoNothingMouseListener(model);
+        this.doNothingKeyboard = new DoNothingKeyListener(model);
+        this.mouseListener = doNothingMouse;
+        this.keyboardListener = doNothingKeyboard;
         this.fileChooser = new JFileChooser();
         this.latestFile = null;
     }
