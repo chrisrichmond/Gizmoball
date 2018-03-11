@@ -219,12 +219,40 @@ public class View implements Observer{
         return mainFrame;
     }
 
-    public void setBuildModeMessage(String message){
+    /**
+     * This method does not change the view between build and run mode, only call it when game is staying in the same mode but you wish to alter the message in the message panel
+     */
+    public void updateMessagePanel(String message){
+
+        // Remove current message panel
+        try{
+            cp.remove(currentMessagePanel);
+        }catch(NullPointerException npx){
+            System.out.println(npx.getStackTrace() + " NullPointerException: trying to remove JComponent that wasn't there");
+        }catch(ClassCastException ccx){
+            System.out.println(ccx.getStackTrace() + " ClassCastException: tried to cast currentBoard (which is of interface type Board) as JPanel");
+        }
+
+        // add new updated message panel
+        if(isBuildMode){
+            setBuildModeMessage(message);
+        }else{
+            setRunModeMessage(message);
+        }
+
+        cp.add(currentMessagePanel, BorderLayout.PAGE_END);
+        mainFrame.repaint();
+        mainFrame.pack();
+        mainFrame.setLocationRelativeTo(null);
+
+    }
+
+    private void setBuildModeMessage(String message){
         buildMessagePanel = buildGUI.createMessageField(message);
         currentMessagePanel = buildMessagePanel;
     }
 
-    public void setRunModeMessage(String message){
+    private void setRunModeMessage(String message){
         runMessagePanel = runGUI.createMessageField(message);
     }
 

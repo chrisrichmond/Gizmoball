@@ -20,7 +20,6 @@ public class BuildListener implements GBallListener {
     public BuildListener(ModelAPI model, View view){
         this.model = model;
         this.view = view;
-
         this.mouseListener = new DoNothingMouseListener(model);
         this.keyboardListener = new DoNothingKeyListener(model);
         this.fileChooser = new JFileChooser();
@@ -80,30 +79,37 @@ public class BuildListener implements GBallListener {
                 System.exit(0);
                 break;
 
+
             // Build Mode "Add Gizmo" button menu
             case("Add Square"):
                 final MouseInputListener addSquareListener = new AddSquareListener(model, view);
-
-                view.setBuildModeMessage("Click on the board to add a square");
-                view.update();
-
-                System.out.println("Set build mode message for adding squares");
+                view.updateMessagePanel("Click on the board to add a square");
                 setMouseListener(addSquareListener);
                 break;
             case("Add Circle"):
-
+                final MouseInputListener addCircleListener = new AddCircleListener(model, view);
+                view.updateMessagePanel("Click on the board to add a circle");
+                setMouseListener(addCircleListener);
                 break;
             case("Add Triangle"):
-
+                final MouseInputListener addTriangleListener = new AddTriangleListener(model, view);
+                view.updateMessagePanel("Click on the board to add a triangle");
+                setMouseListener(addTriangleListener);
                 break;
             case("Add Absorber"):
-
+                final MouseInputListener addAbsorberListener = new AddAbsorberListener(model, view);
+                view.updateMessagePanel("Click on the board to add an absorber");
+                setMouseListener(addAbsorberListener);
                 break;
             case("Add Left Flipper"):
-
+                final MouseInputListener addLeftFlipperListener = new AddLeftFlipperListener(model, view);
+                view.updateMessagePanel("Click on the board to add a left flipper");
+                setMouseListener(addLeftFlipperListener);
                 break;
             case("Add Right Flipper"):
-
+                final MouseInputListener addRightFlipperListener = new AddRightFlipperListener(model, view);
+                view.updateMessagePanel("Click on the board to add a right flipper");
+                setMouseListener(addRightFlipperListener);
                 break;
             case("Back"):
                 view.buildMode();
