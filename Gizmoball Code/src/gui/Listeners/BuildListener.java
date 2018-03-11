@@ -49,7 +49,9 @@ public class BuildListener implements GBallListener {
                 setMouseListener(deleteListener);
                 break;
             case("Move"):
-
+                final MouseInputListener moveListener = new MoveListener(model, view);
+                view.updateMessagePanel("Click and drag a gizmo to reposition it");
+                setMouseListener(moveListener);
                 break;
             case("Clear Board"):
                 model.clear();

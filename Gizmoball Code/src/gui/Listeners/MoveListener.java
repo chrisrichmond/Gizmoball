@@ -1,0 +1,73 @@
+package gui.Listeners;
+
+import Model.ModelAPI;
+import Model.gizmos.Gizmo;
+import gui.View;
+
+import javax.swing.event.MouseInputListener;
+import java.awt.event.MouseEvent;
+
+public class MoveListener implements MouseInputListener {
+
+    private ModelAPI model;
+    private View view;
+    private int xPos1;
+    private int yPos1;
+    private int xPos2;
+    private int yPos2;
+    private Gizmo movedGizmo;
+
+    public MoveListener(ModelAPI model, View view){
+        this.model = model;
+        this.view = view;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        xPos1 = (int)(e.getX()/view.getPpl());
+        yPos1 = (int)(e.getY()/view.getPpl());
+        if(!model.isCellEmpty(xPos1,yPos1)){
+            movedGizmo = model.getGizmoByCoords(xPos1,yPos1);
+            view.updateMessagePanel("Grabbed Gizmo '"+movedGizmo.getID()+"' at X="+movedGizmo.getXPos()+", Y="+movedGizmo.getYPos()+" . . .");
+        }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        xPos2 = (int)(e.getX()/view.getPpl());
+        yPos2 = (int)(e.getY()/view.getPpl());
+        if(model.isCellEmpty(xPos2,yPos2)){
+            model.removeGizmo(movedGizmo);
+            movedGizmo.setPos(xPos2,yPos2);
+            model.addGizmo(movedGizmo);
+            view.updateMessagePanel("Dropped Gizmo '"+movedGizmo.getID()+"' at X="+movedGizmo.getXPos()+", Y="+movedGizmo.getYPos()+" . . .");
+        }else{
+            view.updateMessagePanel("Cell already occupied!");
+        }
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
+}
