@@ -33,6 +33,8 @@ public interface ModelAPI extends Observable{
 
     public void setBallSpeed(int x, int y);
 
+    public boolean isCellEmpty(int xPos, int yPos);
+
     /**
      *
      * @param gizmo

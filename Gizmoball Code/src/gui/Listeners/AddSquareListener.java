@@ -29,7 +29,7 @@ public class AddSquareListener implements MouseInputListener {
         xPos1 = (int)(e.getX()/view.getPpl());
         yPos1 = (int)(e.getY()/view.getPpl());
         if(model.addGizmo(new SquareBumper("S", xPos1, yPos1))) {  // NEED TO SORT OUT UNIQUE ID ASSIGNMENT
-            view.updateMessagePanel("Dropping square at X="+xPos1+", Y="+yPos1);
+            view.updateMessagePanel("Drawing square at X="+xPos1+", Y="+yPos1);
         }else{
             view.updateMessagePanel("Cell already occupied!");
         }

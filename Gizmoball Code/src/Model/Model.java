@@ -322,21 +322,7 @@ public class Model implements ModelAPI {
 	public boolean addGizmo(Gizmo gizmo) {
 		boolean success = true;
 
-		for(Gizmo currentGizmo: gizmos) {
-			if ((currentGizmo.getXPos() == gizmo.getXPos()) && (currentGizmo.getYPos() == gizmo.getYPos())) {
-				// gizmo occupies same cell as currentGizmo and is therefore ineligible for placement in model
-				System.out.println("gizmo occupies same cell as currentGizmo and is therefore ineligible for placement in model");
-				success = false;
-			} else if ((currentGizmo instanceof Absorber)
-					&& (((Absorber) currentGizmo).getYPos() == ((Absorber) gizmo).getYPos())
-					&& ((((Absorber) gizmo).getXPos() >= ((Absorber) currentGizmo).getXPos()) && ((((Absorber) gizmo).getXPos2() <= ((Absorber) currentGizmo).getXPos2())))) {
-				// gizmo occupies a cell within the bounds of an absorber object are is therefore ineligible for placement in model
-				System.out.println("gizmo occupies a cell within the bounds of an absorber object are is therefore ineligible for placement in model");
-				success = false;
-			}
-		}
-
-		if(success){
+		if(isCellEmpty(gizmo.getXPos(), gizmo.getYPos())){
 			// gizmo is in an eligible location
 			gizmos.add(gizmo);
 			if (gizmo.getType().equals("circle")) {
@@ -351,6 +337,25 @@ public class Model implements ModelAPI {
 		}
 
 		return success;
+	}
+
+	public boolean isCellEmpty(int xPos, int yPos){
+		boolean empty = true;
+
+		for(Gizmo currentGizmo: gizmos) {
+			if ((currentGizmo.getXPos() == xPos) && (currentGizmo.getYPos() == yPos)) {
+				// cell is already occuped by currentGizmo
+				System.out.println("cell is already occuped by currentGizmo");
+				empty = false;
+			} else if ((currentGizmo instanceof Absorber)
+					&& (((Absorber) currentGizmo).getYPos() == yPos)
+					&& (( xPos >= ((Absorber) currentGizmo).getXPos()) && ((xPos <= ((Absorber) currentGizmo).getXPos2())))) {
+				// cell is already occupied by an absorber
+				System.out.println("cell is already occupied by an absorber");
+				empty = false;
+			}
+		}
+		return empty;
 	}
 
 	@Override
