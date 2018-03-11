@@ -14,6 +14,7 @@ public class LFlipper implements Gizmo{
     private int yPos;
     private Color colour;
     private String ID;
+    final private String type = "leftflipper";
 
     public LFlipper(String ID, int xPos, int yPos){
         this.ID = ID;
@@ -49,7 +50,7 @@ public class LFlipper implements Gizmo{
 
     @Override
     public String getType() {
-        return null;
+        return type;
     }
 
     @Override

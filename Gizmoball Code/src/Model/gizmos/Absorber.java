@@ -18,9 +18,9 @@ public class Absorber implements Gizmo{
     private int yPos2; // bottom side of where the absorber ends
     private int width;
     private int height;
-    private String type = "absorber";
     private Color colour;
     private String ID;
+    final private String type = "absorber";
 
     public Absorber(String ID, int xPos1, int yPos1, int xPos2, int yPos2){
 

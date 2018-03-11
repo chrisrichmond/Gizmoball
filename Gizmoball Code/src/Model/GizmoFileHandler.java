@@ -1,14 +1,8 @@
 package Model;
 
-import Model.gizmos.Absorber;
-import Model.gizmos.CircularBumper;
-import Model.gizmos.SquareBumper;
-import Model.gizmos.TriangularBumper;
+import Model.gizmos.*;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -126,7 +120,25 @@ public class GizmoFileHandler {
     }
 
 
+    public void saveToFile(String filename) {
+        String outputToFile;
+        Ball ball;
 
+        try {
+            PrintWriter writer = new PrintWriter(filename, "UTF-8");
+            for (Gizmo currentGizmo: model.getGizmos()) {
+                outputToFile = currentGizmo.getType() + " " + currentGizmo.getID() + " " + currentGizmo.getXPos() + " " + currentGizmo.getYPos();
+                if(currentGizmo.getType().equals("absorber")){
+                    outputToFile = outputToFile + " " + ((Absorber)currentGizmo).getXPos2() + " " + ((Absorber)currentGizmo).getYPos2();
+                }
+                writer.println(outputToFile);
+            }
+            ball = model.getBall();
+            writer.println("Ball " + ball.getID() + " " + ball.getXpos() + " " + ball.getYpos() + " " + ball.getVelocity().x() + " " + ball.getVelocity().y());
+            writer.close();
 
-
+        }catch(IOException iox){
+            System.out.println("IOException attempting to save to '"+filename+"': possible UnsupportedEncodingException, try printing stack trace");
+        }
+    }
 }

@@ -4,13 +4,10 @@ import Model.ModelAPI;
 import gui.Listeners.BuildListener;
 import gui.Listeners.GBallListener;
 import gui.Listeners.RunListener;
-import observerpattern.Observer;
+import utilities.Observer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class View implements Observer{
 

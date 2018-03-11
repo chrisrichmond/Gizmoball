@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import Model.gizmos.*;
-import observerpattern.Observer;
+import utilities.Observer;
 import physics.*;
 
 public class Model implements ModelAPI {
@@ -57,7 +57,13 @@ public class Model implements ModelAPI {
 	    notifyObservers();
     }
 
-    public void clear(){
+	@Override
+	public void saveFile(String filename) {
+		fileHandler.saveToFile(filename);
+
+	}
+
+	public void clear(){
  	    gizmos.clear();
  	    squares.clear();
  	    triangles.clear();
@@ -383,7 +389,7 @@ public class Model implements ModelAPI {
 			if((currentGizmo.getXPos() == xPos)&&(currentGizmo.getYPos() == yPos)) {
 				// currentGizmo is at these coordinates
 				return currentGizmo;
-			}else if(currentGizmo instanceof Absorber){
+			}else if(currentGizmo.getType().equals("absorber")){
 				int absorberXPos1 = ((Absorber)currentGizmo).getXPos();
 				int absorberYPos1 = ((Absorber)currentGizmo).getYPos();
 				int absorberXPos2 = ((Absorber)currentGizmo).getXPos2();
@@ -406,7 +412,7 @@ public class Model implements ModelAPI {
 				// cell is already occuped by currentGizmo
 				System.out.println("cell is already occuped by currentGizmo");
 				empty = false;
-			} else if ((currentGizmo instanceof Absorber)
+			} else if ((currentGizmo.getType().equals("absorber"))
 					&& (((Absorber) currentGizmo).getYPos() == yPos)
 					&& (( xPos >= ((Absorber) currentGizmo).getXPos()) && ((xPos <= ((Absorber) currentGizmo).getXPos2())))) {
 				// cell is already occupied by an absorber

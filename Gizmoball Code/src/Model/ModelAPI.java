@@ -1,7 +1,7 @@
 package Model;
 
 import Model.gizmos.Gizmo;
-import observerpattern.Observable;
+import utilities.Observable;
 
 import java.util.List;
 
@@ -53,6 +53,8 @@ public interface ModelAPI extends Observable{
     public boolean removeGizmo(Gizmo gizmo);
 
     public void loadFile(String filename);
+
+    public void saveFile(String filename);
 
     public void replaceBall(Ball ball);
 

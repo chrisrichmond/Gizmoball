@@ -1,4 +1,4 @@
-package observerpattern;
+package utilities;
 
 public interface Observable {
 

@@ -14,9 +14,9 @@ public class CircularBumper implements Gizmo {
     private int xPos;
     private int yPos;
     private float radius;
-    private String type="circle";
     private Color colour;
     private String ID;
+    final private String type = "circle";
 
     public CircularBumper(String ID,int xpos,int ypos){
         this.ID = ID;

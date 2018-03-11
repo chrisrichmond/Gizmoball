@@ -1,30 +1,27 @@
 import Model.ModelAPI;
 import Model.Model;
-import Model.gizmos.*;
 import gui.View;
+import utilities.*;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Properties;
 
 import static java.lang.System.getProperty;
 
 
 public class Main {
 
-    static String homePath = System.getProperty("user.home");
+    static String homePath = GizmoConstants.homePath;
 
-    static String gizmoPath = homePath + "/GizmoFiles";
-    static String gizmoConfigPath = gizmoPath + "/config";
-    static String defaultGamePath = gizmoPath + "/default.gizmo";
+    static String gizmoPath = GizmoConstants.gizmoPath;
+    static String gizmoConfigPath = GizmoConstants.gizmoConfigPath;
+    static String defaultGamePath = GizmoConstants.defaultGamePath;
 
-    static File gizmoPathDir = new File(gizmoPath);
-    static File gizmoConfigFile = new File(gizmoConfigPath);
-    static File defaultGameFile = new File(defaultGamePath);
+    static File gizmoPathDir = GizmoConstants.gizmoPathDir;
+    static File gizmoConfigFile = GizmoConstants.gizmoConfigFile;
+    static File defaultGameFile = GizmoConstants.defaultGameFile;
 
     static FileInputStream in;
     static FileWriter fw;

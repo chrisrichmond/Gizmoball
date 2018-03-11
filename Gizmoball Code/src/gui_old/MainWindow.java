@@ -1,7 +1,7 @@
 package gui_old;
 
 import Model.ModelAPI;
-import observerpattern.Observer;
+import utilities.Observer;
 
 import javax.swing.*;
 import java.awt.*;

@@ -2,6 +2,7 @@ package gui.Listeners;
 
 import Model.ModelAPI;
 import gui.View;
+import utilities.GizmoConstants;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
@@ -72,7 +73,7 @@ public class BuildListener implements GBallListener {
                 break;
             case("Load Model"):
                 int returnVal = fileChooser.showOpenDialog(view.getMainFrame());
-
+                fileChooser.setDialogTitle("Load a model from file");
                 if(returnVal == JFileChooser.APPROVE_OPTION){
                     // open chosen file
                     latestFile = fileChooser.getSelectedFile();
@@ -128,8 +129,21 @@ public class BuildListener implements GBallListener {
 
 
             // Build Mode File Menu menuItems
+            case("Save Model"):
+                fileChooser.setDialogTitle("Specify a file to save");
+                fileChooser.setCurrentDirectory(GizmoConstants.gizmoPathDir);
+                int returnVal2 = fileChooser.showSaveDialog(view.getMainFrame());
+                if(returnVal2 == JFileChooser.APPROVE_OPTION){
+                    // save file
+                    File fileToSave = fileChooser.getSelectedFile();
+                    model.saveFile(fileToSave.getAbsolutePath());
+                }else{
+                    // close window
+                }
+                break;
             case("Settings"):
                 view.openSettingsFrame();
+                break;
         }
     }
 

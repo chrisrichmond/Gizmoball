@@ -3,7 +3,7 @@ package gui_old;
 import Model.Ball;
 import Model.ModelAPI;
 import Model.gizmos.*;
-import observerpattern.Observer;
+import utilities.Observer;
 
 import javax.swing.*;
 import java.awt.*;

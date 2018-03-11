@@ -13,10 +13,10 @@ public class TriangularBumper implements Gizmo{
 
     private int xPos;
     private int yPos;
-    private String type="triangle";
     private TriangleClass triangle;
     private Color colour;
     private String ID;
+    final private String type = "triangle";
 
     public TriangularBumper(String ID, int xpos,int ypos){
         this.ID = ID;

@@ -15,9 +15,9 @@ public class SquareBumper implements Gizmo{
     private int xPos;
     private int yPos;
     private SquareClass square;
-    private String type="square";
     private Color colour;
     private String ID;
+    final private String type = "square";
 
     public SquareBumper(String ID, int xPos, int yPos){
         this.ID = ID;
