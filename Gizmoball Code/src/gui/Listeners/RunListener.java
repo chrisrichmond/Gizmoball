@@ -64,6 +64,7 @@ public class RunListener implements GBallListener{
                     }
                     break;
                 case("Build Mode"):
+                    timer.stop();
                     view.buildMode();
                     break;
                 case("Quit"):

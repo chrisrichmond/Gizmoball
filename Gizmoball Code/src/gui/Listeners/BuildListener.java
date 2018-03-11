@@ -38,7 +38,9 @@ public class BuildListener implements GBallListener {
                 setMouseListener(doNothingMouse);
                 break;
             case("Add Ball"):
-
+                final MouseInputListener addBallListener = new AddBallListener(model, view);
+                view.updateMessagePanel("Click on the board to add a new ball");
+                setMouseListener(addBallListener);
                 break;
             case("Rotate"):
 
