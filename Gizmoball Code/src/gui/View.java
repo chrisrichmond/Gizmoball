@@ -20,9 +20,9 @@ public class View implements Observer{
     // Pixels Per Line
     private int ppl;
 
-    // Main Frame and Content Pane
+    // Frame and Content Pane
     private JFrame mainFrame;
-    private Container cp;
+    private Container cp; // content pane for mainFrame
 
     // Boards
     private JPanel buildBoard, runBoard, currentBoard;
@@ -38,8 +38,6 @@ public class View implements Observer{
 
     // Dimensions
     private Dimension boardDim, buttonPanelDim, messagePanelDim, idealFrameDim;
-
-    private final Insets insets = new Insets(0, 0, 0, 0);
 
     boolean status;
     private boolean isBuildMode;
@@ -213,6 +211,19 @@ public class View implements Observer{
         mainFrame.repaint();
         mainFrame.pack();
         mainFrame.setLocationRelativeTo(null);
+    }
+
+    public void openSettingsFrame(){
+        JFrame settingsFrame = new JFrame("Gizmoball Settings");
+        Container settingsCp = settingsFrame.getContentPane();
+
+        cp.setLayout(new GridLayout(2,2));
+        cp.setPreferredSize(new Dimension(200,200));
+        settingsFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        settingsFrame.pack();
+        settingsFrame.setLocationRelativeTo(null);
+        settingsFrame.setVisible(true);
+
     }
 
     public JFrame getMainFrame() {

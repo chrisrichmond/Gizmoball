@@ -53,7 +53,7 @@ public class BuildModeGUI implements GameGUI {
     // JMenuBar for build mode options
     private JMenuBar menuBar;
     private JMenu fileMenu;
-    private JMenuItem testMenuItem;
+    private JMenuItem settingsMenuItem;
 
     // JPanel for displaying information at the bottom of the screen
     private JPanel messagePanel;
@@ -211,9 +211,10 @@ public class BuildModeGUI implements GameGUI {
     public JMenuBar createMenuBar(GBallListener listener) {
         menuBar = new JMenuBar();
         fileMenu = new JMenu("File");
-        testMenuItem = new JMenuItem("Test Item");
+        settingsMenuItem = new JMenuItem("Settings");
+        settingsMenuItem.addActionListener(listener);
 
-        fileMenu.add(testMenuItem);
+        fileMenu.add(settingsMenuItem);
         menuBar.add(fileMenu);
 
         return menuBar;

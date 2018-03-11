@@ -31,7 +31,7 @@ public class BuildListener implements GBallListener {
     @Override
     public final void actionPerformed(final ActionEvent e) {
         switch(e.getActionCommand()) {
-            // For Build Mode button menu
+            // Build Mode button menu
             case("Add Gizmo"):
                 view.addGizmoBuildMode();
                 view.updateMessagePanel("Select a gizmo type to add to the board");
@@ -125,6 +125,11 @@ public class BuildListener implements GBallListener {
                 setMouseListener(doNothingMouse);
                 view.buildMode();
                 break;
+
+
+            // Build Mode File Menu menuItems
+            case("Settings"):
+                view.openSettingsFrame();
         }
     }
 

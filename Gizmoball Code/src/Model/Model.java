@@ -329,6 +329,24 @@ public class Model implements ModelAPI {
 			gizmos.remove(gizmo);
 			success = true;
 		}
+		if(squares.contains(gizmo)){
+			squares.remove(gizmo);
+		}
+		if(circles.contains(gizmo)){
+			circles.remove(gizmo);
+		}
+		if(triangles.contains(gizmo)){
+			triangles.remove(gizmo);
+		}
+		if(absorbers.contains(gizmo)){
+			absorbers.remove(gizmo);
+		}
+		if(leftFlippers.contains(gizmo)){
+			leftFlippers.remove(gizmo);
+		}
+		if(rightFlippers.contains(gizmo)){
+			rightFlippers.remove(gizmo);
+		}
 
 		return success;
 	}

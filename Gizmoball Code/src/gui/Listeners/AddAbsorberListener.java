@@ -46,16 +46,23 @@ public class AddAbsorberListener implements MouseInputListener {
         xPos2 = (int)(e.getX()/view.getPpl());
         yPos2 = (int)(e.getY()/view.getPpl()); // may be redundant if absorbers are going to be restricted to only allow a height of 1
 
-        for(int i = xPos1; i <= xPos2; i++){
-            if(!model.isCellEmpty(i, yPos1)){
-                valid = false;
+        if(xPos1 <= xPos2) {
+            for (int i = xPos1; i <= xPos2; i++) {
+                if (!model.isCellEmpty(i, yPos1)) {
+                    valid = false;
+                }
             }
-        }
-        if(valid){
-            view.updateMessagePanel("Drawing absorber from StartX="+xPos1+", StartY="+yPos1+" to EndX="+(xPos2+1)+", EndY="+(yPos1+1));
-            model.addGizmo(new Absorber("A", xPos1,yPos1,xPos2+1,yPos1+1));
+            if (valid) {
+                if(xPos2 > 19) {
+                    xPos2 = 19;
+                }
+                view.updateMessagePanel("Drawing absorber from StartX=" + xPos1 + ", StartY=" + yPos1 + " to EndX=" + (xPos2 + 1) + ", EndY=" + (yPos1 + 1));
+                model.addGizmo(new Absorber("A", xPos1, yPos1, xPos2 + 1, yPos1 + 1));
+            } else {
+                view.updateMessagePanel("Absorber cannot be drawn through existing gizmos!");
+            }
         }else{
-            view.updateMessagePanel("Absorber cannot be drawn through existing gizmos!");
+            view.updateMessagePanel("Please draw absorbers from left to right");
         }
     }
 
