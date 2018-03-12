@@ -44,7 +44,9 @@ public class BuildListener implements GBallListener {
                 setMouseListener(addBallListener);
                 break;
             case("Rotate"):
-
+                final MouseInputListener rotateListener = new RotateListener(model, view);
+                view.updateMessagePanel("Click on a triangular gizmo to rotate it");
+                setMouseListener(rotateListener);
                 break;
             case("Delete"):
                 final MouseInputListener deleteListener = new DeleteListener(model, view);

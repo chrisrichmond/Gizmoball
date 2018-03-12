@@ -17,13 +17,19 @@ public class TriangularBumper implements Gizmo{
     private Color colour;
     private String ID;
     final private String type = "triangle";
+    // Legend for Triangle Rotation
+    //     |\       |--/    \--|       /|
+    // 0 = | \  1 = | /  2 = \ | 3 =  / |
+    //     |__\     |/        \|     /__|
+    private int rotation;
 
-    public TriangularBumper(String ID, int xpos,int ypos){
+    public TriangularBumper(String ID, int xpos, int ypos) {
         this.ID = ID;
-        this.xPos=xpos;
-        this.yPos=ypos;
-        this.triangle = new TriangleClass(xPos, yPos);
+        this.xPos = xpos;
+        this.yPos = ypos;
+        this.triangle = new TriangleClass(xPos, yPos, 0);
         this.colour = Color.red;
+        this.rotation = 0;
 
     }
 
@@ -109,7 +115,13 @@ public class TriangularBumper implements Gizmo{
     }
 
     @Override
-    public boolean rotate() {
-        return false;
+    public boolean rotate(){
+        rotation += 1;
+        if(rotation > 3){
+            rotation = 0;
+        }
+        System.out.println("rotation = "+rotation);
+        this.triangle = new TriangleClass(xPos, yPos, rotation);
+        return true;
     }
 }

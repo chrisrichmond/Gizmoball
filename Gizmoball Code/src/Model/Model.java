@@ -384,6 +384,20 @@ public class Model implements ModelAPI {
 	}
 
 	@Override
+	public boolean rotateGizmo(Gizmo gizmo) {
+		boolean success = false;
+
+		if(gizmo.getType().equals("triangle")){
+			gizmo.rotate();
+			setChanged();
+			notifyObservers();
+			success = true;
+		}
+
+		return success;
+	}
+
+	@Override
 	public Gizmo getGizmoByCoords(int xPos, int yPos) {
 		for(Gizmo currentGizmo: gizmos) {
 			if((currentGizmo.getXPos() == xPos)&&(currentGizmo.getYPos() == yPos)) {

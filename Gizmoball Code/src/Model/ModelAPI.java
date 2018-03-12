@@ -50,6 +50,8 @@ public interface ModelAPI extends Observable{
      */
     public boolean addGizmo(Gizmo gizmo);
 
+    public boolean rotateGizmo(Gizmo gizmo);
+
     public boolean removeGizmo(Gizmo gizmo);
 
     public void loadFile(String filename);
