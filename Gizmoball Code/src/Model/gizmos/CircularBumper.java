@@ -15,6 +15,7 @@ public class CircularBumper implements Gizmo {
     private int yPos;
     private float radius;
     private Color colour;
+    private Circle circle;
     private String ID;
     final private String type = "circle";
 
@@ -23,6 +24,7 @@ public class CircularBumper implements Gizmo {
         this.xPos=xpos;
         this.yPos=ypos;
         this.radius=0.5F;
+        this.circle=new Circle(new Vect(xpos+radius, ypos+radius), radius);
         this.colour = Color.green;
     }
 
@@ -97,7 +99,7 @@ public class CircularBumper implements Gizmo {
 
     @Override
     public Circle getCircle() {
-        return new Circle(xPos, yPos, radius);
+        return circle;
 
     }
 

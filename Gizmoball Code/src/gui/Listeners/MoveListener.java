@@ -1,7 +1,7 @@
 package gui.Listeners;
 
 import Model.ModelAPI;
-import Model.gizmos.Gizmo;
+import Model.gizmos.*;
 import gui.View;
 
 import javax.swing.event.MouseInputListener;
@@ -43,7 +43,20 @@ public class MoveListener implements MouseInputListener {
         yPos2 = (int)(e.getY()/view.getPpl());
         if(model.isCellEmpty(xPos2,yPos2)){
             model.removeGizmo(movedGizmo);
-            movedGizmo.setPos(xPos2,yPos2);
+
+            if(movedGizmo.getType().equals("square")) {
+                movedGizmo = new SquareBumper(movedGizmo.getID(), xPos2, yPos2);
+            }else if(movedGizmo.getType().equals("circle")) {
+                movedGizmo = new CircularBumper(movedGizmo.getID(), xPos2, yPos2);
+            }else if(movedGizmo.getType().equals("triangle")) {
+                movedGizmo = new TriangularBumper(movedGizmo.getID(), xPos2, yPos2, ((TriangularBumper)movedGizmo).getRotation());
+            }else if(movedGizmo.getType().equals("absorber")){
+                movedGizmo = new Absorber(movedGizmo.getID(), xPos2, yPos2, ((Absorber)movedGizmo).getXPos2(), ((Absorber)movedGizmo).getYPos2());
+            }else if(movedGizmo.getType().equals("leftflipper")){
+
+            }else if(movedGizmo.getType().equals("rightflipper")){
+
+            }
             model.addGizmo(movedGizmo);
             view.updateMessagePanel("Dropped Gizmo '"+movedGizmo.getID()+"' at X="+movedGizmo.getXPos()+", Y="+movedGizmo.getYPos()+" . . .");
         }else{

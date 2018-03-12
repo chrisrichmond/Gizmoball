@@ -33,6 +33,16 @@ public class TriangularBumper implements Gizmo{
 
     }
 
+    public TriangularBumper(String ID, int xpos, int ypos, int rotation) {
+        this.ID = ID;
+        this.xPos = xpos;
+        this.yPos = ypos;
+        this.triangle = new TriangleClass(xPos, yPos, rotation);
+        this.colour = Color.red;
+        this.rotation = rotation;
+
+    }
+
     @Override
     public void setPos(int xPos, int yPos) {
         this.xPos = xPos;
@@ -123,5 +133,9 @@ public class TriangularBumper implements Gizmo{
         System.out.println("rotation = "+rotation);
         this.triangle = new TriangleClass(xPos, yPos, rotation);
         return true;
+    }
+
+    public int getRotation(){
+        return rotation;
     }
 }
