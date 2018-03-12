@@ -13,13 +13,10 @@ public class AddSquareListener implements MouseInputListener {
     private View view;
     private int xPos1;
     private int yPos1;
-    private int numSquares;
-    private String ID;
 
     public AddSquareListener(ModelAPI model, View view){
         this.model = model;
         this.view = view;
-        this.ID = "S";
     }
 
     @Override
@@ -31,8 +28,6 @@ public class AddSquareListener implements MouseInputListener {
     public void mousePressed(MouseEvent e) {
         xPos1 = (int)(e.getX()/view.getPpl());
         yPos1 = (int)(e.getY()/view.getPpl());
-        numSquares = model.getSquares().size();
-        //ID = ID + (numSquares+1);
         if(model.addGizmo(new SquareBumper("S", xPos1, yPos1))) {  // NEED TO SORT OUT UNIQUE ID ASSIGNMENT
             view.updateMessagePanel("Drawing square at X="+xPos1+", Y="+yPos1);
         }else{

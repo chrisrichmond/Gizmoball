@@ -10,7 +10,16 @@ import java.util.List;
 
 public class RFlipper implements Gizmo{
 
+    private int xPos;
+    private int yPos;
+    private String ID;
     final private String type = "rightflipper";
+
+    public RFlipper(String ID, int xPos, int yPos){
+        this.ID = ID;
+        this.xPos = xPos;
+        this.yPos = yPos;
+    }
 
     @Override
     public void setPos(int xPos, int yPos) {
@@ -95,5 +104,10 @@ public class RFlipper implements Gizmo{
     @Override
     public boolean rotate() {
         return false;
+    }
+
+    @Override
+    public void setID(String ID) {
+        this.ID = ID;
     }
 }

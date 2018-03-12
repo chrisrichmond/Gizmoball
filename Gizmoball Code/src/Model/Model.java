@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import Model.gizmos.*;
+import com.sun.xml.internal.ws.util.StringUtils;
 import utilities.Observer;
 import physics.*;
 
@@ -375,6 +376,8 @@ public class Model implements ModelAPI {
 	public boolean addGizmo(Gizmo gizmo) {
 		boolean success = true;
 
+		gizmo = giveUniqueName(gizmo);
+
 		if(isCellEmpty(gizmo.getXPos(), gizmo.getYPos())){
 			// gizmo is in an eligible location
 			gizmos.add(gizmo);
@@ -395,6 +398,51 @@ public class Model implements ModelAPI {
 
 
 		return success;
+	}
+
+	public Gizmo giveUniqueName(Gizmo gizmo){
+		Gizmo uniqueGizmo = gizmo;
+		//String originalID = gizmo.getID();
+		String uniqueID = gizmo.getID();
+		String uniqueIDnum = uniqueID.replaceAll("[A-Za-z]", "");
+		int prefixZeroes = (uniqueIDnum.replaceAll("[^0]", "")).length();
+		String uniqueIDtype = uniqueID.replaceAll("[^A-Za-z]", "");
+
+		int nextIDNum = 0;
+
+		for(int i = 0; i < gizmos.size(); i++){
+			// loop through all gizmos currently in the model
+			if(!gizmos.get(i).equals(gizmo)){
+				// currentGizmo is not gizmo (used to ensure that the parameter gizmo hasn't already been added to 'gizmos' in the model)
+
+				if(uniqueIDnum.length() == 0){
+					// gizmo ID has no ID number, only a type
+					uniqueIDnum = "0";
+				}
+
+				if(uniqueID.equals(gizmos.get(i).getID())){							// EXAMPLE	uniqueID = "S01"	currentGizmo.getID() = "S01"
+					// gizmo ID is the same as the currentGizmo ID
+					int uniqueIDnumInt = Integer.parseInt(uniqueIDnum) + 1;			//			uniqueIDnum = "01"	uniqueIDnumInt = 2
+					uniqueIDnum = "";												//			uniqueIDnum = ""
+					for(int j = 0; j < prefixZeroes; j++) {
+						uniqueIDnum = uniqueIDnum + "0";							//			1st pass: uniqueIDnum = "0"
+					}
+					uniqueIDnum = uniqueIDnum + Integer.toString(uniqueIDnumInt);	//			uniqueIDnumInt = 2	uniqueIDnum = "02"
+					uniqueID = uniqueIDtype + uniqueIDnum;
+					uniqueGizmo.setID(uniqueID);					//			uniqueIDtype = "S"	uniqueIDnum = "02"
+
+					i = -1;	// reset counter variable as we need to check the whole list again now
+				}
+			}else{
+				// currentGizmo is the SAME as gizmo
+			}
+		}
+
+//		if(uniqueIDnum > 0){
+//			uniqueGizmo.setID(uniqueGizmo.getID() + uniqueIDnum);
+//		}
+
+		return uniqueGizmo;
 	}
 
 	@Override

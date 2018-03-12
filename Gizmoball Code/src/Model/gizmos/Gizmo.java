@@ -61,5 +61,6 @@ public interface Gizmo {
 
     boolean rotate();
 
+    void setID(String ID);
 
 }

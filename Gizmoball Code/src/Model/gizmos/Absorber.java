@@ -174,4 +174,8 @@ public class Absorber implements Gizmo{
         return false;
     }
 
+    @Override
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 }

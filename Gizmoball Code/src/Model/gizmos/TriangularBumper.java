@@ -138,4 +138,9 @@ public class TriangularBumper implements Gizmo{
     public int getRotation(){
         return rotation;
     }
+
+    @Override
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 }
