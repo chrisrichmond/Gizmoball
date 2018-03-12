@@ -193,11 +193,13 @@ public class Model implements ModelAPI {
         // check for other Triange collisions
        // System.out.println("Checking triangle colliosions");
         for(int i=0;i<triangles.size();i++) {
+        	System.out.println("Checking Triangle number : "+i);
             List<LineSegment> triangleLines = triangles.get(i).getLines();
             List<Circle> triangleCircles = triangles.get(i).getCircles();
 
-            for (int x = 0; i < triangleLines.size(); i++) {
+            for (int x = 0; x < triangleLines.size(); x++) {
                 minTimeuntilCollision = Geometry.timeUntilWallCollision(triangleLines.get(x), circle, velocity);
+                System.out.println("Triangle line min time until : "+minTimeuntilCollision);
                 if (minTimeuntilCollision <= tickTime) {
                     shortestTime = minTimeuntilCollision;
 					System.out.println("Triangle Collision");
@@ -381,6 +383,7 @@ public class Model implements ModelAPI {
 			} else if (gizmo.getType().equals("square")) {
 				squares.add(gizmo);
 			} else if (gizmo.getType().equals("triangle")) {
+				System.out.println("Adding Triangle");
 				triangles.add(gizmo);
 			} else if (gizmo.getType().equals("absorber")) {
 				absorbers.add(gizmo);
