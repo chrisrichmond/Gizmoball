@@ -116,4 +116,9 @@ public class CircularBumper implements Gizmo {
     public boolean rotate() {
         return false;
     }
+
+    @Override
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 }

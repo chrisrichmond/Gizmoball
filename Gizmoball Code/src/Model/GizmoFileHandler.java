@@ -57,6 +57,13 @@ public class GizmoFileHandler {
             // object is a ball
             Ball newBall = new BallImpl(operands.get(0), Float.parseFloat(operands.get(1)), Float.parseFloat(operands.get(2)), Float.parseFloat(operands.get(3)), Float.parseFloat(operands.get(4)));
             model.replaceBall(newBall);
+        }else if(opcode.equals("rotate")){
+            // operation is to rotate an object
+            for(Gizmo currentGizmo: model.getGizmos()){
+                if(currentGizmo.getID().equals(operands.get(0))){
+                    model.rotateGizmo(currentGizmo);
+                }
+            }
         }else{
             // object is a gizmo
             int x = Integer.parseInt(operands.get(1));
@@ -131,7 +138,13 @@ public class GizmoFileHandler {
                 if(currentGizmo.getType().equals("absorber")){
                     outputToFile = outputToFile + " " + ((Absorber)currentGizmo).getXPos2() + " " + ((Absorber)currentGizmo).getYPos2();
                 }
+                outputToFile = outputToFile.substring(0,1).toUpperCase() + outputToFile.substring(1);
                 writer.println(outputToFile);
+                if(currentGizmo.getType().equals("triangle")){
+                    for(int i = 0; i < ((TriangularBumper)currentGizmo).getRotation(); i++){
+                        writer.println("Rotate "+currentGizmo.getID());
+                    }
+                }
             }
             ball = model.getBall();
             writer.println("Ball " + ball.getID() + " " + ball.getXpos() + " " + ball.getYpos() + " " + ball.getVelocity().x() + " " + ball.getVelocity().y());
