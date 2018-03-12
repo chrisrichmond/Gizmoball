@@ -59,8 +59,8 @@ public class RunModeBoard extends JPanel {
             }else if(currentGizmo.getType().equals("circle")){
                 // Draw CircularBumper
                 graphics2D.setPaint(Color.blue);
-                graphics2D.fill(currentGizmo.getCircle().toEllipse2D());
-                graphics2D.fillOval(x,y,width,height);
+                graphics2D.fill(currentGizmo.getCircle().toEllipse2D()); //Outline circles
+                graphics2D.fillOval(x,y,width,height); //Solid Circles
 
                 graphics.drawOval(x, y, width, height);
             }else if(currentGizmo.getType().equals("square")){
