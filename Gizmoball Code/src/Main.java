@@ -88,28 +88,29 @@ public class Main {
                 System.out.println("Gizmoball config file not found, created at '" + gizmoConfigPath + "'");
 
                 // write code here for writing default game file stuff to file
-                fw = new FileWriter(defaultGameFile);
-                fw.write("Circle C0 0 0\n");
-                fw.write("Circle C1 1 1\n");
-                fw.write("Circle C2 2 2\n");
-                fw.write("Circle C3 3 3\n");
-                fw.write("Circle C4 4 4\n");
-                fw.write("Circle C5 5 5\n");
-                fw.write("Circle C6 6 6\n");
-                fw.write("Circle C7 7 7\n");
-                fw.write("Circle C8 8 8\n");
-                fw.write("Circle C9 9 9\n");
-                fw.write("Circle C10 10 10\n");
-                fw.write("Circle C11 11 11\n");
-                fw.write("Circle C12 12 12\n");
-                fw.write("Circle C13 13 13\n");
-                fw.write("Circle C14 14 14\n");
-                fw.write("Circle C15 15 15\n");
-                fw.write("Circle C16 16 16\n");
-                fw.write("Circle C17 17 17\n");
-                fw.write("Circle C18 18 18\n");
-                fw.write("Circle C19 19 19\n");
-                fw.close();
+                GizmoConstants.writeDefaultFile(defaultGameFile);
+//                fw = new FileWriter(defaultGameFile);
+//                fw.write("Circle C0 0 0\n");
+//                fw.write("Circle C1 1 1\n");
+//                fw.write("Circle C2 2 2\n");
+//                fw.write("Circle C3 3 3\n");
+//                fw.write("Circle C4 4 4\n");
+//                fw.write("Circle C5 5 5\n");
+//                fw.write("Circle C6 6 6\n");
+//                fw.write("Circle C7 7 7\n");
+//                fw.write("Circle C8 8 8\n");
+//                fw.write("Circle C9 9 9\n");
+//                fw.write("Circle C10 10 10\n");
+//                fw.write("Circle C11 11 11\n");
+//                fw.write("Circle C12 12 12\n");
+//                fw.write("Circle C13 13 13\n");
+//                fw.write("Circle C14 14 14\n");
+//                fw.write("Circle C15 15 15\n");
+//                fw.write("Circle C16 16 16\n");
+//                fw.write("Circle C17 17 17\n");
+//                fw.write("Circle C18 18 18\n");
+//                fw.write("Circle C19 19 19\n");
+//                fw.close();
 
             } catch (IOException iox) {
                 System.out.println("IOException trying to create config file '" + gizmoConfigPath + "'");

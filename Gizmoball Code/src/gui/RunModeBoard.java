@@ -60,7 +60,7 @@ public class RunModeBoard extends JPanel {
                 // Draw CircularBumper
                 graphics2D.setPaint(Color.blue);
                 graphics2D.fill(currentGizmo.getCircle().toEllipse2D());
-                //graphics2D.fillOval(x,y,width,height);
+                graphics2D.fillOval(x,y,width,height);
 
                 graphics.drawOval(x, y, width, height);
             }else if(currentGizmo.getType().equals("square")){
@@ -82,6 +82,10 @@ public class RunModeBoard extends JPanel {
                 for(int i = 0; i < 3; i++) {
                     scaledXpoints[i] = xpoints[i]*ppl;
                     scaledYpoints[i] = ypoints[i]*ppl;
+                }
+
+                for(LineSegment currentLine: currentGizmo.getLines()){
+                    graphics2D.drawLine((int)(ppl*currentLine.p1().x()),(int)(ppl*currentLine.p1().y()),(int)(ppl*currentLine.p2().x()),(int)(ppl*currentLine.p2().y()));
                 }
 
                 Polygon scaledTriangle = new Polygon(scaledXpoints, scaledYpoints, 3);
