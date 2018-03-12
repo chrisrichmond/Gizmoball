@@ -37,6 +37,17 @@ public class BuildModeGUI implements GameGUI {
     private JButton reloadModelButton;
     private JButton quitButton;
 
+
+    // Sliders
+    static final int GravMin = 0;
+    static final int GravMAx = 30;
+    static final int GravInit = 15;
+
+
+
+
+
+
     // Add gizmo buttons
     private JButton addSquareButton;
     private JButton addCircleButton;
@@ -131,6 +142,17 @@ public class BuildModeGUI implements GameGUI {
         runModeButton.setMaximumSize(maxButtonSize);
         runModeButton.addActionListener(listener);
 
+
+        JLabel gravSlider = new JLabel("Grav", JLabel.CENTER);
+        gravSlider.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JSlider grav = new JSlider(JSlider.HORIZONTAL, GravMin, GravMAx, GravInit);
+        //grav.addChangeListener(this);
+        grav.setMajorTickSpacing(10);
+        grav.setMinorTickSpacing(1);
+        grav.setPaintTicks(true);
+        grav.setPaintLabels(true);
+
+
         quitButton = new JButton("Quit");
         quitButton.setFont(font);
         quitButton.setMaximumSize(maxButtonSize);
@@ -141,6 +163,8 @@ public class BuildModeGUI implements GameGUI {
         buttonPanel.add(addBallButton);
         buttonPanel.add(rotateButton);
         buttonPanel.add(deleteButton);
+        buttonPanel.add(gravSlider);
+        buttonPanel.add(grav);
         buttonPanel.add(moveButton);
         buttonPanel.add(clearBoardButton);
         buttonPanel.add(connectButton);
@@ -150,6 +174,7 @@ public class BuildModeGUI implements GameGUI {
         buttonPanel.add(loadModelButton);
         buttonPanel.add(runModeButton);
         buttonPanel.add(quitButton);
+
 
         buttonPanel.setSize(new Dimension(200,800));
 
