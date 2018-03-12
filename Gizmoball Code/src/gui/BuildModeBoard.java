@@ -79,13 +79,13 @@ public class BuildModeBoard extends JPanel {
                 int[] ypoints = ((Polygon)currentGizmo.getShape()).ypoints;
                 int[] scaledXpoints = new int[3];
                 int[] scaledYpoints = new int[3];
+
                 for(int i = 0; i < 3; i++) {
                     scaledXpoints[i] = xpoints[i]*ppl;
                     scaledYpoints[i] = ypoints[i]*ppl;
                 }
-                Polygon scaledTriangle = new Polygon(scaledXpoints, scaledYpoints, 3);
 
-                        //Polygon scaledTriangle = new Polygon(new int[] {x, (x + ppl), x}, new int[] {y, y + ppl, y + ppl}, 3);
+                Polygon scaledTriangle = new Polygon(scaledXpoints, scaledYpoints, 3);
                 graphics2D.fillPolygon(scaledTriangle);
             }
 

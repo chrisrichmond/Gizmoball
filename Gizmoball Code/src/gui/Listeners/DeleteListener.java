@@ -39,7 +39,6 @@ public class DeleteListener implements MouseInputListener {
         if(model.removeGizmo(deletedGizmo)){
             view.updateMessagePanel("[ Deleted Gizmo '"+deletedGizmo.getID()+"' ]");
         }
-        view.update();
     }
 
     @Override

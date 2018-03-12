@@ -60,5 +60,17 @@ public interface ModelAPI extends Observable{
 
     public void replaceBall(Ball ball);
 
+    public List<Gizmo> getSquares();
+
+    public List<Gizmo> getCircles();
+
+    public List<Gizmo> getTriangles();
+
+    public List<Gizmo> getAbsorbers();
+
+    public List<Gizmo> getLeftFlippers();
+
+    public List<Gizmo> getRightFlippers();
+
 
 }

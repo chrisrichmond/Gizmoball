@@ -33,7 +33,6 @@ public class AddTriangleListener implements MouseInputListener {
         }else{
             view.updateMessagePanel("Cell already occupied!");
         }
-        view.update();
     }
 
     @Override

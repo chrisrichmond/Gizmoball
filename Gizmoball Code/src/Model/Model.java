@@ -324,8 +324,6 @@ public class Model implements ModelAPI {
 	public List<Gizmo> getRightFlippers(){
 		return rightFlippers;
 	}
-	
-
 
 	@Override
 	public boolean removeGizmo(Gizmo gizmo) {
@@ -334,9 +332,15 @@ public class Model implements ModelAPI {
 		if(gizmos.contains(gizmo)){
 			gizmos.remove(gizmo);
 			success = true;
+			for (Gizmo currentGizmo: gizmos) {
+				System.out.println(currentGizmo.getID());
+			}
 		}
 		if(squares.contains(gizmo)){
 			squares.remove(gizmo);
+			for (Gizmo currentGizmo: squares) {
+				System.out.println(currentGizmo.getID());
+			}
 		}
 		if(circles.contains(gizmo)){
 			circles.remove(gizmo);
@@ -353,6 +357,9 @@ public class Model implements ModelAPI {
 		if(rightFlippers.contains(gizmo)){
 			rightFlippers.remove(gizmo);
 		}
+
+		setChanged();
+		notifyObservers();
 
 		return success;
 	}
@@ -378,7 +385,11 @@ public class Model implements ModelAPI {
 			} else if (gizmo.getType().equals("absorber")) {
 				absorbers.add(gizmo);
 			}
+			System.out.println("added "+gizmo.getType()+" gizmo '"+gizmo.getID()+"' at X="+gizmo.getYPos()+", Y="+gizmo.getYPos());
+			setChanged();
+			notifyObservers();
 		}
+
 
 		return success;
 	}
