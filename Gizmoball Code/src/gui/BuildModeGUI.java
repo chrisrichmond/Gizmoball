@@ -143,14 +143,26 @@ public class BuildModeGUI implements GameGUI {
         runModeButton.addActionListener(listener);
 
 
-        JLabel gravSlider = new JLabel("Grav", JLabel.CENTER);
-        gravSlider.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JSlider grav = new JSlider(JSlider.HORIZONTAL, GravMin, GravMAx, GravInit);
+
+        //
+        JLabel grav = new JLabel("Gravity Slider", JLabel.CENTER);
+        grav.setFont(font);
+        JLabel SPACERH4X = new JLabel("", JLabel.CENTER);
+        grav.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JSlider gravSlider = new JSlider(JSlider.HORIZONTAL, GravMin, GravMAx, GravInit);
+
+
+        // This line does nothing ??? what WHY
+        //gravSlider.setMinimumSize((new Dimension(100,100)));
+
+
         //grav.addChangeListener(this);
-        grav.setMajorTickSpacing(10);
-        grav.setMinorTickSpacing(1);
-        grav.setPaintTicks(true);
-        grav.setPaintLabels(true);
+
+
+        gravSlider.setMajorTickSpacing(10);
+        gravSlider.setMinorTickSpacing(1);
+        gravSlider.setPaintTicks(true);
+        gravSlider.setPaintLabels(true);
 
 
         quitButton = new JButton("Quit");
@@ -163,8 +175,8 @@ public class BuildModeGUI implements GameGUI {
         buttonPanel.add(addBallButton);
         buttonPanel.add(rotateButton);
         buttonPanel.add(deleteButton);
-        buttonPanel.add(gravSlider);
-        buttonPanel.add(grav);
+
+
         buttonPanel.add(moveButton);
         buttonPanel.add(clearBoardButton);
         buttonPanel.add(connectButton);
@@ -174,6 +186,17 @@ public class BuildModeGUI implements GameGUI {
         buttonPanel.add(loadModelButton);
         buttonPanel.add(runModeButton);
         buttonPanel.add(quitButton);
+
+
+
+
+
+        buttonPanel.add(SPACERH4X);
+        buttonPanel.add(SPACERH4X);
+        buttonPanel.add(grav);
+        buttonPanel.add(gravSlider);
+
+
 
 
         buttonPanel.setSize(new Dimension(200,800));
