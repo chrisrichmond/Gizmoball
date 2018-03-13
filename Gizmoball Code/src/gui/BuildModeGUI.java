@@ -243,12 +243,25 @@ public class BuildModeGUI implements GameGUI {
         backButton.setMaximumSize(maxButtonSize);
         backButton.addActionListener(listener);
 
+
+
+        // Adding rotate to AddGizmo menu
+        rotateButton = new JButton("Rotate");
+        rotateButton.setFont(font);
+        rotateButton.setMaximumSize(maxButtonSize);
+        rotateButton.addActionListener(listener);
+
+
+
+
         buttonPanel.add(addSquareButton);
         buttonPanel.add(addCircleButton);
         buttonPanel.add(addTriangleButton);
         buttonPanel.add(addAbsorberButton);
         buttonPanel.add(addLeftFlipperButton);
         buttonPanel.add(addRightFlipperButton);
+        // Adding rotate to AddGizmo menu
+        buttonPanel.add(rotateButton);
         buttonPanel.add(backButton);
 
         buttonPanel.setSize(new Dimension(200,800));

@@ -18,7 +18,7 @@ public class RunModeGUI implements GameGUI {
     private JPanel buttonPanel;
     private JButton startButton;
     private JButton stopButton;
-    private JButton tickButton;
+    private static JButton tickButton;
     private JButton loadButton;
     private JButton reloadButton;
     private JButton buildModeButton;
@@ -40,6 +40,14 @@ public class RunModeGUI implements GameGUI {
         font = new Font("Arial", Font.BOLD, 12);
         maxButtonSize = new Dimension(150,50);
         listener = new RunListener(model, view);
+    }
+
+    public static void disableButton(){
+        if (tickButton.isEnabled()) {
+            tickButton.setEnabled(false);
+        } else {
+            tickButton.setEnabled(true);
+        }
     }
 
     @Override

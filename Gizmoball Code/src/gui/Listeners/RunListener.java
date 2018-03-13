@@ -1,6 +1,7 @@
 package gui.Listeners;
 
 import Model.ModelAPI;
+import gui.RunModeGUI;
 import gui.View;
 
 import java.awt.event.*;
@@ -38,9 +39,11 @@ public class RunListener implements GBallListener{
             switch(e.getActionCommand()){
                 case("Start"):
                     timer.start();
+                    RunModeGUI.disableButton();
                     break;
                 case("Stop"):
                     timer.stop();
+                    RunModeGUI.disableButton();
                     break;
                 case("Tick"):
                     model.moveBall();
