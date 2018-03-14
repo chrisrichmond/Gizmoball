@@ -33,18 +33,34 @@ class ModelTest {
     }
 
     @Test
+    public void testRemoveCircle(){
+        m1.removeGizmo(circle);
+        assertEquals(m1.getCircles().size(), 0);
+    }
+
+    @Test
     public void testGetSquares(){
         m1.addGizmo(square);
         assertEquals(m1.getSquares().size(), 1);
     }
 
     @Test
-    public void testGettriangle(){
+    public void testRemoveSquare(){
+        m1.removeGizmo(square);
+        assertEquals(m1.getSquares().size(), 0);
+    }
+
+    @Test
+    public void testGetTriangle(){
         m1.addGizmo(triangle);
         assertEquals(m1.getTriangles().size(), 1);
     }
 
-
+    @Test
+    public void testRemoveTriangle(){
+        m1.removeGizmo(triangle);
+        assertEquals(m1.getTriangles().size(), 0);
+    }
 
 
  }
