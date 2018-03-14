@@ -33,9 +33,9 @@ public class RotateListener implements MouseInputListener {
 
         if(!model.isCellEmpty(xPos1,yPos1)) {
             if (model.rotateGizmo(rotatedGizmo)) {
-                view.updateMessagePanel("Rotated Gizmo '" + rotatedGizmo.getID() + "'");
+                view.updateMessagePanel("Rotate mode - Rotated Gizmo '" + rotatedGizmo.getID() + "'");
             } else {
-                view.updateMessagePanel("Only triangles can be rotated!");
+                view.updateMessagePanel("Rotate mode - Only triangles can be rotated!");
             }
         }
     }

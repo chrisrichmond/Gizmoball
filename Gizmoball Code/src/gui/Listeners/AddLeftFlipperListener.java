@@ -28,8 +28,8 @@ public class AddLeftFlipperListener implements MouseInputListener {
     public void mousePressed(MouseEvent e) {
         xPos1 = (int)(e.getX()/view.getPpl());
         yPos1 = (int)(e.getY()/view.getPpl());
-        if(model.addGizmo(new LFlipper("LF", xPos1, yPos1))) {  // NEED TO SORT OUT UNIQUE ID ASSIGNMENT
-            view.updateMessagePanel("Drawing leftflipper at X="+xPos1+", Y="+yPos1);
+        if(model.addGizmo(new LFlipper("LF", xPos1, yPos1))&& (model.isCellEmpty(xPos1, yPos1))) {  // NEED TO SORT OUT UNIQUE ID ASSIGNMENT
+            view.updateMessagePanel("Add LFlipper - Drawing leftflipper at X="+xPos1+", Y="+yPos1);
         }else{
             view.updateMessagePanel("Cell already occupied!");
         }

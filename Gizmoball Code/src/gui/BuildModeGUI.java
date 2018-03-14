@@ -288,7 +288,7 @@ public class BuildModeGUI implements GameGUI {
         messagePanel = new JPanel();
         JLabel messageLabel = new JLabel(message);
 
-        messageLabel.setFont(font);
+        messageLabel.setFont(font.deriveFont(Font.BOLD, 13f));
         messagePanel.add(messageLabel);
         messagePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
 

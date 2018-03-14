@@ -1,6 +1,7 @@
 package gui.Listeners;
 
 import Model.ModelAPI;
+import Model.gizmos.RFlipper;
 import gui.View;
 
 import javax.swing.event.MouseInputListener;
@@ -25,8 +26,15 @@ public class AddRightFlipperListener implements MouseInputListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        xPos1 = (int)(e.getX()/view.getPpl());
+        yPos1 = (int)(e.getY()/view.getPpl());
+        if(model.addGizmo(new RFlipper("RF", xPos1, yPos1))&& (model.isCellEmpty(xPos1, yPos1))) {  // NEED TO SORT OUT UNIQUE ID ASSIGNMENT
+            view.updateMessagePanel("Add RFlipper - Drawing rightflipper at X="+xPos1+", Y="+yPos1);
+        }else{
+            view.updateMessagePanel("Cell already occupied!");
+        }
     }
+
 
     @Override
     public void mouseReleased(MouseEvent e) {
