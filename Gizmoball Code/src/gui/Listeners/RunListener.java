@@ -40,11 +40,11 @@ public class RunListener implements GBallListener{
             switch(e.getActionCommand()){
                 case("Start"):
                     timer.start();
-                    RunModeGUI.disableButton();
+                    RunModeGUI.disableButtons();
                     break;
                 case("Stop"):
                     timer.stop();
-                    RunModeGUI.disableButton();
+                    RunModeGUI.enableButtons();
                     break;
                 case("Tick"):
                     model.moveBall();
