@@ -3,10 +3,8 @@ import Model.Model;
 import Model.Ball;
 import Model.BallImpl;
 import Model.ModelAPI;
-import Model.gizmos.CircularBumper;
-import Model.gizmos.Gizmo;
-import Model.gizmos.SquareBumper;
-import Model.gizmos.TriangularBumper;
+import Model.gizmos.*;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -14,9 +12,6 @@ import physics.Angle;
 import physics.Vect;
 
 import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,6 +26,7 @@ class ModelTest {
     private Gizmo circle = new CircularBumper("5", 5, 5);
     private Gizmo triangle = new TriangularBumper("2", 12, 12);
     private Gizmo square = new SquareBumper("1", 1, 1);
+    private Gizmo absorb = new Absorber("AB", 0, 0 , 10, 0);
 
     @BeforeAll
     public  void setUp(){
@@ -48,6 +44,19 @@ class ModelTest {
     public void testRemoveCircle(){
         m1.removeGizmo(circle);
         assertEquals(m1.getCircles().size(), 0);
+    }
+
+
+    @Test
+    public void testGetAbsorber(){
+        m1.addGizmo(absorb);
+        assertEquals(m1.getAbsorbers().size(), 1);
+    }
+
+    @Test
+    public void testRemoveAbsorber(){
+        m1.removeGizmo(absorb);
+        assertEquals(m1.getAbsorbers().size(), 0);
     }
 
     @Test
@@ -98,7 +107,7 @@ class ModelTest {
     }
 
     @Test
-    public void testBallStoppedandID(){
+    public void testBallStoppedAndID(){
         m1.getBall().setStopped(true);
         assertEquals(m1.getBall().isStopped(), true);
         assertEquals(m1.getBall().getID(), "B");
@@ -129,13 +138,24 @@ class ModelTest {
     }
 
     @Test
-    public void testSetandGetVelocity(){
+    public void testSetAndGetVelocity(){
         double test1 = 5;
         Angle agl = new Angle(test1);
         Vect v1 = new Vect(agl);
 
         m1.getBall().setVelocity(v1);
         assertEquals(m1.getBall().getVelocity(), v1);
+    }
+
+    @Test
+    public void testGetGizmoCoords(){
+        m1.addGizmo(circle);
+        assertEquals(m1.getGizmoByCoords(5, 5), circle);
+    }
+
+    @AfterAll
+    public void tearDown(){
+        m1 = null;
     }
 
 
