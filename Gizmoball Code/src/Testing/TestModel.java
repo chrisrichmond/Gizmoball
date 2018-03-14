@@ -10,6 +10,8 @@ import Model.gizmos.TriangularBumper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import physics.Angle;
+import physics.Vect;
 
 import java.awt.*;
 import java.io.File;
@@ -18,6 +20,7 @@ import java.net.URL;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ModelTest {
@@ -114,8 +117,25 @@ class ModelTest {
     }
 
     @Test
-    public void testCellSpaceisEmpty(){
+    public void testCellSpaceIsEmpty(){
         assertEquals(m1.isCellEmpty(9, 9), true);
+
+    }
+
+    @Test
+    public void testReplaceBall(){
+        Ball ball2 = new BallImpl("B2",10.5F, 15.0F, 0.0D, 0.0D);
+        assertNotEquals(ball2, m1.getBall());
+    }
+
+    @Test
+    public void testSetandGetVelocity(){
+        double test1 = 5;
+        Angle agl = new Angle(test1);
+        Vect v1 = new Vect(agl);
+
+        m1.getBall().setVelocity(v1);
+        assertEquals(m1.getBall().getVelocity(), v1);
     }
 
 
