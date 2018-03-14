@@ -31,7 +31,7 @@ public class AddBallListener implements MouseInputListener{
 
         if(model.isCellEmpty(xPos1, yPos1)){
             model.replaceBall(new BallImpl("B", xPos1+0.5F, yPos1+0.5F, 0.0, 0.0));
-            view.updateMessagePanel("Drawing ball at X="+xPos1+", Y="+yPos1);
+            view.updateMessagePanel("Add Ball - Drawing ball at X="+xPos1+", Y="+yPos1);
         }else{
             view.updateMessagePanel("Cell already occupied");
         }

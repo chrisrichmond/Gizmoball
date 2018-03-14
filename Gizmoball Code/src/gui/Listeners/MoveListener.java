@@ -33,7 +33,7 @@ public class MoveListener implements MouseInputListener {
         yPos1 = (int)(e.getY()/view.getPpl());
         if(!model.isCellEmpty(xPos1,yPos1)){
             movedGizmo = model.getGizmoByCoords(xPos1,yPos1);
-            view.updateMessagePanel("Grabbed Gizmo '"+movedGizmo.getID()+"' at X="+movedGizmo.getXPos()+", Y="+movedGizmo.getYPos()+" . . .");
+            view.updateMessagePanel("Move mode - Grabbed Gizmo '"+movedGizmo.getID()+"' at X="+movedGizmo.getXPos()+", Y="+movedGizmo.getYPos()+" . . .");
         }
     }
 

@@ -36,45 +36,47 @@ public class BuildListener implements GBallListener {
             // Build Mode button menu
             case("Add Gizmo"):
                 view.addGizmoBuildMode();
-                view.updateMessagePanel("Select a gizmo type to add to the board");
+                view.updateMessagePanel("Add Gizmo - Select a gizmo type to add to the board");
                 setMouseListener(doNothingMouse);
                 break;
             case("Add Ball"):
                 final MouseInputListener addBallListener = new AddBallListener(model, view);
-                view.updateMessagePanel("Click on the board to add a new ball");
+                view.updateMessagePanel("Add Ball - Click on the board to add a new ball");
                 setMouseListener(addBallListener);
                 break;
             case("Rotate"):
                 final MouseInputListener rotateListener = new RotateListener(model, view);
-                view.updateMessagePanel("Click on a triangular gizmo to rotate it");
+                view.updateMessagePanel("Rotate - Click on a triangular gizmo to rotate it");
                 setMouseListener(rotateListener);
                 break;
             case("Delete"):
                 final MouseInputListener deleteListener = new DeleteListener(model, view);
-                view.updateMessagePanel("Click on the board to delete a gizmo");
+                view.updateMessagePanel("Delete - Click on the board to delete a gizmo");
                 setMouseListener(deleteListener);
                 break;
             case("Move"):
                 final MouseInputListener moveListener = new MoveListener(model, view);
-                view.updateMessagePanel("Click and drag a gizmo to reposition it");
+                view.updateMessagePanel("Move - Click and drag a gizmo to reposition it");
                 setMouseListener(moveListener);
                 break;
             case("Clear Board"):
                 model.clear();
+                view.updateMessagePanel("Board Cleared");
                 break;
             case("Connect"):
-
+                view.updateMessagePanel("Connect Gizmo");
                 break;
             case("Disconnect"):
-
+                view.updateMessagePanel("Disonnect Gizmo");
                 break;
             case("Key Connect"):
-
+                view.updateMessagePanel("Key Connect Gizmo");
                 break;
             case("Key Disconnect"):
-
+                view.updateMessagePanel("Key Disconnect Gizmo");
                 break;
             case("Load Model"):
+                view.updateMessagePanel("Load Model");
                 int returnVal = fileChooser.showOpenDialog(view.getMainFrame());
                 fileChooser.setDialogTitle("Load a model from file");
                 if(returnVal == JFileChooser.APPROVE_OPTION){
@@ -101,32 +103,32 @@ public class BuildListener implements GBallListener {
             // Build Mode "Add Gizmo" button menu
             case("Add Square"):
                 final MouseInputListener addSquareListener = new AddSquareListener(model, view);
-                view.updateMessagePanel("Click on the board to add a square");
+                view.updateMessagePanel("Add Square - Click on the board to add a square");
                 setMouseListener(addSquareListener);
                 break;
             case("Add Circle"):
                 final MouseInputListener addCircleListener = new AddCircleListener(model, view);
-                view.updateMessagePanel("Click on the board to add a circle");
+                view.updateMessagePanel("Add Circle - Click on the board to add a circle");
                 setMouseListener(addCircleListener);
                 break;
             case("Add Triangle"):
                 final MouseInputListener addTriangleListener = new AddTriangleListener(model, view);
-                view.updateMessagePanel("Click on the board to add a triangle");
+                view.updateMessagePanel("Add Triangle - Click on the board to add a triangle");
                 setMouseListener(addTriangleListener);
                 break;
             case("Add Absorber"):
                 final MouseInputListener addAbsorberListener = new AddAbsorberListener(model, view);
-                view.updateMessagePanel("Click on the board to add an absorber");
+                view.updateMessagePanel("Add Absorber - Click on the board to add an absorber");
                 setMouseListener(addAbsorberListener);
                 break;
             case("Add Left Flipper"):
                 final MouseInputListener addLeftFlipperListener = new AddLeftFlipperListener(model, view);
-                view.updateMessagePanel("Click on the board to add a left flipper");
+                view.updateMessagePanel("Add LFlipper - Click on the board to add a left flipper");
                 setMouseListener(addLeftFlipperListener);
                 break;
             case("Add Right Flipper"):
                 final MouseInputListener addRightFlipperListener = new AddRightFlipperListener(model, view);
-                view.updateMessagePanel("Click on the board to add a right flipper");
+                view.updateMessagePanel("Add RFlipper - Click on the board to add a right flipper");
                 setMouseListener(addRightFlipperListener);
                 break;
             case("Back"):

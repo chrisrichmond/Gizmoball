@@ -33,7 +33,7 @@ public class AddAbsorberListener implements MouseInputListener {
         xPos1 = (int)(e.getX()/view.getPpl());
         yPos1 = (int)(e.getY()/view.getPpl());
         if(model.isCellEmpty(xPos1, yPos1)){  // NEED TO SORT OUT UNIQUE ID ASSIGNMENT
-            view.updateMessagePanel("Drawing absorber from X="+xPos1+", Y="+yPos1+" to ...");
+            view.updateMessagePanel("Add Absorber - Drawing absorber from X="+xPos1+", Y="+yPos1+" to ...");
             valid = true;
         }else{
             view.updateMessagePanel("Cell already occupied!");
