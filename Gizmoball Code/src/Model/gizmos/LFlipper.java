@@ -14,7 +14,10 @@ public class LFlipper implements Gizmo{
     private int xPos;
     private int yPos;
     private RectangleClass rectangle;
-    final private int width = 2;
+    final private float breadth = 0.5F;
+    final private float length = 2.0F;
+    private float pivotXpos;
+    private float pivotYpos;
     private Color colour;
     private String ID;
     final private String type = "leftflipper";
@@ -23,6 +26,10 @@ public class LFlipper implements Gizmo{
         this.ID = ID;
         this.xPos = xPos;
         this.yPos = yPos;
+        this.rectangle = new RectangleClass(xPos, yPos, breadth, length);
+        this.colour = Color.orange;
+        this.pivotXpos = breadth/2;
+        this.pivotYpos = breadth/2;
     }
 
     @Override
@@ -63,12 +70,12 @@ public class LFlipper implements Gizmo{
 
     @Override
     public List<LineSegment> getLines() {
-        return null;
+        return rectangle.getLines();
     }
 
     @Override
     public List<Circle> getCircles() {
-        return null;
+        return rectangle.getCircles();
     }
 
     @Override
@@ -76,11 +83,21 @@ public class LFlipper implements Gizmo{
 
     }
 
+    public float getBreadth(){
+        return breadth;
+    }
+
+    public float getLength(){
+        return length;
+    }
+
+    // USE getBreadth()
     @Override
     public int getWidth() {
         return 0;
     }
 
+    // USE getLength()
     @Override
     public int getHeight() {
         return 0;
@@ -93,12 +110,12 @@ public class LFlipper implements Gizmo{
 
     @Override
     public String getID() {
-        return null;
+        return ID;
     }
 
     @Override
     public Shape getShape() {
-        return null;
+        return rectangle.makeRectangle();
     }
 
     @Override

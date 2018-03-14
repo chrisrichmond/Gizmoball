@@ -40,7 +40,10 @@ public class Absorber implements Gizmo{
 
     @Override
     public void setPos(int xPos, int yPos) {
-
+        this.xPos1 = xPos;
+        this.yPos1 = yPos;
+        this.xPos2 = xPos + width;
+        this.yPos2 = yPos + height;
     }
 
     @Override

@@ -7,12 +7,16 @@ public class RectangleClass{
 
     private int X = 0;
     private int Y = 0;
-    private int width = 1;
-    private int height = 1;
+    private float width = 1;
+    private float height = 1;
     private ArrayList<LineSegment> lines = new ArrayList<>();
     private ArrayList<Circle> circles = new ArrayList<>();
 
     public RectangleClass(int X, int Y, int width, int height) {
+        this(X, Y, (float)width, (float)height);
+    }
+
+    public RectangleClass(int X, int Y, float width, float height) {
         this.X = X;
         this.Y = Y;
         this.width = width;

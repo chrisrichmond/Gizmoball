@@ -8,6 +8,7 @@ import physics.TriangleClass;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class RunModeBoard extends JPanel {
@@ -44,54 +45,58 @@ public class RunModeBoard extends JPanel {
         }
 
         // Draw Gizmos
+        try {
+            for (Gizmo currentGizmo : gizmos) {
 
-        for (Gizmo currentGizmo: gizmos) {
+                int x = ppl * (currentGizmo.getXPos());
+                int y = ppl * (currentGizmo.getYPos());
+                int width = ppl * (currentGizmo.getWidth());
+                int height = ppl * (currentGizmo.getHeight());
+                graphics2D.setColor(currentGizmo.getColour());
 
-            int x = ppl*(currentGizmo.getXPos());
-            int y = ppl*(currentGizmo.getYPos());
-            int width = ppl*(currentGizmo.getWidth());
-            int height = ppl*(currentGizmo.getHeight());
-            graphics2D.setColor(currentGizmo.getColour());
+                if (currentGizmo.getType().equals("absorber")) {
+                    // Draw Absorber
+                    graphics2D.fillRoundRect(x, y, width, height, 15, 15);
+                } else if (currentGizmo.getType().equals("circle")) {
+                    // Draw CircularBumper
+                    graphics2D.setPaint(Color.blue);
+                    graphics2D.fill(currentGizmo.getCircle().toEllipse2D()); //Outline circles
+                    graphics2D.fillOval(x, y, width, height); //Solid Circles
 
-            if(currentGizmo.getType().equals("absorber")){
-                // Draw Absorber
-                graphics2D.fillRoundRect(x, y, width, height, 15, 15);
-            }else if(currentGizmo.getType().equals("circle")){
-                // Draw CircularBumper
-                graphics2D.setPaint(Color.blue);
-                graphics2D.fill(currentGizmo.getCircle().toEllipse2D()); //Outline circles
-                graphics2D.fillOval(x,y,width,height); //Solid Circles
+                    graphics.drawOval(x, y, width, height);
+                } else if (currentGizmo.getType().equals("square")) {
+                    // Draw SquareBumper
+                    graphics2D.fillRect(x, y, width, height);
 
-                graphics.drawOval(x, y, width, height);
-            }else if(currentGizmo.getType().equals("square")){
-                // Draw SquareBumper
-                graphics2D.fillRect(x,y,width,height);
+                    // Debugging Collision Boundaries
+                    for (LineSegment currentLine : currentGizmo.getLines()) {
+                        graphics2D.drawLine((int) (ppl * currentLine.p1().x()), (int) (ppl * currentLine.p1().y()), (int) (ppl * currentLine.p2().x()), (int) (ppl * currentLine.p2().y()));
+                    }
 
-                // Debugging Collision Boundaries
-                for (LineSegment currentLine: currentGizmo.getLines()){
-                    graphics2D.drawLine((int)(ppl*currentLine.p1().x()),(int)(ppl*currentLine.p1().y()),(int)(ppl*currentLine.p2().x()),(int)(ppl*currentLine.p2().y()));
+                } else if (currentGizmo.getType().equals("triangle")) {
+                    // Draw TriangularBumper
+                    int[] xpoints = ((Polygon) currentGizmo.getShape()).xpoints;
+                    int[] ypoints = ((Polygon) currentGizmo.getShape()).ypoints;
+                    int[] scaledXpoints = new int[3];
+                    int[] scaledYpoints = new int[3];
+
+                    for (int i = 0; i < 3; i++) {
+                        scaledXpoints[i] = xpoints[i] * ppl;
+                        scaledYpoints[i] = ypoints[i] * ppl;
+                    }
+
+                    for (LineSegment currentLine : currentGizmo.getLines()) {
+                        graphics2D.drawLine((int) (ppl * currentLine.p1().x()), (int) (ppl * currentLine.p1().y()), (int) (ppl * currentLine.p2().x()), (int) (ppl * currentLine.p2().y()));
+                    }
+
+                    Polygon scaledTriangle = new Polygon(scaledXpoints, scaledYpoints, 3);
+                    graphics2D.fillPolygon(scaledTriangle);
                 }
 
-            }else if(currentGizmo.getType().equals("triangle")){
-                // Draw TriangularBumper
-                int[] xpoints = ((Polygon)currentGizmo.getShape()).xpoints;
-                int[] ypoints = ((Polygon)currentGizmo.getShape()).ypoints;
-                int[] scaledXpoints = new int[3];
-                int[] scaledYpoints = new int[3];
-
-                for(int i = 0; i < 3; i++) {
-                    scaledXpoints[i] = xpoints[i]*ppl;
-                    scaledYpoints[i] = ypoints[i]*ppl;
-                }
-
-                for(LineSegment currentLine: currentGizmo.getLines()){
-                    graphics2D.drawLine((int)(ppl*currentLine.p1().x()),(int)(ppl*currentLine.p1().y()),(int)(ppl*currentLine.p2().x()),(int)(ppl*currentLine.p2().y()));
-                }
-
-                Polygon scaledTriangle = new Polygon(scaledXpoints, scaledYpoints, 3);
-                graphics2D.fillPolygon(scaledTriangle);
             }
-
+        }catch(ConcurrentModificationException cmx){
+            System.out.println("ConcurrentModificationException drawing run board, retrying...");
+            this.paintComponent(graphics);
         }
 
     }

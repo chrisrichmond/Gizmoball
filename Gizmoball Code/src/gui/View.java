@@ -207,7 +207,7 @@ public class View implements Observer{
         System.out.println("mainFrame height set to "+mainFrame.getHeight());
         mainFrame.repaint();
         mainFrame.pack();
-        mainFrame.setLocationRelativeTo(null);
+        //mainFrame.setLocationRelativeTo(null);
     }
 
     public void openSettingsFrame(){
@@ -251,7 +251,7 @@ public class View implements Observer{
         cp.add(currentMessagePanel, BorderLayout.PAGE_END);
         mainFrame.repaint();
         mainFrame.pack();
-        mainFrame.setLocationRelativeTo(null);
+        //mainFrame.setLocationRelativeTo(null);
 
     }
 
