@@ -3,10 +3,7 @@ import Model.Model;
 import gui.View;
 import utilities.*;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 import static java.lang.System.getProperty;
 
@@ -45,7 +42,11 @@ public class Main {
         View view = new View(model);
         view.buildMode();
 
-        model.loadFile(defaultGameFile.getAbsolutePath());
+        try {
+            model.loadFile(defaultGameFile.getAbsolutePath());
+        }catch(FileNotFoundException ex){
+            System.out.println("File input not found");
+        }
 
         System.out.println("Loaded default game file '"+defaultGamePath+"'");
 

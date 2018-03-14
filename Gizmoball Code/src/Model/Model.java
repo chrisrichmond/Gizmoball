@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +52,7 @@ public class Model implements ModelAPI {
 		this.ball = ball;
 	}
 
- 	public void loadFile(String filename){
+ 	public void loadFile(String filename) throws FileNotFoundException{
 	    clear();
 	    fileHandler.loadFromFile(filename);
 	    setChanged();

@@ -6,6 +6,7 @@ import gui.View;
 
 import java.awt.event.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
 
@@ -54,7 +55,11 @@ public class RunListener implements GBallListener{
                     if(returnVal == JFileChooser.APPROVE_OPTION){
                         // open chosen file
                         latestFile = fileChooser.getSelectedFile();
-                        model.loadFile(latestFile.getAbsolutePath());
+                        try {
+                            model.loadFile(latestFile.getAbsolutePath());
+                        }catch(FileNotFoundException ex){
+                            System.out.println("File input not found ");
+                        }
                     }else{
                         // close window
                     }
@@ -63,8 +68,11 @@ public class RunListener implements GBallListener{
                 case("Reload"):
                     System.out.println("reload pressed");
                     if(latestFile != null){
-                        model.loadFile(latestFile.getAbsolutePath());
-                    }
+                        try {
+                            model.loadFile(latestFile.getAbsolutePath());
+                        }catch(FileNotFoundException ex){
+                            System.out.println("File input not found ");
+                        }                    }
                     break;
                 case("Build Mode"):
                     timer.stop();

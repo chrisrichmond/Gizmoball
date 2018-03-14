@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.event.MouseInputListener;
 import java.awt.event.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public class BuildListener implements GBallListener {
 
@@ -79,7 +80,11 @@ public class BuildListener implements GBallListener {
                 if(returnVal == JFileChooser.APPROVE_OPTION){
                     // open chosen file
                     latestFile = fileChooser.getSelectedFile();
-                    model.loadFile(latestFile.getAbsolutePath());
+                    try {
+                        model.loadFile(latestFile.getAbsolutePath());
+                    }catch(FileNotFoundException ex){
+                        ex.printStackTrace();
+                    }
                 }else{
                     // close window
                 }

@@ -3,6 +3,7 @@ package Model;
 import Model.gizmos.Gizmo;
 import utilities.Observable;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface ModelAPI extends Observable{
@@ -54,7 +55,7 @@ public interface ModelAPI extends Observable{
 
     public boolean removeGizmo(Gizmo gizmo);
 
-    public void loadFile(String filename);
+    public void loadFile(String filename) throws FileNotFoundException;
 
     public void saveFile(String filename);
 

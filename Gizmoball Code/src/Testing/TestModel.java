@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -92,9 +93,20 @@ class ModelTest {
     }
 
     @Test
-    public void testBallStopped(){
+    public void testBallStoppedandID(){
         m1.getBall().setStopped(true);
         assertEquals(m1.getBall().isStopped(), true);
+        assertEquals(m1.getBall().getID(), "B");
     }
+
+    @Test
+    public void testLoadFile(){
+        try {
+            m1.loadFile("default.gizmo");
+        }catch(FileNotFoundException ex){
+            ex.printStackTrace();
+        }
+    }
+
 
 }
