@@ -178,4 +178,14 @@ public class Absorber implements Gizmo{
     public void setID(String ID) {
         this.ID = ID;
     }
+
+    @Override
+    public int[][] getBounds() {
+        int[][] bounds = new int[][]{
+                {xPos1, yPos1},
+                {xPos2, yPos2}
+        };
+
+        return bounds;
+    }
 }

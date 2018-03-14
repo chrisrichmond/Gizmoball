@@ -63,4 +63,25 @@ public interface Gizmo {
 
     void setID(String ID);
 
+    /**
+     * Gets the coordinates representing the top left position to the bottom right position of the space occupied by the Gizmo
+     * Note: the bounds are different compared to the physical collision area or graphically drawn area of a Gizmo
+     * Other Gizmos cannot occupy the bounds of a Gizmo by the ball may pass through the bounds if there is not an active collision wall impeding it
+     * In Java, [rows][columns] -> [y][x] e.g. [0][1] means y=0, x=1
+     *
+     * Should be defined something like this
+     *  int[][] bounds = new int[][]{
+            {xPos1, yPos1},
+            {xPos2, yPos2}
+        };
+     *  Which would give the following reference:
+     *      bounds[0][0] = xPos1
+     *      bounds[0][1] = yPos1
+     *      bounds[1][0] = xPos2
+     *      bounds[1][1] = yPos2
+     *
+     * @return a set of coordinates representing the bounds of the Gizmo e.g. {[0,0], [1,1]}
+     */
+    int[][] getBounds();
+
 }

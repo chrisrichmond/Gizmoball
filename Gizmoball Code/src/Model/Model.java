@@ -484,15 +484,20 @@ public class Model implements ModelAPI {
 		boolean empty = true;
 
 		for(Gizmo currentGizmo: gizmos) {
-			if ((currentGizmo.getXPos() == xPos) && (currentGizmo.getYPos() == yPos)) {
+			int[][] currentBounds = currentGizmo.getBounds();
+			int currentXpos = currentBounds[0][0];
+			int currentYpos = currentBounds[0][1];
+			int currentXpos2 = currentBounds[1][0];
+			int currentYpos2 = currentBounds[1][1];
+			if((currentXpos == xPos) && (currentYpos == yPos)){
 				// cell is already occuped by currentGizmo
 				System.out.println("cell is already occuped by currentGizmo");
 				empty = false;
-			} else if ((currentGizmo.getType().equals("absorber"))
-					&& (((Absorber) currentGizmo).getYPos() == yPos)
-					&& (( xPos >= ((Absorber) currentGizmo).getXPos()) && ((xPos <= ((Absorber) currentGizmo).getXPos2())))) {
-				// cell is already occupied by an absorber
-				System.out.println("cell is already occupied by an absorber");
+			}else if(((currentGizmo.getType().equals("absorber")) || (currentGizmo.getType().equals("leftflipper")) ||(currentGizmo.getType().equals("rightflipper")))
+					&&((xPos >= currentXpos) && (xPos < currentXpos2))
+					&&(yPos >= currentYpos) && (yPos < currentYpos2)){
+				// cell is already occupied by an absorber or a leftflipper or a rightflipper
+				System.out.println("cell is already occupied by a gizmo of type "+currentGizmo.getType());
 				empty = false;
 			}
 		}

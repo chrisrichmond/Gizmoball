@@ -143,4 +143,14 @@ public class TriangularBumper implements Gizmo{
     public void setID(String ID) {
         this.ID = ID;
     }
+
+    @Override
+    public int[][] getBounds() {
+        int[][] bounds = new int[][]{
+                {xPos, yPos},
+                {xPos+getWidth(), yPos+getHeight()}
+        };
+
+        return bounds;
+    }
 }

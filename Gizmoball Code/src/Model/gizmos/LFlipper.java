@@ -3,6 +3,7 @@ package Model.gizmos;
 import Model.Ball;
 import physics.Circle;
 import physics.LineSegment;
+import physics.RectangleClass;
 import physics.Vect;
 
 import java.awt.*;
@@ -12,6 +13,8 @@ public class LFlipper implements Gizmo{
 
     private int xPos;
     private int yPos;
+    private RectangleClass rectangle;
+    final private int width = 2;
     private Color colour;
     private String ID;
     final private String type = "leftflipper";
@@ -111,5 +114,15 @@ public class LFlipper implements Gizmo{
     @Override
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    @Override
+    public int[][] getBounds() {
+        int[][] bounds = new int[][]{
+                {xPos, yPos},
+                {xPos+2, yPos+2}
+        };
+
+        return bounds;
     }
 }

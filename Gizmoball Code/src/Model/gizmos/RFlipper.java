@@ -110,4 +110,14 @@ public class RFlipper implements Gizmo{
     public void setID(String ID) {
         this.ID = ID;
     }
+
+    @Override
+    public int[][] getBounds() {
+        int[][] bounds = new int[][]{
+                {xPos, yPos},
+                {xPos+2, yPos+2}
+        };
+
+        return bounds;
+    }
 }

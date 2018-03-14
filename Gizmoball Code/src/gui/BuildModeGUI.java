@@ -43,11 +43,6 @@ public class BuildModeGUI implements GameGUI {
     static final int GravMAx = 30;
     static final int GravInit = 15;
 
-
-
-
-
-
     // Add gizmo buttons
     private JButton addSquareButton;
     private JButton addCircleButton;

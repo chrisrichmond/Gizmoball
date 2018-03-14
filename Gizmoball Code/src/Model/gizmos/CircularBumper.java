@@ -121,4 +121,15 @@ public class CircularBumper implements Gizmo {
     public void setID(String ID) {
         this.ID = ID;
     }
+
+    @Override
+    public int[][] getBounds() {
+        int[][] bounds = new int[][]{
+                {xPos, yPos},
+                {xPos+((int)(2*radius)), yPos+((int)(2*radius))}
+        };
+
+        return bounds;
+    }
+
 }
