@@ -12,7 +12,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.awt.*;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -100,12 +102,20 @@ class ModelTest {
     }
 
     @Test
-    public void testLoadFile(){
-        try {
-            m1.loadFile("default.gizmo");
-        }catch(FileNotFoundException ex){
-            ex.printStackTrace();
-        }
+    public void testCellSpaceNotEmpty(){
+        m1.addGizmo(circle);
+        assertEquals(m1.isCellEmpty(5, 5), false);
+
+        m1.addGizmo(triangle);
+        assertEquals(m1.isCellEmpty(12, 12), false);
+
+        m1.addGizmo(square);
+        assertEquals(m1.isCellEmpty(1, 1), false);
+    }
+
+    @Test
+    public void testCellSpaceisEmpty(){
+        assertEquals(m1.isCellEmpty(9, 9), true);
     }
 
 
