@@ -16,12 +16,12 @@ public class RunModeGUI implements GameGUI {
 
     // JPanel containing run mode buttons
     private JPanel buttonPanel;
-    private JButton startButton;
-    private JButton stopButton;
+    private static JButton startButton;
+    private static JButton stopButton;
     private static JButton tickButton;
-    private JButton loadButton;
+    private static JButton loadButton;
     private JButton reloadButton;
-    private JButton buildModeButton;
+    private static JButton buildModeButton;
     private JButton quitButton;
     private Font font;
     private Dimension maxButtonSize;
@@ -42,12 +42,22 @@ public class RunModeGUI implements GameGUI {
         listener = new RunListener(model, view);
     }
 
-    public static void disableButton(){
-        if (tickButton.isEnabled()) {
-            tickButton.setEnabled(false);
-        } else {
-            tickButton.setEnabled(true);
-        }
+    public static void disableButtons(){
+        tickButton.setEnabled(false);
+        loadButton.setEnabled(false);
+        buildModeButton.setEnabled(false);
+        startButton.setEnabled(false);
+        stopButton.setEnabled(true);
+
+    }
+
+
+    public static void enableButtons(){
+        tickButton.setEnabled(true);
+        loadButton.setEnabled(true);
+        buildModeButton.setEnabled(true);
+        stopButton.setEnabled(false);
+        startButton.setEnabled(true);
     }
 
     @Override
@@ -62,6 +72,7 @@ public class RunModeGUI implements GameGUI {
 
         stopButton = new JButton("Stop");
         stopButton.setFont(font);
+        stopButton.setEnabled(false);
         stopButton.setMaximumSize(maxButtonSize);
         stopButton.addActionListener(listener);
 
