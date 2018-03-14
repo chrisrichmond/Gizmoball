@@ -1,5 +1,7 @@
 package Testing;
 import Model.Model;
+import Model.Ball;
+import Model.BallImpl;
 import Model.ModelAPI;
 import Model.gizmos.CircularBumper;
 import Model.gizmos.Gizmo;
@@ -8,6 +10,8 @@ import Model.gizmos.TriangularBumper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+
+import java.awt.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,6 +21,7 @@ class ModelTest {
 
     private ModelAPI m1;
     private List<Gizmo> gizmos;
+    private Ball ball;
     private Gizmo circle = new CircularBumper("5", 5, 5);
     private Gizmo triangle = new TriangularBumper("2", 12, 12);
     private Gizmo square = new SquareBumper("1", 1, 1);
@@ -24,6 +29,7 @@ class ModelTest {
     @BeforeAll
     public  void setUp(){
         m1 = new Model();
+        ball = new BallImpl("B",18.5F, 10.0F, 0.0D, 0.0D);
     }
 
     @Test
@@ -62,5 +68,33 @@ class ModelTest {
         assertEquals(m1.getTriangles().size(), 0);
     }
 
+    @Test
+    public void testRotateTriangle(){
+        assertEquals(m1.rotateGizmo(triangle), true);
+    }
 
- }
+    @Test
+    public void testGetBallPosition(){
+        assertEquals(m1.getBall().getXpos(), 18.5F);
+        assertEquals(m1.getBall().getYpos(), 10.0F);
+    }
+
+    @Test
+    public void testGetBallRadius(){
+        assertEquals(m1.getBall().getBallRadius(), 0.25D);
+    }
+
+    @Test
+    public void testChangeBallColour(){
+        assertEquals(m1.getBall().getColour(), Color.black);
+        m1.getBall().setColour(Color.green);
+        assertEquals(m1.getBall().getColour(), Color.green);
+    }
+
+    @Test
+    public void testBallStopped(){
+        m1.getBall().setStopped(true);
+        assertEquals(m1.getBall().isStopped(), true);
+    }
+
+}
