@@ -4,13 +4,17 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+import gui.View;
 import Model.gizmos.*;
 import com.sun.xml.internal.ws.util.StringUtils;
 import utilities.Observer;
 import physics.*;
 
 public class Model implements ModelAPI {
+
+	private View view;
+
+
 	private List<Observer> observers;
 	HashMap<Gizmo,Gizmo> gizmoConnections = new HashMap<>();
 	HashMap<String,Gizmo> keyConnections = new HashMap<>();
@@ -492,7 +496,8 @@ public class Model implements ModelAPI {
 			int currentYpos2 = currentBounds[1][1];
 			if((currentXpos == xPos) && (currentYpos == yPos)){
 				// cell is already occuped by currentGizmo
-				System.out.println("cell is already occuped by currentGizmo");
+				System.out.println("cell is already occupied by currentGizmo");
+				//view.updateMessagePanel("Cell Occupied!!");
 				empty = false;
 			}else if(((currentGizmo.getType().equals("absorber")) || (currentGizmo.getType().equals("leftflipper")) ||(currentGizmo.getType().equals("rightflipper")))
 					&&((xPos >= currentXpos) && (xPos < currentXpos2))
