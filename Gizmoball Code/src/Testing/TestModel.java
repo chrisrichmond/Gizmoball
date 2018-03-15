@@ -37,97 +37,97 @@ class ModelTest {
     @Test
     public void testGetCircles(){
         m1.addGizmo(circle);
-        assertEquals(m1.getCircles().size(), 1);
+        assertEquals(1, m1.getCircles().size());
     }
 
     @Test
     public void testRemoveCircle(){
         m1.removeGizmo(circle);
-        assertEquals(m1.getCircles().size(), 0);
+        assertEquals(0, m1.getCircles().size());
     }
 
 
     @Test
     public void testGetAbsorber(){
         m1.addGizmo(absorb);
-        assertEquals(m1.getAbsorbers().size(), 1);
+        assertEquals(1, m1.getAbsorbers().size());
     }
 
     @Test
     public void testRemoveAbsorber(){
         m1.removeGizmo(absorb);
-        assertEquals(m1.getAbsorbers().size(), 0);
+        assertEquals(0, m1.getAbsorbers().size());
     }
 
     @Test
     public void testGetSquares(){
         m1.addGizmo(square);
-        assertEquals(m1.getSquares().size(), 1);
+        assertEquals(1, m1.getSquares().size());
     }
 
     @Test
     public void testRemoveSquare(){
         m1.removeGizmo(square);
-        assertEquals(m1.getSquares().size(), 0);
+        assertEquals(0, m1.getSquares().size());
     }
 
     @Test
     public void testGetTriangle(){
         m1.addGizmo(triangle);
-        assertEquals(m1.getTriangles().size(), 1);
+        assertEquals(1, m1.getTriangles().size());
     }
 
     @Test
     public void testRemoveTriangle(){
         m1.removeGizmo(triangle);
-        assertEquals(m1.getTriangles().size(), 0);
+        assertEquals(0, m1.getTriangles().size());
     }
 
     @Test
     public void testRotateTriangle(){
-        assertEquals(m1.rotateGizmo(triangle), true);
+        assertEquals(true, m1.rotateGizmo(triangle));
     }
 
     @Test
     public void testGetBallPosition(){
-        assertEquals(m1.getBall().getXpos(), 18.5F);
-        assertEquals(m1.getBall().getYpos(), 10.0F);
+        assertEquals(18.5F, m1.getBall().getXpos());
+        assertEquals(10.0F, m1.getBall().getYpos());
     }
 
     @Test
     public void testGetBallRadius(){
-        assertEquals(m1.getBall().getBallRadius(), 0.25D);
+        assertEquals(0.25D, m1.getBall().getBallRadius());
     }
 
     @Test
     public void testChangeBallColour(){
-        assertEquals(m1.getBall().getColour(), Color.black);
+        assertEquals(Color.black, m1.getBall().getColour());
         m1.getBall().setColour(Color.green);
-        assertEquals(m1.getBall().getColour(), Color.green);
+        assertEquals(Color.green, m1.getBall().getColour());
     }
 
     @Test
     public void testBallStoppedAndID(){
         m1.getBall().setStopped(true);
-        assertEquals(m1.getBall().isStopped(), true);
-        assertEquals(m1.getBall().getID(), "B");
+        assertEquals(true, m1.getBall().isStopped());
+        assertEquals("B", m1.getBall().getID());
     }
 
     @Test
     public void testCellSpaceNotEmpty(){
         m1.addGizmo(circle);
-        assertEquals(m1.isCellEmpty(5, 5), false);
+        assertEquals(false, m1.isCellEmpty(5, 5));
 
         m1.addGizmo(triangle);
-        assertEquals(m1.isCellEmpty(12, 12), false);
+        assertEquals(false, m1.isCellEmpty(12, 12));
 
         m1.addGizmo(square);
-        assertEquals(m1.isCellEmpty(1, 1), false);
+        assertEquals(false, m1.isCellEmpty(1, 1));
     }
 
     @Test
     public void testCellSpaceIsEmpty(){
-        assertEquals(m1.isCellEmpty(9, 9), true);
+        assertEquals(true, m1.isCellEmpty(9, 9));
 
     }
 
@@ -144,19 +144,43 @@ class ModelTest {
         Vect v1 = new Vect(agl);
 
         m1.getBall().setVelocity(v1);
-        assertEquals(m1.getBall().getVelocity(), v1);
+        assertEquals(v1, m1.getBall().getVelocity());
     }
 
     @Test
     public void testGetGizmoCoords(){
         m1.addGizmo(circle);
-        assertEquals(m1.getGizmoByCoords(5, 5), circle);
+        assertEquals(circle, m1.getGizmoByCoords(5, 5));
+    }
+
+    @Test
+    public void testBoolBuildMode(){
+        assertEquals(false, m1.isBuildMode());
+    }
+
+    @Test
+    public void testGizmoClearBoard(){
+        m1.addGizmo(circle);
+        assertEquals(1, m1.getCircles().size());
+        m1.clear();
+        assertEquals(0, m1.getCircles().size());
+    }
+
+    @Test
+    public void testSaveAndLoad(){
+        m1.saveFile("default.gizmo");
+        try {
+            m1.loadFile("default.gizmo");
+        }catch(Exception ex){
+            ex.printStackTrace();
+            System.out.println("file not found");
+        }
+        m1.clear();
     }
 
     @AfterAll
     public void tearDown(){
         m1 = null;
     }
-
 
 }
