@@ -1,10 +1,7 @@
 package Model.gizmos;
 
 import Model.Ball;
-import physics.Circle;
-import physics.LineSegment;
-import physics.RectangleClass;
-import physics.Vect;
+import physics.*;
 
 import java.awt.*;
 import java.util.List;
@@ -141,5 +138,9 @@ public class LFlipper implements Gizmo{
         };
 
         return bounds;
+    }
+
+    public void spin(Angle angle){
+        rectangle.rotate(new Vect(pivotXpos, pivotYpos), angle);
     }
 }

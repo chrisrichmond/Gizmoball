@@ -399,6 +399,8 @@ public class Model implements ModelAPI {
 			System.out.println("added "+gizmo.getType()+" gizmo '"+gizmo.getID()+"' at X="+gizmo.getYPos()+", Y="+gizmo.getYPos());
 			setChanged();
 			notifyObservers();
+		}else{
+			success = false;
 		}
 
 

@@ -11,6 +11,14 @@ public class RectangleClass{
     private float height = 1;
     private ArrayList<LineSegment> lines = new ArrayList<>();
     private ArrayList<Circle> circles = new ArrayList<>();
+    private LineSegment leftSide;
+    private LineSegment rightSide;
+    private LineSegment topSide;
+    private LineSegment bottomSide;
+    private Circle tLeft;
+    private Circle tRight;
+    private Circle botLeft;
+    private Circle botRight;
 
     public RectangleClass(int X, int Y, int width, int height) {
         this(X, Y, (float)width, (float)height);
@@ -22,22 +30,22 @@ public class RectangleClass{
         this.width = width;
         this.height = height;
 
-        LineSegment leftSide = new LineSegment((double)X, (double)Y, (double)X, (double)(Y + height));
+        leftSide = new LineSegment((double)X, (double)Y, (double)X, (double)(Y + height));
         lines.add(leftSide);
-        LineSegment rightSide = new LineSegment((double)X + width,(double) Y, (double)X + width, (double)(Y + height));
+        rightSide = new LineSegment((double)X + width,(double) Y, (double)X + width, (double)(Y + height));
         lines.add(rightSide);
-        LineSegment topSide = new LineSegment((double)X, (double) (Y + height), (double)(X + width), (double)(Y + height));
+        topSide = new LineSegment((double)X, (double) (Y + height), (double)(X + width), (double)(Y + height));
         lines.add(topSide);
-        LineSegment bottomSide = new LineSegment((double)X, (double)Y, (double)(X + width), (double)Y);
+        bottomSide = new LineSegment((double)X, (double)Y, (double)(X + width), (double)Y);
         lines.add(bottomSide);
 
-        Circle tLeft = new Circle((double)X, (double)(Y + height), 0);
+        tLeft = new Circle((double)X, (double)(Y + height), 0);
         circles.add(tLeft);
-        Circle tRight = new Circle((double)(X+ width), (double)(Y + height), 0);
+        tRight = new Circle((double)(X+ width), (double)(Y + height), 0);
         circles.add(tRight);
-        Circle botLeft = new Circle((double)X, (double)Y, 0);
+        botLeft = new Circle((double)X, (double)Y, 0);
         circles.add(botLeft);
-        Circle botRight = new Circle((double)(X + width), Y, 0);
+        botRight = new Circle((double)(X + width), Y, 0);
         circles.add(botRight);
     }
 
@@ -58,5 +66,21 @@ public class RectangleClass{
 
     public Rectangle2D.Double makeRectangle() {
         return new Rectangle2D.Double((double)X,(double)Y,(double)width,(double)height);
+    }
+
+    public void rotate(Vect pivot, Angle angle){
+        // Rotate LineSegments
+        lines.clear();
+        Geometry.rotateAround(leftSide, pivot, angle);
+        Geometry.rotateAround(rightSide, pivot, angle);
+        Geometry.rotateAround(topSide, pivot, angle);
+        Geometry.rotateAround(bottomSide, pivot, angle);
+
+        // Rotate Circles
+        circles.clear();
+        Geometry.rotateAround(tLeft, pivot, angle);
+        Geometry.rotateAround(tRight, pivot, angle);
+        Geometry.rotateAround(botLeft, pivot, angle);
+        Geometry.rotateAround(botRight, pivot, angle);
     }
 }
