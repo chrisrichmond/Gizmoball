@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class RunListener implements GBallListener{
 
@@ -18,6 +19,7 @@ public class RunListener implements GBallListener{
     private MouseInputListener mouseListener, doNothingMouse;
     private KeyListener keyboardListener, doNothingKeyboard;
     private JFileChooser fileChooser;
+    private FileNameExtensionFilter extensionFilter;
     private File latestFile;
 
     public RunListener(ModelAPI model, View view){
@@ -29,6 +31,9 @@ public class RunListener implements GBallListener{
         this.mouseListener = doNothingMouse;
         this.keyboardListener = doNothingKeyboard;
         this.fileChooser = new JFileChooser();
+        this.extensionFilter = new FileNameExtensionFilter("Gizmo file", "gizmo");
+        this.fileChooser.setFileFilter(extensionFilter);
+        this.fileChooser.setAcceptAllFileFilterUsed(false);
         this.latestFile = null;
     }
 

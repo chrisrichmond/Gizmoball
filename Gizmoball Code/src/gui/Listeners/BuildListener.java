@@ -6,6 +6,7 @@ import utilities.GizmoConstants;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,6 +18,7 @@ public class BuildListener implements GBallListener {
     private MouseInputListener mouseListener, doNothingMouse;
     private KeyListener keyboardListener, doNothingKeyboard;
     private JFileChooser fileChooser;
+    private FileNameExtensionFilter extensionFilter;
     private File latestFile;
 
     public BuildListener(ModelAPI model, View view){
@@ -27,6 +29,9 @@ public class BuildListener implements GBallListener {
         this.mouseListener = doNothingMouse;
         this.keyboardListener = doNothingKeyboard;
         this.fileChooser = new JFileChooser();
+        this.extensionFilter = new FileNameExtensionFilter("Gizmo file", "gizmo");
+        this.fileChooser.setFileFilter(extensionFilter);
+        this.fileChooser.setAcceptAllFileFilterUsed(false);
         this.latestFile = null;
     }
 
@@ -145,7 +150,22 @@ public class BuildListener implements GBallListener {
                 if(returnVal2 == JFileChooser.APPROVE_OPTION){
                     // save file
                     File fileToSave = fileChooser.getSelectedFile();
-                    model.saveFile(fileToSave.getAbsolutePath());
+                    String filenameToSave = fileToSave.getAbsolutePath();
+                    int filenameLength = filenameToSave.length();
+                    int fileExtensionLength = GizmoConstants.fileExtension.length();
+
+                    try{
+                        if(filenameToSave.substring(filenameLength - fileExtensionLength).equals(GizmoConstants.fileExtension)){
+                            // filename already includes extension so no need to add it
+                            model.saveFile(filenameToSave);
+                        }else{
+                            // filename does not include extension so we need to append it here
+                            model.saveFile(filenameToSave+GizmoConstants.fileExtension);
+                        }
+                    }catch(IndexOutOfBoundsException ioobx){
+                        model.saveFile(filenameToSave+GizmoConstants.fileExtension);
+                    }
+
                 }else{
                     // close window
                 }

@@ -7,6 +7,7 @@ import java.io.IOException;
 public class GizmoConstants {
 
     public static String homePath = System.getProperty("user.home");
+    public static String fileExtension = ".gizmo";
 
     public static String gizmoPath = homePath + "/GizmoFiles";
     public static String gizmoConfigPath = gizmoPath + "/config";
