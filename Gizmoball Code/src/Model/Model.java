@@ -7,6 +7,7 @@ import java.util.List;
 import gui.View;
 import Model.gizmos.*;
 import com.sun.xml.internal.ws.util.StringUtils;
+import utilities.GizmoConstants;
 import utilities.Observer;
 import physics.*;
 
@@ -395,6 +396,10 @@ public class Model implements ModelAPI {
 				triangles.add(gizmo);
 			} else if (gizmo.getType().equals("absorber")) {
 				absorbers.add(gizmo);
+			} else if (gizmo.getType().equals("leftflipper")) {
+				leftFlippers.add(gizmo);
+			} else if (gizmo.getType().equals("rightflipper")) {
+				rightFlippers.add(gizmo);
 			}
 			System.out.println("added "+gizmo.getType()+" gizmo '"+gizmo.getID()+"' at X="+gizmo.getYPos()+", Y="+gizmo.getYPos());
 			setChanged();
@@ -490,6 +495,7 @@ public class Model implements ModelAPI {
 	public boolean isCellEmpty(int xPos, int yPos){
 		boolean empty = true;
 
+
 		for(Gizmo currentGizmo: gizmos) {
 			int[][] currentBounds = currentGizmo.getBounds();
 			int currentXpos = currentBounds[0][0];
@@ -498,15 +504,23 @@ public class Model implements ModelAPI {
 			int currentYpos2 = currentBounds[1][1];
 			if((currentXpos == xPos) && (currentYpos == yPos)){
 				// cell is already occuped by currentGizmo
-				System.out.println("cell is already occupied by currentGizmo");
+				System.out.println("cell is already occupied by a gizmo of type "+currentGizmo.getType());
 				//view.updateMessagePanel("Cell Occupied!!");
 				empty = false;
-			}else if(((currentGizmo.getType().equals("absorber")) || (currentGizmo.getType().equals("leftflipper")) ||(currentGizmo.getType().equals("rightflipper")))
-					&&((xPos >= currentXpos) && (xPos < currentXpos2))
-					&&(yPos >= currentYpos) && (yPos < currentYpos2)){
-				// cell is already occupied by an absorber or a leftflipper or a rightflipper
-				System.out.println("cell is already occupied by a gizmo of type "+currentGizmo.getType());
-				empty = false;
+			}else if((currentGizmo.getType().equals("absorber")) || (currentGizmo.getType().equals("leftflipper")) ||(currentGizmo.getType().equals("rightflipper"))){
+				if (((xPos >= currentXpos) && (xPos < currentXpos2))
+						&& (yPos >= currentYpos) && (yPos < currentYpos2)) {
+					// cell is already occupied by an absorber or a leftflipper or a rightflipper
+					System.out.println("cell is already occupied by a gizmo of type " + currentGizmo.getType());
+					empty = false;
+				}else if(((currentGizmo.getType().equals("leftflipper")) || (currentGizmo.getType().equals("rightflipper")))
+						&& (((GizmoConstants.flipperXbound + xPos > currentXpos) && (xPos < currentXpos2))
+						&& (GizmoConstants.flipperYbound + yPos > currentYpos) && (yPos < currentYpos2))){
+
+					System.out.println("flipper bounds cannot be placed over existing collision area (flippers take up an area of 2Lx2L)");
+					System.out.println("cell is already occupied by a gizmo of type " + currentGizmo.getType());
+					empty = false;
+				}
 			}
 		}
 		return empty;

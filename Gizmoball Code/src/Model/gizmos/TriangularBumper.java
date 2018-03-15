@@ -95,12 +95,12 @@ public class TriangularBumper implements Gizmo{
     }
 
     @Override
-    public int getWidth() {
+    public float getWidth() {
         return 1;
     }
 
     @Override
-    public int getHeight() {
+    public float getHeight() {
         return 1;
     }
 
@@ -148,7 +148,7 @@ public class TriangularBumper implements Gizmo{
     public int[][] getBounds() {
         int[][] bounds = new int[][]{
                 {xPos, yPos},
-                {xPos+getWidth(), yPos+getHeight()}
+                {xPos+(int)getWidth(), yPos+(int)getHeight()}
         };
 
         return bounds;

@@ -50,8 +50,10 @@ public class RunModeBoard extends JPanel {
 
                 int x = ppl * (currentGizmo.getXPos());
                 int y = ppl * (currentGizmo.getYPos());
-                int width = ppl * (currentGizmo.getWidth());
-                int height = ppl * (currentGizmo.getHeight());
+                int width = ppl * (int)(currentGizmo.getWidth());
+                int height = ppl * (int)(currentGizmo.getHeight());
+                float breadth = ppl * (currentGizmo.getWidth());
+                float length = ppl * (currentGizmo.getHeight());
                 graphics2D.setColor(currentGizmo.getColour());
 
                 if (currentGizmo.getType().equals("absorber")) {
@@ -91,8 +93,10 @@ public class RunModeBoard extends JPanel {
 
                     Polygon scaledTriangle = new Polygon(scaledXpoints, scaledYpoints, 3);
                     graphics2D.fillPolygon(scaledTriangle);
+                }else if (currentGizmo.getType().equals("leftflipper")) {
+                    // Draw LeftFlipper
+                    graphics2D.fillRoundRect(x, y, (int)(breadth), (int)(length), 15, 15);
                 }
-
             }
         }catch(ConcurrentModificationException cmx){
             System.out.println("ConcurrentModificationException drawing run board, retrying...");

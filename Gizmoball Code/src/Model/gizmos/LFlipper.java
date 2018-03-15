@@ -2,6 +2,7 @@ package Model.gizmos;
 
 import Model.Ball;
 import physics.*;
+import utilities.GizmoConstants;
 
 import java.awt.*;
 import java.util.List;
@@ -90,14 +91,14 @@ public class LFlipper implements Gizmo{
 
     // USE getBreadth()
     @Override
-    public int getWidth() {
-        return 0;
+    public float getWidth() {
+        return breadth;
     }
 
     // USE getLength()
     @Override
-    public int getHeight() {
-        return 0;
+    public float getHeight() {
+        return length;
     }
 
     @Override
@@ -134,7 +135,7 @@ public class LFlipper implements Gizmo{
     public int[][] getBounds() {
         int[][] bounds = new int[][]{
                 {xPos, yPos},
-                {xPos+2, yPos+2}
+                {xPos+ GizmoConstants.flipperXbound, yPos+GizmoConstants.flipperYbound}
         };
 
         return bounds;

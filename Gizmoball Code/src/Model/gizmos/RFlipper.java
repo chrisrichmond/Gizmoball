@@ -72,12 +72,12 @@ public class RFlipper implements Gizmo{
     }
 
     @Override
-    public int getWidth() {
+    public float getWidth() {
         return 0;
     }
 
     @Override
-    public int getHeight() {
+    public float getHeight() {
         return 0;
     }
 

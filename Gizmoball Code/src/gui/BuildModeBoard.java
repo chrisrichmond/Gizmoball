@@ -52,8 +52,10 @@ public class BuildModeBoard extends JPanel {
 
                 int x = ppl * (currentGizmo.getXPos());
                 int y = ppl * (currentGizmo.getYPos());
-                int width = ppl * (currentGizmo.getWidth());
-                int height = ppl * (currentGizmo.getHeight());
+                int width = ppl * (int)(currentGizmo.getWidth());
+                int height = ppl * (int)(currentGizmo.getHeight());
+                float breadth = ppl * (currentGizmo.getWidth());
+                float length = ppl * (currentGizmo.getHeight());
                 graphics2D.setColor(currentGizmo.getColour());
 
                 if (currentGizmo.getType().equals("absorber")) {
@@ -95,10 +97,8 @@ public class BuildModeBoard extends JPanel {
                     graphics2D.fillPolygon(scaledTriangle);
                 } else if (currentGizmo.getType().equals("leftflipper")) {
                     // Draw LeftFlipper
-                    System.out.println("DRAWING LEFTFLIPPER");
-                    graphics2D.fillRoundRect(x, y, (int) ((LFlipper) currentGizmo).getBreadth(), (int) ((LFlipper) currentGizmo).getLength(), 15, 15);
+                    graphics2D.fillRoundRect(x, y, (int)(breadth), (int)(length), 15, 15);
                 }
-
             }
         }catch(ConcurrentModificationException cmx){
             System.out.println("ConcurrentModificationException drawing build board, retrying...");

@@ -17,6 +17,9 @@ public class GizmoConstants {
     public static File gizmoConfigFile = new File(gizmoConfigPath);
     public static File defaultGameFile = new File(defaultGamePath);
 
+    public static final int flipperXbound = 2;
+    public static final int flipperYbound = 2;
+
     public static void writeDefaultFile(File gameFile){
         try{
             FileWriter fw = new FileWriter(gameFile);

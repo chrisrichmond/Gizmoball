@@ -130,12 +130,12 @@ public class Absorber implements Gizmo{
     }
 
     //accessor method to return the width
-    public int getWidth(){
+    public float getWidth(){
         return width;
     }
 
     @Override
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
     @Override

@@ -47,9 +47,9 @@ public interface Gizmo {
 
     void storeGizmoBall(Ball gizmoBall);
 
-    int getWidth();
+    float getWidth();
 
-    int getHeight();
+    float getHeight();
 
     Vect fireBall();
 

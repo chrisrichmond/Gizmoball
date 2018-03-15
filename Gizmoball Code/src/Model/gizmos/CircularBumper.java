@@ -77,12 +77,12 @@ public class CircularBumper implements Gizmo {
     }
 
     @Override
-    public int getWidth() {
+    public float getWidth() {
         return 1;
     }
 
     @Override
-    public int getHeight() {
+    public float getHeight() {
         return 1;
     }
 
