@@ -14,8 +14,7 @@ import physics.Vect;
 import java.awt.*;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ModelTest {
@@ -128,7 +127,6 @@ class ModelTest {
     @Test
     public void testCellSpaceIsEmpty(){
         assertEquals(true, m1.isCellEmpty(9, 9));
-
     }
 
     @Test
@@ -156,14 +154,17 @@ class ModelTest {
     @Test
     public void testBoolBuildMode(){
         assertEquals(false, m1.isBuildMode());
+        assertTrue(!m1.isBuildMode());
     }
 
     @Test
     public void testGizmoClearBoard(){
         m1.addGizmo(circle);
         assertEquals(1, m1.getCircles().size());
+        assertTrue(1 == m1.getCircles().size());
         m1.clear();
         assertEquals(0, m1.getCircles().size());
+        assertTrue(0 == m1.getCircles().size());
     }
 
     @Test
