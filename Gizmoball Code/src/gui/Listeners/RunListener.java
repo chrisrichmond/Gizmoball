@@ -3,6 +3,7 @@ package gui.Listeners;
 import Model.ModelAPI;
 import gui.RunModeGUI;
 import gui.View;
+import utilities.GizmoConstants;
 
 import java.awt.event.*;
 import java.io.File;
@@ -55,8 +56,9 @@ public class RunListener implements GBallListener{
                     model.moveBall();
                     break;
                 case("Load Model"):
+                    fileChooser.setDialogTitle("Specify a file to load");
+                    fileChooser.setCurrentDirectory(GizmoConstants.gizmoPathDir);
                     int returnVal = fileChooser.showOpenDialog(view.getMainFrame());
-
                     if(returnVal == JFileChooser.APPROVE_OPTION){
                         // open chosen file
                         latestFile = fileChooser.getSelectedFile();

@@ -82,6 +82,8 @@ public class BuildListener implements GBallListener {
                 break;
             case("Load Model"):
                 view.updateMessagePanel("Load Model");
+                fileChooser.setDialogTitle("Specify a file to load");
+                fileChooser.setCurrentDirectory(GizmoConstants.gizmoPathDir);
                 int returnVal = fileChooser.showOpenDialog(view.getMainFrame());
                 fileChooser.setDialogTitle("Load a model from file");
                 if(returnVal == JFileChooser.APPROVE_OPTION){
