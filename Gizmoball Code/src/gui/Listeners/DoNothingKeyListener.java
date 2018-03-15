@@ -23,9 +23,7 @@ public class DoNothingKeyListener implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        for(Gizmo currentLF: model.getLeftFlippers()){
-            ((LFlipper)currentLF).spin(new Angle(3.14159265359));
-        }
+
     }
 
     @Override

@@ -1,6 +1,9 @@
 package gui.Listeners;
 
 import Model.ModelAPI;
+import Model.gizmos.Gizmo;
+import Model.gizmos.LFlipper;
+import physics.Angle;
 
 import javax.swing.event.MouseInputListener;
 import java.awt.event.MouseEvent;
@@ -20,7 +23,11 @@ public class DoNothingMouseListener implements MouseInputListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        // This code is only here for quick testing -- needs deleted later
+        for(Gizmo currentLF: model.getLeftFlippers()){
+            System.out.println("Spinning "+currentLF.getID());
+            ((LFlipper)currentLF).spin(90.0);
+        }
     }
 
     @Override

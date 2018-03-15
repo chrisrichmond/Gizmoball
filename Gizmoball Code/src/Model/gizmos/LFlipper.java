@@ -19,6 +19,7 @@ public class LFlipper implements Gizmo{
     private Color colour;
     private String ID;
     final private String type = "leftflipper";
+    private double angleSpun;
 
     public LFlipper(String ID, int xPos, int yPos){
         this.ID = ID;
@@ -28,6 +29,7 @@ public class LFlipper implements Gizmo{
         this.colour = Color.orange;
         this.pivotXpos = breadth/2;
         this.pivotYpos = breadth/2;
+        this.angleSpun = 0.0D;
     }
 
     @Override
@@ -141,7 +143,12 @@ public class LFlipper implements Gizmo{
         return bounds;
     }
 
-    public void spin(Angle angle){
-        rectangle.rotate(new Vect(pivotXpos, pivotYpos), angle);
+    public void spin(Double angle){
+        angleSpun = angle;
+        rectangle.rotate(new Vect(pivotXpos, pivotYpos), new Angle(Math.toRadians(angle)));
+    }
+
+    public double getAngleSpun(){
+        return angleSpun;
     }
 }

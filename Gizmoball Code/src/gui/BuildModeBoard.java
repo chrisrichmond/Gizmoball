@@ -11,6 +11,7 @@ import physics.LineSegment;
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 
@@ -97,7 +98,12 @@ public class BuildModeBoard extends JPanel {
                     graphics2D.fillPolygon(scaledTriangle);
                 } else if (currentGizmo.getType().equals("leftflipper")) {
                     // Draw LeftFlipper
+                    AffineTransform old = graphics2D.getTransform();
+                    graphics2D.rotate(Math.toRadians(((LFlipper)currentGizmo).getAngleSpun()));
+
+                    //draw shape/image (will be rotated)
                     graphics2D.fillRoundRect(x, y, (int)(breadth), (int)(length), 15, 15);
+                    graphics2D.setTransform(old);
                 }
             }
         }catch(ConcurrentModificationException cmx){
