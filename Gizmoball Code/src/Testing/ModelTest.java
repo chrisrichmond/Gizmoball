@@ -75,8 +75,13 @@ class ModelTest {
 
         LineSegment l1 = new LineSegment(1, 1, 1, 2);
         LineSegment l2 = new LineSegment(2, 1, 2, 2);
+        LineSegment l3 = new LineSegment(1, 2, 2, 2);
+        LineSegment l4 = new LineSegment(1, 1, 2, 1);
         assertEquals(l1, segs.get(0));
         assertEquals(l2, segs.get(1));
+        assertEquals(l3, segs.get(2));
+        assertEquals(l4, segs.get(3));
+        assertTrue(4 == segs.size());
     }
 
     @Test
