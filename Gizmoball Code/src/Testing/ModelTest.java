@@ -1,6 +1,7 @@
 package Testing;
 import Model.Model;
 import Model.Ball;
+import Model.Walls;
 import Model.BallImpl;
 import Model.ModelAPI;
 import Model.gizmos.*;
@@ -26,6 +27,7 @@ class ModelTest {
     private Gizmo triangle = new TriangularBumper("2", 12, 12);
     private Gizmo square = new SquareBumper("1", 1, 1);
     private Gizmo absorb = new Absorber("AB", 0, 0 , 10, 0);
+    private Walls wall = new Walls(0, 0, 20, 20);
 
     @BeforeAll
     public  void setUp(){
@@ -133,6 +135,11 @@ class ModelTest {
     public void testReplaceBall(){
         Ball ball2 = new BallImpl("B2",10.5F, 15.0F, 0.0D, 0.0D);
         assertNotEquals(ball2, m1.getBall());
+
+        m1.replaceBall(ball2);
+        assertEquals(ball2, m1.getBall());
+        m1.replaceBall(ball);
+        assertEquals(ball, m1.getBall());
     }
 
     @Test
@@ -155,6 +162,26 @@ class ModelTest {
     public void testBoolBuildMode(){
         assertEquals(false, m1.isBuildMode());
         assertTrue(!m1.isBuildMode());
+    }
+
+    @Test
+    public void testGetWalls(){
+        assertEquals(wall.getLineSegments(), m1.getWalls().getLineSegments());
+        assertEquals(wall.getHeight(), m1.getWalls().getHeight());
+        assertEquals(wall.getWidth(), m1.getWalls().getWidth());
+    }
+
+    @Test
+    public void testInstanceOfClass(){
+        m1.addGizmo(square);
+        assertTrue(square instanceof  SquareBumper);
+        m1.addGizmo(circle);
+        assertTrue(circle instanceof CircularBumper);
+        m1.addGizmo(triangle);
+        assertTrue(triangle instanceof  TriangularBumper);
+        m1.addGizmo(absorb);
+        assertTrue(absorb instanceof Absorber);
+        m1.clear();
     }
 
     @Test
@@ -183,5 +210,4 @@ class ModelTest {
     public void tearDown(){
         m1 = null;
     }
-
 }
