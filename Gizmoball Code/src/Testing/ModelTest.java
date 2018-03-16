@@ -10,9 +10,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import physics.Angle;
+import physics.LineSegment;
 import physics.Vect;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -64,6 +66,17 @@ class ModelTest {
     public void testGetSquares(){
         m1.addGizmo(square);
         assertEquals(1, m1.getSquares().size());
+    }
+
+    @Test
+    public void testSquareLineSegs(){
+
+        List<LineSegment> segs = square.getLines();
+
+        LineSegment l1 = new LineSegment(1, 1, 1, 2);
+        LineSegment l2 = new LineSegment(2, 1, 2, 2);
+        assertEquals(l1, segs.get(0));
+        assertEquals(l2, segs.get(1));
     }
 
     @Test
