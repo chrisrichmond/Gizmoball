@@ -32,6 +32,7 @@ public class Model implements ModelAPI {
  	private List<VerticalLine> lines;
  	private GizmoFileHandler fileHandler;
  	private double tickTime;
+ 	private double gravity;
 	
 	public Model(){
 		this.observers = new ArrayList<Observer>();
@@ -45,6 +46,7 @@ public class Model implements ModelAPI {
 		this.rightFlippers = new ArrayList<Gizmo>();
 		this.fileHandler = new GizmoFileHandler(this);
 		this.tickTime = 0.05D;
+		this.gravity=10D;
 
 		this.ball = new BallImpl("B",18.5F, 10.0F, 0.0D, 0.0D);
 		this.walls = new Walls(0,0,20,20);
@@ -91,15 +93,13 @@ public class Model implements ModelAPI {
 	   yVnew = yVold * (1 - mu * delta_t - mu2 * Math.abs(yVold) * delta_t);
 	   ball.setVelocity(new Vect(xVnew,yVnew));
  	}
-	private void applyGravity(double delta_t){
+	private void applyGravity(){
    		if(ball.isStopped()) {
 			ball.setVelocity(new Vect(0,0));
 		}else{
 			Double yVold, yVnew;
 			yVold = ball.getVelocity().y();
-			double gravity;
-			gravity = 5D;
-			yVnew = yVold + gravity * delta_t;
+			yVnew = yVold + gravity;
 			ball.setVelocity(new Vect(ball.getVelocity().x(), yVnew));
 		}
 	}
@@ -261,9 +261,13 @@ public class Model implements ModelAPI {
 			double tuc = cd.getTuc();
 			if(tuc > moveTime){
 				ball = moveBallForTime(ball, moveTime);
+				applyFriction(moveTime);
+				applyGravity();
 			}else if( !ball.isStopped()){
 				ball = moveBallForTime(ball, tuc);
 				ball.setVelocity(cd.getVelocity());
+				applyFriction(tuc);
+				applyGravity();
 			}
 
 		}
@@ -283,8 +287,6 @@ public class Model implements ModelAPI {
 	private Ball moveBallForTime(Ball ball, double time) {
 		ball.setXpos(ball.getXpos() + (float)(ball.getVelocity().x() * time));
 		ball.setYpos(ball.getYpos() + (float)(ball.getVelocity().y() * time));
-		applyFriction(time);
-		applyGravity(time);
 		return ball;
 		
 	}
