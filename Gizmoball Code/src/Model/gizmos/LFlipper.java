@@ -144,8 +144,10 @@ public class LFlipper implements Gizmo{
     }
 
     public void spin(Double angle){
-        angleSpun = angle;
-        rectangle.rotate(new Vect(pivotXpos, pivotYpos), new Angle(Math.toRadians(angle)));
+        angleSpun += angle;
+        System.out.println("angle = " + angle);
+        //rectangle.rotate(new Vect(pivotXpos, pivotYpos), new Angle(Math.toRadians(angle)));
+        rectangle.rotate(new Vect(10, 10), new Angle(3));
     }
 
     public double getAngleSpun(){

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import gui.View;
 import Model.gizmos.*;
-import com.sun.xml.internal.ws.util.StringUtils;
 import utilities.GizmoConstants;
 import utilities.Observer;
 import physics.*;
@@ -335,6 +334,20 @@ public class Model implements ModelAPI {
 	}
 
 	@Override
+	public boolean SpinFlipper(Gizmo flipper, double degrees) {
+		if(gizmos.contains(flipper)){
+			if(leftFlippers.contains(flipper)){
+				((LFlipper)flipper).spin(degrees);
+			}else if(rightFlippers.contains(flipper)){
+
+			}
+		}
+
+
+		return false;
+	}
+
+	@Override
 	public boolean removeGizmo(Gizmo gizmo) {
 		boolean success = false;
 
@@ -513,9 +526,10 @@ public class Model implements ModelAPI {
 					// cell is already occupied by an absorber or a leftflipper or a rightflipper
 					System.out.println("cell is already occupied by a gizmo of type " + currentGizmo.getType());
 					empty = false;
-				}else if(((currentGizmo.getType().equals("leftflipper")) || (currentGizmo.getType().equals("rightflipper")))
+				}else if(((currentGizmo.getType().equals("leftflipper")) || (currentGizmo.getType().equals("rightflipper")))/* && ((gizmo.getType().equals("leftflipper"))||(gizmo.getType().equals("rightflipper"))||(gizmo.getType().equals("absorber")))*/
 						&& (((GizmoConstants.flipperXbound + xPos > currentXpos) && (xPos < currentXpos2))
 						&& (GizmoConstants.flipperYbound + yPos > currentYpos) && (yPos < currentYpos2))){
+						// TODO fix the fact that standard gizmos cannot be placed to the left of LFlippers
 
 					System.out.println("flipper bounds cannot be placed over existing collision area (flippers take up an area of 2Lx2L)");
 					System.out.println("cell is already occupied by a gizmo of type " + currentGizmo.getType());

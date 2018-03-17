@@ -45,12 +45,15 @@ public class RunListener implements GBallListener{
         }else{
             switch(e.getActionCommand()){
                 case("Start"):
+                    final KeyListener flipperSpinListener = new FlipperSpinListener(model, view);
                     timer.start();
                     RunModeGUI.disableButtons();
+                    setKeyboardListener(flipperSpinListener);
                     break;
                 case("Stop"):
                     timer.stop();
                     RunModeGUI.enableButtons();
+                    setKeyboardListener(doNothingKeyboard);
                     break;
                 case("Tick"):
                     model.moveBall();

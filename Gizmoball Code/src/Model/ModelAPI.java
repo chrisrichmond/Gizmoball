@@ -73,5 +73,7 @@ public interface ModelAPI extends Observable{
 
     public List<Gizmo> getRightFlippers();
 
+    public boolean SpinFlipper(Gizmo flipper, double degrees);
+
 
 }
