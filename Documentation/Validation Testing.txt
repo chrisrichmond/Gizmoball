@@ -1,0 +1,161 @@
+Validation Testing
+
+1
+Add Gizmo with no conflicts
+Passed
+
+2
+Add gizmo onto of another gizmo, should cause conflict
+Passed
+
+3
+Move gizmo from one square to another without conflict
+Passed
+
+4
+Attempt to move gizmo on top of another one, should could conflict
+Passed
+
+5
+Rotate gizmo e.g. triangle, should rotate without conflict
+Passed
+
+6
+Rotate non-rotatable gizmo e.g. circle, should cause no problems but change nothing
+Passed
+
+7
+Connect a gizmo being triggered to an action, should cause no conflict 
+Passed
+
+
+8
+Test gizmo connection, e.g. when ball hits absorber a flipper moves
+Passed
+
+9
+Disconnect a gizmo being triggered to and action, should cause no conflict
+Passed
+
+10
+Connect a gizmo to a key press should cause no conflict, e.g. flipper
+Passed
+
+11
+Key disconnect
+Connect a gizmo to a key press should cause no conflict, e.g. flipper
+Passed
+
+12
+Delete a gizmo on playing area, should cause no conflict
+Passed
+
+13
+Try to delete an empty square, should cause nothing to happen
+Passed
+
+14
+Add ball to playing area, should cause no conflict
+Passed
+
+
+
+15
+Add ball to part of playing area which already is occupied, should give conflict
+Passed
+
+16
+Save file of game, should cause no conflict, and be stored in the standard format
+Passed
+
+17
+Load a saved file, should reproduce the saved playing field in the current playing field and give no conflicts
+Passed
+
+18
+Quit in run mode, should terminate, and give no conflicts
+Passed
+
+19
+Quit in build mode, should terminate, and give no conflicts
+Passed
+
+20
+Change to running mode, playing field should change and mode should change without conflict
+Passed
+
+21
+Change to build mode, in running mode change to build mode, playing field should become editable and should change without conflict
+Passed
+
+
+
+22
+Pause running mode with stop mode, playing field should pause this should happen without conflict
+Passed
+
+23
+Load model while running, should reload the save that was loaded without conflict
+Passed
+
+24
+Change gravity, gravity should change without conflict
+Passed
+
+25
+Gravity effects ball, the ball in run mode should be affected by gravity without conflict
+Passed
+
+26
+Change friction, friction should change without conflict
+Passed
+
+27
+Friction effects ball, the ball should be affected by friction without conflict 
+Passed
+
+28
+Clear board, the playing field should be emptied without conflict
+Passed
+
+29
+Clear board while board is empty, should be no conflict
+Passed
+30
+Tick, the tick feature should work without conflict advancing the game one frame at a time
+Passed
+
+31
+Start, the game should start running without conflict 
+Passed
+
+32
+Collision with gizmos, ball should hit and be reflected from gizmos like circles and triangles without conflict
+Passed
+
+33
+Collision with wall, ball should hit and be reflected from walls without conflict
+Passed
+
+34
+Absorber, ball should be shot out of it without conflict
+Passed 
+
+35
+Flippers , should move when connected to a pressed key without conflict
+Passed
+
+36
+Flipper collision should work without conflict
+Passed
+
+
+
+37
+Ball velocity should change after collisions without conflict
+
+38
+Saved files should be in desired format
+Passed
+
+
