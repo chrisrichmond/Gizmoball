@@ -10,6 +10,12 @@ import utilities.GizmoConstants;
 import utilities.Observer;
 import physics.*;
 
+/**
+ * Model class is the main class in the model package
+ * Class implements the ModelAPI for view communication
+ * Model class details interaction with gizmo classes for use in the UI
+ * @author MW_Wed #4
+ */
 public class Model implements ModelAPI {
 
 	private View view;
@@ -33,7 +39,13 @@ public class Model implements ModelAPI {
  	private GizmoFileHandler fileHandler;
  	private double tickTime;
  	private double gravity;
-	
+
+
+	/**
+	 * Model constructor where the fields are initialised
+	 * Contains Java collections used to store different Gizmo's
+	 * various methods in this class reference these fields
+	 */
 	public Model(){
 		this.observers = new ArrayList<Observer>();
 		this.changed = false;
@@ -50,14 +62,23 @@ public class Model implements ModelAPI {
 
 		this.ball = new BallImpl("B",18.5F, 10.0F, 0.0D, 0.0D);
 		this.walls = new Walls(0,0,20,20);
+	}
 
-	 
- 	}
 
+	/**
+	 * @modifies this
+	 * @param ball object instance of Ball IFace
+	 * effects: sets ball == new ball reference
+	 */
  	public void replaceBall(Ball ball){
 		this.ball = ball;
 	}
 
+	/**
+	 * method call wrapped in try catch
+	 * @param filename var will be loaded from file system
+	 * @throws FileNotFoundException
+	 */
  	public void loadFile(String filename) throws FileNotFoundException{
 	    clear();
 	    fileHandler.loadFromFile(filename);
@@ -65,12 +86,18 @@ public class Model implements ModelAPI {
 	    notifyObservers();
     }
 
+	/**
+	 *@param filename  will != null
+	 */
 	@Override
 	public void saveFile(String filename) {
 		fileHandler.saveToFile(filename);
 
 	}
 
+	/**
+	 * used to clear the data structure of each gizmo type for board clearance
+	 */
 	public void clear(){
  	    gizmos.clear();
  	    squares.clear();
@@ -83,7 +110,12 @@ public class Model implements ModelAPI {
  	    notifyObservers();
     }
 
-   private void applyFriction(double delta_t){
+	/**
+	 * requires delta_t == double
+	 * abstract Invariant delta_t > 0
+	 * @param delta_t
+	 */
+	private void applyFriction(double delta_t){
 	   Double xVnew,xVold,yVold,yVnew;
 	   xVold=ball.getVelocity().x();
 	   yVold=ball.getVelocity().y();
@@ -93,6 +125,10 @@ public class Model implements ModelAPI {
 	   yVnew = yVold * (1 - mu * delta_t - mu2 * Math.abs(yVold) * delta_t);
 	   ball.setVelocity(new Vect(xVnew,yVnew));
  	}
+
+	/**
+	 * @effects : sets new velocity of ball speed
+	 */
 	private void applyGravity(){
    		if(ball.isStopped()) {
 			ball.setVelocity(new Vect(0,0));
@@ -103,7 +139,11 @@ public class Model implements ModelAPI {
 			ball.setVelocity(new Vect(ball.getVelocity().x(), yVnew));
 		}
 	}
-	
+
+	/**
+	 * calculates time until collision using the gizmo types
+	 * @return new CollisionDetails with @params :  newVelocity && shortestTime
+	 */
 	private CollisionDetails timeUntilCollision() {
 		System.out.println("MODEL: ball is at x="+ball.getXpos()+" y="+ball.getYpos()+" diameter="+ball.getBallRadius()*2);
 
@@ -253,6 +293,9 @@ public class Model implements ModelAPI {
 		return new CollisionDetails(newVelocity, shortestTime);
 	}
 
+	/**
+	 * fires ball from absorber && makes ball moved based on Time Until Collision
+	 */
 	public void moveBall() {
 		double moveTime = 0.05D;
 
@@ -283,12 +326,17 @@ public class Model implements ModelAPI {
 		notifyObservers();
 		
 	}
-	
+
+	/**
+	 * @modifies this.ball
+	 * @param ball used to set co-ordinates of X and Y pos
+	 * @param time used in moving ball for specified time
+	 * @return ball with new X && Y Coordinates
+	 */
 	private Ball moveBallForTime(Ball ball, double time) {
 		ball.setXpos(ball.getXpos() + (float)(ball.getVelocity().x() * time));
 		ball.setYpos(ball.getYpos() + (float)(ball.getVelocity().y() * time));
 		return ball;
-		
 	}
 
 	private void keyPressed(String key) {
@@ -296,45 +344,87 @@ public class Model implements ModelAPI {
 		x.fireBall();
 	}
 
+	/**
+	 *
+	 * @return ball reference var
+	 */
 	@Override
 	public Ball getBall() {
 		return ball;
 	}
 
+	/**
+	 *
+	 * @return true if user in build mode
+	 */
 	@Override
 	public boolean isBuildMode() {
 		return isBuildMode;
 	}
 
+	/**
+	 *
+	 * @return walls var
+	 */
 	@Override
 	public Walls getWalls() {
 		return walls;
 	}
 
+	/**
+	 *
+	 * @return List of squares gizmo type
+	 */
 	public List<Gizmo> getSquares() {
 		return squares;
 	}
 
+	/**
+	 *
+	 * @return List of circle gizmo type
+	 */
 	public List<Gizmo> getCircles() {
 		return circles;
 	}
 
+	/**
+	 *
+	 * @return List of triangle gizmo type
+	 */
 	public List<Gizmo> getTriangles() {
 		return triangles;
 	}
 
+	/**
+	 *
+	 * @return List of absorber gizmo type
+	 */
 	public List<Gizmo> getAbsorbers(){
 		return absorbers;
 	}
 
+	/**
+	 *
+	 * @return Left Flipper
+	 */
 	public List<Gizmo> getLeftFlippers(){
 		return leftFlippers;
 	}
 
+	/**
+	 *
+	 * @return Right Flipper
+	 */
 	public List<Gizmo> getRightFlippers(){
 		return rightFlippers;
 	}
 
+	/**
+	 *
+	 * @param flipper will rotate left && right flipper
+	 * @param degrees rotates based on degree value
+	 * @return boolean value
+	 */
 	@Override
 	public boolean SpinFlipper(Gizmo flipper, double degrees) {
 		if(gizmos.contains(flipper)){
@@ -345,10 +435,14 @@ public class Model implements ModelAPI {
 			}
 		}
 
-
 		return false;
 	}
 
+	/**
+	 *
+	 * @param gizmo is removed from board based on user choice
+	 * @return true if successfully removed
+	 */
 	@Override
 	public boolean removeGizmo(Gizmo gizmo) {
 		boolean success = false;
@@ -388,11 +482,21 @@ public class Model implements ModelAPI {
 		return success;
 	}
 
+	/**
+	 *
+	 * @param x co-ord in game board
+	 * @param y co-ord in game board
+	 */
 	@Override
 	public void setBallSpeed(int x, int y){
 		ball.setVelocity(new Vect((double)x,(double)y));
 	}
 
+	/**
+	 *
+	 * @param gizmo added to empty cell space
+	 * @return true if successfully added
+	 */
 	@Override
 	public boolean addGizmo(Gizmo gizmo) {
 		boolean success = true;
@@ -427,6 +531,11 @@ public class Model implements ModelAPI {
 		return success;
 	}
 
+	/**
+	 *
+	 * @param gizmo will be assigned a unique name
+	 * @return Gizmo
+	 */
 	public Gizmo giveUniqueName(Gizmo gizmo){
 		Gizmo uniqueGizmo = gizmo;
 		//String originalID = gizmo.getID();
@@ -472,6 +581,11 @@ public class Model implements ModelAPI {
 		return uniqueGizmo;
 	}
 
+	/**
+	 *
+	 * @param gizmo will rotate triangle in build mode
+	 * @return true if triangle rotated successfully
+	 */
 	@Override
 	public boolean rotateGizmo(Gizmo gizmo) {
 		boolean success = false;
@@ -486,6 +600,12 @@ public class Model implements ModelAPI {
 		return success;
 	}
 
+	/**
+	 *
+	 * @param xPos in board
+	 * @param yPos in board
+	 * @return Gizmo at specified board position
+	 */
 	@Override
 	public Gizmo getGizmoByCoords(int xPos, int yPos) {
 		for(Gizmo currentGizmo: gizmos) {
@@ -507,6 +627,12 @@ public class Model implements ModelAPI {
 		return null;
 	}
 
+	/**
+	 *
+	 * @param xPos in board
+	 * @param yPos in board
+	 * @return true if cell space empty
+	 */
 	public boolean isCellEmpty(int xPos, int yPos){
 		boolean empty = true;
 
@@ -542,21 +668,35 @@ public class Model implements ModelAPI {
 		return empty;
 	}
 
+	/**
+	 *
+	 * @param o the Observer object which is subscribing
+	 */
 	@Override
 	public void attach(Observer o) {
 		observers.add(o);
 	}
 
+	/**
+	 *
+	 * @param o the Observer object which is unsubscribing
+	 */
 	@Override
 	public void detach(Observer o) {
 		observers.remove(o);
 	}
 
+	/**
+	 * modifies boolean changed value
+	 */
 	@Override
 	public void setChanged() {
 		changed = true;
 	}
 
+	/**
+	 * notify observers to be updated based on data being changed
+	 */
 	@Override
 	public void notifyObservers() {
 		if(changed){
@@ -567,6 +707,10 @@ public class Model implements ModelAPI {
 		}
 	}
 
+	/**
+	 *
+	 * @return List of Gizmos
+	 */
 	@Override
 	public List<Gizmo> getGizmos(){
 		return gizmos;
