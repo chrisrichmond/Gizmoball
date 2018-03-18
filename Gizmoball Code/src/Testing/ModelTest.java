@@ -14,7 +14,6 @@ import physics.LineSegment;
 import physics.Vect;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,7 +48,6 @@ class ModelTest {
         assertEquals(0, m1.getCircles().size());
     }
 
-
     @Test
     public void testGetAbsorber(){
         m1.addGizmo(absorb);
@@ -82,6 +80,19 @@ class ModelTest {
         assertEquals(l3, segs.get(2));
         assertEquals(l4, segs.get(3));
         assertTrue(4 == segs.size());
+
+        Gizmo square = new SquareBumper("2", 2, 2);
+        List<LineSegment> segs2 = square.getLines();
+        LineSegment s1 = new LineSegment(2, 2, 2, 3);
+        LineSegment s2 = new LineSegment(3, 2, 3, 3);
+        LineSegment s3 = new LineSegment(2, 3, 3, 3);
+        LineSegment s4 = new LineSegment(2, 2, 3, 2);
+        assertEquals(s1, segs2.get(0));
+        assertEquals(s2, segs2.get(1));
+        assertEquals(s3, segs2.get(2));
+        assertEquals(s4, segs2.get(3));
+        assertTrue(4 == segs2.size());
+
     }
 
     @Test
@@ -94,6 +105,21 @@ class ModelTest {
     public void testGetTriangle(){
         m1.addGizmo(triangle);
         assertEquals(1, m1.getTriangles().size());
+    }
+
+    @Test
+    public void testTriangleLineSegs() {
+
+        List<LineSegment> segs = triangle.getLines();
+
+        LineSegment l1 = new LineSegment(12, 12, 13, 13);
+        LineSegment l2 = new LineSegment(12, 12, 12, 13);
+        LineSegment l3 = new LineSegment(12, 13, 13, 13);
+
+        assertEquals(l1, segs.get(0));
+        assertEquals(l2, segs.get(1));
+        assertEquals(l3, segs.get(2));
+        assertTrue(3 == segs.size());
     }
 
     @Test
