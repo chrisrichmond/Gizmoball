@@ -231,6 +231,13 @@ class ModelTest {
     }
 
     @Test
+    public void testAdjustGravity(){
+        double grav = 6;
+        m1.setGravity(grav);
+        assertEquals(6, m1.getGravity());
+    }
+
+    @Test
     public void testInstanceOfClass(){
         m1.addGizmo(square);
         assertTrue(square instanceof  SquareBumper);
