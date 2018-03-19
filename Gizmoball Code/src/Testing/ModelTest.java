@@ -29,6 +29,8 @@ class ModelTest {
     private Gizmo square = new SquareBumper("1", 1, 1);
     private Gizmo absorb = new Absorber("AB", 0, 0 , 10, 0);
     private Walls wall = new Walls(0, 0, 20, 20);
+    private LFlipper lFlip = new LFlipper( "LFlip", 15, 15);
+
 
     @BeforeAll
     public  void setUp(){
@@ -42,6 +44,7 @@ class ModelTest {
         assertEquals("1 1 1", square.toString());
         assertEquals("2 12 12", triangle.toString());
         assertEquals("AB 0 0 10 0", absorb.toString());
+        assertEquals("LFlip 15 15", lFlip.toString());
     }
 
     @Test
@@ -231,6 +234,22 @@ class ModelTest {
     }
 
     @Test
+    public void testLFlipperCoords(){
+        m1.addGizmo(lFlip);
+        assertEquals(lFlip, m1.getGizmoByCoords(15, 15));
+        assertEquals(1, m1.getLeftFlippers().size());
+        assertTrue(m1.getLeftFlippers().get(0).getID() == "LFlip");
+    }
+
+    @Test
+    public void testLFlip(){
+        m1.removeGizmo(lFlip);
+        assertEquals("LFlip", lFlip.getID());
+        assertTrue( m1.getLeftFlippers().size() == 0);
+        assertEquals(0, m1.getLeftFlippers().size());
+    }
+
+    @Test
     public void testAdjustGravity(){
         double grav = 6;
         m1.setGravity(grav);
@@ -247,6 +266,8 @@ class ModelTest {
         assertTrue(triangle instanceof  TriangularBumper);
         m1.addGizmo(absorb);
         assertTrue(absorb instanceof Absorber);
+        m1.addGizmo(lFlip);
+        assertTrue(lFlip != null);
         m1.clear();
     }
 
