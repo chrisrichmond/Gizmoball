@@ -69,37 +69,58 @@ public class RunModeGUI implements GameGUI {
         startButton.setFont(font);
         startButton.setMaximumSize(maxButtonSize);
         startButton.addActionListener(listener);
+        startButton.setForeground(Color.WHITE);
+        startButton.setBackground(Color.BLACK);
+        startButton.setFocusPainted(false);
 
         stopButton = new JButton("Stop");
         stopButton.setFont(font);
         stopButton.setEnabled(false);
         stopButton.setMaximumSize(maxButtonSize);
         stopButton.addActionListener(listener);
+        stopButton.setForeground(Color.WHITE);
+        stopButton.setBackground(Color.BLACK);
+        stopButton.setFocusPainted(false);
 
         tickButton = new JButton("Tick");
         tickButton.setFont(font);
         tickButton.setMaximumSize(maxButtonSize);
         tickButton.addActionListener(listener);
+        tickButton.setForeground(Color.WHITE);
+        tickButton.setBackground(Color.BLACK);
+        tickButton.setFocusPainted(false);
 
         loadButton = new JButton("Load Model");
         loadButton.setFont(font);
         loadButton.setMaximumSize(maxButtonSize);
         loadButton.addActionListener(listener);
+        loadButton.setForeground(Color.WHITE);
+        loadButton.setBackground(Color.BLACK);
+        loadButton.setFocusPainted(false);
 
         reloadButton = new JButton("Reload");
         reloadButton.setFont(font);
         reloadButton.setMaximumSize(maxButtonSize);
         reloadButton.addActionListener(listener);
+        reloadButton.setForeground(Color.WHITE);
+        reloadButton.setBackground(Color.BLACK);
+        reloadButton.setFocusPainted(false);
 
         buildModeButton = new JButton("Build Mode");
         buildModeButton.setFont(font);
         buildModeButton.setMaximumSize(maxButtonSize);
         buildModeButton.addActionListener(listener);
+        buildModeButton.setForeground(Color.WHITE);
+        buildModeButton.setBackground(Color.BLACK);
+        buildModeButton.setFocusPainted(false);
 
         quitButton = new JButton("Quit");
         quitButton.setFont(font);
         quitButton.setMaximumSize(maxButtonSize);
         quitButton.addActionListener(listener);
+        quitButton.setForeground(Color.WHITE);
+        quitButton.setBackground(Color.BLACK);
+        quitButton.setFocusPainted(false);
 
         buttonPanel.add(startButton);
         buttonPanel.add(stopButton);
