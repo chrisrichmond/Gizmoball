@@ -191,6 +191,11 @@ public class Absorber implements Gizmo{
     }
 
     @Override
+    public void setColour(Color colour) {
+        this.colour = colour;
+    }
+
+    @Override
     public String toString() {
         return String.format("%s %s %s %s %s", ID, xPos1, yPos1, xPos2, yPos2);
     }

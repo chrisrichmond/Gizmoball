@@ -84,4 +84,6 @@ public interface Gizmo {
      */
     int[][] getBounds();
 
+    void setColour(Color colour);
+
 }
