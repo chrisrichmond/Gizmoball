@@ -51,11 +51,6 @@ class ModelTest {
     }
 
     @Test
-    public void testCircleLineSegments(){
-
-    }
-
-    @Test
     public void testRemoveCircle(){
         m1.removeGizmo(circle);
         assertEquals(0, m1.getCircles().size());
@@ -155,6 +150,13 @@ class ModelTest {
     @Test
     public void testGetBallRadius(){
         assertEquals(0.25D, m1.getBall().getBallRadius());
+    }
+
+    @Test
+    public void testSetBallSpeed(){
+        m1.setBallSpeed(3, 3);
+        assertEquals(3, m1.getBall().getVelocity().x());
+        assertEquals(3, m1.getBall().getVelocity().y());
     }
 
     @Test
