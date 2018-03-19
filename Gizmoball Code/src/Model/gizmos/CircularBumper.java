@@ -132,4 +132,9 @@ public class CircularBumper implements Gizmo {
         return bounds;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s %s %s", ID, xPos, yPos);
+    }
+
 }

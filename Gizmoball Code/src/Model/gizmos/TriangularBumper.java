@@ -152,4 +152,9 @@ public class TriangularBumper implements Gizmo{
 
         return bounds;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s %s", ID, xPos, yPos);
+    }
 }

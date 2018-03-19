@@ -191,4 +191,10 @@ public class Absorber implements Gizmo{
 
         return bounds;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s %s %s %s", ID, xPos1, yPos1, xPos2, yPos2);
+    }
+
 }
