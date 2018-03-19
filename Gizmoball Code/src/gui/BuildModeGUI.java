@@ -240,8 +240,8 @@ public class BuildModeGUI implements GameGUI {
         addSquareButton.setFont(font);
         addSquareButton.setMaximumSize(maxButtonSize);
         addSquareButton.addActionListener(listener);
-        addSquareButton.setForeground(Color.WHITE);
-        addSquareButton.setBackground(Color.BLACK);
+        addSquareButton.setForeground(themeFG);
+        addSquareButton.setBackground(themeBG);
         addSquareButton.setFocusPainted(false);
 
 
@@ -249,8 +249,8 @@ public class BuildModeGUI implements GameGUI {
         addCircleButton.setFont(font);
         addCircleButton.setMaximumSize(maxButtonSize);
         addCircleButton.addActionListener(listener);
-        addCircleButton.setForeground(Color.WHITE);
-        addCircleButton.setBackground(Color.BLACK);
+        addCircleButton.setForeground(themeFG);
+        addCircleButton.setBackground(themeBG);
         addCircleButton.setFocusPainted(false);
 
 
@@ -258,8 +258,8 @@ public class BuildModeGUI implements GameGUI {
         addTriangleButton.setFont(font);
         addTriangleButton.setMaximumSize(maxButtonSize);
         addTriangleButton.addActionListener(listener);
-        addTriangleButton.setForeground(Color.WHITE);
-        addTriangleButton.setBackground(Color.BLACK);
+        addTriangleButton.setForeground(themeFG);
+        addTriangleButton.setBackground(themeBG);
         addTriangleButton.setFocusPainted(false);
 
 
@@ -267,8 +267,8 @@ public class BuildModeGUI implements GameGUI {
         addAbsorberButton.setFont(font);
         addAbsorberButton.setMaximumSize(maxButtonSize);
         addAbsorberButton.addActionListener(listener);
-        addAbsorberButton.setForeground(Color.WHITE);
-        addAbsorberButton.setBackground(Color.BLACK);
+        addAbsorberButton.setForeground(themeFG);
+        addAbsorberButton.setBackground(themeBG);
         addAbsorberButton.setFocusPainted(false);
 
 
@@ -276,8 +276,8 @@ public class BuildModeGUI implements GameGUI {
         addLeftFlipperButton.setFont(font);
         addLeftFlipperButton.setMaximumSize(maxButtonSize);
         addLeftFlipperButton.addActionListener(listener);
-        addLeftFlipperButton.setForeground(Color.WHITE);
-        addLeftFlipperButton.setBackground(Color.BLACK);
+        addLeftFlipperButton.setForeground(themeFG);
+        addLeftFlipperButton.setBackground(themeBG);
         addLeftFlipperButton.setFocusPainted(false);
 
 
@@ -285,8 +285,8 @@ public class BuildModeGUI implements GameGUI {
         addRightFlipperButton.setFont(font);
         addRightFlipperButton.setMaximumSize(maxButtonSize);
         addRightFlipperButton.addActionListener(listener);
-        addRightFlipperButton.setForeground(Color.WHITE);
-        addRightFlipperButton.setBackground(Color.BLACK);
+        addRightFlipperButton.setForeground(themeFG);
+        addRightFlipperButton.setBackground(themeBG);
         addRightFlipperButton.setFocusPainted(false);
 
 
@@ -294,8 +294,8 @@ public class BuildModeGUI implements GameGUI {
         backButton.setFont(font);
         backButton.setMaximumSize(maxButtonSize);
         backButton.addActionListener(listener);
-        backButton.setForeground(Color.WHITE);
-        backButton.setBackground(Color.BLACK);
+        backButton.setForeground(themeFG);
+        backButton.setBackground(themeBG);
         backButton.setFocusPainted(false);
 
 
@@ -306,8 +306,8 @@ public class BuildModeGUI implements GameGUI {
         rotateButton.setFont(font);
         rotateButton.setMaximumSize(maxButtonSize);
         rotateButton.addActionListener(listener);
-        rotateButton.setForeground(Color.WHITE);
-        rotateButton.setBackground(Color.BLACK);
+        rotateButton.setForeground(themeFG);
+        rotateButton.setBackground(themeBG);
         rotateButton.setFocusPainted(false);
 
 
