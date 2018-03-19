@@ -37,9 +37,30 @@ class ModelTest {
     }
 
     @Test
+    public void testToStringGizmos(){
+        String circleString = "5 5 5";
+        assertEquals(circleString, circle.toString());
+
+        String squareString = "1 1 1";
+        assertEquals(squareString, square.toString());
+
+        String triangleString = "2 12 12";
+        assertEquals(triangleString, triangle.toString());
+
+        String absorberString = "AB 0 0 10 0";
+        assertEquals(absorberString, absorb.toString());
+    }
+
+
+    @Test
     public void testGetCircles(){
         m1.addGizmo(circle);
         assertEquals(1, m1.getCircles().size());
+    }
+
+    @Test
+    public void testCircleLineSegments(){
+
     }
 
     @Test
@@ -67,7 +88,7 @@ class ModelTest {
     }
 
     @Test
-    public void testSquareLineSegs(){
+    public void testSquareLineSegments(){
 
         List<LineSegment> segs = square.getLines();
 
@@ -108,7 +129,7 @@ class ModelTest {
     }
 
     @Test
-    public void testTriangleLineSegs() {
+    public void testTriangleLineSegments() {
 
         List<LineSegment> segs = triangle.getLines();
 
