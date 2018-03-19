@@ -1,6 +1,7 @@
 package Model.gizmos;
 
 import Model.Ball;
+import Model.BallImpl;
 import physics.*;
 
 import java.awt.*;
@@ -146,11 +147,8 @@ public class Absorber implements Gizmo{
         Ball gizmoBall = removeFirstBall();
 
         if(gizmoBall!=null) {
-
-        gizmoBall.setVelocity(new Vect(0D,-0.015D));
-        gizmoBall.setStopped(false);
-        gizmoBall.setVelocity(new Vect(0.0D,-10.0D));
-
+            gizmoBall.setStopped(false);
+            gizmoBall.setVelocity(new Vect(0.0D,-64.0D));
 
             return new Vect(0.0, 15);
         }

@@ -5,9 +5,11 @@ import physics.Vect;
 public class CollisionDetails {
 	private Vect velocity;
 	private double tuc;
-	public CollisionDetails(Vect velocity, double tuc){
+	private String collisionType;
+	public CollisionDetails(Vect velocity, double tuc, String collisionType){
 		this.velocity = velocity;
 		this.tuc = tuc;
+		this.collisionType = collisionType;
 	}
 	public Vect getVelocity() {
 		return velocity;
@@ -20,6 +22,12 @@ public class CollisionDetails {
 	}
 	public void setTuc(double tuc) {
 		this.tuc = tuc;
+	}
+	public String getCollisionType(){
+		return collisionType;
+	}
+	public void setCollisionType(String collisionType){
+		this.collisionType = collisionType;
 	}
 
 }

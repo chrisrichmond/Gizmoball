@@ -20,6 +20,8 @@ public class GizmoConstants {
     public static final int flipperXbound = 2;
     public static final int flipperYbound = 2;
 
+    public static final int timerMillis = 50;
+
     public static void writeDefaultFile(File gameFile){
         try{
             FileWriter fw = new FileWriter(gameFile);

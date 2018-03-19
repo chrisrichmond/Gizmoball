@@ -69,10 +69,6 @@ public class SquareBumper implements Gizmo{
 //        this.lines = lines;
 //    }
 
-    public Rectangle2D.Double getDrawableSquare(){
-        return square.makeSquare();
-    }
-
     @Override
     public void setPos(int xPos, int yPos) {
         this.xPos = xPos;

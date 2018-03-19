@@ -55,7 +55,7 @@ public class Model implements ModelAPI {
 		this.rightFlippers = new ArrayList<Gizmo>();
 		this.fileHandler = new GizmoFileHandler(this);
 		this.tickTime = 0.05D;
-		this.gravity=10D;
+		this.gravity=2.0D;
 
 		this.ball = new BallImpl("B",18.5F, 10.0F, 0.0D, 0.0D);
 		this.walls = new Walls(0,0,20,20);
@@ -116,22 +116,20 @@ public class Model implements ModelAPI {
 		Double xVnew,xVold,yVold,yVnew;
 		xVold=ball.getVelocity().x();
 		yVold=ball.getVelocity().y();
-		double mu=tickTime/2; // default value should be 0.025 per second
+		double mu=0.025D; // default value should be 0.025 per second
 		double mu2=0.025D; // default value should be 0.025 per line
 		xVnew = xVold * (1 - mu * delta_t - mu2 * Math.abs(xVold) * delta_t);
 		yVnew = yVold * (1 - mu * delta_t - mu2 * Math.abs(yVold) * delta_t);
 		ball.setVelocity(new Vect(xVnew,yVnew));
 	}
 
-	private void applyGravity(double delta_t){
+	private void applyGravity(){
 		if(ball.isStopped()) {
 			ball.setVelocity(new Vect(0,0));
 		}else{
 			Double yVold, yVnew;
 			yVold = ball.getVelocity().y();
-			double gravity;
-			gravity = 5D;
-			yVnew = yVold + gravity * delta_t;
+			yVnew = yVold + gravity;
 			ball.setVelocity(new Vect(ball.getVelocity().x(), yVnew));
 		}
 	}
@@ -151,6 +149,7 @@ public class Model implements ModelAPI {
 		double shortestTime =5000D;
 		double minTimeuntilCollision;
 		boolean hasCollided = false;
+		String collisionType = "nothing";
 
 		System.out.println("MODEL: ball velocity is "+ball.getVelocity());
 		// check for collision on gizmo walls
@@ -162,7 +161,7 @@ public class Model implements ModelAPI {
 				shortestTime = minTimeuntilCollision;
 				newVelocity = Geometry.reflectWall(wls.get(i),velocity);
 				System.out.println("Wall Collision");
-
+				collisionType = "wall";
 			}else{
 				//no colliosion
 			}
@@ -182,7 +181,7 @@ public class Model implements ModelAPI {
 					System.out.println("Square Collision");
 					// trigger the gizmo
 					squares.get(i).trigger();
-
+					collisionType = "square";
 					newVelocity = Geometry.reflectWall(squareLines.get(x), velocity);
 				}
 			}
@@ -193,6 +192,7 @@ public class Model implements ModelAPI {
 					shortestTime = minTimeuntilCollision;
 					System.out.println("Circle Collision");
 					newVelocity = Geometry.reflectCircle(circles.get(x).getCenter(),circle.getCenter(),velocity);
+					collisionType = "square";
 					//Trigger
 					squares.get(i).trigger();
 				}
@@ -212,6 +212,7 @@ public class Model implements ModelAPI {
 					// trigger the gizmo
 					absorbers.get(i).storeGizmoBall(ball);
 
+					collisionType = "absorber";
 
 
 				}
@@ -227,6 +228,7 @@ public class Model implements ModelAPI {
 					// trigger the gizmo
 					absorbers.get(i).storeGizmoBall(ball);
 					ball.setStopped(true);
+					collisionType = "absorber";
 				}
 			}
 		}
@@ -248,6 +250,8 @@ public class Model implements ModelAPI {
 					System.out.println("Triangle Collision");
 					newVelocity = Geometry.reflectWall(triangleLines.get(x), velocity);
 
+					collisionType = "triangle";
+
 					// trigger the gizmo
 					for(Gizmo currentTriangle: triangles){
 						if(currentTriangle.getLines().contains(triangleLines.get(x))){
@@ -264,6 +268,7 @@ public class Model implements ModelAPI {
 					System.out.println("Triangle Collision");
 					newVelocity = Geometry.reflectCircle(triangleCircles.get(x).getCenter(),circle.getCenter(),velocity);
 
+					collisionType = "triangle";
 
 				}
 			}
@@ -280,6 +285,7 @@ public class Model implements ModelAPI {
 				shortestTime = minTimeuntilCollision;
 				newVelocity = Geometry.reflectCircle(circles.get(i).getCircle().getCenter(),ball.getCircle().getCenter(),velocity);
 
+				collisionType = "circle";
 			}
 		}
 
@@ -287,7 +293,7 @@ public class Model implements ModelAPI {
 
 
 		System.out.println("Shortest Time is: "+shortestTime);
-		return new CollisionDetails(newVelocity, shortestTime);
+		return new CollisionDetails(newVelocity, shortestTime, collisionType);
 	}
 
 
@@ -297,15 +303,22 @@ public class Model implements ModelAPI {
 	public void moveBall() {
 		double moveTime = 0.05D;
 
+
 		if(ball != null && !ball.isStopped()){
 			CollisionDetails cd = timeUntilCollision();
 			double tuc = cd.getTuc();
-			if(tuc > moveTime){
-				ball = moveBallForTime(ball, moveTime);
-			}else if( !ball.isStopped()){
-				ball = moveBallForTime(ball, tuc);
-				ball.setVelocity(cd.getVelocity());
+			if(!cd.getCollisionType().equals("absorber")) {
+				if (tuc > moveTime) {
+					applyFriction(moveTime);
+					ball = moveBallForTime(ball, moveTime);
+
+				} else if (!ball.isStopped()) {
+					applyFriction(tuc);
+					ball = moveBallForTime(ball, tuc);
+					ball.setVelocity(cd.getVelocity());
+				}
 			}
+			applyGravity();
 
 		}
 		if(ball.isStopped()){
@@ -324,8 +337,7 @@ public class Model implements ModelAPI {
 	private Ball moveBallForTime(Ball ball, double time) {
 		ball.setXpos(ball.getXpos() + (float)(ball.getVelocity().x() * time));
 		ball.setYpos(ball.getYpos() + (float)(ball.getVelocity().y() * time));
-		applyFriction(time);
-		applyGravity(time);
+
 		return ball;
 
 	}
