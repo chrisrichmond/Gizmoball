@@ -158,4 +158,10 @@ public class LFlipper implements Gizmo{
     public double getAngleSpun(){
         return angleSpun;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s %s", ID, xPos, yPos);
+    }
+
 }
