@@ -713,6 +713,11 @@ public class Model implements ModelAPI {
 		this.gravity = gravity;
 	}
 
+	@Override
+	public double getGravity(){
+		return gravity;
+	}
+
 	/**
 	 *
 	 * @param o the Observer object which is subscribing
