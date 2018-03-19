@@ -7,6 +7,7 @@ import Model.gizmos.LFlipper;
 import Model.gizmos.TriangularBumper;
 import gui.Listeners.BuildListener;
 import physics.LineSegment;
+import utilities.GizmoConstants;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
@@ -23,7 +24,7 @@ public class BuildModeBoard extends JPanel {
     public BuildModeBoard(ModelAPI model, int ppl){
         this.model = model;
         this.setBorder(BorderFactory.createLineBorder(Color.blue));
-        this.setBackground(Color.black);
+        this.setBackground(GizmoConstants.buildColourTheme);
         this.ppl = ppl;
 
     }
@@ -39,6 +40,7 @@ public class BuildModeBoard extends JPanel {
 
         // Draw Ball
         if(ball != null){
+            ball.setColour(Color.black);
             graphics2D.setColor(ball.getColour());
             float x = (float)(ppl*((float)ball.getXpos() - (float)ball.getBallRadius()));
             float y = (float)(ppl*((float)ball.getYpos() - (float)ball.getBallRadius()));

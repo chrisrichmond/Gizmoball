@@ -1,5 +1,6 @@
 package utilities;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,6 +20,15 @@ public class GizmoConstants {
 
     public static final int flipperXbound = 2;
     public static final int flipperYbound = 2;
+
+    public static Color buildColourTheme = Color.white;
+    public static Color runColourTheme = Color.black;
+
+    public static Color getComplimentaryColour(Color colour) {
+        return new Color(255-colour.getRed(), 255-colour.getGreen(), 255-colour.getBlue());
+    }
+
+    public static final int timerMillis = 50;
 
     public static void writeDefaultFile(File gameFile){
         try{

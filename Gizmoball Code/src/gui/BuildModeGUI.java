@@ -5,6 +5,7 @@ import gui.Listeners.AddSquareListener;
 import gui.Listeners.BuildListener;
 import gui.Listeners.GBallListener;
 import gui.Listeners.RunListener;
+import utilities.GizmoConstants;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
@@ -15,6 +16,8 @@ public class BuildModeGUI implements GameGUI {
 
     private ModelAPI model;
     private View view;
+    private Color themeBG = GizmoConstants.buildColourTheme;
+    private Color themeFG = GizmoConstants.getComplimentaryColour(GizmoConstants.buildColourTheme);
 
     // JPanel containing build mode buttons or add gizmo buttons
     private JPanel buttonPanel;
@@ -81,8 +84,8 @@ public class BuildModeGUI implements GameGUI {
         addGizmoButton.setFont(font);
         addGizmoButton.setMaximumSize(maxButtonSize);
         addGizmoButton.addActionListener(listener);
-        addGizmoButton.setForeground(Color.WHITE);
-        addGizmoButton.setBackground(Color.BLACK);
+        addGizmoButton.setForeground(themeFG);
+        addGizmoButton.setBackground(themeBG);
         addGizmoButton.setFocusPainted(false);
 
 
@@ -90,32 +93,32 @@ public class BuildModeGUI implements GameGUI {
         addBallButton.setFont(font);
         addBallButton.setMaximumSize(maxButtonSize);
         addBallButton.addActionListener(listener);
-        addBallButton.setForeground(Color.WHITE);
-        addBallButton.setBackground(Color.BLACK);
+        addBallButton.setForeground(themeFG);
+        addBallButton.setBackground(themeBG);
         addBallButton.setFocusPainted(false);
 
         rotateButton = new JButton("Rotate");
         rotateButton.setFont(font);
         rotateButton.setMaximumSize(maxButtonSize);
         rotateButton.addActionListener(listener);
-        rotateButton.setForeground(Color.WHITE);
-        rotateButton.setBackground(Color.BLACK);
+        rotateButton.setForeground(themeFG);
+        rotateButton.setBackground(themeBG);
         rotateButton.setFocusPainted(false);
 
         deleteButton = new JButton("Delete");
         deleteButton.setFont(font);
         deleteButton.setMaximumSize(maxButtonSize);
         deleteButton.addActionListener(listener);
-        deleteButton.setForeground(Color.WHITE);
-        deleteButton.setBackground(Color.BLACK);
+        deleteButton.setForeground(themeFG);
+        deleteButton.setBackground(themeBG);
         deleteButton.setFocusPainted(false);
 
         moveButton = new JButton("Move");
         moveButton.setFont(font);
         moveButton.setMaximumSize(maxButtonSize);
         moveButton.addActionListener(listener);
-        moveButton.setForeground(Color.WHITE);
-        moveButton.setBackground(Color.BLACK);
+        moveButton.setForeground(themeFG);
+        moveButton.setBackground(themeBG);
         moveButton.setFocusPainted(false);
 
 
@@ -123,56 +126,56 @@ public class BuildModeGUI implements GameGUI {
         clearBoardButton.setFont(font);
         clearBoardButton.setMaximumSize(maxButtonSize);
         clearBoardButton.addActionListener(listener);
-        clearBoardButton.setForeground(Color.WHITE);
-        clearBoardButton.setBackground(Color.BLACK);
+        clearBoardButton.setForeground(themeFG);
+        clearBoardButton.setBackground(themeBG);
         clearBoardButton.setFocusPainted(false);
 
         connectButton = new JButton("Connect");
         connectButton.setFont(font);
         connectButton.setMaximumSize(maxButtonSize);
         connectButton.addActionListener(listener);
-        connectButton.setForeground(Color.WHITE);
-        connectButton.setBackground(Color.BLACK);
+        connectButton.setForeground(themeFG);
+        connectButton.setBackground(themeBG);
         connectButton.setFocusPainted(false);
 
         disconnectButton = new JButton("Disconnect");
         disconnectButton.setFont(font);
         disconnectButton.setMaximumSize(maxButtonSize);
         disconnectButton.addActionListener(listener);
-        disconnectButton.setForeground(Color.WHITE);
-        disconnectButton.setBackground(Color.BLACK);
+        disconnectButton.setForeground(themeFG);
+        disconnectButton.setBackground(themeBG);
         disconnectButton.setFocusPainted(false);
 
         keyConnectButton = new JButton("Key Connect");
         keyConnectButton.setFont(font);
         keyConnectButton.setMaximumSize(maxButtonSize);
         keyConnectButton.addActionListener(listener);
-        keyConnectButton.setForeground(Color.WHITE);
-        keyConnectButton.setBackground(Color.BLACK);
+        keyConnectButton.setForeground(themeFG);
+        keyConnectButton.setBackground(themeBG);
         keyConnectButton.setFocusPainted(false);
 
         keyDisconnectButton = new JButton("Key Disconnect");
         keyDisconnectButton.setFont(font);
         keyDisconnectButton.setMaximumSize(maxButtonSize);
         keyDisconnectButton.addActionListener(listener);
-        keyDisconnectButton.setForeground(Color.WHITE);
-        keyDisconnectButton.setBackground(Color.BLACK);
+        keyDisconnectButton.setForeground(themeFG);
+        keyDisconnectButton.setBackground(themeBG);
         keyDisconnectButton.setFocusPainted(false);
 
         loadModelButton = new JButton("Load Model");
         loadModelButton.setFont(font);
         loadModelButton.setMaximumSize(maxButtonSize);
         loadModelButton.addActionListener(listener);
-        loadModelButton.setForeground(Color.WHITE);
-        loadModelButton.setBackground(Color.BLACK);
+        loadModelButton.setForeground(themeFG);
+        loadModelButton.setBackground(themeBG);
         loadModelButton.setFocusPainted(false);
 
         runModeButton = new JButton("Run Mode");
         runModeButton.setFont(font);
         runModeButton.setMaximumSize(maxButtonSize);
         runModeButton.addActionListener(listener);
-        runModeButton.setForeground(Color.WHITE);
-        runModeButton.setBackground(Color.BLACK);
+        runModeButton.setForeground(themeFG);
+        runModeButton.setBackground(themeBG);
         runModeButton.setFocusPainted(false);
 
 
@@ -203,8 +206,8 @@ public class BuildModeGUI implements GameGUI {
         quitButton.setFont(font);
         quitButton.setMaximumSize(maxButtonSize);
         quitButton.addActionListener(listener);
-        quitButton.setForeground(Color.WHITE);
-        quitButton.setBackground(Color.BLACK);
+        quitButton.setForeground(themeFG);
+        quitButton.setBackground(themeBG);
         quitButton.setFocusPainted(false);
 
 

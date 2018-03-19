@@ -24,7 +24,7 @@ public class RunListener implements GBallListener{
     private File latestFile;
 
     public RunListener(ModelAPI model, View view){
-        this.timer = new Timer(50, this);
+        this.timer = new Timer(GizmoConstants.timerMillis, this);
         this.model = model;
         this.view = view;
         this.doNothingMouse = new DoNothingMouseListener(model);

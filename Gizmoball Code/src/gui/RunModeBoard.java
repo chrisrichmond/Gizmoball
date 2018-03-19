@@ -5,6 +5,7 @@ import Model.ModelAPI;
 import Model.gizmos.*;
 import physics.LineSegment;
 import physics.TriangleClass;
+import utilities.GizmoConstants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ public class RunModeBoard extends JPanel {
 
     public RunModeBoard(ModelAPI model, int ppl){
         this.model = model;
-        this.setBackground(Color.BLACK);
+        this.setBackground(GizmoConstants.runColourTheme);
         this.setBorder(BorderFactory.createLineBorder(Color.blue));
         this.ppl = ppl;
     }
@@ -35,6 +36,7 @@ public class RunModeBoard extends JPanel {
 
         // Draw Ball
         if(ball != null){
+            ball.setColour(Color.white);
             graphics2D.setColor(ball.getColour());
             float x = (float)(ppl*((float)ball.getXpos() - (float)ball.getBallRadius()));
             float y = (float)(ppl*((float)ball.getYpos() - (float)ball.getBallRadius()));
@@ -93,6 +95,7 @@ public class RunModeBoard extends JPanel {
                     }
 
                     Polygon scaledTriangle = new Polygon(scaledXpoints, scaledYpoints, 3);
+                    graphics2D.fillPolygon(scaledTriangle);
                   //  graphics2D.fillPolygon(scaledTriangle);
                 }else if (currentGizmo.getType().equals("leftflipper")) {
                     // Draw LeftFlipper

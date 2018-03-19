@@ -1,6 +1,5 @@
 package Model;
 
-import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,8 +19,8 @@ import physics.*;
 public class Model implements ModelAPI {
 
 	private List<Observer> observers;
-	HashMap<Gizmo,ArrayList<Gizmo>> gizmoConnections = new HashMap<>();
-	HashMap<KeyEvent,ArrayList<Gizmo>> keyConnections = new HashMap<>();
+	HashMap<Gizmo,Gizmo> gizmoConnections = new HashMap<>();
+	HashMap<String,Gizmo> keyConnections = new HashMap<>();
 	private boolean changed;
 	private boolean isBuildMode;
 	private Ball ball;
@@ -33,9 +32,9 @@ public class Model implements ModelAPI {
 	private List<Gizmo> leftFlippers;
 	private List<Gizmo> rightFlippers;
 	private Walls walls;
-	private GizmoFileHandler fileHandler;
-	private double tickTime;
-	private double gravity;
+ 	private GizmoFileHandler fileHandler;
+ 	private double tickTime;
+ 	private double gravity;
 
 
 	/**
@@ -68,7 +67,7 @@ public class Model implements ModelAPI {
 	 * @param ball object instance of Ball IFace
 	 * effects: sets ball == new ball reference
 	 */
-	public void replaceBall(Ball ball){
+ 	public void replaceBall(Ball ball){
 		this.ball = ball;
 	}
 
@@ -77,12 +76,12 @@ public class Model implements ModelAPI {
 	 * @param filename var will be loaded from file system
 	 * @throws FileNotFoundException
 	 */
-	public void loadFile(String filename) throws FileNotFoundException{
-		clear();
-		fileHandler.loadFromFile(filename);
-		setChanged();
-		notifyObservers();
-	}
+ 	public void loadFile(String filename) throws FileNotFoundException{
+	    clear();
+	    fileHandler.loadFromFile(filename);
+	    setChanged();
+	    notifyObservers();
+    }
 
 	/**
 	 *@param filename  will != null
@@ -97,16 +96,16 @@ public class Model implements ModelAPI {
 	 * used to clear the data structure of each gizmo type for board clearance
 	 */
 	public void clear(){
-		gizmos.clear();
-		squares.clear();
-		triangles.clear();
-		circles.clear();
-		absorbers.clear();
-		leftFlippers.clear();
-		rightFlippers.clear();
-		setChanged();
-		notifyObservers();
-	}
+ 	    gizmos.clear();
+ 	    squares.clear();
+ 	    triangles.clear();
+ 	    circles.clear();
+ 	    absorbers.clear();
+ 	    leftFlippers.clear();
+ 	    rightFlippers.clear();
+ 	    setChanged();
+ 	    notifyObservers();
+    }
 
 	/**
 	 * requires delta_t == double
@@ -345,8 +344,8 @@ public class Model implements ModelAPI {
 
 
 	private void keyPressed(String key) {
-		//Gizmo x=keyConnections.get(key);
-		//x.fireBall();
+		Gizmo x=keyConnections.get(key);
+		x.fireBall();
 	}
 
 	/**
@@ -606,37 +605,6 @@ public class Model implements ModelAPI {
 		return success;
 	}
 
-	public void addGizmoConnection(Gizmo gizmo,Gizmo gizmo1) {
-
-		if(gizmoConnections.containsKey(gizmo)){
-			gizmoConnections.get(gizmo).add(gizmo1);
-		}
-
-	}
-	public boolean hasGizmoConnection(Gizmo gizmo) {
-
-	if(gizmoConnections.containsKey(gizmo)){
-		return true;
-	}
-		return false;
-	}
-
-	public void addKeyConnection(KeyEvent key,Gizmo gizmo1) {
-
-		if(keyConnections.containsKey(key)){
-			keyConnections.get(key).add(gizmo1);
-		}
-
-	}
-	public boolean hasKeyConnection(KeyEvent key) {
-
-		if(keyConnections.containsKey(key)){
-			return true;
-		}
-		return false;
-
-	}
-
 	/**
 	 *
 	 * @param xPos in board
@@ -694,7 +662,7 @@ public class Model implements ModelAPI {
 				}else if(((currentGizmo.getType().equals("leftflipper")) || (currentGizmo.getType().equals("rightflipper")))/* && ((gizmo.getType().equals("leftflipper"))||(gizmo.getType().equals("rightflipper"))||(gizmo.getType().equals("absorber")))*/
 						&& (((GizmoConstants.flipperXbound + xPos > currentXpos) && (xPos < currentXpos2))
 						&& (GizmoConstants.flipperYbound + yPos > currentYpos) && (yPos < currentYpos2))){
-					// TODO fix the fact that standard gizmos cannot be placed to the left of LFlippers
+						// TODO fix the fact that standard gizmos cannot be placed to the left of LFlippers
 
 					System.out.println("flipper bounds cannot be placed over existing collision area (flippers take up an area of 2Lx2L)");
 					System.out.println("cell is already occupied by a gizmo of type " + currentGizmo.getType());

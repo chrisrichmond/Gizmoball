@@ -25,7 +25,7 @@ public class BuildListener implements GBallListener {
         this.model = model;
         this.view = view;
         this.doNothingMouse = new DoNothingMouseListener(model);
-        this.doNothingKeyboard = new DoNothingKeyListener(model);
+        this.doNothingKeyboard = new FlipperSpinListener(model, view);
         this.mouseListener = doNothingMouse;
         this.keyboardListener = doNothingKeyboard;
         this.fileChooser = new JFileChooser();

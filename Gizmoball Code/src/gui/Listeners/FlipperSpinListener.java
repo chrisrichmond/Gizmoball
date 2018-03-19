@@ -26,6 +26,7 @@ public class FlipperSpinListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println("keyPressed");
         for(Gizmo currentLF: model.getLeftFlippers()){
             System.out.println("Spinning "+currentLF.getID());
             ((LFlipper)currentLF).spin(spinDegrees);
