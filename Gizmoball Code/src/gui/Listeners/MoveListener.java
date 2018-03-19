@@ -51,7 +51,7 @@ public class MoveListener implements MouseInputListener {
             }else if(movedGizmo.getType().equals("triangle")) {
                 movedGizmo = new TriangularBumper(movedGizmo.getID(), xPos2, yPos2, ((TriangularBumper)movedGizmo).getRotation());
             }else if(movedGizmo.getType().equals("absorber")){
-                movedGizmo = new Absorber(movedGizmo.getID(), xPos2, yPos2, ((Absorber)movedGizmo).getXPos2(), ((Absorber)movedGizmo).getYPos2());
+                movedGizmo = new Absorber(movedGizmo.getID(), xPos2, yPos2, xPos2+(int)movedGizmo.getWidth(), yPos2+(int)movedGizmo.getHeight());
             }else if(movedGizmo.getType().equals("leftflipper")){
 
             }else if(movedGizmo.getType().equals("rightflipper")){
