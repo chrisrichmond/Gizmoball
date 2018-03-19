@@ -41,7 +41,7 @@ public class MoveListener implements MouseInputListener {
     public void mouseReleased(MouseEvent e) {
         xPos2 = (int)(e.getX()/view.getPpl());
         yPos2 = (int)(e.getY()/view.getPpl());
-        if(model.isCellEmpty(xPos2,yPos2)){
+        if((model.isCellEmpty(xPos2,yPos2)) && (xPos2 >= 0) && (xPos2 <= 19) && (yPos2 >= 0) && (yPos2 <= 19) && (xPos2+movedGizmo.getWidth() <= 20) && (yPos2+movedGizmo.getHeight() <= 20)){
             model.removeGizmo(movedGizmo);
 
             if(movedGizmo.getType().equals("square")) {
