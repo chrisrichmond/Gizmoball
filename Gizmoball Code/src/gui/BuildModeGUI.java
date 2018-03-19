@@ -1,18 +1,10 @@
 package gui;
 
 import Model.ModelAPI;
-import gui.Listeners.AddSquareListener;
-import gui.Listeners.BuildListener;
-import gui.Listeners.GBallListener;
-import gui.Listeners.RunListener;
+import gui.Listeners.*;
 import utilities.GizmoConstants;
-
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.MouseInputListener;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class BuildModeGUI implements GameGUI {
 
@@ -45,8 +37,8 @@ public class BuildModeGUI implements GameGUI {
 
     // Sliders
     static final int GravMin = 0;
-    static final int GravMAx = 30;
-    static final int GravInit = 15;
+    static final int GravMAx = 10;
+    static final int GravInit = 2;
 
     // Add gizmo buttons
     private JButton addSquareButton;
@@ -366,11 +358,5 @@ public class BuildModeGUI implements GameGUI {
         messagePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
 
         return messagePanel;
-    }
-
-    @Override
-    public void stateChanged(ChangeEvent e) {
-        int GravityFromSlider = gravSlider.getValue();
-        System.out.println(GravityFromSlider);
     }
 }
