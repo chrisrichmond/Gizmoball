@@ -44,6 +44,8 @@ public interface ModelAPI extends Observable{
 
     public boolean isCellEmpty(int xPos, int yPos);
 
+    public void setGravity(double gravity);
+
     /**
      *
      * @param gizmo

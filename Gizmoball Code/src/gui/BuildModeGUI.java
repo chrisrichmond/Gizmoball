@@ -1,10 +1,7 @@
 package gui;
 
 import Model.ModelAPI;
-import gui.Listeners.AddSquareListener;
-import gui.Listeners.BuildListener;
-import gui.Listeners.GBallListener;
-import gui.Listeners.RunListener;
+import gui.Listeners.*;
 import utilities.GizmoConstants;
 
 import javax.swing.*;
@@ -43,8 +40,8 @@ public class BuildModeGUI implements GameGUI {
 
     // Sliders
     static final int GravMin = 0;
-    static final int GravMAx = 30;
-    static final int GravInit = 15;
+    static final int GravMAx = 10;
+    static final int GravInit = 2;
 
     // Add gizmo buttons
     private JButton addSquareButton;
@@ -54,6 +51,10 @@ public class BuildModeGUI implements GameGUI {
     private JButton addLeftFlipperButton;
     private JButton addRightFlipperButton;
     private JButton backButton;
+
+    private JSlider gravSlider;
+    private JLabel gravSliderLabel;
+    private GravSliderListener gravSliderListener;
 
     private Font font;
     private Dimension maxButtonSize;
@@ -179,27 +180,21 @@ public class BuildModeGUI implements GameGUI {
         runModeButton.setFocusPainted(false);
 
 
-
-
-        //
-        JLabel grav = new JLabel("Gravity Slider", JLabel.CENTER);
-        grav.setFont(font);
-        JLabel SPACERH4X = new JLabel("", JLabel.CENTER);
-        grav.setAlignmentX(Component.CENTER_ALIGNMENT);
+        gravSliderLabel = new JLabel("Gravity Slider", JLabel.CENTER);
+        gravSliderLabel.setFont(font);
+        //JLabel SPACERH4X = new JLabel("", JLabel.CENTER);
+        gravSliderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         JSlider gravSlider = new JSlider(JSlider.HORIZONTAL, GravMin, GravMAx, GravInit);
-
-
-        // This line does nothing ??? what WHY
-        //gravSlider.setMinimumSize((new Dimension(100,100)));
-
+        // This line does nothing ??? what WHY -- idk man
+        //gravSlider.setPreferredSize(new Dimension(100,100));
 
         //grav.addChangeListener(this);
-
-
         gravSlider.setMajorTickSpacing(10);
         gravSlider.setMinorTickSpacing(1);
         gravSlider.setPaintTicks(true);
         gravSlider.setPaintLabels(true);
+        gravSliderListener = new GravSliderListener(model, view, gravSlider);
+        gravSlider.addChangeListener(gravSliderListener);
 
 
         quitButton = new JButton("Quit");
@@ -227,17 +222,10 @@ public class BuildModeGUI implements GameGUI {
         buttonPanel.add(runModeButton);
         buttonPanel.add(quitButton);
 
-
-
-
-
-        buttonPanel.add(SPACERH4X);
-        buttonPanel.add(SPACERH4X);
-        buttonPanel.add(grav);
+        //buttonPanel.add(SPACERH4X);
+        //buttonPanel.add(SPACERH4X);
+        buttonPanel.add(gravSliderLabel);
         buttonPanel.add(gravSlider);
-
-
-
 
         buttonPanel.setSize(new Dimension(200,800));
 
@@ -310,9 +298,6 @@ public class BuildModeGUI implements GameGUI {
         backButton.setBackground(Color.BLACK);
         backButton.setFocusPainted(false);
 
-
-
-
         // Adding rotate to AddGizmo menu
         rotateButton = new JButton("Rotate");
         rotateButton.setFont(font);
@@ -321,10 +306,6 @@ public class BuildModeGUI implements GameGUI {
         rotateButton.setForeground(Color.WHITE);
         rotateButton.setBackground(Color.BLACK);
         rotateButton.setFocusPainted(false);
-
-
-
-
 
         buttonPanel.add(addSquareButton);
         buttonPanel.add(addCircleButton);

@@ -61,7 +61,6 @@ public class Model implements ModelAPI {
 		this.walls = new Walls(0,0,20,20);
 	}
 
-
 	/**
 	 * @modifies this
 	 * @param ball object instance of Ball IFace
@@ -671,6 +670,11 @@ public class Model implements ModelAPI {
 			}
 		}
 		return empty;
+	}
+
+	@Override
+	public void setGravity(double gravity) {
+		this.gravity = gravity;
 	}
 
 	/**
