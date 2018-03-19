@@ -23,7 +23,9 @@ public class BuildModeBoard extends JPanel {
     public BuildModeBoard(ModelAPI model, int ppl){
         this.model = model;
         this.setBorder(BorderFactory.createLineBorder(Color.blue));
+        this.setBackground(Color.black);
         this.ppl = ppl;
+
     }
 
     @Override
@@ -113,7 +115,7 @@ public class BuildModeBoard extends JPanel {
     }
 
     private void paintGridLines(Graphics2D graphics2D){
-        graphics2D.setColor(Color.BLACK);
+        graphics2D.setColor(Color.gray);
         for(int verticalLines = 0; verticalLines < 21; verticalLines++){
             graphics2D.drawLine(verticalLines*ppl, 0, verticalLines*ppl, 20*ppl);
         }
