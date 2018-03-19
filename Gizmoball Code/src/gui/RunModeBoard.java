@@ -92,7 +92,7 @@ public class RunModeBoard extends JPanel {
                     }
 
                     Polygon scaledTriangle = new Polygon(scaledXpoints, scaledYpoints, 3);
-                    graphics2D.fillPolygon(scaledTriangle);
+                  //  graphics2D.fillPolygon(scaledTriangle);
                 }else if (currentGizmo.getType().equals("leftflipper")) {
                     // Draw LeftFlipper
                     graphics2D.fillRoundRect(x, y, (int)(breadth), (int)(length), 15, 15);

@@ -20,6 +20,12 @@ public class Model implements ModelAPI {
 
 	private View view;
 
+	private ArrayList<VerticalLine> vLines;
+	private ArrayList<LineSegment> sLines;
+
+	private ArrayList<TriangleClass> trianglesTriangle;
+	private ArrayList<Circle> circlesCircle;
+
 
 	private List<Observer> observers;
 	HashMap<Gizmo,Gizmo> gizmoConnections = new HashMap<>();
@@ -30,7 +36,8 @@ public class Model implements ModelAPI {
 	private List<Gizmo> gizmos;
 	private List<Gizmo> squares;
 	private List<Gizmo> circles;
-	private List<Gizmo> triangles;
+
+	private ArrayList<Gizmo> triangles;
 	private List<Gizmo> absorbers;
 	private List<Gizmo> leftFlippers;
 	private List<Gizmo> rightFlippers;
@@ -47,6 +54,16 @@ public class Model implements ModelAPI {
 	 * various methods in this class reference these fields
 	 */
 	public Model(){
+
+
+		sLines = new ArrayList<LineSegment>();
+
+		vLines = new ArrayList<VerticalLine>();
+		circlesCircle = new ArrayList<Circle>();
+		trianglesTriangle = new ArrayList<TriangleClass>();
+
+
+
 		this.observers = new ArrayList<Observer>();
 		this.changed = false;
 		this.gizmos = new ArrayList<Gizmo>();
@@ -145,15 +162,22 @@ public class Model implements ModelAPI {
 	 * @return new CollisionDetails with @params :  newVelocity && shortestTime
 	 */
 	private CollisionDetails timeUntilCollision() {
+
 		System.out.println("MODEL: ball is at x="+ball.getXpos()+" y="+ball.getYpos()+" diameter="+ball.getBallRadius()*2);
 
 		//git testing
         Circle circle = ball.getCircle();
         Vect velocity= ball.getVelocity();
-        Vect newVelocity=velocity;
+        Vect newVelocity = velocity;
         double shortestTime =5000D;
 		double minTimeuntilCollision;
 		boolean hasCollided = false;
+		double time = 0.0;
+
+		Circle ballCircle = ball.getCircle();
+		Vect ballVelocity = ball.getVelocity();
+
+
 
 		System.out.println("MODEL: ball velocity is "+ball.getVelocity());
 		// check for collision on gizmo walls
@@ -171,6 +195,41 @@ public class Model implements ModelAPI {
             }
 
         }
+        ///////////////////////////////////////////////////
+
+		for (VerticalLine line : vLines) {
+			LineSegment ls = line.getLineSeg();
+			time = Geometry.timeUntilWallCollision(ls, ballCircle, ballVelocity);
+			if (time < shortestTime) {
+				shortestTime = time;
+				newVelocity = Geometry.reflectWall(ls, ball.getVelocity(), 1.0);
+			}
+		}
+
+		//Square is a bunch of sLines as is Triangle
+		for (LineSegment line : sLines) {
+			time = Geometry.timeUntilWallCollision(line, ballCircle, ballVelocity);
+			if (time < shortestTime) {
+				shortestTime = time;
+				newVelocity = Geometry.reflectWall(line, ball.getVelocity(), 1.0);
+			}
+		}
+
+		for (Circle c : circlesCircle) {
+			time = Geometry.timeUntilCircleCollision(c, ballCircle, ballVelocity);
+			if (time < shortestTime) {
+				shortestTime = time;
+				newVelocity = Geometry.reflectCircle(c.getCenter(), ballCircle.getCenter(), ballVelocity);
+			}
+		}
+
+
+
+
+
+
+        //////////////////////////////////////////////////
+
 
         // check for square bumper (line seqments and circles) collisions
        // System.out.println("Checking square colliosions");
@@ -214,9 +273,6 @@ public class Model implements ModelAPI {
 					System.out.println("Absorber Collision");
 					// trigger the gizmo
 					absorbers.get(i).storeGizmoBall(ball);
-
-
-
 				}
 			}
 
@@ -234,49 +290,47 @@ public class Model implements ModelAPI {
 			}
 		}
 
-
-
         // check for other Triange collisions
        // System.out.println("Checking triangle colliosions");
-        for(int i=0;i<triangles.size();i++) {
-        	System.out.println("Checking Triangle number : "+i);
-            List<LineSegment> triangleLines = triangles.get(i).getLines();
-            List<Circle> triangleCircles = triangles.get(i).getCircles();
 
-            for (int x = 0; x < triangleLines.size(); x++) {
-                minTimeuntilCollision = Geometry.timeUntilWallCollision(triangleLines.get(x), circle, velocity);
-                System.out.println("Triangle line min time until : "+minTimeuntilCollision);
-                if (minTimeuntilCollision <= tickTime) {
-                    shortestTime = minTimeuntilCollision;
-					System.out.println("Triangle Collision");
-                    newVelocity = Geometry.reflectWall(triangleLines.get(x), velocity);
-
-					// trigger the gizmo
-					for(Gizmo currentTriangle: triangles){
-						if(currentTriangle.getLines().contains(triangleLines.get(x))){
-							currentTriangle.trigger();
-						}
-					}
-                }
-            }
-
-            for (int x = 0; x < triangleCircles.size(); x++) {
-                minTimeuntilCollision = Geometry.timeUntilCircleCollision(triangleCircles.get(x), circle, velocity);
-                if (minTimeuntilCollision <= tickTime) {
-                    shortestTime = minTimeuntilCollision;
-					System.out.println("Triangle Collision");
-					newVelocity = Geometry.reflectCircle(triangleCircles.get(x).getCenter(),circle.getCenter(),velocity);
-
-
-                }
-            }
-        }
+//        for(int i=0;i<triangles.size();i++) {
+//        	System.out.println("Checking Triangle number : " + i);
+//            List<LineSegment> triangleLines = triangles.get(i).getLines();
+//            List<Circle> triangleCircles = triangles.get(i).getCircles();
+//
+//            for (int x = 0; x < triangleLines.size(); x++) {
+//                minTimeuntilCollision = Geometry.timeUntilWallCollision(triangleLines.get(x), circle, velocity);
+//                System.out.println("Triangle line min time until : " + minTimeuntilCollision);
+//                if (minTimeuntilCollision <= tickTime) {
+//					newVelocity = Geometry.reflectWall(triangleLines.get(x), velocity,1);
+//                    shortestTime = minTimeuntilCollision;
+//					System.out.println("Triangle Collision");
+//
+//					// trigger the gizmo
+//					for(Gizmo currentTriangle: triangles){
+//						if(currentTriangle.getLines().contains(triangleLines.get(x))){
+//							currentTriangle.trigger();
+//						}
+//					}
+//                }
+//            }
+//
+//            for (int x = 0; x < triangleCircles.size(); x++) {
+//                minTimeuntilCollision = Geometry.timeUntilCircleCollision(triangleCircles.get(x), circle, velocity);
+//                if (minTimeuntilCollision <= tickTime) {
+//                    shortestTime = minTimeuntilCollision;
+//					System.out.println("Triangle Collision");
+//					newVelocity = Geometry.reflectCircle(triangleCircles.get(x).getCenter(),circle.getCenter(),velocity);
+//
+//
+//                }
+//            }
+//        }
 
         			//   check for Circular Bumper collisions
 			// System.out.println("Checking Circular Bumper colliosions");
 			for(int i=0;i<circles.size();i++) {
 				minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(i).getCircle(), ball.getCircle(),velocity);
-
 
             if (minTimeuntilCollision <= tickTime) {
 				System.out.println("Circle Collision");
@@ -288,16 +342,15 @@ public class Model implements ModelAPI {
 
 		//   check for Circular Bumper collisions
 
-
 		System.out.println("Shortest Time is: "+shortestTime);
 		return new CollisionDetails(newVelocity, shortestTime);
-	}
+		}
 
 	/**
 	 * fires ball from absorber && makes ball moved based on Time Until Collision
 	 */
 	public void moveBall() {
-		double moveTime = 0.05D;
+		double moveTime = 0.01D;
 
 		if(ball != null && !ball.isStopped()){
 			CollisionDetails cd = timeUntilCollision();
@@ -312,8 +365,8 @@ public class Model implements ModelAPI {
 				applyFriction(tuc);
 				applyGravity();
 			}
-
 		}
+
 		if(ball.isStopped()){
 			for(int x=0;x<absorbers.size();x++){
 				System.out.println("ffffffffffffff");
@@ -324,7 +377,7 @@ public class Model implements ModelAPI {
 		}
 		setChanged();
 		notifyObservers();
-		
+
 	}
 
 	/**
@@ -512,7 +565,7 @@ public class Model implements ModelAPI {
 				squares.add(gizmo);
 			} else if (gizmo.getType().equals("triangle")) {
 				System.out.println("Adding Triangle");
-				triangles.add(gizmo);
+				addTriangle(gizmo);
 			} else if (gizmo.getType().equals("absorber")) {
 				absorbers.add(gizmo);
 			} else if (gizmo.getType().equals("leftflipper")) {
@@ -530,6 +583,30 @@ public class Model implements ModelAPI {
 
 		return success;
 	}
+
+
+	public void addLine(LineSegment l) {
+		sLines.add(l);
+	}
+	public void addCircle(Circle c) {
+		circlesCircle.add(c);
+	}
+
+
+
+	public void addTriangle(Gizmo gizmo){
+		triangles.add(gizmo);
+		ArrayList<LineSegment> triangleLines = (ArrayList<LineSegment>) gizmo.getLines();
+		ArrayList<Circle> triangleCircles = (ArrayList<Circle>) gizmo.getCircles();
+		for (int i = 0; i < triangleLines.size(); i++) {
+			addLine(triangleLines.get(i));
+		}
+		for (int j = 0; j < triangleCircles.size(); j++) {
+			addCircle(triangleCircles.get(j));
+		}
+
+	}
+
 
 	/**
 	 *

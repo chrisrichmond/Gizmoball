@@ -30,7 +30,6 @@ public class TriangularBumper implements Gizmo{
         this.triangle = new TriangleClass(xPos, yPos, 0);
         this.colour = Color.red;
         this.rotation = 0;
-
     }
 
     public TriangularBumper(String ID, int xpos, int ypos, int rotation) {

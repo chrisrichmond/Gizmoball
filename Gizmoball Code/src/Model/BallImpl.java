@@ -20,7 +20,7 @@ public class BallImpl implements Ball{
 		this.xpos = x;
 		this.ypos = y;
 		this.colour = Color.black;
-		radius = 0.25D;
+		radius = 0.1D;
 	}
 
 	public Vect getVelocity() {
