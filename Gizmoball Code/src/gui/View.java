@@ -216,15 +216,17 @@ public class View implements Observer{
         // Run project, Open Settings menu, Add Gizmo, it breaks
         //
 
+
         JFrame settingsFrame = new JFrame("Gizmoball Settings");
         Container settingsCp = settingsFrame.getContentPane();
 
-        cp.setLayout(new GridLayout(2,2));
-        cp.setPreferredSize(new Dimension(200,200));
+        settingsCp.setLayout(new GridLayout(2,2));
+        settingsCp.setPreferredSize(new Dimension(200,200));
         settingsFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         settingsFrame.pack();
         settingsFrame.setLocationRelativeTo(null);
         settingsFrame.setVisible(true);
+
 
     }
 

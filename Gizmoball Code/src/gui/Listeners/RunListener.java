@@ -82,7 +82,14 @@ public class RunListener implements GBallListener{
                             model.loadFile(latestFile.getAbsolutePath());
                         }catch(FileNotFoundException ex){
                             System.out.println("File input not found ");
-                        }                    }
+                        }
+                    }else{
+                        try{
+                            model.loadFile(GizmoConstants.defaultGamePath);
+                        }catch(FileNotFoundException ex){
+                            System.out.println("File input not found ");
+                        }
+                    }
                     break;
                 case("Build Mode"):
                     timer.stop();
