@@ -1,5 +1,6 @@
 package Model;
 
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,8 +20,8 @@ import physics.*;
 public class Model implements ModelAPI {
 
 	private List<Observer> observers;
-	HashMap<Gizmo,Gizmo> gizmoConnections = new HashMap<>();
-	HashMap<String,Gizmo> keyConnections = new HashMap<>();
+	HashMap<Gizmo,ArrayList<Gizmo>> gizmoConnections = new HashMap<>();
+	HashMap<KeyEvent,ArrayList<Gizmo>> keyConnections = new HashMap<>();
 	private boolean changed;
 	private boolean isBuildMode;
 	private Ball ball;
@@ -342,9 +343,12 @@ public class Model implements ModelAPI {
 	}
 
 
-	private void keyPressed(String key) {
-		Gizmo x=keyConnections.get(key);
-		x.fireBall();
+	private void keyPressed(KeyEvent key) {
+		ArrayList<Gizmo> x;
+		x=keyConnections.get(key);
+		for(int i=0;i<x.size();i++){
+			x.get(i).trigger();
+		}
 	}
 
 	/**
@@ -670,6 +674,38 @@ public class Model implements ModelAPI {
 			}
 		}
 		return empty;
+	}
+
+
+	public void addGizmoConnection(Gizmo gizmo,Gizmo gizmo1) {
+
+		if(gizmoConnections.containsKey(gizmo)){
+			gizmoConnections.get(gizmo).add(gizmo1);
+		}
+
+	}
+	public boolean hasGizmoConnection(Gizmo gizmo) {
+
+		if(gizmoConnections.containsKey(gizmo)){
+			return true;
+		}
+		return false;
+	}
+
+	public void addKeyConnection(KeyEvent key,Gizmo gizmo1) {
+
+		if(keyConnections.containsKey(key)){
+			keyConnections.get(key).add(gizmo1);
+		}
+
+	}
+	public boolean hasKeyConnection(KeyEvent key) {
+
+		if(keyConnections.containsKey(key)){
+			return true;
+		}
+		return false;
+
 	}
 
 	@Override
