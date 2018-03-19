@@ -338,6 +338,11 @@ public class BuildModeGUI implements GameGUI {
         saveModelMenuItem.addActionListener(listener);
         saveModelMenuItem.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
 
+
+        //
+        // Run project, Open Settings menu, Add Gizmo, it breaks
+        //
+
         settingsMenuItem = new JMenuItem("Settings");
         settingsMenuItem.addActionListener(listener);
         settingsMenuItem.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));

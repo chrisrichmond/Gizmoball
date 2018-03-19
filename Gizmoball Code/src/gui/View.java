@@ -211,6 +211,11 @@ public class View implements Observer{
     }
 
     public void openSettingsFrame(){
+
+        //
+        // Run project, Open Settings menu, Add Gizmo, it breaks
+        //
+
         JFrame settingsFrame = new JFrame("Gizmoball Settings");
         Container settingsCp = settingsFrame.getContentPane();
 

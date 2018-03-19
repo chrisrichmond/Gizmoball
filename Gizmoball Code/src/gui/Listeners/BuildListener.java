@@ -173,6 +173,12 @@ public class BuildListener implements GBallListener {
                 }
                 break;
             case("Settings"):
+
+                //
+                // Run project, Open Settings menu, Add Gizmo, it breaks
+                //
+
+
                 view.openSettingsFrame();
                 break;
         }
