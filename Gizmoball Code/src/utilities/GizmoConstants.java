@@ -24,6 +24,15 @@ public class GizmoConstants {
     public static Color buildColourTheme = Color.white;
     public static Color runColourTheme = Color.black;
 
+    public static final int triggerTimeoutMillis = 3000;
+
+    public static final Color squareColour = Color.red;
+    public static final Color squareTriggerColour = Color.green;
+    public static final Color circleColour = Color.green;
+    public static final Color circleTriggerColour = Color.yellow;
+    public static final Color triangleColour = Color.blue;
+    public static final Color triangleTriggerColour = Color.cyan;
+
     public static Color getComplimentaryColour(Color colour) {
         return new Color(255-colour.getRed(), 255-colour.getGreen(), 255-colour.getBlue());
     }

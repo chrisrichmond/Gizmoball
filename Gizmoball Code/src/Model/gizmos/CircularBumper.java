@@ -133,6 +133,11 @@ public class CircularBumper implements Gizmo {
     }
 
     @Override
+    public void setColour(Color colour) {
+        this.colour = colour;
+    }
+
+    @Override
     public String toString() {
         return String.format("%s %s %s", ID, xPos, yPos);
     }

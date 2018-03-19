@@ -143,6 +143,11 @@ public class LFlipper implements Gizmo{
         return bounds;
     }
 
+    @Override
+    public void setColour(Color colour) {
+        this.colour = colour;
+    }
+
     public void spin(Double angle){
         angleSpun += angle;
         System.out.println("angle = " + angle);

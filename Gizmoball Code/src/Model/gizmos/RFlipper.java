@@ -14,6 +14,7 @@ public class RFlipper implements Gizmo{
     private int yPos;
     private String ID;
     final private String type = "rightflipper";
+    private Color colour;
 
     public RFlipper(String ID, int xPos, int yPos){
         this.ID = ID;
@@ -119,5 +120,10 @@ public class RFlipper implements Gizmo{
         };
 
         return bounds;
+    }
+
+    @Override
+    public void setColour(Color colour) {
+        this.colour = colour;
     }
 }

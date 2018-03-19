@@ -5,6 +5,7 @@ import physics.Circle;
 import physics.LineSegment;
 import physics.SquareClass;
 import physics.Vect;
+import utilities.GizmoConstants;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -24,7 +25,7 @@ public class SquareBumper implements Gizmo{
         this.xPos = xPos;
         this.yPos = yPos;
         this.square = new SquareClass(xPos, yPos, 1);
-        this.colour = Color.red;
+        this.colour = GizmoConstants.squareColour;
     }
 
     public ArrayList<Circle> getCircles() {
@@ -88,7 +89,9 @@ public class SquareBumper implements Gizmo{
     @Override
     public void trigger() {
         System.out.println("Shooting ball into game!!");
-        colour = Color.green;
+        colour = GizmoConstants.squareTriggerColour;
+        Thread colourTimeout = new Thread(new ChangeColourRunnable(this, GizmoConstants.squareColour));
+        colourTimeout.start();
     }
 
     @Override
@@ -134,6 +137,11 @@ public class SquareBumper implements Gizmo{
         };
 
         return bounds;
+    }
+
+    @Override
+    public void setColour(Color colour) {
+        this.colour = colour;
     }
 
     @Override
