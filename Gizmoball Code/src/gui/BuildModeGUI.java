@@ -1,10 +1,15 @@
 package gui;
 
 import Model.ModelAPI;
-import gui.Listeners.*;
+import gui.Listeners.AddSquareListener;
+import gui.Listeners.BuildListener;
+import gui.Listeners.GBallListener;
+import gui.Listeners.RunListener;
 import utilities.GizmoConstants;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -40,8 +45,8 @@ public class BuildModeGUI implements GameGUI {
 
     // Sliders
     static final int GravMin = 0;
-    static final int GravMAx = 10;
-    static final int GravInit = 2;
+    static final int GravMAx = 30;
+    static final int GravInit = 15;
 
     // Add gizmo buttons
     private JButton addSquareButton;
@@ -227,6 +232,9 @@ public class BuildModeGUI implements GameGUI {
         buttonPanel.add(gravSliderLabel);
         buttonPanel.add(gravSlider);
 
+
+
+
         buttonPanel.setSize(new Dimension(200,800));
 
         return buttonPanel;
@@ -298,6 +306,9 @@ public class BuildModeGUI implements GameGUI {
         backButton.setBackground(Color.BLACK);
         backButton.setFocusPainted(false);
 
+
+
+
         // Adding rotate to AddGizmo menu
         rotateButton = new JButton("Rotate");
         rotateButton.setFont(font);
@@ -306,6 +317,10 @@ public class BuildModeGUI implements GameGUI {
         rotateButton.setForeground(Color.WHITE);
         rotateButton.setBackground(Color.BLACK);
         rotateButton.setFocusPainted(false);
+
+
+
+
 
         buttonPanel.add(addSquareButton);
         buttonPanel.add(addCircleButton);
@@ -351,5 +366,11 @@ public class BuildModeGUI implements GameGUI {
         messagePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
 
         return messagePanel;
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        int GravityFromSlider = gravSlider.getValue();
+        System.out.println(GravityFromSlider);
     }
 }
