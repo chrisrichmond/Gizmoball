@@ -1,10 +1,7 @@
 package gui;
 
 import Model.ModelAPI;
-import gui.Listeners.AddSquareListener;
-import gui.Listeners.BuildListener;
-import gui.Listeners.GBallListener;
-import gui.Listeners.RunListener;
+import gui.Listeners.*;
 import utilities.GizmoConstants;
 
 import javax.swing.*;
@@ -366,11 +363,5 @@ public class BuildModeGUI implements GameGUI {
         messagePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
 
         return messagePanel;
-    }
-
-    @Override
-    public void stateChanged(ChangeEvent e) {
-        int GravityFromSlider = gravSlider.getValue();
-        System.out.println(GravityFromSlider);
     }
 }
