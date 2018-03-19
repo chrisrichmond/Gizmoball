@@ -1,6 +1,7 @@
 package gui;
 
 import Model.ModelAPI;
+import Model.gizmos.Gizmo;
 import gui.Listeners.GBallListener;
 import gui.Listeners.RunListener;
 import utilities.GizmoConstants;
@@ -144,8 +145,15 @@ public class RunModeGUI implements GameGUI {
         fileMenu = new JMenu("File");
         testMenuItem = new JMenuItem("Test Item");
 
+        testMenuItem.setForeground(themeFG);
+        testMenuItem.setBackground(themeBG);
+        fileMenu.setForeground(themeFG);
+        fileMenu.setBackground(themeBG);
         fileMenu.add(testMenuItem);
         menuBar.add(fileMenu);
+
+        menuBar.setForeground(themeFG);
+        menuBar.setBackground(themeBG);
 
         return menuBar;
     }
@@ -155,9 +163,13 @@ public class RunModeGUI implements GameGUI {
         messagePanel = new JPanel();
         JLabel messageLabel = new JLabel(message);
 
+        messageLabel.setForeground(themeFG);
+        messageLabel.setBackground(themeBG);
         messageLabel.setFont(font);
         messagePanel.add(messageLabel);
-        messagePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
+        messagePanel.setBorder(BorderFactory.createLineBorder(themeFG));
+        messagePanel.setForeground(themeFG);
+        messagePanel.setBackground(themeBG);
 
         return messagePanel;
     }

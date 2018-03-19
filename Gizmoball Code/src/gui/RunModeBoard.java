@@ -21,7 +21,7 @@ public class RunModeBoard extends JPanel {
     public RunModeBoard(ModelAPI model, int ppl){
         this.model = model;
         this.setBackground(GizmoConstants.runColourTheme);
-        this.setBorder(BorderFactory.createLineBorder(Color.blue));
+        this.setBorder(BorderFactory.createLineBorder(GizmoConstants.getComplimentaryColour(GizmoConstants.runColourTheme)));
         this.ppl = ppl;
     }
 

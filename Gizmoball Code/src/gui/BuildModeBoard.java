@@ -23,7 +23,7 @@ public class BuildModeBoard extends JPanel {
 
     public BuildModeBoard(ModelAPI model, int ppl){
         this.model = model;
-        this.setBorder(BorderFactory.createLineBorder(Color.blue));
+        this.setBorder(BorderFactory.createLineBorder(GizmoConstants.getComplimentaryColour(GizmoConstants.buildColourTheme)));
         this.setBackground(GizmoConstants.buildColourTheme);
         this.ppl = ppl;
 

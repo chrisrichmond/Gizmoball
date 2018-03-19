@@ -347,9 +347,16 @@ public class BuildModeGUI implements GameGUI {
         settingsMenuItem.addActionListener(listener);
         settingsMenuItem.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
 
+        settingsMenuItem.setForeground(themeFG);
+        settingsMenuItem.setBackground(themeBG);
+        fileMenu.setForeground(themeFG);
+        fileMenu.setBackground(themeBG);
         fileMenu.add(saveModelMenuItem);
         fileMenu.add(settingsMenuItem);
         menuBar.add(fileMenu);
+
+        menuBar.setForeground(themeFG);
+        menuBar.setBackground(themeBG);
 
         return menuBar;
     }
@@ -358,9 +365,13 @@ public class BuildModeGUI implements GameGUI {
         messagePanel = new JPanel();
         JLabel messageLabel = new JLabel(message);
 
+        messageLabel.setForeground(themeFG);
+        messageLabel.setBackground(themeBG);
         messageLabel.setFont(font.deriveFont(Font.BOLD, 13f));
         messagePanel.add(messageLabel);
-        messagePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
+        messagePanel.setBorder(BorderFactory.createLineBorder(themeFG));
+        messagePanel.setForeground(themeFG);
+        messagePanel.setBackground(themeBG);
 
         return messagePanel;
     }
