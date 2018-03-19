@@ -8,11 +8,13 @@ import gui.Listeners.RunListener;
 import utilities.GizmoConstants;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class BuildModeGUI implements GameGUI {
+public class BuildModeGUI implements GameGUI, ChangeListener {
 
     private ModelAPI model;
     private View view;
@@ -39,6 +41,11 @@ public class BuildModeGUI implements GameGUI {
     private JButton loadModelButton;
     private JButton reloadModelButton;
     private JButton quitButton;
+
+
+
+    private JSlider gravSlider;
+
 
 
     // Sliders
@@ -184,22 +191,24 @@ public class BuildModeGUI implements GameGUI {
         //
         JLabel grav = new JLabel("Gravity Slider", JLabel.CENTER);
         grav.setFont(font);
-        JLabel SPACERH4X = new JLabel("", JLabel.CENTER);
         grav.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JSlider gravSlider = new JSlider(JSlider.HORIZONTAL, GravMin, GravMAx, GravInit);
 
 
+        JLabel SPACERH4X = new JLabel("", JLabel.CENTER);
+
+        gravSlider = new JSlider(JSlider.HORIZONTAL, GravMin, GravMAx, GravInit);
         // This line does nothing ??? what WHY
         //gravSlider.setMinimumSize((new Dimension(100,100)));
-
-
-        //grav.addChangeListener(this);
-
 
         gravSlider.setMajorTickSpacing(10);
         gravSlider.setMinorTickSpacing(1);
         gravSlider.setPaintTicks(true);
         gravSlider.setPaintLabels(true);
+        gravSlider.addChangeListener(this);
+
+
+
+
 
 
         quitButton = new JButton("Quit");
@@ -370,5 +379,11 @@ public class BuildModeGUI implements GameGUI {
         messagePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
 
         return messagePanel;
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        int GravityFromSlider = gravSlider.getValue();
+        System.out.println(GravityFromSlider);
     }
 }
