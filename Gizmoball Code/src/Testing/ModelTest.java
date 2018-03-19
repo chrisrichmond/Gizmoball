@@ -38,19 +38,11 @@ class ModelTest {
 
     @Test
     public void testToStringGizmos(){
-        String circleString = "5 5 5";
-        assertEquals(circleString, circle.toString());
-
-        String squareString = "1 1 1";
-        assertEquals(squareString, square.toString());
-
-        String triangleString = "2 12 12";
-        assertEquals(triangleString, triangle.toString());
-
-        String absorberString = "AB 0 0 10 0";
-        assertEquals(absorberString, absorb.toString());
+        assertEquals("5 5 5", circle.toString());
+        assertEquals("1 1 1", square.toString());
+        assertEquals("2 12 12", triangle.toString());
+        assertEquals("AB 0 0 10 0", absorb.toString());
     }
-
 
     @Test
     public void testGetCircles(){
@@ -167,7 +159,7 @@ class ModelTest {
 
     @Test
     public void testChangeBallColour(){
-        assertEquals(Color.black, m1.getBall().getColour());
+        assertEquals(Color.white, m1.getBall().getColour());
         m1.getBall().setColour(Color.green);
         assertEquals(Color.green, m1.getBall().getColour());
     }
