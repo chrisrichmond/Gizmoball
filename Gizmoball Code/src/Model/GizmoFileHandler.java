@@ -159,6 +159,15 @@ public class GizmoFileHandler {
             }
             ball = model.getBall();
             writer.println("Ball " + ball.getID() + " " + ball.getXpos() + " " + ball.getYpos() + " " + ball.getVelocity().x() + " " + ball.getVelocity().y());
+
+            // Gizmo Connections
+            for(Gizmo currentGizmoKey: model.getGizmoConnections().keySet()){
+                ArrayList<Gizmo> currentGizmos = model.getGizmoConnections().get(currentGizmoKey);
+                for(int i = 0; i < currentGizmos.size(); i++){
+                    writer.println("Connect "+currentGizmoKey.getID()+" "+currentGizmos.get(i).getID());
+                }
+            }
+
             writer.close();
 
         }catch(IOException iox){

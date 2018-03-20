@@ -4,6 +4,8 @@ import Model.gizmos.Gizmo;
 import utilities.Observable;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public interface ModelAPI extends Observable{
@@ -37,6 +39,8 @@ public interface ModelAPI extends Observable{
     public void clear();
 
     public Walls getWalls();
+
+    public HashMap<Gizmo, ArrayList<Gizmo>> getGizmoConnections();
 
     public void moveBall();
 

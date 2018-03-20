@@ -314,7 +314,7 @@ public class Model implements ModelAPI {
                         connected.get(a).trigger();
                     }
                 }
-                circles.get(i);
+                circles.get(i).trigger();
 				collisionType = "circle";
 			}
 		}
@@ -408,6 +408,11 @@ public class Model implements ModelAPI {
 	@Override
 	public Walls getWalls() {
 		return walls;
+	}
+
+	@Override
+	public HashMap<Gizmo, ArrayList<Gizmo>> getGizmoConnections() {
+		return gizmoConnections;
 	}
 
 	/**
