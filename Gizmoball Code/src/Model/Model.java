@@ -183,7 +183,13 @@ public class Model implements ModelAPI {
 					shortestTime = minTimeuntilCollision;
 					System.out.println("Square Collision");
 					// trigger the gizmo
-					squares.get(i).trigger();
+                    if(hasGizmoConnection(squares.get(i))) {
+                        ArrayList<Gizmo> connected = gizmoConnections.get(squares.get(i));
+                        for (int a = 0; a < connected.size(); a++) {
+                            connected.get(a).trigger();
+                        }
+                    }
+                    squares.get(i).trigger();
 					collisionType = "square";
 					newVelocity = Geometry.reflectWall(squareLines.get(x), velocity);
 				}
@@ -197,7 +203,14 @@ public class Model implements ModelAPI {
 					newVelocity = Geometry.reflectCircle(circles.get(x).getCenter(),circle.getCenter(),velocity);
 					collisionType = "square";
 					//Trigger
-					squares.get(i).trigger();
+                    if(hasGizmoConnection(squares.get(i))) {
+                        ArrayList<Gizmo> connected = gizmoConnections.get(squares.get(i));
+                        for (int a = 0; a < connected.size(); a++) {
+                            connected.get(a).trigger();
+                        }
+                    }
+                    squares.get(i).trigger();
+
 				}
 			}
 		}
@@ -254,11 +267,13 @@ public class Model implements ModelAPI {
 					collisionType = "triangle";
 
 					// trigger the gizmo
-					for(Gizmo currentTriangle: triangles){
-						if(currentTriangle.getLines().contains(triangleLines.get(x))){
-							currentTriangle.trigger();
-						}
-					}
+                    if(hasGizmoConnection(triangles.get(i))) {
+                        ArrayList<Gizmo> connected = gizmoConnections.get(triangles.get(i));
+                        for (int a = 0; a < connected.size(); a++) {
+                            connected.get(a).trigger();
+                        }
+                    }
+                    triangles.get(i).trigger();
 				}
 			}
 
@@ -268,7 +283,13 @@ public class Model implements ModelAPI {
 					shortestTime = minTimeuntilCollision;
 					System.out.println("Triangle Collision");
 					newVelocity = Geometry.reflectCircle(triangleCircles.get(x).getCenter(),circle.getCenter(),velocity);
-
+                    if(hasGizmoConnection(triangles.get(i))) {
+                        ArrayList<Gizmo> connected = gizmoConnections.get(triangles.get(i));
+                        for (int a = 0; a < connected.size(); a++) {
+                            connected.get(a).trigger();
+                        }
+                    }
+                    triangles.get(i).trigger();
 					collisionType = "triangle";
 
 				}
@@ -285,8 +306,13 @@ public class Model implements ModelAPI {
 				System.out.println("Circle Collision");
 				shortestTime = minTimeuntilCollision;
 				newVelocity = Geometry.reflectCircle(circles.get(i).getCircle().getCenter(),ball.getCircle().getCenter(),velocity);
-
-				circles.get(i).trigger();
+                if(hasGizmoConnection(circles.get(i))) {
+                    ArrayList<Gizmo> connected = gizmoConnections.get(circles.get(i));
+                    for (int a = 0; a < connected.size(); a++) {
+                        connected.get(a).trigger();
+                    }
+                }
+                circles.get(i);
 				collisionType = "circle";
 			}
 		}
