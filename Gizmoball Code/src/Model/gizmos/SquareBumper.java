@@ -88,7 +88,7 @@ public class SquareBumper implements Gizmo{
 
     @Override
     public void trigger() {
-        System.out.println("Shooting ball into game!!");
+        System.out.println("Square Triggered");
         colour = GizmoConstants.squareTriggerColour;
         Thread colourTimeout = new Thread(new ChangeColourRunnable(this, GizmoConstants.squareColour));
         colourTimeout.start();
