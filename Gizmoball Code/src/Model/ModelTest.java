@@ -34,6 +34,8 @@ class ModelTest {
     private Gizmo absorb = new Absorber("AB", 0, 0 , 10, 0);
     private Walls wall = new Walls(0, 0, 20, 20);
     private LFlipper lFlip = new LFlipper( "LFlip", 15, 15);
+    private Gizmo triangle2 = new TriangularBumper("2", 12, 12, 90);
+
 
     @BeforeAll
     public  void setUp(){
@@ -144,8 +146,6 @@ class ModelTest {
         absorb.trigger();
         absorb.setColour(Color.white);
         assertEquals(Color.white, absorb.getColour());
-
-
         assertEquals(null, absorb.fireBall());
     }
 
@@ -248,6 +248,16 @@ class ModelTest {
         assertEquals(l2, segs.get(1));
         assertEquals(l3, segs.get(2));
         assertTrue(3 == segs.size());
+    }
+
+    @Test
+    public void testTriangleConstructor2(){
+        m1.addGizmo(triangle2);
+        triangle2.trigger();
+        triangle2.setPos(17, 17);
+        assertEquals(0, triangle2.getDirection());
+        assertEquals(17, triangle2.getYPos());
+        assertEquals(17, triangle2.getXPos());
     }
 
     /**
@@ -511,11 +521,6 @@ class ModelTest {
         m1.addGizmoConnection(squareTEST, squareTEST1);
         assertTrue(m1.hasGizmoConnection(squareTEST));
     }
-
-
-
-
-
 
     @AfterAll
     public void tearDown(){
