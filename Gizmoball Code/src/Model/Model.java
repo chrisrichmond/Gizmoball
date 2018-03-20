@@ -713,6 +713,7 @@ public class Model implements ModelAPI {
 	@Override
 	public void setGravity(double gravity) {
 		this.gravity = gravity;
+		System.out.println("======= Set Gravity       " + this.gravity);
 	}
 
 	@Override
@@ -721,8 +722,9 @@ public class Model implements ModelAPI {
 	}
 
 	@Override
-	public void setFriction(double friction) {
-		this.friction = friction;
+	public void setFriction(double frict) {
+		this.friction = frict;
+		System.out.println("======= Set Friction       " + this.friction);
 	}
 
 	@Override

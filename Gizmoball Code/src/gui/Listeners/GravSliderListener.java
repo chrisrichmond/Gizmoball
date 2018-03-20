@@ -22,6 +22,7 @@ public class GravSliderListener implements ChangeListener{
     @Override
     public void stateChanged(ChangeEvent e) {
         if(e.getSource() == gravSlider){
+            System.out.println("#################################=============================---------------------------grav");
             model.setGravity(gravSlider.getValue());
         }
     }

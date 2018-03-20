@@ -22,7 +22,8 @@ public class FrictionSliderListener implements ChangeListener {
     @Override
     public void stateChanged(ChangeEvent e) {
         if(e.getSource() == frictionSlider) {
-            model.setFriction(frictionSlider.getValue());
+            System.out.println("#################################=============================---------------------------frict");
+            model.setFriction((double)frictionSlider.getValue()/10);
         }
     }
 }

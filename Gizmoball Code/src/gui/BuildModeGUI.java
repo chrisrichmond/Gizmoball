@@ -61,7 +61,7 @@ public class BuildModeGUI implements GameGUI {
     //friction slider
     private JSlider frictionSlider;
     private JLabel frictionSliderLabel;
-    private FrictionSliderListener frictionSliderListner;
+    private FrictionSliderListener frictionSliderListener;
 
     private Font font;
     private Dimension maxButtonSize;
@@ -206,14 +206,14 @@ public class BuildModeGUI implements GameGUI {
         frictionSliderLabel = new JLabel("Friction Slider", JLabel.CENTER);
         frictionSliderLabel.setFont(font);
         frictionSliderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JSlider frictionSlider = new JSlider(JSlider.HORIZONTAL, FrictionMin,FrictionMax,FrictionMin);
+        JSlider frictionSlider = new JSlider(JSlider.HORIZONTAL, FrictionMin,FrictionMax,FrictionInit);
 
         frictionSlider.setMajorTickSpacing(10);
-        frictionSlider.setMajorTickSpacing(1);
+        frictionSlider.setMinorTickSpacing(1);
         frictionSlider.setPaintTicks(true);
         frictionSlider.setPaintLabels(true);
-        frictionSliderListner = new FrictionSliderListener(model, view, gravSlider);
-        //frictionSlider.addChangeListener(frictionSliderListner);
+        frictionSliderListener = new FrictionSliderListener(model, view, frictionSlider);
+        frictionSlider.addChangeListener(frictionSliderListener);
 
 
         quitButton = new JButton("Quit");
