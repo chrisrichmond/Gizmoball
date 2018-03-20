@@ -45,7 +45,7 @@ public class MoveListener implements MouseInputListener {
             if(movedGizmo.getType().equals("absorber")){
                 for(Gizmo currentGizmo: model.getGizmos()){
                     if((currentGizmo.getXPos() >= xPos2) && (currentGizmo.getXPos() <= xPos2+(int)movedGizmo.getWidth()) && (currentGizmo.getYPos() >= yPos2) && (currentGizmo.getYPos() <= yPos2+(int)movedGizmo.getHeight())) {
-                        view.updateMessagePanel("Cell already occupied!");
+                        view.updateMessagePanel("Cell already occupied or outwith game bounds!");
                         return;
                     }
                 }
@@ -71,7 +71,7 @@ public class MoveListener implements MouseInputListener {
                 view.updateMessagePanel("Dropped Gizmo '" + movedGizmo.getID() + "' at X=" + movedGizmo.getXPos() + ", Y=" + movedGizmo.getYPos() + " . . .");
             }
         }else{
-            view.updateMessagePanel("Cell already occupied!");
+            view.updateMessagePanel("Cell already occupied or outwith game bounds!");
         }
     }
 
