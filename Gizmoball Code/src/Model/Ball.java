@@ -36,4 +36,8 @@ public interface Ball {
     Color getColour();
 
     void setColour(Color colour);
+
+    double getRadius();
+
+    void setRadius(double v);
 }

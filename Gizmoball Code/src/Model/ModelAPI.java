@@ -56,6 +56,8 @@ public interface ModelAPI extends Observable{
 
     public void addGizmoConnection(Gizmo gizmo, Gizmo gizmo2);
 
+    public boolean hasGizmoConnection(Gizmo gizmo);
+
     /**
      *
      * @param gizmo

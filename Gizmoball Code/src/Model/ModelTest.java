@@ -14,6 +14,7 @@ import physics.LineSegment;
 import physics.Vect;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -62,6 +63,24 @@ class ModelTest {
         assertEquals(1, m1.getCircles().size());
     }
 
+    @Test
+    public void testCircleBumper(){
+        circle.setPos(17, 17);
+        assertEquals(Color.green, circle.getColour());
+        assertEquals("circle", circle.getType());
+        assertEquals(1, circle.getHeight());
+        assertEquals(1, circle.getWidth());
+        assertTrue(circle.getDirection() == 0);
+        assertFalse(circle.rotate());
+        circle.setID("C1");
+        circle.getID();
+        assertEquals("C1", circle.getID());
+        circle.setColour(Color.orange);
+        assertTrue(circle.getColour() == Color.orange);
+        circle.setID("5");
+        circle.setPos(5, 5);
+    }
+
     /**
      * unit test to test the size of the gizmo list has decreased by 1 by removing the circle gizmo
      */
@@ -88,6 +107,49 @@ class ModelTest {
 
     }
 
+    @Test
+    public void testAbsorberType(){
+        assertEquals("absorber", absorb.getType());
+    }
+
+    @Test
+    public void testAbsorberLines(){
+        List<LineSegment> absorberLines = absorb.getLines();
+
+        LineSegment l1 = new LineSegment(0, 0, 0, 0);
+        LineSegment l2 = new LineSegment(10, 0, 10, 0);
+        LineSegment l3 = new LineSegment(0, 0, 10, 0);
+        LineSegment l4 = new LineSegment(0, 0, 10, 0);
+
+        assertEquals(l1, absorberLines.get(0));
+        assertEquals(l2, absorberLines.get(1));
+        assertEquals(l3, absorberLines.get(2));
+        assertEquals(l4, absorberLines.get(3));
+
+        assertTrue(4 == absorberLines.size());
+    }
+
+
+    @Test
+    public void testAbsorberHeightAndWidth(){
+        assertEquals(0, absorb.getHeight());
+        assertEquals(10, absorb.getWidth());
+    }
+
+    @Test
+    public void testAbsorberPosition(){
+
+        assertEquals(0, absorb.getYPos());
+        assertEquals(0, absorb.getXPos());
+        absorb.trigger();
+        absorb.setColour(Color.white);
+        assertEquals(Color.white, absorb.getColour());
+
+
+        assertEquals(null, absorb.fireBall());
+    }
+
+
 
 
     /**
@@ -106,6 +168,16 @@ class ModelTest {
     public void testGetSquares(){
         m1.addGizmo(square);
         assertEquals(1, m1.getSquares().size());
+    }
+
+
+    @Test
+    public void testSetPosSquare() {
+        Gizmo squareTEST = new SquareBumper("1", 1, 1);
+        squareTEST.setPos(10,12);
+        assertEquals(10,squareTEST.getXPos());
+        assertEquals(12, squareTEST.getYPos());
+
     }
 
     /**
@@ -168,9 +240,9 @@ class ModelTest {
 
         List<LineSegment> segs = triangle.getLines();
 
-        LineSegment l1 = new LineSegment(12, 12, 13, 13);
-        LineSegment l2 = new LineSegment(12, 12, 12, 13);
-        LineSegment l3 = new LineSegment(12, 13, 13, 13);
+        LineSegment l1 = new LineSegment(13, 12, 12, 13);
+        LineSegment l2 = new LineSegment(12, 12, 13, 12);
+        LineSegment l3 = new LineSegment(12, 12, 12, 13);
 
         assertEquals(l1, segs.get(0));
         assertEquals(l2, segs.get(1));
@@ -329,6 +401,12 @@ class ModelTest {
         assertEquals("LFlip", lFlip.getID());
         assertTrue( m1.getLeftFlippers().size() == 0);
         assertEquals(0, m1.getLeftFlippers().size());
+        lFlip.setPos(8, 8);
+        assertEquals(8, lFlip.getXPos());
+        assertEquals(8, lFlip.getYPos());
+        assertEquals(Color.orange, lFlip.getColour());
+        assertEquals("leftflipper", lFlip.getType());
+        lFlip.setPos(15, 15);
     }
 
     @Test
@@ -351,6 +429,13 @@ class ModelTest {
         m1.setFriction(friction);
         assertEquals(4, m1.getFriction());
     }
+
+    @Test
+    public void testFriction(){
+        m1.setMU(0.05);
+        assertEquals(0.05, m1.getFriction());
+    }
+
 
     /**
      * test each gizmo added in the model class returns an instance of the correct gizmo class
@@ -408,8 +493,34 @@ class ModelTest {
         m1.clear();
     }
 
+
+
+    @Test
+    public void testSetGetRadius(){
+        Ball ball1 = new BallImpl("TEST",18.5F, 10.0F, 0.0D, 0.0D);
+        ball1.setRadius(0.5);
+        assertEquals(0.5, ball1.getBallRadius());
+    }
+
+
+    @Test
+    public void testGizmoConnection(){
+        Gizmo squareTEST = new SquareBumper("sq0", 1, 1);
+        Gizmo squareTEST1 = new SquareBumper("sq1", 4, 4);
+
+        m1.addGizmoConnection(squareTEST, squareTEST1);
+        assertTrue(m1.hasGizmoConnection(squareTEST));
+    }
+
+
+
+
+
+
     @AfterAll
     public void tearDown(){
         m1 = null;
     }
+
+
 }
