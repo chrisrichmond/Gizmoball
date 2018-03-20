@@ -174,7 +174,7 @@ public class Model implements ModelAPI {
 		// System.out.println("Checking square colliosions");
 		for(int i=0;i<squares.size();i++) {
 			List<LineSegment> squareLines = squares.get(i).getLines();
-			List<Circle> circles = squares.get(i).getCircles();
+			List<Circle> cornerCircles = squares.get(i).getCircles();
 
 			for (int x = 0; x < squareLines.size(); x++) {
 				minTimeuntilCollision = Geometry.timeUntilWallCollision(squareLines.get(x), circle, velocity);
@@ -188,23 +188,25 @@ public class Model implements ModelAPI {
 				}
 			}
 
-			for (int x = 0; x < circles.size(); x++) {
-				minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(x), circle, velocity);
-				if (minTimeuntilCollision <= tickTime) {
-					shortestTime = minTimeuntilCollision;
-					System.out.println("Circle Collision");
-					newVelocity = Geometry.reflectCircle(circles.get(x).getCenter(),circle.getCenter(),velocity);
-					collisionType = "square";
-					//Trigger
-					squares.get(i).trigger();
-				}
+			for (int x = 0; x < cornerCircles.size(); x++) {
+				//if(!isDuplicateCornerCircle(cornerCircles.get(x))) {
+					minTimeuntilCollision = Geometry.timeUntilCircleCollision(cornerCircles.get(x), circle, velocity);
+					if (minTimeuntilCollision <= tickTime) {
+						shortestTime = minTimeuntilCollision;
+						System.out.println("Circle Collision");
+						newVelocity = Geometry.reflectCircle(cornerCircles.get(x).getCenter(), circle.getCenter(), velocity);
+						collisionType = "square";
+						//Trigger
+						squares.get(i).trigger();
+					}
+				//}
 			}
 		}
 
 		//Absorber Collsions
 		for(int i=0;i<absorbers.size();i++) {
 			List<LineSegment> squareLines = absorbers.get(i).getLines();
-			List<Circle> circles = absorbers.get(i).getCircles();
+			List<Circle> cornerCircles = absorbers.get(i).getCircles();
 
 			for (int x = 0; x < squareLines.size(); x++) {
 				minTimeuntilCollision = Geometry.timeUntilWallCollision(squareLines.get(x), circle, velocity);
@@ -220,18 +222,20 @@ public class Model implements ModelAPI {
 				}
 			}
 
-			for (int x = 0; x < circles.size(); x++) {
-				minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(x), circle, velocity);
-				if (minTimeuntilCollision <= tickTime) {
-					shortestTime = minTimeuntilCollision;
-					System.out.println("Circle Collision 111");
-					newVelocity = Geometry.reflectCircle(circles.get(x).getCenter(),circle.getCenter(),velocity);
+			for (int x = 0; x < cornerCircles.size(); x++) {
+				//if(!isDuplicateCornerCircle(cornerCircles.get(x))) {
+					minTimeuntilCollision = Geometry.timeUntilCircleCollision(cornerCircles.get(x), circle, velocity);
+					if (minTimeuntilCollision <= tickTime) {
+						shortestTime = minTimeuntilCollision;
+						System.out.println("Circle Collision 111");
+						newVelocity = Geometry.reflectCircle(cornerCircles.get(x).getCenter(), circle.getCenter(), velocity);
 
-					// trigger the gizmo
-					absorbers.get(i).storeGizmoBall(ball);
-					ball.setStopped(true);
-					collisionType = "absorber";
-				}
+						// trigger the gizmo
+						absorbers.get(i).storeGizmoBall(ball);
+						ball.setStopped(true);
+						collisionType = "absorber";
+					}
+				//}
 			}
 		}
 
@@ -264,15 +268,17 @@ public class Model implements ModelAPI {
 			}
 
 			for (int x = 0; x < triangleCircles.size(); x++) {
-				minTimeuntilCollision = Geometry.timeUntilCircleCollision(triangleCircles.get(x), circle, velocity);
-				if (minTimeuntilCollision <= tickTime) {
-					shortestTime = minTimeuntilCollision;
-					System.out.println("Triangle Collision");
-					newVelocity = Geometry.reflectCircle(triangleCircles.get(x).getCenter(),circle.getCenter(),velocity);
+				//if(!isDuplicateCornerCircle(triangleCircles.get(x))) {
+					minTimeuntilCollision = Geometry.timeUntilCircleCollision(triangleCircles.get(x), circle, velocity);
+					if (minTimeuntilCollision <= tickTime) {
+						shortestTime = minTimeuntilCollision;
+						System.out.println("Triangle Collision");
+						newVelocity = Geometry.reflectCircle(triangleCircles.get(x).getCenter(), circle.getCenter(), velocity);
 
-					collisionType = "triangle";
+						collisionType = "triangle";
 
-				}
+					}
+				//}
 			}
 		}
 
@@ -345,6 +351,17 @@ public class Model implements ModelAPI {
 
 	}
 
+	private boolean isDuplicateCornerCircle(Circle cornerCircle){
+		for(Gizmo currentGizmo: gizmos){
+			for(Circle currentCornerCircle: currentGizmo.getCircles()){
+				if(currentCornerCircle.getCenter().equals(cornerCircle.getCenter())){
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
 
 	private void keyPressed(KeyEvent key) {
 		ArrayList<Gizmo> x;
