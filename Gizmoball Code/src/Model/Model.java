@@ -707,10 +707,10 @@ public class Model implements ModelAPI {
 	}
 
 
-	public void addGizmoConnection(Gizmo gizmo,Gizmo gizmo1) {
+	public void addGizmoConnection(Gizmo gizmo, Gizmo gizmo2) {
 
 		if(gizmoConnections.containsKey(gizmo)){
-			gizmoConnections.get(gizmo).add(gizmo1);
+			gizmoConnections.get(gizmo).add(gizmo2);
 		}
 
 	}

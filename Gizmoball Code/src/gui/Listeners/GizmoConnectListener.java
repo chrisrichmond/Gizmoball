@@ -34,18 +34,26 @@ public class GizmoConnectListener implements MouseInputListener{
         yPos1 = (int)(e.getY()/view.getPpl());
         if(!model.isCellEmpty(xPos1,yPos1)){
             firstGizmo = model.getGizmoByCoords(xPos1,yPos1);
-            view.updateMessagePanel("Gizmo Connect mode - Selected Gizmo '"+firstGizmo.getID()+"' at X="+firstGizmo.getXPos()+", Y="+firstGizmo.getYPos()+" . . .");
+            view.updateMessagePanel("Gizmo Connect - Selected Gizmo '"+firstGizmo.getID()+"' at X="+firstGizmo.getXPos()+", Y="+firstGizmo.getYPos()+" . . .");
         }else{
-            view.updateMessagePanel("No gizmo located here!");
+            view.updateMessagePanel("No gizmo located here! (Gizmo 1)");
             firstGizmo = null;
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-//        if(firstGizmo != null){
-//            model.addGizmoConnection();
-//        }
+        xPos2 = (int)(e.getX()/view.getPpl());
+        yPos2 = (int)(e.getY()/view.getPpl());
+        if(firstGizmo != null){
+            if(!model.isCellEmpty(xPos2,yPos2)) {
+                secondGizmo = model.getGizmoByCoords(xPos2, yPos2);
+                model.addGizmoConnection(firstGizmo, secondGizmo);
+                view.updateMessagePanel("Connected '"+firstGizmo.getID()+"' to '"+secondGizmo.getID()+"' !");
+            }else{
+                view.updateMessagePanel("No gizmo located here! (Gizmo 2)");
+            }
+        }
     }
 
     @Override

@@ -48,6 +48,8 @@ public interface ModelAPI extends Observable{
 
     public void setMU(double friction);
 
+    public void addGizmoConnection(Gizmo gizmo, Gizmo gizmo2);
+
     /**
      *
      * @param gizmo
