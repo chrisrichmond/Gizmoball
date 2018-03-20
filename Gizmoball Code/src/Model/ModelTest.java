@@ -348,7 +348,7 @@ class ModelTest {
     @Test
     public void testAdjustFriction(){
         double friction = 4;
-        //m1.setFriction(4);
+        m1.setFriction(4);
         assertEquals(4, m1.getFriction());
     }
 
