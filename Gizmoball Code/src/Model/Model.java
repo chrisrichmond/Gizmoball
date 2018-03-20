@@ -37,6 +37,8 @@ public class Model implements ModelAPI {
  	private double tickTime;
  	private double gravity;
  	private double friction;
+	private double mu=0.025D; // default value should be 0.025 per second
+	private double mu2=0.025D; // default value should be 0.025 per line
 
 
 	/**
@@ -118,8 +120,7 @@ public class Model implements ModelAPI {
 		Double xVnew,xVold,yVold,yVnew;
 		xVold=ball.getVelocity().x();
 		yVold=ball.getVelocity().y();
-		double mu=0.025D; // default value should be 0.025 per second
-		double mu2=0.025D; // default value should be 0.025 per line
+
 		xVnew = xVold * (1 - mu * delta_t - mu2 * Math.abs(xVold) * delta_t);
 		yVnew = yVold * (1 - mu * delta_t - mu2 * Math.abs(yVold) * delta_t);
 		ball.setVelocity(new Vect(xVnew,yVnew));
@@ -240,13 +241,11 @@ public class Model implements ModelAPI {
 		// check for other Triange collisions
 		// System.out.println("Checking triangle colliosions");
 		for(int i=0;i<triangles.size();i++) {
-			System.out.println("Checking Triangle number : "+i);
 			List<LineSegment> triangleLines = triangles.get(i).getLines();
 			List<Circle> triangleCircles = triangles.get(i).getCircles();
 
 			for (int x = 0; x < triangleLines.size(); x++) {
 				minTimeuntilCollision = Geometry.timeUntilWallCollision(triangleLines.get(x), circle, velocity);
-				System.out.println("Triangle line min time until : "+minTimeuntilCollision);
 				if (minTimeuntilCollision <= tickTime) {
 					shortestTime = minTimeuntilCollision;
 					System.out.println("Triangle Collision");
@@ -311,14 +310,16 @@ public class Model implements ModelAPI {
 			CollisionDetails cd = timeUntilCollision();
 			double tuc = cd.getTuc();
 			if(!cd.getCollisionType().equals("absorber")) {
-				if (tuc > friction) {
-					applyFriction(friction);
+				if (tuc >= friction) {
+
 					ball = moveBallForTime(ball, friction);
+					applyFriction(friction);
 
 				} else if (!ball.isStopped()) {
-					applyFriction(tuc);
+
 					ball = moveBallForTime(ball, tuc);
 					ball.setVelocity(cd.getVelocity());
+					applyFriction(tuc);
 				}
 			}
 			applyGravity();
@@ -723,8 +724,9 @@ public class Model implements ModelAPI {
 	}
 
 	@Override
-	public void setFriction(double frict) {
-		this.friction = frict;
+	public void setMU(double frict) {
+		this.mu = frict;
+		this.mu2 = frict;
 		System.out.println("======= Set Friction       " + this.friction);
 	}
 
