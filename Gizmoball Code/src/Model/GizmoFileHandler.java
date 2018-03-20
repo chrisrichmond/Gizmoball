@@ -30,9 +30,11 @@ public class GizmoFileHandler {
             BufferedReader br = new BufferedReader(fr);
 
             while((currentLine = br.readLine()) != null) {
-                opcode = getOpcode(currentLine);
-                operands = getOperands(currentLine);
-                loadObjectIntoModel(opcode, operands);
+                if(currentLine.length() > 0) {
+                    opcode = getOpcode(currentLine);
+                    operands = getOperands(currentLine);
+                    loadObjectIntoModel(opcode, operands);
+                }
             }
 
             br.close();
@@ -57,13 +59,19 @@ public class GizmoFileHandler {
             // object is a ball
             Ball newBall = new BallImpl(operands.get(0), Float.parseFloat(operands.get(1)), Float.parseFloat(operands.get(2)), Float.parseFloat(operands.get(3)), Float.parseFloat(operands.get(4)));
             model.replaceBall(newBall);
-        }else if(opcode.equals("rotate")){
+        }else if(opcode.equals("rotate")) {
             // operation is to rotate an object
-            for(Gizmo currentGizmo: model.getGizmos()){
-                if(currentGizmo.getID().equals(operands.get(0))){
+            for (Gizmo currentGizmo : model.getGizmos()) {
+                if (currentGizmo.getID().equals(operands.get(0))) {
                     model.rotateGizmo(currentGizmo);
                 }
             }
+        }else if(opcode.equals("keyconnect")) {
+            // operation is a key connect
+            // not implemented yet so do nothing
+        }else if(opcode.equals("connect")) {
+            // operation is a gizmo connect
+            // not implemented yet so do nothing
         }else{
             // object is a gizmo
             int x = Integer.parseInt(operands.get(1));
@@ -78,6 +86,9 @@ public class GizmoFileHandler {
                 int x2 = Integer.parseInt(operands.get(3));
                 int y2 = Integer.parseInt(operands.get(4));
                 model.addGizmo(new Absorber(operands.get(0), x, y, x2, y2));
+            } else {
+                // INVALID OPCODE, DO NOTHING
+                System.out.println("Unrecognised opcode");
             }
         }
     }

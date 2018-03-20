@@ -30,8 +30,8 @@ public class GizmoConstants {
     public static final Color squareTriggerColour = Color.green;
     public static final Color circleColour = Color.green;
     public static final Color circleTriggerColour = Color.yellow;
-    public static final Color triangleColour = Color.blue;
-    public static final Color triangleTriggerColour = Color.cyan;
+    public static final Color triangleColour = Color.red;
+    public static final Color triangleTriggerColour = Color.blue;
 
     public static Color getComplimentaryColour(Color colour) {
         return new Color(255-colour.getRed(), 255-colour.getGreen(), 255-colour.getBlue());

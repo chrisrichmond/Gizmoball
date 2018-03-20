@@ -287,6 +287,7 @@ public class Model implements ModelAPI {
 				shortestTime = minTimeuntilCollision;
 				newVelocity = Geometry.reflectCircle(circles.get(i).getCircle().getCenter(),ball.getCircle().getCenter(),velocity);
 
+				circles.get(i).trigger();
 				collisionType = "circle";
 			}
 		}
