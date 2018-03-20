@@ -170,6 +170,16 @@ class ModelTest {
         assertEquals(1, m1.getSquares().size());
     }
 
+
+    @Test
+    public void testSetPosSquare() {
+        Gizmo squareTEST = new SquareBumper("1", 1, 1);
+        squareTEST.setPos(10,12);
+        assertEquals(10,squareTEST.getXPos());
+        assertEquals(12, squareTEST.getYPos());
+
+    }
+
     /**
      * this test is used to test the x and y coordinates of the line are placed
      * correctly. The square take up 1 grid location and also tests the size of the
@@ -483,8 +493,34 @@ class ModelTest {
         m1.clear();
     }
 
+
+
+    @Test
+    public void testSetGetRadius(){
+        Ball ball1 = new BallImpl("TEST",18.5F, 10.0F, 0.0D, 0.0D);
+        ball1.setRadius(0.5);
+        assertEquals(0.5, ball1.getBallRadius());
+    }
+
+
+    @Test
+    public void testGizmoConnection(){
+        Gizmo squareTEST = new SquareBumper("sq0", 1, 1);
+        Gizmo squareTEST1 = new SquareBumper("sq1", 4, 4);
+
+        m1.addGizmoConnection(squareTEST, squareTEST1);
+        assertTrue(m1.hasGizmoConnection(squareTEST));
+    }
+
+
+
+
+
+
     @AfterAll
     public void tearDown(){
         m1 = null;
     }
+
+
 }
