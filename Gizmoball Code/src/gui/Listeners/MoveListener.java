@@ -5,6 +5,7 @@ import Model.gizmos.*;
 import gui.View;
 
 import javax.swing.event.MouseInputListener;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class MoveListener implements MouseInputListener {

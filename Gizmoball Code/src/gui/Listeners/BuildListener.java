@@ -69,6 +69,8 @@ public class BuildListener implements GBallListener {
                 view.updateMessagePanel("Board Cleared");
                 break;
             case("Connect"):
+                final MouseInputListener = new GizmoConnectListener(model, view);
+
                 view.updateMessagePanel("Connect Gizmo");
                 break;
             case("Disconnect"):
