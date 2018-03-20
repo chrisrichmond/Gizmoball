@@ -106,6 +106,8 @@ public class Model implements ModelAPI {
  	    absorbers.clear();
  	    leftFlippers.clear();
  	    rightFlippers.clear();
+ 	    gizmoConnections.clear();
+ 	    keyConnections.clear();
  	    setChanged();
  	    notifyObservers();
     }
