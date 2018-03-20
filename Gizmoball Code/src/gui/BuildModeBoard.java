@@ -68,7 +68,6 @@ public class BuildModeBoard extends JPanel {
                     graphics2D.fillRoundRect(x, y, width, height, 15, 15);
                 } else if (currentGizmo.getType().equals("circle")) {
                     // Draw CircularBumper
-                    graphics2D.setPaint(Color.blue);
                     graphics2D.fill(currentGizmo.getCircle().toEllipse2D());
                     graphics2D.fillOval(x, y, width, height);
 

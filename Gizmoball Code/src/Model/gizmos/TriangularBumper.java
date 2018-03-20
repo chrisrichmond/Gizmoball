@@ -5,6 +5,7 @@ import physics.Circle;
 import physics.LineSegment;
 import physics.TriangleClass;
 import physics.Vect;
+import utilities.GizmoConstants;
 
 import java.awt.*;
 import java.util.List;
@@ -28,7 +29,7 @@ public class TriangularBumper implements Gizmo{
         this.xPos = xpos;
         this.yPos = ypos;
         this.triangle = new TriangleClass(xPos, yPos, 0);
-        this.colour = Color.red;
+        this.colour = GizmoConstants.triangleColour;
         this.rotation = 0;
     }
 
@@ -60,7 +61,9 @@ public class TriangularBumper implements Gizmo{
 
     @Override
     public void trigger() {
-        colour = Color.cyan;
+        colour = GizmoConstants.triangleTriggerColour;
+        Thread colourTimeout = new Thread(new ChangeColourRunnable(this, GizmoConstants.triangleColour));
+        colourTimeout.start();
     }
 
     @Override

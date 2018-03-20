@@ -4,6 +4,7 @@ import Model.Ball;
 import physics.Circle;
 import physics.LineSegment;
 import physics.Vect;
+import utilities.GizmoConstants;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class CircularBumper implements Gizmo {
         this.yPos=ypos;
         this.radius=0.5F;
         this.circle=new Circle(new Vect(xpos+radius, ypos+radius), radius);
-        this.colour = Color.green;
+        this.colour = GizmoConstants.circleColour;
     }
 
     @Override
@@ -46,7 +47,9 @@ public class CircularBumper implements Gizmo {
 
     @Override
     public void trigger() {
-        colour = Color.YELLOW;
+        colour = GizmoConstants.circleTriggerColour;
+        Thread colourTimeout = new Thread(new ChangeColourRunnable(this, GizmoConstants.circleColour));
+        colourTimeout.start();
     }
 
     @Override
