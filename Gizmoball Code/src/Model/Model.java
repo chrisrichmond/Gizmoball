@@ -116,7 +116,6 @@ public class Model implements ModelAPI {
 	 * @param delta_t
 	 */
 	private void applyFriction(double delta_t){
-		System.out.println("################## " + delta_t);
 		Double xVnew,xVold,yVold,yVnew;
 		xVold=ball.getVelocity().x();
 		yVold=ball.getVelocity().y();
@@ -160,7 +159,7 @@ public class Model implements ModelAPI {
 		for(int i=0;i<wls.size();i++){
 
 			minTimeuntilCollision = Geometry.timeUntilWallCollision(wls.get(i),circle,velocity);
-			if(minTimeuntilCollision <= tickTime){
+			if(minTimeuntilCollision < tickTime){
 				shortestTime = minTimeuntilCollision;
 				newVelocity = Geometry.reflectWall(wls.get(i),velocity);
 				System.out.println("Wall Collision");
@@ -179,7 +178,7 @@ public class Model implements ModelAPI {
 
 			for (int x = 0; x < squareLines.size(); x++) {
 				minTimeuntilCollision = Geometry.timeUntilWallCollision(squareLines.get(x), circle, velocity);
-				if (minTimeuntilCollision <= tickTime) {
+				if (minTimeuntilCollision < tickTime) {
 					shortestTime = minTimeuntilCollision;
 					System.out.println("Square Collision");
 					// trigger the gizmo
@@ -191,7 +190,7 @@ public class Model implements ModelAPI {
 
 			for (int x = 0; x < circles.size(); x++) {
 				minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(x), circle, velocity);
-				if (minTimeuntilCollision <= tickTime) {
+				if (minTimeuntilCollision <tickTime) {
 					shortestTime = minTimeuntilCollision;
 					System.out.println("Circle Collision");
 					newVelocity = Geometry.reflectCircle(circles.get(x).getCenter(),circle.getCenter(),velocity);
@@ -209,7 +208,7 @@ public class Model implements ModelAPI {
 
 			for (int x = 0; x < squareLines.size(); x++) {
 				minTimeuntilCollision = Geometry.timeUntilWallCollision(squareLines.get(x), circle, velocity);
-				if (minTimeuntilCollision <= tickTime) {
+				if (minTimeuntilCollision < tickTime) {
 
 					System.out.println("Absorber Collision");
 					// trigger the gizmo
@@ -223,7 +222,7 @@ public class Model implements ModelAPI {
 
 			for (int x = 0; x < circles.size(); x++) {
 				minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(x), circle, velocity);
-				if (minTimeuntilCollision <= tickTime) {
+				if (minTimeuntilCollision < tickTime) {
 					shortestTime = minTimeuntilCollision;
 					System.out.println("Circle Collision 111");
 					newVelocity = Geometry.reflectCircle(circles.get(x).getCenter(),circle.getCenter(),velocity);
@@ -246,7 +245,7 @@ public class Model implements ModelAPI {
 
 			for (int x = 0; x < triangleLines.size(); x++) {
 				minTimeuntilCollision = Geometry.timeUntilWallCollision(triangleLines.get(x), circle, velocity);
-				if (minTimeuntilCollision <= tickTime) {
+				if (minTimeuntilCollision < tickTime) {
 					shortestTime = minTimeuntilCollision;
 					System.out.println("Triangle Collision");
 					newVelocity = Geometry.reflectWall(triangleLines.get(x), velocity);
@@ -264,7 +263,7 @@ public class Model implements ModelAPI {
 
 			for (int x = 0; x < triangleCircles.size(); x++) {
 				minTimeuntilCollision = Geometry.timeUntilCircleCollision(triangleCircles.get(x), circle, velocity);
-				if (minTimeuntilCollision <= tickTime) {
+				if (minTimeuntilCollision < tickTime) {
 					shortestTime = minTimeuntilCollision;
 					System.out.println("Triangle Collision");
 					newVelocity = Geometry.reflectCircle(triangleCircles.get(x).getCenter(),circle.getCenter(),velocity);
@@ -281,7 +280,7 @@ public class Model implements ModelAPI {
 			minTimeuntilCollision = Geometry.timeUntilCircleCollision(circles.get(i).getCircle(), ball.getCircle(),velocity);
 
 
-			if (minTimeuntilCollision <= tickTime) {
+			if (minTimeuntilCollision < tickTime) {
 				System.out.println("Circle Collision");
 				shortestTime = minTimeuntilCollision;
 				newVelocity = Geometry.reflectCircle(circles.get(i).getCircle().getCenter(),ball.getCircle().getCenter(),velocity);
@@ -688,6 +687,13 @@ public class Model implements ModelAPI {
 		}
 
 	}
+	public void removeGizmoConnection(Gizmo gizmo,Gizmo gizmo1) {
+
+		if(gizmoConnections.containsKey(gizmo)){
+			gizmoConnections.get(gizmo).remove(gizmo1);
+		}
+
+	}
 	public boolean hasGizmoConnection(Gizmo gizmo) {
 
 		if(gizmoConnections.containsKey(gizmo)){
@@ -700,6 +706,13 @@ public class Model implements ModelAPI {
 
 		if(keyConnections.containsKey(key)){
 			keyConnections.get(key).add(gizmo1);
+		}
+
+	}
+	public void removeKeyConnection(KeyEvent key,Gizmo gizmo1) {
+
+		if(keyConnections.containsKey(key)){
+			keyConnections.get(key).remove(gizmo1);
 		}
 
 	}

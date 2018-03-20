@@ -25,14 +25,14 @@ public class SquareClass{
         LineSegment bottomSide = new LineSegment((double)X, (double)Y, (double)(X + width), (double)Y);
         lines.add(bottomSide);
 
-        Circle tLeft = new Circle((double)X, (double)(Y + width), 0);
-        circles.add(tLeft);
-        Circle tRight = new Circle((double)(X+ width), (double)(Y + width), 0);
-        circles.add(tRight);
-        Circle botLeft = new Circle((double)X, (double)Y, 0);
-        circles.add(botLeft);
-        Circle botRight = new Circle((double)(X + width), Y, 0);
-        circles.add(botRight);
+//        Circle tLeft = new Circle((double)X, (double)(Y + width), 0);
+//        circles.add(tLeft);
+//        Circle tRight = new Circle((double)(X+ width), (double)(Y + width), 0);
+//        circles.add(tRight);
+//        Circle botLeft = new Circle((double)X, (double)Y, 0);
+//        circles.add(botLeft);
+//        Circle botRight = new Circle((double)(X + width), Y, 0);
+//        circles.add(botRight);
     }
 
     public ArrayList<LineSegment> getLines(){
