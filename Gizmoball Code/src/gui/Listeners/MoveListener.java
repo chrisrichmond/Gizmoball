@@ -42,23 +42,34 @@ public class MoveListener implements MouseInputListener {
         xPos2 = (int)(e.getX()/view.getPpl());
         yPos2 = (int)(e.getY()/view.getPpl());
         if((model.isCellEmpty(xPos2,yPos2)) && (xPos2 >= 0) && (xPos2 <= 19) && (yPos2 >= 0) && (yPos2 <= 19) && (xPos2+movedGizmo.getWidth() <= 20) && (yPos2+movedGizmo.getHeight() <= 20)){
-            model.removeGizmo(movedGizmo);
-
-            if(movedGizmo.getType().equals("square")) {
-                movedGizmo = new SquareBumper(movedGizmo.getID(), xPos2, yPos2);
-            }else if(movedGizmo.getType().equals("circle")) {
-                movedGizmo = new CircularBumper(movedGizmo.getID(), xPos2, yPos2);
-            }else if(movedGizmo.getType().equals("triangle")) {
-                movedGizmo = new TriangularBumper(movedGizmo.getID(), xPos2, yPos2, ((TriangularBumper)movedGizmo).getRotation());
-            }else if(movedGizmo.getType().equals("absorber")){
+            if(movedGizmo.getType().equals("absorber")){
+                for(Gizmo currentGizmo: model.getGizmos()){
+                    if((currentGizmo.getXPos() >= xPos2) && (currentGizmo.getXPos() <= xPos2+(int)movedGizmo.getWidth()) && (currentGizmo.getYPos() >= yPos2) && (currentGizmo.getYPos() <= yPos2+(int)movedGizmo.getHeight())) {
+                        view.updateMessagePanel("Cell already occupied!");
+                        return;
+                    }
+                }
+                model.removeGizmo(movedGizmo);
                 movedGizmo = new Absorber(movedGizmo.getID(), xPos2, yPos2, xPos2+(int)movedGizmo.getWidth(), yPos2+(int)movedGizmo.getHeight());
-            }else if(movedGizmo.getType().equals("leftflipper")){
+                model.addGizmo(movedGizmo);
+            }else {
 
-            }else if(movedGizmo.getType().equals("rightflipper")){
+                model.removeGizmo(movedGizmo);
 
+                if (movedGizmo.getType().equals("square")) {
+                    movedGizmo = new SquareBumper(movedGizmo.getID(), xPos2, yPos2);
+                } else if (movedGizmo.getType().equals("circle")) {
+                    movedGizmo = new CircularBumper(movedGizmo.getID(), xPos2, yPos2);
+                } else if (movedGizmo.getType().equals("triangle")) {
+                    movedGizmo = new TriangularBumper(movedGizmo.getID(), xPos2, yPos2, ((TriangularBumper) movedGizmo).getRotation());
+                } else if (movedGizmo.getType().equals("leftflipper")) {
+
+                } else if (movedGizmo.getType().equals("rightflipper")) {
+
+                }
+                model.addGizmo(movedGizmo);
+                view.updateMessagePanel("Dropped Gizmo '" + movedGizmo.getID() + "' at X=" + movedGizmo.getXPos() + ", Y=" + movedGizmo.getYPos() + " . . .");
             }
-            model.addGizmo(movedGizmo);
-            view.updateMessagePanel("Dropped Gizmo '"+movedGizmo.getID()+"' at X="+movedGizmo.getXPos()+", Y="+movedGizmo.getYPos()+" . . .");
         }else{
             view.updateMessagePanel("Cell already occupied!");
         }
