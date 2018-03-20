@@ -21,6 +21,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ModelTest {
 
+    /**
+     * create Model API reference & Collections of each gizmo type
+     */
     private ModelAPI m1;
     private List<Gizmo> gizmos;
     private Ball ball;
@@ -31,13 +34,16 @@ class ModelTest {
     private Walls wall = new Walls(0, 0, 20, 20);
     private LFlipper lFlip = new LFlipper( "LFlip", 15, 15);
 
-
     @BeforeAll
     public  void setUp(){
         m1 = new Model();
         ball = new BallImpl("B",18.5F, 10.0F, 0.0D, 0.0D);
     }
 
+
+    /**
+     * unit test to convert gizmo object type to string and match against the expected value
+     */
     @Test
     public void testToStringGizmos(){
         assertEquals("5 5 5", circle.toString());
@@ -47,36 +53,56 @@ class ModelTest {
         assertEquals("LFlip 15 15", lFlip.toString());
     }
 
+    /**
+     * unit test to test the size of the gizmo list has increased by 1 by adding the circle gizmo
+     */
     @Test
     public void testGetCircles(){
         m1.addGizmo(circle);
         assertEquals(1, m1.getCircles().size());
     }
 
+    /**
+     * unit test to test the size of the gizmo list has decreased by 1 by removing the circle gizmo
+     */
     @Test
     public void testRemoveCircle(){
         m1.removeGizmo(circle);
         assertEquals(0, m1.getCircles().size());
     }
 
+    /**
+     * unit test to test the size of the gizmo list has increased by 1 by adding the absorber
+     */
     @Test
     public void testGetAbsorber(){
         m1.addGizmo(absorb);
         assertEquals(1, m1.getAbsorbers().size());
     }
 
+    /**
+     * unit test to test the size of the gizmo list has decreased by 1 by removing the absorber
+     */
     @Test
     public void testRemoveAbsorber(){
         m1.removeGizmo(absorb);
         assertEquals(0, m1.getAbsorbers().size());
     }
 
+    /**
+     * unit test to test the size of the gizmo list has increased by 1 by adding a square gizmo
+     */
     @Test
     public void testGetSquares(){
         m1.addGizmo(square);
         assertEquals(1, m1.getSquares().size());
     }
 
+    /**
+     * this test is used to test the x and y coordinates of the line are placed
+     * correctly. The square take up 1 grid location and also tests the size of the
+     * list has increased, and gived the expected output of 4.
+     */
     @Test
     public void testSquareLineSegments(){
 
@@ -103,21 +129,30 @@ class ModelTest {
         assertEquals(s3, segs2.get(2));
         assertEquals(s4, segs2.get(3));
         assertTrue(4 == segs2.size());
-
     }
 
+    /**
+     * unit test to test the size of the gizmo list has decreased by 1 by removing a gizmo
+     */
     @Test
     public void testRemoveSquare(){
         m1.removeGizmo(square);
         assertEquals(0, m1.getSquares().size());
     }
 
+    /**
+     * unit test to test the size of the gizmo list has increased by 1 by adding a triangle gizmo
+     */
     @Test
     public void testGetTriangle(){
         m1.addGizmo(triangle);
         assertEquals(1, m1.getTriangles().size());
     }
 
+    /**
+     * unit test to test whether the 3 triangle line segments are in the correct x and y locations as
+     * expected. also test this against the size of the list of line segments to check whether it has increased
+     */
     @Test
     public void testTriangleLineSegments() {
 
@@ -133,23 +168,35 @@ class ModelTest {
         assertTrue(3 == segs.size());
     }
 
+    /**
+     * unit test to test the size of the gizmo list has decreased by 1 by removing a triangle gizmo
+     */
     @Test
     public void testRemoveTriangle(){
         m1.removeGizmo(triangle);
         assertEquals(0, m1.getTriangles().size());
     }
 
+    /**
+     * test rotate functionality of the triangle rotate gizmo, expected value to be true when the triangle is rotated successfully
+     */
     @Test
     public void testRotateTriangle(){
         assertEquals(true, m1.rotateGizmo(triangle));
     }
 
+    /**
+     * test the expected value with the actual value of the x and y coordinates of the ball
+     */
     @Test
     public void testGetBallPosition(){
         assertEquals(18.5F, m1.getBall().getXpos());
         assertEquals(10.0F, m1.getBall().getYpos());
     }
 
+    /**
+     * test the expected value with the actual value of return value of the ball radius
+     */
     @Test
     public void testGetBallRadius(){
         assertEquals(0.25D, m1.getBall().getBallRadius());
@@ -162,6 +209,9 @@ class ModelTest {
         assertEquals(3, m1.getBall().getVelocity().y());
     }
 
+    /**
+     * test the expected value with the actual value of setting and getting the ball colour
+     */
     @Test
     public void testChangeBallColour(){
         assertEquals(Color.white, m1.getBall().getColour());
@@ -169,6 +219,9 @@ class ModelTest {
         assertEquals(Color.green, m1.getBall().getColour());
     }
 
+    /**
+     * test the expected value with the actual value of the ball ID and whether the ball is stopped
+     */
     @Test
     public void testBallStoppedAndID(){
         m1.getBall().setStopped(true);
@@ -176,6 +229,9 @@ class ModelTest {
         assertEquals("B", m1.getBall().getID());
     }
 
+    /**
+     * test the grid cell space when occupied by a gizmo, and get the expected return value : false
+     */
     @Test
     public void testCellSpaceNotEmpty(){
         m1.addGizmo(circle);
@@ -188,11 +244,17 @@ class ModelTest {
         assertEquals(false, m1.isCellEmpty(1, 1));
     }
 
+    /**
+     * test the cell space is empty and not occupied by another gizmo as expected
+     */
     @Test
     public void testCellSpaceIsEmpty(){
         assertEquals(true, m1.isCellEmpty(9, 9));
     }
 
+    /**
+     * replace the ball with another and get the return value of the getBall method
+     */
     @Test
     public void testReplaceBall(){
         Ball ball2 = new BallImpl("B2",10.5F, 15.0F, 0.0D, 0.0D);
@@ -204,6 +266,9 @@ class ModelTest {
         assertEquals(ball, m1.getBall());
     }
 
+    /**
+     * create new velocity of the ball and test it against the getVelocity() return value
+     */
     @Test
     public void testSetAndGetVelocity(){
         double test1 = 5;
@@ -214,12 +279,18 @@ class ModelTest {
         assertEquals(v1, m1.getBall().getVelocity());
     }
 
+    /**
+     * test the gizmo which is at the specified coordinates returns the actual value of the gizmo in the cell
+     */
     @Test
     public void testGetGizmoCoords(){
         m1.addGizmo(circle);
         assertEquals(circle, m1.getGizmoByCoords(5, 5));
     }
 
+    /**
+     * get the expected and actual boolean value of build mode
+     */
     @Test
     public void testBoolBuildMode(){
         assertEquals(false, m1.isBuildMode());
@@ -238,7 +309,7 @@ class ModelTest {
         m1.addGizmo(lFlip);
         assertEquals(lFlip, m1.getGizmoByCoords(15, 15));
         assertEquals(1, m1.getLeftFlippers().size());
-        assertTrue(m1.getLeftFlippers().get(0).getID() == "LFlip");
+        assertTrue(m1.getLeftFlippers().get(0).getID().equals("LFlip"));
     }
 
     @Test
@@ -256,6 +327,9 @@ class ModelTest {
         assertEquals(6, m1.getGravity());
     }
 
+    /**
+     * test each gizmo added in the model class returns an instance of the correct gizmo class
+     */
     @Test
     public void testInstanceOfClass(){
         m1.addGizmo(square);
@@ -281,6 +355,9 @@ class ModelTest {
         assertTrue(0 == m1.getCircles().size());
     }
 
+    /**
+     * save a default gizmo file to the system and load the file
+     */
     @Test
     public void testSaveAndLoad(){
         m1.saveFile("default.gizmo");
