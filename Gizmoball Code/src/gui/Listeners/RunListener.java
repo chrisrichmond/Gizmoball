@@ -12,7 +12,7 @@ import javax.swing.*;
 import javax.swing.event.MouseInputListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class RunListener implements GBallListener{
+public class RunListener implements GBallListener {
 
     private Timer timer;
     private ModelAPI model;
