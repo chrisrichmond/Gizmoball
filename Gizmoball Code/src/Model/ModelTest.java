@@ -75,7 +75,7 @@ class ModelTest {
      * unit test to test the size of the gizmo list has increased by 1 by adding the absorber
      */
     @Test
-    public void testGetAbsorber(){
+    public void testAbsorber(){
         m1.addGizmo(absorb);
         assertEquals(1, m1.getAbsorbers().size());
         assertEquals(absorb, m1.getGizmoByCoords(0, 0));
@@ -85,9 +85,45 @@ class ModelTest {
         absorb.setID("BC");
         assertEquals("BC", absorb.getID());
         absorb.setID("AB");
-
+        absorb.setColour(Color.pink);
+        assertEquals(Color.pink, absorb.getColour());
     }
 
+    @Test
+    public void testAbsorberType(){
+        assertEquals("absorber", absorb.getType());
+    }
+
+    @Test
+    public void testAbsorberLines(){
+        List<LineSegment> absorberLines = absorb.getLines();
+
+        LineSegment l1 = new LineSegment(0, 0, 0, 0);
+        LineSegment l2 = new LineSegment(10, 0, 10, 0);
+        LineSegment l3 = new LineSegment(0, 0, 10, 0);
+        LineSegment l4 = new LineSegment(0, 0, 10, 0);
+
+        assertEquals(l1, absorberLines.get(0));
+        assertEquals(l2, absorberLines.get(1));
+        assertEquals(l3, absorberLines.get(2));
+        assertEquals(l4, absorberLines.get(3));
+
+        assertTrue(4 == absorberLines.size());
+    }
+
+
+    @Test
+    public void testAbsorberHeightAndWidth(){
+        assertEquals(0, absorb.getHeight());
+        assertEquals(10, absorb.getWidth());
+    }
+
+    @Test
+    public void testAbsorberFireball(){
+        assertEquals(null, absorb.fireBall());
+//        absorb.storeGizmoBall(ball);
+//        absorb.fireBall();
+    }
 
 
     /**
@@ -200,6 +236,7 @@ class ModelTest {
      */
     @Test
     public void testGetBallPosition(){
+
         assertEquals(18.5F, m1.getBall().getXpos());
         assertEquals(10.0F, m1.getBall().getYpos());
     }
@@ -346,10 +383,9 @@ class ModelTest {
     }
 
     @Test
-    public void testAdjustFriction(){
-        double friction = 4;
-        //m1.setFriction(4);
-        assertEquals(4, m1.getFriction());
+    public void testFriction(){
+        m1.setMU(0.05);
+        assertEquals(0.05, m1.getFriction());
     }
 
     /**
