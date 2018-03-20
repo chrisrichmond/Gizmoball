@@ -1,4 +1,4 @@
-package Testing;
+package Model;
 import Model.Model;
 import Model.Ball;
 import Model.Walls;
@@ -78,7 +78,17 @@ class ModelTest {
     public void testGetAbsorber(){
         m1.addGizmo(absorb);
         assertEquals(1, m1.getAbsorbers().size());
+        assertEquals(absorb, m1.getGizmoByCoords(0, 0));
+        assertEquals("AB", absorb.getID());
+        assertEquals(0, absorb.getDirection());
+        assertEquals(false, absorb.rotate());
+        absorb.setID("BC");
+        assertEquals("BC", absorb.getID());
+        absorb.setID("AB");
+
     }
+
+
 
     /**
      * unit test to test the size of the gizmo list has decreased by 1 by removing the absorber
@@ -224,6 +234,7 @@ class ModelTest {
      */
     @Test
     public void testBallStoppedAndID(){
+        m1.moveBall();
         m1.getBall().setStopped(true);
         assertEquals(true, m1.getBall().isStopped());
         assertEquals("B", m1.getBall().getID());
@@ -321,10 +332,24 @@ class ModelTest {
     }
 
     @Test
+    public void testSpinFlipper(){
+        //flipper does not spin so test will pass, but we will try to get
+        // flipper rotation functioning correctly
+        assertFalse(m1.SpinFlipper(lFlip, 90));
+    }
+
+    @Test
     public void testAdjustGravity(){
         double grav = 6;
         m1.setGravity(grav);
         assertEquals(6, m1.getGravity());
+    }
+
+    @Test
+    public void testAdjustFriction(){
+        double friction = 4;
+        m1.setFriction(4);
+        assertEquals(4, m1.getFriction());
     }
 
     /**
@@ -346,6 +371,11 @@ class ModelTest {
     }
 
     @Test
+    public void testGetNullGizmoCoords(){
+        assertEquals(null, m1.getGizmoByCoords(10, 10));
+    }
+
+    @Test
     public void testGizmoClearBoard(){
         m1.addGizmo(circle);
         assertEquals(1, m1.getCircles().size());
@@ -354,6 +384,14 @@ class ModelTest {
         assertEquals(0, m1.getCircles().size());
         assertTrue(0 == m1.getCircles().size());
     }
+
+    @Test
+    public void testChangeColourRunnable(){
+        ChangeColourRunnable run1 = new ChangeColourRunnable(square, Color.GREEN);
+        run1.run();
+        assertEquals(Color.GREEN, square.getColour());
+    }
+
 
     /**
      * save a default gizmo file to the system and load the file

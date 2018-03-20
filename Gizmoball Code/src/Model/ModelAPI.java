@@ -46,7 +46,7 @@ public interface ModelAPI extends Observable{
 
     public void setGravity(double gravity);
 
-    public void setFriction(double friction);
+    public void setMU(double friction);
 
     /**
      *
