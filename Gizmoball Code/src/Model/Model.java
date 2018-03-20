@@ -374,6 +374,14 @@ public class Model implements ModelAPI {
 
 	}
 
+	public Gizmo getGizmoByID(String ID){
+		for(Gizmo currentGizmo: gizmos){
+			if(currentGizmo.getID().equals(ID)){
+				return currentGizmo;
+			}
+		}
+		return null;
+	}
 
 	private void keyPressed(KeyEvent key) {
 		ArrayList<Gizmo> x;

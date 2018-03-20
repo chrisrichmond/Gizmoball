@@ -46,6 +46,8 @@ public interface ModelAPI extends Observable{
 
     public void setBallSpeed(int x, int y);
 
+    public Gizmo getGizmoByID(String ID);
+
     public boolean isCellEmpty(int xPos, int yPos);
 
     public void setGravity(double gravity);
