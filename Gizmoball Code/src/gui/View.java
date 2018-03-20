@@ -4,6 +4,7 @@ import Model.ModelAPI;
 import gui.Listeners.BuildListener;
 import gui.Listeners.GBallListener;
 import gui.Listeners.RunListener;
+import gui.Listeners.SettingsListener;
 import utilities.Observer;
 
 import javax.swing.*;
@@ -219,9 +220,68 @@ public class View implements Observer{
 
         JFrame settingsFrame = new JFrame("Gizmoball Settings");
         Container settingsCp = settingsFrame.getContentPane();
+        settingsCp.setLayout(new GridLayout(5,2));
 
-        settingsCp.setLayout(new GridLayout(2,2));
-        settingsCp.setPreferredSize(new Dimension(200,200));
+        GBallListener settingsListener = new SettingsListener(model, this);
+
+        JLabel buildThemeLabel = new JLabel("Select Build Theme");
+        JLabel runThemeLabel = new JLabel("Select Run Theme");
+        ButtonGroup buildGroup = new ButtonGroup();
+        ButtonGroup runGroup = new ButtonGroup();
+
+        JRadioButton buildBlack = new JRadioButton("Black");
+        JRadioButton buildWhite = new JRadioButton("White");
+        JRadioButton buildRed = new JRadioButton("Red");
+        JRadioButton buildOrange = new JRadioButton("Orange");
+        buildBlack.setActionCommand("Build Black");
+        buildWhite.setActionCommand("Build White");
+        buildRed.setActionCommand("Build Red");
+        buildOrange.setActionCommand("Build Orange");
+
+        JRadioButton runBlack = new JRadioButton("Black");
+        JRadioButton runWhite = new JRadioButton("White");
+        JRadioButton runRed = new JRadioButton("Red");
+        JRadioButton runOrange = new JRadioButton("Orange");
+        runBlack.setActionCommand("Run Black");
+        runWhite.setActionCommand("Run White");
+        runRed.setActionCommand("Run Red");
+        runOrange.setActionCommand("Run Orange");
+
+        buildBlack.addActionListener(settingsListener);
+        buildWhite.addActionListener(settingsListener);
+        buildRed.addActionListener(settingsListener);
+        buildOrange.addActionListener(settingsListener);
+
+        runBlack.addActionListener(settingsListener);
+        runWhite.addActionListener(settingsListener);
+        runRed.addActionListener(settingsListener);
+        runOrange.addActionListener(settingsListener);
+
+        buildGroup.add(buildBlack);
+        buildGroup.add(buildWhite);
+        buildGroup.add(buildRed);
+        buildGroup.add(buildOrange);
+
+        runGroup.add(buildBlack);
+        runGroup.add(buildWhite);
+        runGroup.add(buildRed);
+        runGroup.add(buildOrange);
+
+//        buildWhite.setSelected(true);
+//        runBlack.setSelected(true);
+
+        settingsCp.setPreferredSize(new Dimension(300,200));
+        settingsCp.add(buildThemeLabel, SwingConstants.CENTER);
+        settingsCp.add(runThemeLabel, SwingConstants. CENTER);
+        settingsCp.add(buildBlack);
+        settingsCp.add(runBlack);
+        settingsCp.add(buildWhite);
+        settingsCp.add(runWhite);
+        settingsCp.add(buildRed);
+        settingsCp.add(runRed);
+        settingsCp.add(buildOrange);
+        settingsCp.add(runOrange);
+
         settingsFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         settingsFrame.pack();
         settingsFrame.setLocationRelativeTo(null);
