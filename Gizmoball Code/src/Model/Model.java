@@ -36,6 +36,7 @@ public class Model implements ModelAPI {
  	private GizmoFileHandler fileHandler;
  	private double tickTime;
  	private double gravity;
+ 	private double friction;
 
 
 	/**
@@ -44,7 +45,6 @@ public class Model implements ModelAPI {
 	 * various methods in this class reference these fields
 	 */
 	public Model(){
-
 		this.observers = new ArrayList<Observer>();
 		this.changed = false;
 		this.gizmos = new ArrayList<Gizmo>();
@@ -57,6 +57,7 @@ public class Model implements ModelAPI {
 		this.fileHandler = new GizmoFileHandler(this);
 		this.tickTime = 0.05D;
 		this.gravity=2.0D;
+		this.friction = 0.02D;//0.05 original
 
 		this.ball = new BallImpl("B",18.5F, 10.0F, 0.0D, 0.0D);
 		this.walls = new Walls(0,0,20,20);
@@ -113,6 +114,7 @@ public class Model implements ModelAPI {
 	 * @param delta_t
 	 */
 	private void applyFriction(double delta_t){
+		System.out.println("################## " + delta_t);
 		Double xVnew,xVold,yVold,yVnew;
 		xVold=ball.getVelocity().x();
 		yVold=ball.getVelocity().y();
@@ -301,16 +303,16 @@ public class Model implements ModelAPI {
 	 * fires ball from absorber && makes ball moved based on Time Until Collision
 	 */
 	public void moveBall() {
-		double moveTime = 0.05D;
+
 
 
 		if(ball != null && !ball.isStopped()){
 			CollisionDetails cd = timeUntilCollision();
 			double tuc = cd.getTuc();
 			if(!cd.getCollisionType().equals("absorber")) {
-				if (tuc > moveTime) {
-					applyFriction(moveTime);
-					ball = moveBallForTime(ball, moveTime);
+				if (tuc > friction) {
+					applyFriction(friction);
+					ball = moveBallForTime(ball, friction);
 
 				} else if (!ball.isStopped()) {
 					applyFriction(tuc);
@@ -718,6 +720,15 @@ public class Model implements ModelAPI {
 		return gravity;
 	}
 
+	@Override
+	public void setFriction(double friction) {
+		this.friction = friction;
+	}
+
+	@Override
+	public double getFriction(){
+		return friction;
+	}
 	/**
 	 *
 	 * @param o the Observer object which is subscribing
