@@ -46,6 +46,8 @@ public interface ModelAPI extends Observable{
 
     public void setGravity(double gravity);
 
+    public void setFriction(double friction);
+
     /**
      *
      * @param gizmo
@@ -76,6 +78,8 @@ public interface ModelAPI extends Observable{
     public List<Gizmo> getRightFlippers();
 
     public double getGravity();
+
+    public double getFriction();
 
     public boolean SpinFlipper(Gizmo flipper, double degrees);
 

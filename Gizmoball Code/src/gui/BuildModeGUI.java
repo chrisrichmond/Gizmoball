@@ -40,6 +40,11 @@ public class BuildModeGUI implements GameGUI {
     static final int GravMAx = 10;
     static final int GravInit = 2;
 
+    static final int FrictionMin = 0;
+    static final int FrictionMax = 10;
+    static final int FrictionInit = 2;
+
+
     // Add gizmo buttons
     private JButton addSquareButton;
     private JButton addCircleButton;
@@ -52,6 +57,11 @@ public class BuildModeGUI implements GameGUI {
     private JSlider gravSlider;
     private JLabel gravSliderLabel;
     private GravSliderListener gravSliderListener;
+
+    //friction slider
+    private JSlider frictionSlider;
+    private JLabel frictionSliderLabel;
+    private FrictionSliderListener frictionSliderListener;
 
     private Font font;
     private Dimension maxButtonSize;
@@ -193,6 +203,18 @@ public class BuildModeGUI implements GameGUI {
         gravSliderListener = new GravSliderListener(model, view, gravSlider);
         gravSlider.addChangeListener(gravSliderListener);
 
+        frictionSliderLabel = new JLabel("Friction Slider", JLabel.CENTER);
+        frictionSliderLabel.setFont(font);
+        frictionSliderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JSlider frictionSlider = new JSlider(JSlider.HORIZONTAL, FrictionMin,FrictionMax,FrictionInit);
+
+        frictionSlider.setMajorTickSpacing(10);
+        frictionSlider.setMinorTickSpacing(1);
+        frictionSlider.setPaintTicks(true);
+        frictionSlider.setPaintLabels(true);
+        frictionSliderListener = new FrictionSliderListener(model, view, frictionSlider);
+        frictionSlider.addChangeListener(frictionSliderListener);
+
 
         quitButton = new JButton("Quit");
         quitButton.setFont(font);
@@ -223,6 +245,9 @@ public class BuildModeGUI implements GameGUI {
         //buttonPanel.add(SPACERH4X);
         buttonPanel.add(gravSliderLabel);
         buttonPanel.add(gravSlider);
+
+        buttonPanel.add(frictionSliderLabel);
+        buttonPanel.add(frictionSlider);
 
 
 
