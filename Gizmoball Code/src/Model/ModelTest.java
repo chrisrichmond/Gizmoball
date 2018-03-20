@@ -15,6 +15,7 @@ import physics.Vect;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -100,13 +101,13 @@ class ModelTest {
         m1.addGizmo(absorb);
         assertEquals(1, m1.getAbsorbers().size());
         assertEquals(absorb, m1.getGizmoByCoords(0, 0));
+        assertEquals(absorb, m1.getGizmoByCoords(10, 0));
         assertEquals("AB", absorb.getID());
         assertEquals(0, absorb.getDirection());
         assertEquals(false, absorb.rotate());
         absorb.setID("BC");
         assertEquals("BC", absorb.getID());
         absorb.setID("AB");
-
     }
 
     @Test
@@ -149,9 +150,6 @@ class ModelTest {
         assertEquals(null, absorb.fireBall());
     }
 
-
-
-
     /**
      * unit test to test the size of the gizmo list has decreased by 1 by removing the absorber
      */
@@ -167,9 +165,18 @@ class ModelTest {
     @Test
     public void testGetSquares(){
         m1.addGizmo(square);
+        square.trigger();
         assertEquals(1, m1.getSquares().size());
     }
 
+    @Test
+    public void testSquare(){
+        assertEquals(0, square.getDirection());
+        assertFalse(square.rotate());
+        square.setID("S1");
+        assertEquals("S1", square.getID());
+        square.setID("1");
+    }
 
     @Test
     public void testSetPosSquare() {
@@ -416,6 +423,10 @@ class ModelTest {
         assertEquals(8, lFlip.getYPos());
         assertEquals(Color.orange, lFlip.getColour());
         assertEquals("leftflipper", lFlip.getType());
+        assertEquals(2, lFlip.getHeight());
+        assertEquals(0.5, lFlip.getBreadth());
+        assertEquals(2, lFlip.getLength());
+        assertEquals(0.5, lFlip.getWidth());
         lFlip.setPos(15, 15);
     }
 
@@ -503,7 +514,13 @@ class ModelTest {
         m1.clear();
     }
 
-
+    @Test
+    public void testGetGizmoID(){
+        m1.addGizmo(circle);
+        assertEquals(circle, m1.getGizmoByID("5"));
+        m1.removeGizmo(circle);
+        assertNull(m1.getGizmoByID("5"));
+    }
 
     @Test
     public void testSetGetRadius(){
@@ -511,7 +528,6 @@ class ModelTest {
         ball1.setRadius(0.5);
         assertEquals(0.5, ball1.getBallRadius());
     }
-
 
     @Test
     public void testGizmoConnection(){
@@ -526,6 +542,5 @@ class ModelTest {
     public void tearDown(){
         m1 = null;
     }
-
 
 }
