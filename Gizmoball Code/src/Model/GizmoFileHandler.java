@@ -72,6 +72,16 @@ public class GizmoFileHandler {
         }else if(opcode.equals("connect")) {
             // operation is a gizmo connect
             // not implemented yet so do nothing
+
+            Gizmo firstGizmo = model.getGizmoByID(operands.get(0));
+            Gizmo secondGizmo = model.getGizmoByID(operands.get(1));
+
+            if((firstGizmo == null)||(secondGizmo == null)){
+                System.out.println("invalid gizmo connection load operation");
+            }else {
+                model.addGizmoConnection(firstGizmo, secondGizmo);
+            }
+
         }else{
             // object is a gizmo
             int x = Integer.parseInt(operands.get(1));
