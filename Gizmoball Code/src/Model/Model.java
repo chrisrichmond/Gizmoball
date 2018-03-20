@@ -57,7 +57,7 @@ public class Model implements ModelAPI {
 		this.fileHandler = new GizmoFileHandler(this);
 		this.tickTime = 0.05D;
 		this.gravity=2.0D;
-		this.friction = 0.02D;//0.05 original
+		this.friction = 0.05D; //0.05 original
 
 		this.ball = new BallImpl("B",18.5F, 10.0F, 0.0D, 0.0D);
 		this.walls = new Walls(0,0,20,20);
