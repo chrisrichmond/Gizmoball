@@ -709,8 +709,12 @@ public class Model implements ModelAPI {
 
 
 	public void addGizmoConnection(Gizmo gizmo, Gizmo gizmo2) {
-
 		if(gizmoConnections.containsKey(gizmo)){
+			System.out.println("adding gizmo connection");
+			gizmoConnections.get(gizmo).add(gizmo2);
+		}else{
+			System.out.println("adding gizmo connection");
+			gizmoConnections.put(gizmo, new ArrayList<>());
 			gizmoConnections.get(gizmo).add(gizmo2);
 		}
 
