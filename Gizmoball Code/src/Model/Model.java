@@ -475,6 +475,7 @@ public class Model implements ModelAPI {
 		return false;
 	}
 
+
 	/**
 	 *
 	 * @param gizmo is removed from board based on user choice
@@ -757,9 +758,18 @@ public class Model implements ModelAPI {
 	}
 
 	@Override
+	public void setFriction(double frict) {
+		this.friction = frict;
+		System.out.println("======= Set Friction       " + this.friction);
+	}
+
+
+	@Override
 	public double getFriction(){
 		return friction;
 	}
+
+
 	/**
 	 *
 	 * @param o the Observer object which is subscribing

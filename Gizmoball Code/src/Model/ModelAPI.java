@@ -48,6 +48,8 @@ public interface ModelAPI extends Observable{
 
     public void setMU(double friction);
 
+    public void setFriction(double friction);
+
     public void addGizmoConnection(Gizmo gizmo, Gizmo gizmo2);
 
     /**
@@ -84,6 +86,4 @@ public interface ModelAPI extends Observable{
     public double getFriction();
 
     public boolean SpinFlipper(Gizmo flipper, double degrees);
-
-
 }
