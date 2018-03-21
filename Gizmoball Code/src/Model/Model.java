@@ -734,6 +734,15 @@ public class Model implements ModelAPI {
 		}
 
 	}
+	public void removeGizmoConnection(Gizmo gizmo, Gizmo gizmo2) {
+		if(gizmoConnections.containsKey(gizmo)){
+			System.out.println("removing gizmo connection");
+			gizmoConnections.get(gizmo).remove(gizmo2);
+		}else{
+			System.out.println("nothing to remove");
+		}
+
+	}
 	public boolean hasGizmoConnection(Gizmo gizmo) {
 
 		if(gizmoConnections.containsKey(gizmo)){
@@ -743,10 +752,26 @@ public class Model implements ModelAPI {
 	}
 
 	public void addKeyConnection(KeyEvent key,Gizmo gizmo1) {
-
 		if(keyConnections.containsKey(key)){
+			System.out.println("adding key connection");
+			keyConnections.get(key).add(gizmo1);
+		}else{
+			System.out.println("adding key connection");
+			keyConnections.put(key, new ArrayList<>());
 			keyConnections.get(key).add(gizmo1);
 		}
+
+
+	}
+	public void removeKeyConnection(KeyEvent key,Gizmo gizmo1) {
+		if(keyConnections.containsKey(key)){
+			System.out.println("removing key connection");
+			keyConnections.get(key).remove(gizmo1);
+		}else{
+			System.out.println("Nothing to remove");
+
+		}
+
 
 	}
 	public boolean hasKeyConnection(KeyEvent key) {
