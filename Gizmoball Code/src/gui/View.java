@@ -1,6 +1,7 @@
 package gui;
 
 import Model.ModelAPI;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import gui.Listeners.BuildListener;
 import gui.Listeners.GBallListener;
 import gui.Listeners.RunListener;
@@ -342,5 +343,8 @@ public class View implements Observer{
     @Override
     public void update() {
         mainFrame.repaint();
+        ((BuildModeGUI)buildGUI).setSliderValues((int)model.getGravity(), (int)(model.getMu()*100));
+        System.out.println("Gravity = "+model.getGravity());
+        System.out.println("Mu = "+model.getMu());
     }
 }
