@@ -343,7 +343,7 @@ public class View implements Observer{
     @Override
     public void update() {
         mainFrame.repaint();
-        ((BuildModeGUI)buildGUI).setSliderValues((int)model.getGravity(), (int)(model.getMu()*100));
+        ((BuildModeGUI)buildGUI).setSliderValues((int)model.getGravity(), (int)(model.getMu()*1000));
         System.out.println("Gravity = "+model.getGravity());
         System.out.println("Mu = "+model.getMu());
     }

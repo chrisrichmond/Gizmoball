@@ -71,6 +71,7 @@ public class GizmoFileHandler {
             model.setGravity(Double.parseDouble(operands.get(0)));
         }else if(opcode.equals("friction")){
             // operation is set friciton
+
             model.setMu(Double.parseDouble(operands.get(0)));
             model.setMu2(Double.parseDouble(operands.get(1)));
         }else if(opcode.equals("keyconnect")) {

@@ -22,9 +22,11 @@ public class FrictionSliderListener implements ChangeListener {
     @Override
     public void stateChanged(ChangeEvent e) {
         if(e.getSource() == frictionSlider) {
-            view.updateMessagePanel("Friction = "+((double)frictionSlider.getValue()/10));
-            model.setMu((double)frictionSlider.getValue()/100);
-            model.setMu2((double)frictionSlider.getValue()/100);
+            view.updateMessagePanel("Friction = "+((double)frictionSlider.getValue()/1000));
+            model.setMu((double)frictionSlider.getValue()/1000);
+            model.setMu2((double)frictionSlider.getValue()/1000);
+            System.out.println("mu set to "+ model.getMu());
+            System.out.println("mu2 set to "+ model.getMu2());
         }
     }
 }

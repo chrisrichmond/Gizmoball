@@ -40,8 +40,8 @@ public class BuildModeGUI implements GameGUI {
     static int GravInit = 2;
 
     static int FrictionMin = 0;
-    static int FrictionMax = 5;
-    static int FrictionInit = 2;
+    static int FrictionMax = 50;
+    static int FrictionInit = 25;
 
 
     // Add gizmo buttons
@@ -402,6 +402,9 @@ public class BuildModeGUI implements GameGUI {
 
     public void setSliderValues(int gravSliderValue, int frictSliderValue){
         gravSlider.setValue(gravSliderValue);
+        System.out.println("set gravSlider value in buildGUI to "+gravSliderValue);
         frictionSlider.setValue(frictSliderValue);
+        System.out.println("set frictionSlider value in buildGUI to "+frictSliderValue);
+
     }
 }
