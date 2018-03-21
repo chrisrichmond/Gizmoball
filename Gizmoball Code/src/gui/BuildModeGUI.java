@@ -34,15 +34,14 @@ public class BuildModeGUI implements GameGUI {
     private JButton reloadModelButton;
     private JButton quitButton;
 
-
     // Sliders
-    static final int GravMin = 0;
-    static final int GravMAx = 10;
-    static final int GravInit = 2;
+    static int GravMin = 0;
+    static int GravMAx = 10;
+    static int GravInit = 2;
 
-    static final int FrictionMin = 0;
-    static final int FrictionMax = 10;
-    static final int FrictionInit = 2;
+    static int FrictionMin = 0;
+    static int FrictionMax = 5;
+    static int FrictionInit = 2;
 
 
     // Add gizmo buttons
@@ -191,7 +190,7 @@ public class BuildModeGUI implements GameGUI {
         gravSliderLabel.setFont(font);
         //JLabel SPACERH4X = new JLabel("", JLabel.CENTER);
         gravSliderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JSlider gravSlider = new JSlider(JSlider.HORIZONTAL, GravMin, GravMAx, GravInit);
+        gravSlider = new JSlider(JSlider.HORIZONTAL, GravMin, GravMAx, GravInit);
         // This line does nothing ??? what WHY -- idk man
         //gravSlider.setPreferredSize(new Dimension(100,100));
 
@@ -206,7 +205,7 @@ public class BuildModeGUI implements GameGUI {
         frictionSliderLabel = new JLabel("Friction Slider", JLabel.CENTER);
         frictionSliderLabel.setFont(font);
         frictionSliderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JSlider frictionSlider = new JSlider(JSlider.HORIZONTAL, FrictionMin,FrictionMax,FrictionInit);
+        frictionSlider = new JSlider(JSlider.HORIZONTAL, FrictionMin,FrictionMax,FrictionInit);
 
         frictionSlider.setMajorTickSpacing(10);
         frictionSlider.setMinorTickSpacing(1);
@@ -399,5 +398,10 @@ public class BuildModeGUI implements GameGUI {
         messagePanel.setBackground(themeBG);
 
         return messagePanel;
+    }
+
+    public void setSliderValues(int gravSliderValue, int frictSliderValue){
+        gravSlider.setValue(gravSliderValue);
+        frictionSlider.setValue(frictSliderValue);
     }
 }
