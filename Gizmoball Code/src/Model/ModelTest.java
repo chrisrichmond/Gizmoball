@@ -150,6 +150,18 @@ class ModelTest {
         assertEquals(null, absorb.fireBall());
     }
 
+    @Test
+    public void testAbsorber(){
+        absorb.storeGizmoBall(ball);
+        absorb.setPos(1, 1);
+        assertEquals(1, absorb.getXPos());
+        assertEquals(1, absorb.getYPos());
+        absorb.setPos(0, 0);
+        absorb.fireBall();
+        ball.setXpos(18.5F);
+        ball.setYpos(10.0F);
+    }
+
     /**
      * unit test to test the size of the gizmo list has decreased by 1 by removing the absorber
      */
@@ -413,6 +425,15 @@ class ModelTest {
     }
 
     @Test
+    public void testFlipperGetAndSet(){
+        assertEquals(0, lFlip.getDirection());
+        assertFalse(lFlip.rotate());
+        lFlip.setID("Left Flipper");
+        assertEquals("Left Flipper", lFlip.getID());
+        lFlip.setID("LFlip");
+    }
+
+    @Test
     public void testLFlip(){
         m1.removeGizmo(lFlip);
         assertEquals("LFlip", lFlip.getID());
@@ -523,6 +544,7 @@ class ModelTest {
     @Test
     public void testGetGizmoID(){
         m1.addGizmo(circle);
+        circle.trigger();
         assertEquals(circle, m1.getGizmoByID("5"));
         m1.removeGizmo(circle);
         assertNull(m1.getGizmoByID("5"));
