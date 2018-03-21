@@ -74,7 +74,9 @@ public class BuildListener implements GBallListener {
                 setMouseListener(gizmoConnectListener);
                 break;
             case("Disconnect"):
-                view.updateMessagePanel("Disonnect Gizmo");
+                final MouseInputListener gizmoDisconnectListener = new GizmoDisconnectListener(model, view);
+                view.updateMessagePanel("Gizmo Disconnect - Click on a gizmo and drag to another gizmo to disconnect them (one-way)");
+                setMouseListener(gizmoDisconnectListener);
                 break;
             case("Key Connect"):
                 view.updateMessagePanel("Key Connect Gizmo");
