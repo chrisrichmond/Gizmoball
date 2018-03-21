@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import gui.View;
 import Model.gizmos.*;
@@ -26,6 +27,7 @@ public class Model implements ModelAPI {
 	private boolean isBuildMode;
 	private Ball ball;
 	private List<Gizmo> gizmos;
+	private LinkedList<KeyEvent> keyPresses;
 	private List<Gizmo> squares;
 	private List<Gizmo> circles;
 	private ArrayList<Gizmo> triangles;
@@ -60,6 +62,7 @@ public class Model implements ModelAPI {
 		this.tickTime = 0.05D;
 		this.gravity=2.0D;
 		this.friction = 0.05D; //0.05 original
+		keyPresses=new LinkedList<KeyEvent>();
 
 		this.ball = new BallImpl("B",18.5F, 10.0F, 0.0D, 0.0D);
 		this.walls = new Walls(0,0,20,20);
@@ -383,11 +386,17 @@ public class Model implements ModelAPI {
 		return null;
 	}
 
-	private void keyPressed(KeyEvent key) {
-		ArrayList<Gizmo> x;
-		x=keyConnections.get(key);
-		for(int i=0;i<x.size();i++){
-			x.get(i).trigger();
+	public void keyPressed(KeyEvent key) {
+		keyPresses.addFirst(key);
+	}
+	public void handleKeyPresses(KeyEvent key) {
+		while(!keyPresses.isEmpty()){
+
+			ArrayList<Gizmo> x=keyConnections.get(keyPresses.removeLast());
+			for(int i=0;i<x.size();i++){
+				x.get(i).trigger();
+			}
+
 		}
 	}
 
@@ -788,6 +797,7 @@ public class Model implements ModelAPI {
 		this.gravity = gravity;
 		System.out.println("======= Set Gravity       " + this.gravity);
 	}
+
 
 	@Override
 	public double getGravity(){
