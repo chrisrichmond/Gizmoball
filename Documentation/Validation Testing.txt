@@ -28,10 +28,9 @@ Passed
 Connect a gizmo being triggered to an action, should cause no conflict 
 Passed
 
-
 8
 Test gizmo connection, e.g. when ball hits absorber a flipper moves
-Passed
+Failed
 
 9
 Disconnect a gizmo being triggered to and action, should cause no conflict
@@ -39,12 +38,12 @@ Passed
 
 10
 Connect a gizmo to a key press should cause no conflict, e.g. flipper
-Passed
+Failed
 
 11
 Key disconnect
 Connect a gizmo to a key press should cause no conflict, e.g. flipper
-Passed
+Failed
 
 12
 Delete a gizmo on playing area, should cause no conflict
@@ -57,8 +56,6 @@ Passed
 14
 Add ball to playing area, should cause no conflict
 Passed
-
-
 
 15
 Add ball to part of playing area which already is occupied, should give conflict
@@ -87,8 +84,6 @@ Passed
 21
 Change to build mode, in running mode change to build mode, playing field should become editable and should change without conflict
 Passed
-
-
 
 22
 Pause running mode with stop mode, playing field should pause this should happen without conflict
@@ -121,6 +116,7 @@ Passed
 29
 Clear board while board is empty, should be no conflict
 Passed
+
 30
 Tick, the tick feature should work without conflict advancing the game one frame at a time
 Passed
@@ -143,13 +139,11 @@ Passed
 
 35
 Flippers , should move when connected to a pressed key without conflict
-Passed
+Failed
 
 36
 Flipper collision should work without conflict
-Passed
-
-
+Failed
 
 37
 Ball velocity should change after collisions without conflict
@@ -157,5 +151,3 @@ Ball velocity should change after collisions without conflict
 38
 Saved files should be in desired format
 Passed
-
-
