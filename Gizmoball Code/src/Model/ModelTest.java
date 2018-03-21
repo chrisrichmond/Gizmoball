@@ -536,6 +536,20 @@ class ModelTest {
     }
 
     @Test
+    public  void testCollisionDetails(){
+        double test1 = 3;
+        Angle agl = new Angle(test1);
+        Vect v = new Vect(agl);
+        CollisionDetails cd = new CollisionDetails(v, 0.05, "wall");
+        cd.setVelocity(v);
+        assertEquals(v, cd.getVelocity());
+        cd.setTuc(0.05);
+        assertEquals(0.05, cd.getTuc());
+        cd.setCollisionType("wall");
+        assertEquals("wall", cd.getCollisionType());
+    }
+
+    @Test
     public void testGizmoConnection(){
         Gizmo squareTEST = new SquareBumper("sq0", 1, 1);
         Gizmo squareTEST1 = new SquareBumper("sq1", 4, 4);
