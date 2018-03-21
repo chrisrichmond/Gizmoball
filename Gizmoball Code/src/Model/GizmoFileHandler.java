@@ -71,7 +71,8 @@ public class GizmoFileHandler {
             model.setGravity(Double.parseDouble(operands.get(0)));
         }else if(opcode.equals("friction")){
             // operation is set friciton
-            model.setMU(Double.parseDouble(operands.get(0))); // this just sets mu and mu2 to the same value due to the method provided in model setting both from the same input parameter??
+            model.setMu(Double.parseDouble(operands.get(0)));
+            model.setMu2(Double.parseDouble(operands.get(1)));
         }else if(opcode.equals("keyconnect")) {
             // operation is a key connect
             // not implemented yet so do nothing
@@ -185,7 +186,7 @@ public class GizmoFileHandler {
             }
 
             writer.println("Gravity "+model.getGravity());
-            writer.println("Friction "+model.getFriction()+" "+model.getFriction());
+            writer.println("Friction "+model.getMu()+" "+model.getMu2());
 
             writer.close();
 

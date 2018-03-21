@@ -452,9 +452,15 @@ class ModelTest {
     }
 
     @Test
-    public void testFriction(){
-        m1.setMU(0.05);
-        assertEquals(0.05, m1.getFriction());
+    public void testMu(){
+        m1.setMu(0.05);
+        assertEquals(0.05, m1.getMu());
+    }
+
+    @Test
+    public void testMu2(){
+        m1.setMu2(0.05);
+        assertEquals(0.05, m1.getMu2());
     }
 
 

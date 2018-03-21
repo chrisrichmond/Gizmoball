@@ -770,10 +770,13 @@ public class Model implements ModelAPI {
 	}
 
 	@Override
-	public void setMU(double frict) {
-		this.mu = frict;
-		this.mu2 = frict;
-		System.out.println("======= Set Friction       " + this.friction);
+	public void setMu(double mu) {
+		this.mu = mu;
+	}
+
+	@Override
+	public void setMu2(double mu2) {
+		this.mu2 = mu2;
 	}
 
 	@Override
@@ -786,6 +789,16 @@ public class Model implements ModelAPI {
 	@Override
 	public double getFriction(){
 		return friction;
+	}
+
+	@Override
+	public double getMu(){
+		return mu;
+	}
+
+	@Override
+	public double getMu2(){
+		return mu2;
 	}
 
 

@@ -48,11 +48,17 @@ public interface ModelAPI extends Observable{
 
     public Gizmo getGizmoByID(String ID);
 
+    public double getMu();
+
+    public double getMu2();
+
+    public void setMu(double mu);
+
+    public void setMu2(double mu2);
+
     public boolean isCellEmpty(int xPos, int yPos);
 
     public void setGravity(double gravity);
-
-    public void setMU(double friction);
 
     public void setFriction(double friction);
 
