@@ -66,6 +66,9 @@ public class GizmoFileHandler {
                     model.rotateGizmo(currentGizmo);
                 }
             }
+        }else if(opcode.equals("gravity")){
+            // operation is set gravity
+            model.setGravity(Double.parseDouble(operands.get(0)));
         }else if(opcode.equals("keyconnect")) {
             // operation is a key connect
             // not implemented yet so do nothing
@@ -177,6 +180,8 @@ public class GizmoFileHandler {
                     writer.println("Connect "+currentGizmoKey.getID()+" "+currentGizmos.get(i).getID());
                 }
             }
+
+            writer.println("Gravity "+model.getGravity());
 
             writer.close();
 
