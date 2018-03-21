@@ -3,6 +3,7 @@ package Model;
 import Model.gizmos.Gizmo;
 import utilities.Observable;
 
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,6 +57,8 @@ public interface ModelAPI extends Observable{
 
     public void setMu2(double mu2);
 
+    public void removeGizmoConnection(Gizmo gizmo, Gizmo gizmo2);
+
     public boolean isCellEmpty(int xPos, int yPos);
 
     public void setGravity(double gravity);
@@ -94,6 +97,8 @@ public interface ModelAPI extends Observable{
     public List<Gizmo> getLeftFlippers();
 
     public List<Gizmo> getRightFlippers();
+
+    void keyPressed(KeyEvent event);
 
     public double getGravity();
 
